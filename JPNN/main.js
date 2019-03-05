@@ -57,7 +57,7 @@ window.boot = function () {
                 progressBar.style.width = percent.toFixed(2) + '%';
             }
         };
-        splash.style.display = 'none';
+        splash.style.display = 'block';
         progressBar.style.width = '0%';
 
         cc.director.once(cc.Director.EVENT_AFTER_SCENE_LAUNCH, function () {
@@ -83,12 +83,6 @@ window.boot = function () {
                 else if (settings.orientation === 'portrait') {
                     cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
                 }
-                // cc.view.enableAutoFullScreen([
-                //     cc.sys.BROWSER_TYPE_BAIDU,
-                //     cc.sys.BROWSER_TYPE_WECHAT,
-                //     cc.sys.BROWSER_TYPE_MOBILE_QQ,
-                //     cc.sys.BROWSER_TYPE_MIUI,
-                // ].indexOf(cc.sys.browserType) < 0);
             }
 
             // Limit downloading max concurrent task to 2,
