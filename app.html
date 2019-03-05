@@ -1,0 +1,1588 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="format-detection" content="telephone = no" />
+    <title>葡京岛</title>
+    <script language="javascript" type="text/javascript" src="js/depend/jquery.js"></script>
+    <script language="javascript" type="text/javascript" src="js/depend/jquery.transit.js"></script>
+    <script language="javascript" type="text/javascript" src="js/depend/jquery.cookie.js"></script>
+    <script language="javascript" type="text/javascript" src="js/depend/spin.min.js"></script>
+    <script language="javascript" type="text/javascript" src="js/depend/jcanvas.min.js"></script>
+    <script language="javascript" type="text/javascript" src="js/depend/swiper.min.js"></script>
+    <script language="javascript" type="text/javascript" src="js/depend/vue.min.js"></script>
+    <script language="javascript" type="text/javascript" src="js/depend/aes.min.js"></script>
+    <script language="javascript" type="text/javascript" src="js/depend/mode.ecb.min.js"></script>
+    <script language="javascript" type="text/javascript" src="js/depend/qrcode.min.js"></script>
+    <!--
+	<script language="javascript" type="text/javascript" src="js/depend/app.min.js"></script>
+    -->
+    <script language="javascript" type="text/javascript" src="js/config.js"></script>
+    <script language="javascript" type="text/javascript" src="js/constant.js"></script>
+    <script language="javascript" type="text/javascript" src="js/app.js"></script>
+    <script language="javascript" type="text/javascript" src="js/appBetLive.js"></script>
+    <script language="javascript" type="text/javascript" src="js/appUserDomain.js"></script>
+    <script language="javascript" type="text/javascript" src="js/appWidget.js"></script>
+    <script language="javascript" type="text/javascript" src="js/appGame.js"></script>
+    <script language="javascript" type="text/javascript" src="js/appFunds.js"></script>
+    <script language="javascript" type="text/javascript">
+        if (!isMobile()) {
+            var url = location.href;
+            var agentCode = GetQueryString("code", url);
+            if (agentCode == null) {
+                window.location.href = "../";
+            } else {
+                window.location.href = "../index.html?code=" + agentCode;
+            }
+        }
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+            backClickFun();
+        });
+    </script>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/swiper.min.css" />
+    <link rel="stylesheet" href="css/spin.css" />
+</head>
+
+<body style="position: fixed;margin: 0px;overflow-x: hidden;overflow-y: hidden" oncontextmenu="return false" onselectstart="return false">
+    <div id="bodyDiv" style="position: absolute;overflow-x: hidden;overflow-y: hidden">
+        <div id="mainDiv" style="position: absolute;width: 100%;height: 100%;background-color: #2A2A2A;overflow-x: hidden;overflow-y: hidden">
+            <div id="top">
+                <div id="topLogo">
+                    <img id="topLogoImgId" src="pic/themeMain/logoLottery.png" style="height: 23px;padding-left: 15px;opacity: 0.9;" />
+                </div>
+                <div id="topTitle" style="padding-left: 20px"></div>
+                <div id="topRegisterLoginDiv" style="width: 180px;display: flex;justify-content: space-between;align-items: center;padding-right: 10px">
+                    <div style="width: 40px" id="topIsNoLoginDiv_service" class="topServiceClass">
+                        <img id="topServiceImgId" src="pic/themeMain/service.png" style="height: 20px" />
+                    </div>
+                    <div id="registerBtn" style="width: 60px;height: 25px;display: flex;justify-content: center;align-items: center;border: 1px solid #ffffff;border-radius: 14px;font-size: 14px;color: #FFFFFF">注册</div>
+                    <div id="loginBtn" style="width: 60px;height: 25px;display: flex;justify-content: center;align-items: center;border: 1px solid #ffffff;border-radius: 14px;color: #FFFFFF;font-size: 14px">登录</div>
+                </div>
+                <div id="topIsLoginDiv" style="width: 180px;display: none;justify-content:flex-end;align-items: center">
+                    <div id="topIsLoginDiv_mail" class="topMoneyClass" style="width: 40px;height: 40px;">
+                        <div style="position: relative;width: 40px;height: 40px;">
+                            <div style="position: absolute;width: 40px;height: 40px;top: 0px;display: flex;justify-content: center;align-items: center;">
+                                <img id="topIsLogin_mail_img" src="pic/themeMain/servicetop_message2.png" height="24px" />
+                            </div>
+                            <div style="position: absolute;width: 18px;height: 18px;left: 25px;;display: flex;justify-content: center;align-items: center;">
+                                <div class="appNoticeReadSize" id="appIsRead" style='border-radius:50%;width:14px;height:14px;background:red;color:white;font-size: 12px;display: none;justify-content: center;align-items: center;'></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="width: 10px"></div>
+                    <div id="topIsLoginDiv_service" class="topServiceClass" style="width: 40px">
+                        <img id="topIsLogin_service_Img" src="pic/themeMain/service.png" height="20px" />
+                    </div>
+                    <div style="width: 10px"></div>
+                    <div id="topIsLoginDiv_money" class="topMoneyClass" style="width: 40px">
+                        <img id="topIsLogin_money_img" src="pic/themeMain/m_money.png" height="22px" />
+                    </div>
+                    <div style="width: 20px"></div>
+                </div>
+            </div>
+            <div style="width: 100%;height: 0.5px;background-color: #554B37"></div>
+            <div id="indexDiv" style="position:absolute;width:100%;overflow:hidden;opacity:0">
+                <div id="content_niuniu" style="width:100%;height:100%;display:none;flex-direction:column;justify-content:flex-start;align-items:center">
+                    <div id="nn_content" style="position: relative;width: 100%">
+                        <iframe id="nn_content_frame" frameborder="0" scrolling='no' style="position: absolute;top: 0px;z-index: 7;width: 100%"></iframe>
+                        <div id="nn_content_fed" style="position: absolute;top: 0px;z-index: 8;width: 100%;display: flex;justify-content: center;align-items: center">
+                            <div id="nn_content_fed_root" style="text-align: center;align-items: center;width: 100%;height: auto;font-size: 16px">
+                                <div style="height:80px">
+                                    <img style="width: 80px;height: 80px" src="pic/themeMain/sorry.png" />
+                                </div>
+                                <div style="height:6px"></div>
+                                <div id="nn_content_fed_root_top_txt" style="font-size:18px;color: #CCA352">很抱歉</div>
+                                <div style="height:1px"></div>
+                                <div id="nn_content_fed_root_ts" style="font-size:16px;color: #CACACA">游戏无法打开,请稍后重试!</div>
+                            </div>
+                        </div>
+                        <div id="nn_content_load" style="position: absolute;top: 0px;z-index: 9;width: 100%;display: flex;justify-content: center;align-items: center;background-color: rgba(0,0,0,0.69)">
+                            <div id="nn_content_load_root" style="text-align: center;align-items: center;width: 100%;height: auto;font-size: 16px">
+                                <div id="nn_content_load_root_view" style="width: auto;height:48px"></div>
+                                <div style="height:6px"></div>
+                                <div id="nn_content_load_root_ts" style="font-size:16px;color: #CACACA">游戏正在加载中!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="comingDiv" style="opacity: 0;width: 100%;overflow-x: hidden;overflow-y: auto;position: absolute">
+            </div>
+            <div id="mapDiv" style="opacity: 0; width: 100%;position: absolute;overflow-x: hidden;overflow-y: hidden;width: 100%">
+                <div id="mapDiv_content" style="width: 100%;position: relative">
+                    <div id="mapDiv_content_select" style="width: 100%;height: 45px;display: flex;justify-content: center;align-items: center">
+                        <div id="mapDiv_content_timeSelect"></div>
+                    </div>
+                    <div style="height: 10px;width: 100%"></div>
+                    <div id="mapDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
+                    </div>
+                    <div id="mapDiv_content_bottom" style="height: 40px;width: 100%;background-color: #cccccc;display: none;font-size: 12px">
+                        <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="mapDiv_content_validSum"></div>
+                        <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="mapDiv_content_winorloss"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="myDiv" style="opacity: 0; width: 100%;overflow-x: hidden;overflow-y: auto;position: absolute;background-color: #191919">
+                <div id="myDiv_userInfo_content" style="width: 100%;height: 80px;display: flex;justify-content: space-between;align-items: center">
+                    <div style="padding: 10px;width: 180px; height: 100%;display: flex;justify-content:flex-start;align-items: center">
+                        <img id="myDiv_userInfo_content_header" src="pic/themeMain/m_header.png" height="56px" style="border-radius: 28px" />
+                        <div style="width: 10px"></div>
+                        <div>
+                            <div id="m_nickname"></div>
+                            <div id="m_userId"></div>
+                            <div id="m_userGrade"></div>
+                        </div>
+                        <div id="m_not_login_title" style="display: none ;color:#CDC9CF;">您还未登录哦~</div>
+                    </div>
+                    <div style="padding: 10px;width: 120px;display: flex;flex-direction: column;justify-content: center;align-items:flex-end">
+                        <div style="width: 90px;border-radius: 16px;height: 20px;display: flex;justify-content: center;align-items: center" id="m_logout_btn">退出登录</div>
+                    </div>
+                </div>
+                <div class="myDivItemContent" style="width:100%;height: 50px;display: flex;justify-content:space-between;align-items: center">
+                    <div style="width: 10px"></div>
+                    <div class="m_money_item">
+                        <div class="m_money_item_top">
+                            <img id="m_money_item_top_img1_id" src="pic/themeMain/m_wallet.png" height="13px" /> &nbsp;主钱包 </div>
+                        <div id="my_money_main">0.00</div>
+                    </div>
+                    <div class="m_money_item" style="display: none">
+                        <div class="m_money_item_top">
+                            <img id="m_money_item_top_img2_id" src="pic/themeMain/m_allmoney.png" height="13px" /> &nbsp;总资产 </div>
+                        <div id="my_money_all">0.00</div>
+                    </div>
+                    <div class="m_money_item" style="visibility: hidden">
+                        <div class="m_money_item_top">
+                            <img id="m_money_item_top_img3_id" src="pic/themeMain/m_interest_small.png" height="13px" /> &nbsp;利息账户 </div>
+                        <div id="my_money_Interest">0.00</div>
+                    </div>
+                    <div id="m_refresh_btn" style="height: 100%;width: 40px;display: flex;justify-content: center;align-items: center">
+                        <img id="moneyRefresh" src="pic/themeMain/m_refresh.png" height="20px" />
+                    </div>
+                    <div id="m_eye_open_btn" style="height: 100%;width: 40px;display: flex;justify-content: center;align-items: center">
+                        <img id="moneyEye" src="pic/themeMain/m_eye_open.png" height="20px" />
+                    </div>
+                    <div style="width: 10px"></div>
+                </div>
+                <div class="myDivSplitBlock" style="height: 10px;width: 100%;background-color: #383838"></div>
+                <div class="myDivItemContent" style="height: 35px;width: 100%;background-color: #2A2A2A;display: flex;justify-content: flex-start;align-items: center">
+                    <div id="m_menu_top_finance_block" style="margin-left: 10px;height: 20px;width: 4px;background-color: #999999"></div>
+                    <div id="m_menu_top_finance_text" style="font-size: 14px;color: #999999;margin-left: 10px">
+                        &nbsp;财务中心</div>
+                </div>
+                <div class="myDivSplitline" style="height: 1px;width: 100%;background-color: #383838"></div>
+                <div class="myDivItemContent" style="width:100%;height: 70px;display: flex;justify-content:space-between;align-items: center">
+                    <div class="m_menu_item" id="m_menu_item_btn_coming">
+                        <img id="m_menu_item_btn_coming_img" src="pic/themeMain/m_coming.png" height="25" />存款
+                    </div>
+                    <div class="myDivSplitline" style="height: 100%;width: 1px;background-color: #383838"></div>
+                    <div class="m_menu_item" id="m_menu_item_btn_draw">
+                        <img id="m_menu_item_btn_draw_img" src="pic/themeMain/m_draw.png" height="25" />提款
+                    </div>
+                    <div class="myDivSplitline" style="height: 100%;width: 1px;background-color: #383838"></div>
+                    <div class="m_menu_item" id="m_menu_item_btn_fundsrecord">
+                        <img id="m_menu_item_btn_fundsrecord_img" src="pic/themeMain/m_moneyrecord.png" height="25" />资金记录
+                    </div>
+                    <div class="myDivSplitline" style="height: 100%;width: 1px;background-color: #383838"></div>
+                    <div class="m_menu_item" id="m_menu_item_btn_betrecord">
+                        <img id="m_menu_item_btn_betrecord_img" src="pic/themeMain/m_record.png" height="25" />投注记录
+                    </div>
+                </div>
+                <div class="myDivSplitline" style="height: 1px;width: 100%;background-color: #383838"></div>
+                <div class="myDivSplitBlock" style="height: 10px;width: 100%;background-color: #383838"></div>
+                <div class="myDivItemContent" style="height: 35px;width: 100%;background-color: #2A2A2A;display: flex;justify-content: flex-start;align-items: center">
+                    <div id="m_menu3_top_safety_block" style="margin-left: 10px;height: 20px;width: 4px;background-color: #999999"></div>
+                    <div id="m_menu3_top_safety_text" style="font-size: 14px;color: #999999;margin-left: 10px">
+                        &nbsp;账号与安全</div>
+                </div>
+                <div class="myDivSplitline" style="height: 1px;width: 100%;background-color: #383838"></div>
+                <div class="myDivItemContent" style="width:100%;height: 70px;display: flex;justify-content:space-between;align-items: center">
+                    <div class="m_menu3_item" id="m_menu3_item_btn_info">
+                        <img id="m_menu3_item_btn_info_img" src="pic/themeMain/m_info.png" height="25" />个人资料
+                    </div>
+                    <div class="myDivSplitline" style="height: 100%;width: 1px;background-color: #383838"></div>
+                    <div class="m_menu3_item" id="m_menu3_item_btn_bank">
+                        <img id="m_menu3_item_btn_bank_img" src="pic/themeMain/m_bank.png" height="25" />银行卡
+                    </div>
+                    <div class="myDivSplitline" style="height: 100%;width: 1px;background-color: #383838"></div>
+                    <div class="m_menu3_item" id="m_menu3_item_btn_sn">
+                        <img id="m_menu3_item_btn_sn_img" src="pic/themeMain/m_sn.png" height="25" />登录密码
+                    </div>
+                    <div class="myDivSplitline" style="height: 100%;width: 1px;background-color: #383838"></div>
+                    <div class="m_menu3_item" id="m_menu3_item_btn_drawsn">
+                        <img id="m_menu3_item_btn_drawsn_img" src="pic/themeMain/m_draw_sn.png" height="25" />提款密码
+                    </div>
+                    <div class="myDivSplitline" style="height: 100%;width: 1px;background-color: #383838"></div>
+                    <div class="m_menu3_item" id="m_menu3_item_btn_signPwd">
+                        <img id="m_menu3_item_btn_signPwd_img" src="pic/themeMain/m_lock.png" height="25" />解锁设置
+                    </div>
+                </div>
+                <div class="myDivSplitBlock" style="height: 10px;width: 100%;background-color: #383838"></div>
+                <div class="m_info_item" id="m_info_item_content_pyramid">
+                    <div class="m_info_item_content" style="padding-left: 10px">
+                        <img id="m_info_item_content_pyramid_img" src="pic/themeMain/m_pyramid.png" width="25px" /> &nbsp;&nbsp;金字塔代理
+                    </div>
+                    <div class="m_info_item_content" style="padding-right: 10px">
+                        <img class="arrowImgClass" src="pic/themeMain/arrow.png" height="10px" />
+                    </div>
+                </div>
+                <div class="m_info_item" id="m_info_item_content_league">
+                    <div class="m_info_item_content" style="padding-left: 10px">
+                        <img id="m_info_item_content_league_img" src="pic/themeMain/m_agent.png" width="25px" /> &nbsp;&nbsp;金字塔代理
+                    </div>
+                    <div class="m_info_item_content" style="padding-right: 10px">
+                        <img class="arrowImgClass" src="pic/themeMain/arrow.png" height="10px" />
+                    </div>
+                </div>
+                <div class="myDivSplitline" style="height: 1px;width: 100%;background-color: #383838"></div>
+                <div class="m_info_item" id="m_info_item_content_agreement">
+                    <div class="m_info_item_content" style="padding-left: 10px">
+                        <img id="m_info_item_content_agreement_img" src="pic/themeMain/m_clause.png" width="25px" /> &nbsp;&nbsp;条款与隐私
+                    </div>
+                    <div class="m_info_item_content" style="padding-right: 10px">
+                        <img class="arrowImgClass" src="pic/themeMain/arrow.png" height="10px" />
+                    </div>
+                </div>
+                <div class="myDivSplitline" style="height: 1px;width: 100%;background-color: #383838"></div>
+                <div class="m_info_item" id="m_info_item_content_update">
+                    <div class="m_info_item_content" style="padding-left: 10px">
+                        <img id="m_info_item_content_update_img" src="pic/themeMain/m_version.png" width="25px" /> &nbsp;&nbsp;版本升级
+                    </div>
+                    <div class="m_info_item_content" style="padding-right: 10px">
+                        <span id="App_Version">1.0.1</span>&nbsp;
+                        <img class="arrowImgClass" src="pic/themeMain/arrow.png" height="10px" />
+                    </div>
+                </div>
+                <div class="myDivSplitline" style="height: 1px;width: 100%;background-color: #383838"></div>
+            </div>
+            <div id="menusDiv" style="position: absolute;width: 100%;height: 45px">
+                <div id="menus" style="height: 45px;width: 100%;display: flex;justify-content: space-between;align-items: center">
+                    <div id="menu_1" class=menuClass>
+                        <div style="height: 10px"></div>
+                        <div>
+                            <img id="menus_1_1" src="pic/themeMain/ch_niuniu_1.png" height="25px" />
+                            <img id="menus_1_2" src="pic/themeMain/ch_niuniu_2.png" height="25px" style="display: none" />
+                        </div>
+                        牛牛
+                        <div style="height: 10px"></div>
+                    </div>
+                    <div id="menu_2" class=menuClass>
+                        <div style="height: 10px"></div>
+                        <div>
+                            <img id="menus_2_1" src="pic/themeMain/menu_coming_1.png" height="25px" />
+                            <img id="menus_2_2" src="pic/themeMain/menu_coming_2.png" height="25px" style="display: none" />
+                        </div>
+                        存款
+                        <div style="height: 10px"></div>
+                    </div>
+                    <div id="menu_5" style="display:block" class=menuClass>
+                        <div style="height: 10px"></div>
+                        <div>
+                            <img id="menus_5_1" src="pic/themeMain/menu_cj_1.png" height="25px" />
+                            <img id="menus_5_2" src="pic/themeMain/menu_cj_1.png" height="25px" style="display: none" />
+                        </div>
+                        抽奖
+                        <div style="height: 10px"></div>
+                    </div>
+                    <div id="menu_3" style="display:none" class=menuClass>
+                        <div style="height: 10px"></div>
+                        <div>
+                            <img id="menus_3_1" src="pic/themeMain/menu_map_1.png" height="25px" />
+                            <img id="menus_3_2" src="pic/themeMain/menu_map_2.png" height="25px" style="display: none" />
+                        </div>
+                        注单
+                        <div style="height: 10px"></div>
+                    </div>
+                    <div id="menu_4" class=menuClass>
+                        <div style="height: 10px"></div>
+                        <div>
+                            <img id="menus_4_1" src="pic/themeMain/menu_my_1.png" height="25px" />
+                            <img id="menus_4_2" src="pic/themeMain/menu_my_2.png" height="25px" style="display: none" />
+                        </div>
+                        我的
+                        <div style="height: 10px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="completeInfo" style="position: fixed;display: none">
+            <div id="completeInfo_bg" style="width: 100%;height: 100%;position: absolute;background-color: #000000;opacity: 0.6"></div>
+            <div id="completeInfo_content" style="position: absolute;width: 100%;height: 100%;display: flex;justify-content: center;align-items: center">
+                <div id="completeInfo_content_content" style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;align-items:center;border-radius: 10px">
+                    <div style="width: 100%;height: 40px">
+                        <div id="completeInfo_content_content_back" style="height: 100%;width: 30px;display: none;justify-content: center;align-items: center">
+                            <img src="pic/themeMain/back.png" height="15px" />
+                        </div>
+                        <div style="width: 10px"></div>
+                    </div>
+                    <div style="width: 100%;height: 100px;display: flex;justify-content: center;align-items: center">
+                        <img id="securityImgId" src="pic/themeMain/security.png" height="70px" />
+                    </div>
+                    <div class="completeInfo_content_content_text">
+                        <div class="completeInfo_content_content_text_title">
+                            尊敬的会员，为了您的账户资金安全，请先完善以下资料：
+                        </div>
+                        <div style="height: 10px"></div>
+                        <div class="completeInfo_content_content_text_item">
+                            <span class="completeInfo_content_content_text_item_text">1.真实姓名</span>
+                            <span class="completeInfo_content_content_text_item_notic" id="completeInfo_realName">（未填写）</span>
+                        </div>
+                        <div class="completeInfo_content_content_text_item">
+                            <span class="completeInfo_content_content_text_item_text">2.联系方式</span>
+                            <span class="completeInfo_content_content_text_item_notic" id="completeInfo_contract">（未填写）</span>
+                        </div>
+                        <div class="completeInfo_content_content_text_item">
+                            <span class="completeInfo_content_content_text_item_text">3.提款密码</span>
+                            <span class="completeInfo_content_content_text_item_notic" id="completeInfo_drawSN">（未填写）</span>
+                        </div>
+                        <div class="completeInfo_content_content_text_item">
+                            <span class="completeInfo_content_content_text_item_text">4.银行卡</span>
+                            <span class="completeInfo_content_content_text_item_notic" id="completeInfo_bank">（未填写）</span>
+                        </div>
+                        <div class="completeInfo_content_content_text_item"></div>
+                    </div>
+                    <div style="height: 20px"></div>
+                    <div id="completeInfo_content_content_btn">立即完善资料</div>
+                    <div style="height: 10px"></div>
+                </div>
+            </div>
+        </div>
+        <div id="registerDiv" style="position: absolute;display: none">
+            <div id="registerDiv_top"></div>
+            <div id="registerDiv_content" style="padding:10px;box-sizing:border-box">
+                <div class="registerDiv_content_item">
+                    <div class="registerDiv_content_item_content">
+                        <div style="display: flex;justify-content: center;align-items: center">
+                            <img id="reg_username_img" src="pic/themeMain/username.png" width="20px" />
+                            <div style="width: 10px"></div>
+                            <div class="registerDiv_content_text">账号</div>
+                            <div class="registerDiv_content_line_split"></div>
+                        </div>
+                        <div>
+                            <input type="url" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" class="registerDiv_content_input" placeholder="6-18位字母或数字的组合"
+                                value="" id="registerDiv_username" />
+                        </div>
+                    </div>
+                    <div class="registerDiv_line"></div>
+                </div>
+                <div style="height: 20px"></div>
+                <div class="registerDiv_content_item">
+                    <div class="registerDiv_content_item_content">
+                        <div style="display: flex;justify-content: center;align-items: center">
+                            <img id="reg_password_img" src="pic/themeMain/sn.png" width="20px" />
+                            <div style="width: 10px"></div>
+                            <div class="registerDiv_content_text">密码</div>
+                            <div class="registerDiv_content_line_split"></div>
+                        </div>
+                        <div>
+                            <input type="password" id="registerDiv_userSN" class="registerDiv_content_input" placeholder="8-18位大小写字母和数字组合" value="" />
+                        </div>
+                    </div>
+                    <div class="registerDiv_line"></div>
+                </div>
+                <div style="height: 20px"></div>
+                <div class="registerDiv_content_item">
+                    <div class="registerDiv_content_item_content">
+                        <div style="display: flex;justify-content: center;align-items: center">
+                            <img id="reg_password_reset_img" src="pic/themeMain/sn.png" width="20px" />
+                            <div style="width: 10px"></div>
+                            <div class="registerDiv_content_text">重复密码</div>
+                            <div class="registerDiv_content_line_split"></div>
+                        </div>
+                        <div>
+                            <input type="password" id="registerDiv_userSN_again" class="registerDiv_content_input" placeholder="8-18位大小写字母和数字组合" value=""
+                            />
+                        </div>
+                    </div>
+                    <div class="registerDiv_line"></div>
+                </div>
+                <div id="reg_recommend_line_id" style="height: 20px"></div>
+                <div id="reg_recommend_item_id" class="registerDiv_content_item">
+                    <div class="registerDiv_content_item_content">
+                        <div style="display: flex;justify-content: center;align-items: center">
+                            <img id="reg_recommend_img" src="pic/themeMain/recommend.png" width="20px" />
+                            <div style="width: 10px"></div>
+                            <div class="registerDiv_content_text">推荐码</div>
+                            <div class="registerDiv_content_line_split"></div>
+                        </div>
+                        <div>
+                            <input type="email" id="registerDiv_recommend" class="registerDiv_content_input" placeholder="请输入推荐码" value="" />
+                        </div>
+                    </div>
+                    <div class="registerDiv_line"></div>
+                </div>
+                <div style="height: 20px"></div>
+                <div class="registerDiv_content_item">
+                    <div class="registerDiv_content_item_content">
+                        <div style="display: flex;justify-content: center;align-items: center">
+                            <img id="reg_valid_img" src="pic/themeMain/valid.png" width="20px" />
+                            <div style="width: 10px"></div>
+                            <div class="registerDiv_content_text">验证码</div>
+                            <div class="registerDiv_content_line_split"></div>
+                        </div>
+                        <div id="registerDiv_vaildInputClass" style="display: flex;justify-content: center;align-items: center">
+                            <input id="registerDiv_content_valid_input" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" type="email" class="registerDiv_content_valid"
+                                placeholder="请输入验证码" value="" />
+                            <img id="validImg" src="" width="60px" />
+                        </div>
+                    </div>
+                    <div class="registerDiv_line"></div>
+                </div>
+                <div style="height: 20px"></div>
+                <div style="display: flex;justify-content: center;align-items: center" class="registerDiv_content_agreement">
+                    <input id="registerDiv_content_agree" type="checkbox" /> 同意“葡京岛”所有
+                    <div id="registerDiv_content_agreement_1">
+                        <u>规则与条款</u>
+                    </div> 及
+                    <div id="registerDiv_content_agreement_2">
+                        <u>隐私权政策</u>
+                    </div>
+                </div>
+                <div style="height: 10px"></div>
+                <div id="registerDiv_content_sure_btn" class="registerDiv_content_sure">立即注册</div>
+            </div>
+        </div>
+        <div id="registerSuccess" style="position: absolute;width: 100%;height: 100%;flex-direction: column;display: none;justify-content: space-between;align-items: center">
+            <div id="registerSuccess_top" style="display: flex;flex-direction: column;justify-content: center;align-items: center">
+                <div style="height:10%;"></div>
+                <img id="reg_success_img" src="pic/themeMain/success.png" height="60px" />
+                <div class="registerSuccess_top_text">注册成功</div>
+                <div>
+                    <div style="height:5%;"></div>
+                    <div style="display:flex;justify-content: center;align-items: center">
+                        <span style="color:#CCA352;font-size: 14px">我们的主域名&nbsp;&nbsp;</span>
+                        <img src="pic/themeMain/pjdRegister.png" style="width:25%;" />
+                        <span style="color:#CCA352;font-size: 14px">&nbsp;&nbsp;请用一秒记住</span>
+                        <br>
+                    </div>
+                    <div style="height:5px;"></div>
+                    <div id="registerSuccess_top_notictext" style="display:flex;justify-content: center;align-items: center">
+                        恭喜&nbsp;&nbsp;
+                        <span id="registerSuccess_top_notictext_id">Hungry</span> ，您已成为新葡京会员！
+                    </div>
+                </div>
+            </div>
+            <div id="registerSuccessDownload" style="width: 100%;display: none;justify-content: center;align-items: center">
+                <div style="width: 90%">
+                    <a id="registerSuccessDownloadA" href="javascript:myPJDApp.showIsIOS()">
+                        <img id="regSuccessAppDwdImgId" src="pic/themeMain/h5Download.png" style="width: 100%" />
+                    </a>
+                </div>
+            </div>
+            <div id="registerSuccess_bottom" style="width: 90%;display: flex;flex-direction: column;justify-content:flex-end;align-items: center">
+                <div id="registerSuccess_bottom_coming" style="height: 40px;width: 100%;display: flex;border-radius: 20px;justify-content: center;align-items: center;font-size: 14px">立即存款</div>
+                <div style="height: 20px"></div>
+                <div id="registerSuccess_bottom_complete" style="height: 40px;width: 100%;display: flex;border-radius: 20px;justify-content: center;align-items: center;font-size: 14px">完成</div>
+                <div style="height: 20px"></div>
+            </div>
+        </div>
+        <div id="loginDiv" style="position: absolute;display: none">
+            <div id="loginDiv_top"></div>
+            <div id="loginDiv_content" style="padding:10px;box-sizing:border-box">
+                <div class="loginDiv_content_item">
+                    <div class="loginDiv_content_item_content">
+                        <div style="display: flex;justify-content: center;align-items: center">
+                            <div>
+                                <img id="login_username_img" src="pic/themeMain/username.png" width="20px" />
+                            </div>
+                            <div style="width: 10px"></div>
+                            <div class="loginDiv_content_text">账 号</div>
+                            <div class="loginDiv_content_line_split"></div>
+                        </div>
+                        <div>
+                            <input type="url" class="loginDiv_content_input" placeholder="请输入您的账号" value="" id="loginDiv_username" />
+                        </div>
+                    </div>
+                    <div class="loginDiv_line"></div>
+                </div>
+                <div style="height: 20px"></div>
+                <div class="loginDiv_content_item">
+                    <div class="loginDiv_content_item_content">
+                        <div style="display: flex;justify-content: center;align-items: center">
+                            <div>
+                                <img id="login_password_img" src="pic/themeMain/sn.png" width="20px" />
+                            </div>
+                            <div style="width: 10px"></div>
+                            <div class="loginDiv_content_text">密 码</div>
+                            <div class="loginDiv_content_line_split"></div>
+                        </div>
+                        <div>
+                            <input id="loginDiv_password" type="password" class="loginDiv_content_input" placeholder="请输入您的密码" value="" />
+                        </div>
+                    </div>
+                    <div class="loginDiv_line"></div>
+                </div>
+                <div style="height: 20px"></div>
+                <div id="loginDiv_content_sure_btn" class="loginDiv_content_sure">立即登录</div>
+                <div style="height: 10px" id="loginDiv_content_tryPlay_len"></div>
+                <div id="loginDiv_content_tryPlay_btn" class="loginDiv_content_tryPlay">免费试玩</div>
+                <div style="height: 10px"></div>
+                <div id="loginDiv_content_register_btn" class="loginDiv_content_register">没有账号，立即注册</div>
+                <div style="height: 10px"></div>
+                <div style="display: flex;justify-content: center;align-items: center;width: 100%;font-size: 12px;color: #EEEEEE">
+                    <div id="loginDiv_forgetSN">忘记密码</div> &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <div id="loginDiv_loginproblem">登录遇到问题</div>
+                </div>
+            </div>
+        </div>
+        <div id="agreementDiv" style="position: absolute;display: none">
+            <div id="agreementDiv_top"></div>
+            <div id="agreementDiv_content">
+                <div style="height: 40px;background-color: #2A2A2A;width: 100%;display: flex;justify-content: space-between;align-items: center">
+                    <div id="agreementDiv_one" style="height: 40px;width: 50%;justify-content: center;align-items: center;display: flex">
+                        规则与条款
+                    </div>
+                    <div id="agreementDiv_two" style="height: 40px;width: 50%;justify-content: center;align-items: center;display: flex">
+                        隐私权政策
+                    </div>
+                </div>
+                <div style="width: 100%;height: 2px;background-color: #000000;display: flex;justify-content: center;align-items: center">
+                    <div style="width: 50%; height: 100%" id="agreementDiv_select_one"></div>
+                    <div style="width: 50%; height: 100%" id="agreementDiv_select_two"></div>
+                </div>
+                <div style="height: 10px"></div>
+                <div id="agreementDiv_content_content" style="overflow-x: hidden;overflow-y: hidden;width: 100%">
+                    <div style="display: flex;justify-content: center;align-items: center;width: 100%;box-sizing: border-box">
+                        <div id="agreementDiv_content_content_one" style="width: 100%;display: block">
+                        </div>
+                        <div id="agreementDiv_content_content_two" style="width: 100%;display: none">
+                        </div>
+                    </div>
+                </div>
+                <div style="height: 10px"></div>
+            </div>
+        </div>
+        <div id="incomeOnlineDiv" style="position: absolute;display: none">
+            <div id="incomeOnlineDiv_top"></div>
+            <div id="incomeOnlineDiv_content" style="width: 100%;background-color: #272727">
+                <div id="incomeOnlineDiv_content_Loading" style="width: 100%;height: 100%"></div>
+                <div id="incomeOnlineDiv_content_Fed" style="width: 100%;height: auto"></div>
+                <div id="incomeOnlineDiv_content_QrCode" style="width: 100%;display: flex;justify-content: flex-start;flex-direction: column;align-items: center">
+                    <div style="height: 30px"></div>
+                    <div id="incomeOnlineDiv_content_QrCode_order" style="font-size: 14px;width: 80%;height: 30px;line-height: 20px;color: #cccccc"></div>
+                    <div id="incomeOnlineDiv_content_QrCode_time" style="font-size: 14px;width: 80%;height: 30px;line-height: 20px;color: #cccccc"></div>
+                    <div id="incomeOnlineDiv_content_QrCode_notic" style="font-size: 14px;width: 80%;height: 30px;line-height: 20px;color: #cccccc;"></div>
+                    <div id="incomeOnlineDiv_content_QrCode_amount" style="width: 80%;height: 40px;line-height: 40px;font-size: 30px;color: #ff5e1b"></div>
+                    <div id="incomeOnlineDiv_content_QrCode_img" style="width: 100%;display: flex;justify-content: center;align-items: center"></div>
+                    <div style="height: 10px"></div>
+                    <div id="incomeOnlineDiv_content_QrCode_note" style="font-size: 16px;width: 80%;height: 30px;line-height: 20px;color: #cccccc;"></div>
+                </div>
+                <iframe id="incomeOnlineDiv_content_Frame" sandbox="allow-forms allow-scripts allow-same-origin" frameborder="0" src="pay.html"
+                    style="border:0px;width: 100%;height: auto"></iframe>
+            </div>
+        </div>
+        <div id="incomeOfflineDiv" style="position: absolute;display: none">
+            <div id="incomeOfflineDiv_top"></div>
+            <div id="incomeOfflineDiv_content">
+                <div id="incomeOfflineDiv_content_load" style="width:100%;height:100px;display:flex;justify-content:center;align-items:center;box-sizing:border-box"></div>
+                <div id="incomeOfflineDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto"></div>
+            </div>
+        </div>
+        <div id="incomeOfflineSuccessDiv" style="position: absolute;display: none">
+            <div id="incomeOfflineSuccessDiv_top">
+            </div>
+            <div id="incomeOfflineSuccessDiv_content" style="display: flex;flex-direction: column;justify-content: space-between;align-items: center">
+                <div style="width: 90%;height: 300px;display: flex;flex-direction: column;justify-content: space-between;align-items: center">
+                    <div style="height: 20px"></div>
+                    <div style="display: flex;flex-direction: column;justify-content: center;align-items: center">
+                        <img src="pic/themeMain/success.png" height="80px" />
+                        <div id="incomeOfflineSuccessDiv_content_successText">存款信息提交成功</div>
+                    </div>
+                    <div id="incomeOfflineSuccessDiv_content_notic" style="text-align: center">
+                        存款单号为
+                        <span id="incomeOfflineSuccessDiv_content_orderNO"></span>，
+                        <br> 正等待系统处理，
+                        <br> 请注意查看主钱包余额变化
+                    </div>
+                </div>
+                <div style="width: 90%">
+                    <div id="incomeOfflineSuccessDiv_content_sure" class="PJDCommBtn">完成</div>
+                    <div style="height: 20px"></div>
+                </div>
+            </div>
+        </div>
+        <div id="feedbackDiv" style="position: absolute;display: none">
+            <div id="feedbackDiv_top"></div>
+            <div id="feedbackDiv_content">
+                <div id="feedbackDiv_content_select" style="width: 100%;height: 55px;display: flex;justify-content: center;align-items: center">
+                    <div id="feedbackDiv_timeSelect"></div>
+                </div>
+                <div style="height: 10px;width: 100%"></div>
+                <div id="feedbackDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
+                </div>
+            </div>
+        </div>
+        <div id="feedbackInfoDiv" style="position: absolute;display: none">
+            <div id="feedbackInfoDiv_top"></div>
+            <div id="feedbackInfoDiv_content"></div>
+        </div>
+        <div id="moneyrecordDiv" style="position: absolute;display: none">
+            <div id="moneyrecordDiv_top"></div>
+            <div id="moneyrecordDiv_content"></div>
+        </div>
+        <div id="moneyrecordDetailsDiv" style="position: absolute;display: none">
+            <div id="moneyrecordDetailsDiv_top"></div>
+            <div id="moneyrecordDetailsDiv_content"> </div>
+        </div>
+        <div id="betrecordDiv" style="position: absolute;display: none">
+            <div id="betrecordDiv_top"></div>
+            <div id="betrecordDiv_content">
+                <div id="betrecordDiv_content_select" style="width: 100%;height: 55px;display: flex;justify-content: center;align-items: center">
+                    <div id="betrecordDiv_timeSelect"></div>
+                </div>
+                <div style="height: 10px;width: 100%"></div>
+                <div id="betrecordDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
+                </div>
+                <div id="betrecordDiv_stats_bottom" style="height: 40px;width: 100%;background-color: #cccccc;display: none;font-size: 12px">
+                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordDiv_validSum"></div>
+                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordDiv_winorloss"></div>
+                </div>
+            </div>
+        </div>
+        <div id="betrecordInfoDiv" style="position: absolute;display: none">
+            <div id="betrecordInfoDiv_top"></div>
+            <div id="betrecordInfoDiv_content">
+                <div id="betrecordInfoDiv_content_select" style="width: 100%;height: 55px;display: flex;justify-content: center;align-items: center">
+                    <div id="betrecordInfoDiv_select_date"></div>
+                </div>
+                <div style="height: 10px;width: 100%"></div>
+                <div id="betrecordInfoDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
+                </div>
+                <div id="betrecordInfoDiv_content_bottom" style="height: 40px;width: 100%;background-color: #cccccc;display: none;font-size: 12px">
+                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordInfoDiv_validSum"></div>
+                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordInfoDiv_winorloss"></div>
+                </div>
+            </div>
+        </div>
+        <div id="betLmgRemakeDiv" style="position: absolute;display: none">
+            <div id="betLmgRemakeDiv_top"></div>
+            <div id="betLmgRemakeDiv_content"></div>
+            <div id="betLmgRemakeDiv_backdom">
+                <div id="betLmgRemakeDiv_button"></div>
+            </div>
+        </div>
+        <div id="betrecordKyDiv" style="position: absolute;display: none">
+            <div id="betrecordKyDiv_top"></div>
+            <div id="betrecordKyDiv_content">
+                <div id="betrecordKyDiv_content_select" style="width: 100%;height: 55px;display: flex;justify-content: center;align-items: center">
+                    <div id="betrecordKyDiv_select_date"></div>
+                </div>
+                <div style="height: 10px;width: 100%"></div>
+                <div id="betrecordKyDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
+                </div>
+                <div id="betrecordKyDiv_content_bottom" style="height: 40px;width: 100%;background-color: #cccccc;display: none;font-size: 12px">
+                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordKyDiv_validSum"></div>
+                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordKyDiv_winorloss"></div>
+                </div>
+            </div>
+        </div>
+        <div id="betrecordGmDiv" style="position: absolute;display: none">
+            <div id="betrecordGmDiv_top"></div>
+            <div id="betrecordGmDiv_content">
+                <div id="betrecordGmDiv_content_select" style="width: 100%;height: 55px;display: flex;justify-content: center;align-items: center">
+                    <div id="betrecordGmDiv_select_date"></div>
+                </div>
+                <div style="height: 10px;width: 100%"></div>
+                <div id="betrecordGmDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
+                </div>
+                <div id="betrecordGmDiv_content_bottom" style="height: 40px;width: 100%;background-color: #cccccc;display: none;font-size: 12px">
+                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordGmDiv_validSum"></div>
+                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordGmDiv_winorloss"></div>
+                </div>
+            </div>
+        </div>
+        <div id="betGmRemakeDiv" style="position: absolute;display: none">
+            <div id="betGmRemakeDiv_top"></div>
+            <div id="betGmRemakeDiv_content"></div>
+            <div id="betGmRemakeDiv_backdom">
+                <div id="betGmRemakeDiv_button"></div>
+            </div>
+        </div>
+        <div id="betKyRemakeDiv" style="position: absolute;display: none">
+            <div id="betKyRemakeDiv_top"></div>
+            <div id="betKyRemakeDiv_content"></div>
+            <div id="betKyRemakeDiv_backdom">
+                <div id="betKyRemakeDiv_button"></div>
+            </div>
+        </div>
+        <div id="betrecordJPNNDiv" style="position: absolute;display: none">
+            <div id="betrecordJPNNDiv_top"></div>
+            <div id="betrecordJPNNDiv_content">
+                <div id="betrecordJPNNDiv_content_select" style="width: 100%;height: 55px;display: flex;justify-content: center;align-items: center">
+                    <div id="betrecordJPNNDiv_select_date"></div>
+                </div>
+                <div style="height: 10px;width: 100%"></div>
+                <div id="betrecordJPNNDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
+                </div>
+                <div id="betrecordJPNNDiv_content_bottom" style="height: 40px;width: 100%;background-color: #cccccc;display: none;font-size: 12px">
+                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordJPNNDiv_validSum"></div>
+                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordJPNNDiv_winorloss"></div>
+                </div>
+            </div>
+        </div>
+        <div id="betJPNNRemakeDiv" style="position: absolute;display: none">
+            <div id="betJPNNRemakeDiv_top"></div>
+            <div id="betJPNNRemakeDiv_content"></div>
+            <div id="betJPNNRemakeDiv_backdom">
+                <div id="betJPNNRemakeDiv_button"></div>
+            </div>
+        </div>
+        <div id="interestbaoDiv" style="position: absolute;display: none">
+            <div id="interestbaoDiv_top"></div>
+            <div id="interestbaoDiv_content">
+            </div>
+        </div>
+        <div id="interestDetailDiv" style="position: absolute;display: none">
+            <div id="interestDetailDiv_top"></div>
+            <div id="interestDetailDiv_content">
+            </div>
+        </div>
+        <div id="incomeDetailsDiv" style="position: absolute;display: none">
+            <div id="incomeDetailsDiv_top"></div>
+            <div id="incomeDetailsDiv_content">
+            </div>
+        </div>
+        <div id="buyInterestDiv" style="position: absolute;display: none">
+            <div id="buyInterestDiv_top"></div>
+            <div id="buyInterestDiv_content">
+            </div>
+        </div>
+        <div id="passwordInputDiv" style="position: absolute;display: none">
+            <div id="passwordInputDiv_top"></div>
+            <div id="passwordInputDiv_content">
+            </div>
+        </div>
+        <div id="betrecordIgDiv" style="position: absolute;display: none">
+            <div id="betrecordIgDiv_top"></div>
+            <div id="betrecordIgDiv_content">
+                <div id="betrecordIgDiv_content_select" style="width: 100%;height: 55px;display: flex;justify-content: center;align-items: center">
+                    <div id="betrecordIgDiv_select_date"></div>
+                </div>
+                <div style="height: 10px;width: 100%"></div>
+                <div id="betrecordIgDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
+                </div>
+                <div id="betrecordIgDiv_content_bottom" style="height: 40px;width: 100%;background-color: #cccccc;display: none;font-size: 12px">
+                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordIgDiv_validSum"></div>
+                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordIgDiv_winorloss"></div>
+                </div>
+            </div>
+        </div>
+        <div id="betrecordCmdDiv" style="position: absolute;display: none">
+            <div id="betrecordCmdDiv_top"></div>
+            <div id="betrecordCmdDiv_content">
+                <div id="betrecordCmdDiv_content_select" style="width: 100%;height: 55px;display: flex;justify-content: center;align-items: center">
+                    <div id="betrecordCmdDiv_select_date"></div>
+                </div>
+                <div style="height: 10px;width: 100%"></div>
+                <div id="betrecordCmdDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
+                </div>
+                <div id="betrecordCmdDiv_content_bottom" style="height: 40px;width: 100%;background-color: #cccccc;display: none;font-size: 12px">
+                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordCmdDiv_validSum"></div>
+                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordCmdDiv_winorloss"></div>
+                </div>
+            </div>
+        </div>
+        <div id="betCmdRemakeDiv" style="position: absolute;display: none">
+            <div id="betCmdRemakeDiv_top"></div>
+            <div id="betCmdRemakeDiv_content"></div>
+            <div id="betCmdRemakeDiv_backdom">
+                <div id="betCmdRemakeDiv_button"></div>
+            </div>
+        </div>
+        <div id="indexPopupwindowBox" style="position: absolute;display: none">
+            <div id="indexPopupwindowBox_mask"></div>
+            <div id="indexPopupwindowBox_content"></div>
+        </div>
+        <div id="tryGameSigup" style="position: absolute;display: none">
+            <div id="tryGameSigup_top"></div>
+            <div id="tryGameSigup_content"></div>
+        </div>
+        <div id="discountDiv" style="position: absolute;display: none">
+            <div id="discountDiv_top"></div>
+            <div id="discountDiv_content">
+                <div id="discountDiv_content_listDIv" style="width: 100%;display: none;flex-direction: column;justify-content: flex-start;align-items: center">
+                </div>
+            </div>
+        </div>
+        <div id="favourableDiv" style="position: absolute;display: none">
+            <div id="favourableDiv_top"></div>
+            <div id="favourableDiv_content"></div>
+        </div>
+        <div id="agentDiv" style="position: absolute;display: none">
+            <div id="agentDiv_top"></div>
+            <div id="agentDiv_content">
+            </div>
+        </div>
+        <div id="accountSafeDiv" style="position: absolute;display: none">
+            <div id="accountSafeDiv_top"></div>
+            <div id="accountSafeDiv_content">
+                <div id="accountSafeDiv_content_top" style="display: none;background-color: #2A2A2A;justify-content: space-between;align-items: center;width: 100%">
+                    <div id="accountSafeDiv_content_info_btn" class="alBtnStyle" style="width: 20%;display: flex;justify-content: center;align-items: center;height: 45px;color: #ff5e1b;font-size: 14px">
+                        个人资料
+                    </div>
+                    <div id="accountSafeDiv_content_bank_btn" class="alBtnStyle" style="width: 20%;display: flex;justify-content: center;align-items: center;height: 45px;color: #cccccc;font-size: 14px">
+                        银行卡
+                    </div>
+                    <div id="accountSafeDiv_content_loginSN_btn" class="alBtnStyle" style="width: 20%;display: flex;justify-content: center;align-items: center;height: 45px;color: #cccccc;font-size: 14px">
+                        登录密码
+                    </div>
+                    <div id="accountSafeDiv_content_drawSN_btn" class="alBtnStyle" style="width: 20%;display: flex;justify-content: center;align-items: center;height: 45px;color: #cccccc;font-size: 14px">
+                        提款密码
+                    </div>
+                    <div id="accountSafeDiv_content_signPwd_btn" style="width: 20%;display: flex;justify-content: center;align-items: center;height: 45px;color: #cccccc;font-size: 14px">
+                        解锁设置
+                    </div>
+                </div>
+                <div style="height: 2px;background-color: #000000;width: 100%;display: flex;justify-content: space-between;align-items: center">
+                    <div id="accountSafeDiv_content_info_line" class="alBtnStyle" style="width: 20%;height: 2px;background: #ff5e1b"></div>
+                    <div id="accountSafeDiv_content_bank_line" class="alBtnStyle" style="width: 20%;height: 2px"></div>
+                    <div id="accountSafeDiv_content_loginSN_line" class="alBtnStyle" style="width: 20%;height: 2px"></div>
+                    <div id="accountSafeDiv_content_drawSN_line" class="alBtnStyle" style="width: 20%;height: 2px"></div>
+                    <div id="accountSafeDiv_content_signPwd_line" style="width: 20%;height: 2px"></div>
+                </div>
+                <div id="accountSafeDiv_content_bank" class="accountSafeDiv_content_content" style="overflow-x: hidden;overflow-y: auto">
+                    <div id="accountSafeDiv_content_bank_list" style="width: 100%"></div>
+                    <div style="height: 20px"></div>
+                    <div style="width: 90%">
+                        <div id="accountSafeDiv_content_bank_add" class="PJDCommBtn">+ 添加银行卡</div>
+                        <div style="height: 40px"></div>
+                    </div>
+                </div>
+                <div id="accountSafeDiv_content_info" class="accountSafeDiv_content_content" style="overflow-x: hidden;overflow-y: auto;width: 100%">
+                    <div style="width: 95%">
+                        <div style="height: 5px"></div>
+                        <div class="accountInfo_item">
+                            <div class="accountInfo_item_title">
+                                <div class="accountInfo_item_title_text">会员账户</div>
+                                <div class="accountInfo_item_title_split"></div>
+                            </div>
+                            <div class="accountInfo_item_input">
+                                <input type="text" id="accountInfo_item_username" readonly class="accountInfo_item_input_controls" />
+                            </div>
+                        </div>
+                        <div class="accountInfo_item_line"></div>
+                        <div class="accountInfo_item">
+                            <div class="accountInfo_item_title">
+                                <div class="accountInfo_item_title_text">昵称</div>
+                                <div class="accountInfo_item_title_split"></div>
+                            </div>
+                            <div class="accountInfo_item_input">
+                                <input type="text" id="accountInfo_item_nickName" maxlength="10" class="accountInfo_item_input_controls" />
+                            </div>
+                        </div>
+                        <div class="accountInfo_item_line"></div>
+                        <div class="accountInfo_item">
+                            <div class="accountInfo_item_title">
+                                <div class="accountInfo_item_title_text">真实姓名</div>
+                                <div class="accountInfo_item_title_split"></div>
+                            </div>
+                            <div class="accountInfo_item_input">
+                                <input type="text" id="accountInfo_item_realName" readonly class="accountInfo_item_input_controls" />
+                            </div>
+                        </div>
+                        <div class="accountInfo_item_line"></div>
+                        <div class="accountInfo_item">
+                            <div class="accountInfo_item_title">
+                                <div class="accountInfo_item_title_text">性别(选填)</div>
+                                <div class="accountInfo_item_title_split"></div>
+                            </div>
+                            <div class="accountInfo_item_input">
+                                <select id="accountInfo_sex" style="width:200px;color:#cccccc;font-size: 14px;border-color:transparent;background-color:transparent;">
+                                    <option value="0">请选择</option>
+                                    <option value="1">男</option>
+                                    <option value="2">女</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="accountInfo_item_line"></div>
+                        <div class="accountInfo_item">
+                            <div class="accountInfo_item_title">
+                                <div class="accountInfo_item_title_text">出生日期</div>
+                                <div class="accountInfo_item_title_split"></div>
+                            </div>
+                            <div class="accountInfo_item_input">
+                                <input type="date" value="1990-08-08" id="accountInfo_item_birthday" placeholder="请选择" style="width:200px;color:#cccccc;font-size: 14px;border-color:transparent;background-color:transparent;"
+                                />
+                            </div>
+                        </div>
+                        <div class="accountInfo_item_line"></div>
+                        <div class="accountInfo_item">
+                            <div class="accountInfo_item_title">
+                                <div class="accountInfo_item_title_text">手机号码</div>
+                                <div class="accountInfo_item_title_split"></div>
+                            </div>
+                            <div class="accountInfo_item_input">
+                                <input type="tel" placeholder="可选" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') "
+                                    id="accountInfo_item_phone" class="accountInfo_item_input_controls" />
+                            </div>
+                        </div>
+                        <div class="accountInfo_item_line"></div>
+                        <div class="accountInfo_item">
+                            <div class="accountInfo_item_title">
+                                <div class="accountInfo_item_title_text">邮箱地址</div>
+                                <div class="accountInfo_item_title_split"></div>
+                            </div>
+                            <div class="accountInfo_item_input">
+                                <input type="url" id="accountInfo_item_email" placeholder="可选" class="accountInfo_item_input_controls" />
+                            </div>
+                        </div>
+                        <div class="accountInfo_item_line"></div>
+                        <div class="accountInfo_item">
+                            <div class="accountInfo_item_title">
+                                <div class="accountInfo_item_title_text">Q Q号</div>
+                                <div class="accountInfo_item_title_split"></div>
+                            </div>
+                            <div class="accountInfo_item_input">
+                                <input type="tel" placeholder="可选" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') "
+                                    id="accountInfo_item_QQ" class="accountInfo_item_input_controls" />
+                            </div>
+                        </div>
+                        <div class="accountInfo_item_line"></div>
+                        <div class="accountInfo_item">
+                            <div class="accountInfo_item_title">
+                                <div class="accountInfo_item_title_text">微信号</div>
+                                <div class="accountInfo_item_title_split"></div>
+                            </div>
+                            <div class="accountInfo_item_input">
+                                <input type="text" placeholder="可选" id="accountInfo_item_wechat" class="accountInfo_item_input_controls" />
+                            </div>
+                        </div>
+                        <div class="accountInfo_item_line"></div>
+                        <div style="height: 20px"></div>
+                        <div class="PJDCommBtn" id="accountInfo_edit_sure">确定修改</div>
+                        <div style="height: 400px"></div>
+                    </div>
+                </div>
+                <div id="accountSafeDiv_content_loginSN" class="accountSafeDiv_content_content">
+                    <div style="width: 95%">
+                        <div style="height: 5px"></div>
+                        <div class="accountSN_item">
+                            <div class="accountSN_item_title">
+                                <div class="accountSN_item_title_text">旧登录密码</div>
+                                <div class="accountSN_item_title_split"></div>
+                            </div>
+                            <div class="accountSN_item_input">
+                                <input type="password" id="accountSN_item_old" class="accountSN_item_input_controls" placeholder="请输入当前登录密码" />
+                            </div>
+                        </div>
+                        <div class="accountSN_item_line"></div>
+                        <div class="accountSN_item">
+                            <div class="accountSN_item_title">
+                                <div class="accountSN_item_title_text">新登录密码</div>
+                                <div class="accountSN_item_title_split"></div>
+                            </div>
+                            <div class="accountSN_item_input">
+                                <input type="password" id="accountSN_item_new" class="accountSN_item_input_controls" placeholder="8-18位大小写字母和数字组合" />
+                            </div>
+                        </div>
+                        <div class="accountSN_item_line"></div>
+                        <div class="accountSN_item">
+                            <div class="accountSN_item_title">
+                                <div class="accountSN_item_title_text">重复新登录密码</div>
+                                <div class="accountSN_item_title_split"></div>
+                            </div>
+                            <div class="accountSN_item_input">
+                                <input type="password" id="accountSN_item_newagain" class="accountSN_item_input_controls" placeholder="8-18位大小写字母和数字组合" />
+                            </div>
+                        </div>
+                        <div class="accountSN_item_line"></div>
+                        <div style="height: 20px"></div>
+                        <div class="PJDCommBtn" id="accountSN_edit_sure">确定修改</div>
+                    </div>
+                </div>
+                <div id="accountSafeDiv_content_signPwd" class="accountSafeDiv_content_content">
+                    <div style="width: 100%;color: gainsboro;">
+                        <div style="padding-left:10px;padding-right:10px;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;height:50px;width:100%">
+                            <div>手势解锁</div>
+                            <div id="SignPwdSwitch" style="display:flex;background: #CCA352;border-radius: 26px;width: 50px;height: 26px">
+                                <div id="SignPwdSwitch_open" style="display:none;background: #CCA352;border-radius: 26px;width: 24px;height: 26px"></div>
+                                <div style="background: gainsboro;border-radius: 50%;width: 26px;height: 26px"></div>
+                            </div>
+                        </div>
+                        <div style="width:100%;height:1px;background:#1B1B1B"></div>
+                        <div id="showSign" style="padding-left:10px;padding-right:10px;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;height:50px;width:100%">
+                            <div>显示手势轨迹</div>
+                            <div id="showSignPwd" style="display:flex;background: #CCA352;border-radius: 26px;width: 50px;height: 26px">
+                                <div id="showSignPwd_open" style="background: #CCA352;border-radius: 26px;width: 24px;height: 26px"></div>
+                                <div style="background: gainsboro;border-radius: 50%;width: 26px;height: 26px"></div>
+                            </div>
+                        </div>
+                        <div style="width:100%;height:1px;background:#1B1B1B"></div>
+                        <div id="resettingSignPwd" style="padding-left:10px;box-sizing:border-box;display:none;justify-content:flex-start;height:50px;width:100%;align-items:center;color:gainsboro">
+                            <div>重置手势密码</div>
+                        </div>
+                        <div style="width:100%;height:15px;background:#1B1B1B"></div>
+                    </div>
+                </div>
+                <div id="accountSafeDiv_content_drawSN" class="accountSafeDiv_content_content">
+                    <div style="width: 95%">
+                        <div style="height: 5px"></div>
+                        <div class="accountSN_item">
+                            <div class="accountDrawSN_item_title">
+                                <div class="accountDrawSN_item_title_text">旧提款密码</div>
+                                <div class="accountDrawSN_item_title_split"></div>
+                            </div>
+                            <div class="accountDrawSN_item_input">
+                                <input type="password" onKeyUp="if(this.value.length>4){this.value=this.value.substr(0,4)};this.value=this.value.replace(/[^\d]/g,'');"
+                                    id="accountDrawSN_item_old" class="accountDrawSN_item_input_controls" placeholder="请输入当前提款密码"
+                                />
+                            </div>
+                        </div>
+                        <div class="accountDrawSN_item_line"></div>
+                        <div class="accountDrawSN_item">
+                            <div class="accountDrawSN_item_title">
+                                <div class="accountDrawSN_item_title_text">新提款密码</div>
+                                <div class="accountDrawSN_item_title_split"></div>
+                            </div>
+                            <div class="accountDrawSN_item_input">
+                                <input type="password" onKeyUp="if(this.value.length>4){this.value=this.value.substr(0,4)};this.value=this.value.replace(/[^\d]/g,'');"
+                                    id="accountDrawSN_item_new" class="accountDrawSN_item_input_controls" placeholder="密码必须为4位数字"
+                                />
+                            </div>
+                        </div>
+                        <div class="accountDrawSN_item_line"></div>
+                        <div class="accountDrawSN_item">
+                            <div class="accountDrawSN_item_title">
+                                <div class="accountDrawSN_item_title_text">重复新提款密码</div>
+                                <div class="accountDrawSN_item_title_split"></div>
+                            </div>
+                            <div class="accountDrawSN_item_input">
+                                <input type="password" onKeyUp="if(this.value.length>4){this.value=this.value.substr(0,4)};this.value=this.value.replace(/[^\d]/g,'');"
+                                    id="accountDrawSN_item_newagain" class="accountDrawSN_item_input_controls" placeholder="密码必须为4位数字"
+                                />
+                            </div>
+                        </div>
+                        <div class="accountDrawSN_item_line"></div>
+                        <div style="height: 20px"></div>
+                        <div class="PJDCommBtn" id="accountDrawSN_edit_sure">确定修改</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="avatarDiv" style="position: absolute;display: none">
+            <div id="avatarDiv_top"></div>
+            <div id="avatarDiv_content">
+                <div id="avatarDiv_content_all_headers" style="width: 100%;display: flex;justify-content: flex-start;align-items: center;flex-wrap: wrap;overflow-x: hidden;overflow-y: auto">
+                </div>
+                <div style="height: 20px"></div>
+                <div id="avatarDiv_content_sure_btn" class="PJDCommBtn">确定修改</div>
+                <div style="height: 20px"></div>
+            </div>
+        </div>
+        <div id="infoNameDiv" style="position: absolute;display: none">
+            <div id="infoNameDiv_top"></div>
+            <div id="infoNameDiv_content" style="width: 100%;display: flex;justify-content: flex-start;align-items: center;flex-direction: column">
+                <div style="width: 95%">
+                    <div style="height: 5px"></div>
+                    <div class="infoNameDiv_item">
+                        <div class="infoNameDiv_item_title">
+                            <div class="infoNameDiv_item_title_text">真实姓名</div>
+                            <div class="infoNameDiv_item_title_split"></div>
+                        </div>
+                        <div class="infoNameDiv_item_input">
+                            <input type="text" id="infoNameDiv_realName" placeholder="必须与提款银行卡持卡人姓名一致" class="infoNameDiv_item_input_controls" />
+                        </div>
+                        <div class="infoNameDiv_item_ask"></div>
+                    </div>
+                    <div class="infoNameDiv_line"></div>
+                    <div class="infoNameDiv_item">
+                        <div class="infoNameDiv_item_title">
+                            <div class="infoNameDiv_item_title_text">提款密码</div>
+                            <div class="infoNameDiv_item_title_split"></div>
+                        </div>
+                        <div class="infoNameDiv_item_input">
+                            <input type="password" id="infoNameDiv_drawSN" onKeyUp="if(this.value.length>4){this.value=this.value.substr(0,4)};this.value=this.value.replace(/[^\d]/g,'');"
+                                placeholder="4位数字" class="infoNameDiv_item_input_controls" />
+                        </div>
+                        <div class="infoNameDiv_item_ask"></div>
+                    </div>
+                    <div class="infoNameDiv_line"></div>
+                    <div class="infoNameDiv_item">
+                        <div class="infoNameDiv_item_title">
+                            <div class="infoNameDiv_item_title_text">重复密码</div>
+                            <div class="infoNameDiv_item_title_split"></div>
+                        </div>
+                        <div class="infoNameDiv_item_input">
+                            <input type="password" id="infoNameDiv_drawSNRES" onKeyUp="if(this.value.length>4){this.value=this.value.substr(0,4)};this.value=this.value.replace(/[^\d]/g,'');"
+                                placeholder="4位数字" class="infoNameDiv_item_input_controls" />
+                        </div>
+                        <div class="infoNameDiv_item_ask"></div>
+                    </div>
+                    <div class="infoNameDiv_line"></div>
+                    <div style="color: #cccccc;font-size: 12px;height: 30px;line-height: 30px">
+                        • 请输入联系方式，以下联系方式至少填写一个:
+                    </div>
+                    <div class="infoNameDiv_line"></div>
+                    <div class="infoNameDiv_item">
+                        <div class="infoNameDiv_item_title">
+                            <div class="infoNameDiv_item_title_text">手机号码</div>
+                            <div class="infoNameDiv_item_title_split"></div>
+                        </div>
+                        <div class="infoNameDiv_item_input">
+                            <input type="tel" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') "
+                                id="infoNameDiv_phone" placeholder="用于找回密码" class="infoNameDiv_item_input_controls" />
+                        </div>
+                        <div class="infoNameDiv_item_ask"></div>
+                    </div>
+                    <div class="infoNameDiv_line"></div>
+                    <div class="infoNameDiv_item">
+                        <div class="infoNameDiv_item_title">
+                            <div class="infoNameDiv_item_title_text">邮箱地址</div>
+                            <div class="infoNameDiv_item_title_split"></div>
+                        </div>
+                        <div class="infoNameDiv_item_input">
+                            <input type="url" id="infoNameDiv_email" placeholder="用于找回密码" class="infoNameDiv_item_input_controls" />
+                        </div>
+                        <div class="infoNameDiv_item_ask"></div>
+                    </div>
+                    <div class="infoNameDiv_line"></div>
+                    <div class="infoNameDiv_item">
+                        <div class="infoNameDiv_item_title">
+                            <div class="infoNameDiv_item_title_text">Q Q号</div>
+                            <div class="infoNameDiv_item_title_split"></div>
+                        </div>
+                        <div class="infoNameDiv_item_input">
+                            <input type="tel" id="infoNameDiv_QQ" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') "
+                                placeholder="用于找回密码" class="infoNameDiv_item_input_controls" />
+                        </div>
+                        <div class="infoNameDiv_item_ask"></div>
+                    </div>
+                    <div class="infoNameDiv_line"></div>
+                    <div style="height: 20px"></div>
+                    <div id="infoName_next">下一步</div>
+                </div>
+            </div>
+        </div>
+        <div id="bankInfoDiv" style="position: absolute;display: none">
+            <div id="bankInfoDiv_top"></div>
+            <div id="bankInfoDiv_content" style="width: 100%;display: flex;justify-content: flex-start;align-items: center;flex-direction: column">
+                <div style="width: 95%">
+                    <div style="height: 5px"></div>
+                    <div class="bankInfoDiv_item">
+                        <div class="bankInfoDiv_item_title">
+                            <div class="bankInfoDiv_item_title_text">姓名</div>
+                            <div class="bankInfoDiv_item_title_split"></div>
+                        </div>
+                        <div class="bankInfoDiv_item_input">
+                            <input type="text" id="bankInfoDiv_realName" readonly class="bankInfoDiv_item_input_controls" />
+                        </div>
+                        <div class="bankInfoDiv_item_ask"></div>
+                    </div>
+                    <div class="bankInfoDiv_line"></div>
+                    <div class="bankInfoDiv_item" id="bankInfoDiv_item_select">
+                        <div class="bankInfoDiv_item_title">
+                            <div class="bankInfoDiv_item_title_text">银行</div>
+                            <div class="bankInfoDiv_item_title_split"></div>
+                        </div>
+                        <div class="bankInfoDiv_item_input">
+                            <input type="text" id="bankInfoDiv_bank" placeholder="请选择银行" readonly class="bankInfoDiv_item_input_controls" />
+                        </div>
+                        <div class="bankInfoDiv_item_ask">
+                            <img class="arrowImgClass" src="pic/themeMain/arrow.png" height="15px" class="bankInfoDiv_selectBank" />
+                        </div>
+                    </div>
+                    <div class="bankInfoDiv_line"></div>
+                    <div class="bankInfoDiv_item">
+                        <div class="bankInfoDiv_item_title">
+                            <div class="bankInfoDiv_item_title_text">卡号</div>
+                            <div class="bankInfoDiv_item_title_split"></div>
+                        </div>
+                        <div class="bankInfoDiv_item_input">
+                            <input type="tel" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') "
+                                id="bankInfoDiv_bankNum" placeholder="请填写银行卡卡号" class="bankInfoDiv_item_input_controls" />
+                        </div>
+                        <div class="bankInfoDiv_item_ask"></div>
+                    </div>
+                    <div class="bankInfoDiv_line"></div>
+                    <div class="bankInfoDiv_item">
+                        <div class="bankInfoDiv_item_title">
+                            <div class="bankInfoDiv_item_title_text">重复卡号</div>
+                            <div class="bankInfoDiv_item_title_split"></div>
+                        </div>
+                        <div class="bankInfoDiv_item_input">
+                            <input type="tel" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') "
+                                id="bankInfoDiv_reBankNum" placeholder="请重复银行卡卡号" class="bankInfoDiv_item_input_controls" />
+                        </div>
+                        <div class="bankInfoDiv_item_ask"></div>
+                    </div>
+                    <div class="bankInfoDiv_line"></div>
+                    <div class="bankInfoDiv_item">
+                        <div class="bankInfoDiv_item_title">
+                            <div class="bankInfoDiv_item_title_text">支行信息</div>
+                            <div class="bankInfoDiv_item_title_split"></div>
+                        </div>
+                        <div class="bankInfoDiv_item_input">
+                            <input type="text" id="bankInfoDiv_bankChild" placeholder="请填写支行信息" class="bankInfoDiv_item_input_controls" />
+                        </div>
+                        <div class="bankInfoDiv_item_ask"></div>
+                    </div>
+                    <div class="bankInfoDiv_line"></div>
+                    <div style="height: 20px"></div>
+                    <div id="bankInfoDiv_OK">提 交</div>
+                </div>
+            </div>
+        </div>
+        <div id="nickNameDiv" style="position: absolute;display: none">
+            <div id="nickNameDiv_top"></div>
+            <div id="nickNameDiv_content">
+            </div>
+        </div>
+        <div id="luckyDrawDiv" style="position: absolute;display: none">
+            <div id="luckyDrawDiv_top"></div>
+            <div id="luckyDrawDiv_content">
+            </div>
+        </div>
+        <div id="luckyLpDiv" style="position: absolute;display: none">
+            <div id="luckyLpDiv_top"></div>
+            <div id="luckyLpDiv_content">
+            </div>
+        </div>
+        <div id="mailDiv" style="position: absolute;display: none">
+            <div id="mailDiv_top"></div>
+            <div id="mailDiv_content">
+            </div>
+        </div>
+        <div id="mailDetailDiv" style="position: absolute;display: none">
+            <div id="mailDetailDiv_top"></div>
+            <div id="mailDetailDiv_content">
+            </div>
+        </div>
+        <div id="askDiv" style="position: absolute;display: none">
+            <div id="askDiv_top"></div>
+            <div id="askDiv_content" style="overflow-x: hidden;overflow-y: hidden;display: flex;justify-content: flex-start;align-items: center;flex-wrap: wrap;flex-direction: column">
+            </div>
+        </div>
+        <div id="responsibilityDiv" style="position: absolute;display: none">
+            <div id="responsibilityDiv_top"></div>
+            <div id="responsibilityDiv_content" style="overflow-x: hidden;overflow-y: hidden;display: flex;justify-content: flex-start;align-items: center;flex-wrap: wrap;flex-direction: column">
+            </div>
+        </div>
+        <div id="aboutDiv" style="position: absolute;display: none">
+            <div id="aboutDiv_top"></div>
+            <div id="aboutDiv_content" style="overflow-x: hidden;overflow-y: hidden;display: flex;justify-content: flex-start;align-items: center;flex-wrap: wrap;flex-direction: column">
+            </div>
+        </div>
+        <div id="pyramidDiv" style="position: absolute;display: none">
+            <div id="pyramidDiv_top"></div>
+            <div id="pyramidDiv_content" style="overflow-x: hidden;overflow-y: hidden;display: flex;justify-content: flex-start;align-items: center;flex-wrap: wrap;flex-direction: column">
+            </div>
+        </div>
+        <div id="leagueAgreementDiv" style="position: absolute;display: none">
+            <div id="leagueAgreementDiv_top"></div>
+            <div id="leagueAgreementDiv_content">
+            </div>
+        </div>
+        <div id="leagueContentDiv" style="position: absolute;display: none">
+            <div id="leagueContentDiv_top"></div>
+            <div id="leagueContentDiv_content">
+            </div>
+        </div>
+        <div id="leagueDetailsDiv" style="position: absolute;display: none">
+            <div id="leagueDetailsDiv_top"></div>
+            <div id="leagueDetailsDiv_content">
+                <div id="leagueDetailsDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto"></div>
+                <div id="leagueDetailsDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">
+                    <div id="leagueDetailsDiv_bottom_0" style="width: 13%;text-align: center;font-size: 14px;color: #8C8C8C"></div>
+                    <div id="leagueDetailsDiv_bottom_1" style="width: 23%;text-align: center;font-size: 14px;color: #E96734"></div>
+                    <div id="leagueDetailsDiv_bottom_2" style="width: 32%;text-align: center;font-size: 14px;color: #E96734"></div>
+                    <div id="leagueDetailsDiv_bottom_3" style="width: 32%;text-align: center;font-weight: bold;font-size: 14px;color: #E96734"></div>
+                    <div id="leagueDetailsDiv_bottom_4" style="width: 27%;text-align: center;font-size: 14px;color: #E96734"></div>
+                </div>
+            </div>
+        </div>
+        <div id="gamesDiv" style="position: absolute;display: none">
+            <div id="gamesDiv_top"></div>
+            <div id="gamesDiv_content">
+                <div id="gamesDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;"></div>
+                <div id="gamesDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">
+                    <div id="gamesDiv_bottom_0" style="width: 33%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                    <div id="gamesDiv_bottom_1" style="width: 33%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                    <div id="gamesDiv_bottom_2" style="width: 33%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                </div>
+            </div>
+        </div>
+        <div id="costDiv" style="position: absolute;display: none">
+            <div id="costDiv_top"></div>
+            <div id="costDiv_content">
+                <div id="costDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;"></div>
+                <div id="costDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">
+                    <div id="costDiv_bottom_0" style="width: 30%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                    <div id="costDiv_bottom_2" style="width: 40%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                    <div id="costDiv_bottom_1" style="width: 30%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                </div>
+            </div>
+        </div>
+        <div id="agentCommsDiv" style="position: absolute;display: none">
+            <div id="agentCommsDiv_top"></div>
+            <div id="agentCommsDiv_content">
+                <div id="agentCommsDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;">
+
+                </div>
+                <div id="agentCommsDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">
+                    <div id="agentCommsDiv_bottom_0" style="width: 16%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                    <div id="agentCommsDiv_bottom_1" style="width: 25%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                    <div id="agentCommsDiv_bottom_2" style="width: 28%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                    <div id="agentCommsDiv_bottom_3" style="width: 31%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                </div>
+            </div>
+        </div>
+        <div id="agentCommsDetailDiv" style="position: absolute;display: none">
+            <div id="agentCommsDetailDiv_top"></div>
+            <div id="agentCommsDetailDiv_content">
+                <div id="agentCommsDetailDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;">
+
+                </div>
+                <div id="agentCommsDetailDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">
+                    <div id="agentCommsDetailDiv_bottom_0" style="width: 50%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                    <div id="agentCommsDetailDiv_bottom_1" style="width: 50%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                </div>
+            </div>
+        </div>
+        <div id="gamesDetailDiv" style="position: absolute;display: none">
+            <div id="gamesDetailDiv_top"></div>
+            <div id="gamesDetailDiv_content">
+                <div id="gamesDetailDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;">
+
+                </div>
+                <div id="gamesDetailDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">
+                    <div id="gamesDetailDiv_bottom_0" style="width: 50%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                    <div id="gamesDetailDiv_bottom_1" style="width: 50%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                </div>
+            </div>
+        </div>
+        <div id="commGamesDiv" style="position: absolute;display: none">
+            <div id="commGamesDiv_top"></div>
+            <div id="commGamesDiv_content">
+                <div id="commGamesDiv_top_list" style="width: 100%;height: 45px;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">
+                    <div id="commGamesDiv_top_0" style="width: 50%;text-align: center;font-size: 12px;color: #8C8C8C"></div>
+                    <div id="commGamesDiv_top_1" style="width: 50%;text-align: center;font-size: 12px;color: #8C8C8C"></div>
+                </div>
+                <div style="width: 100%;height:10px;background: #1B1B1B;"></div>
+                <div id="commGamesDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;"></div>
+                <div id="commGamesDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">
+                    <div id="commGamesDiv_bottom_0" style="width: 21%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                    <div id="commGamesDiv_bottom_1" style="width: 37%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                    <div id="commGamesDiv_bottom_2" style="width: 37%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                    <div id="commGamesDiv_bottom_3" style="width: 37%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
+                </div>
+            </div>
+        </div>
+        <div id="agentQrCodeDiv" style="position: absolute;display: none">
+            <div id="agentQrCodeDiv_top"></div>
+            <div id="agentQrCodeDiv_content" style="display: flex;justify-content: center;align-items: center;overflow-x: hidden;overflow-y: auto">
+                <div id="agentQrCodeDiv_content_img" style="width: 100%;height: auto;display: block"></div>
+            </div>
+        </div>
+        <div id="nnDiv" style="position: absolute;display: none">
+            <div id="nnDiv_top"></div>
+            <div id="nnDiv_content" style="width: 100%;position: relative;overflow-x: hidden;background-color: #2A2A2A">
+                <iframe id="nnDiv_content_frame" frameborder="0" scrolling='no' style="position: absolute;top: 0px;z-index: 7;width: 100%"></iframe>
+                <div id="nnDiv_content_fed" style="position: absolute;top: 0px;z-index: 8;width: 100%;display: flex;justify-content: center;align-items: center">
+                    <div id="nnDiv_content_fed_root" style="text-align: center;align-items: center;width: 100%;height: auto;font-size: 16px">
+                        <div style="height:80px">
+                            <img style="width: 80px;height: 80px" src="pic/themeMain/sorry.png" />
+                        </div>
+                        <div style="height:6px"></div>
+                        <div id="nnDiv_content_fed_root_top_txt" style="font-size:18px;color: #CCA352">
+                            很抱歉
+                        </div>
+                        <div style="height:1px"></div>
+                        <div id="nnDiv_content_fed_root_ts" style="font-size:16px;color: #CACACA">游戏无法打开,请稍后重试!</div>
+                    </div>
+                </div>
+                <div id="nnDiv_content_load" style="position: absolute;top: 0px;z-index: 9;width: 100%;display: flex;justify-content: center;align-items: center;background-color: rgba(0,0,0,0.69)">
+                    <div id="nnDiv_content_load_root" style="text-align: center;align-items: center;width: 100%;height: auto;font-size: 16px">
+                        <div id="nnDiv_content_load_root_view" style="width: auto;height:48px"></div>
+                        <div style="height:6px"></div>
+                        <div id="nnDiv_content_load_root_ts" style="font-size:16px;color: #CACACA">游戏正在加载中!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="interestDiv" style="position: absolute;display: none">
+            <div id="interestDiv_top"></div>
+            <div id="interestDiv_content">
+            </div>
+        </div>
+        <div id="depositFeeDiv" style="position: absolute;display: none">
+            <div id="depositFeeDiv_top"></div>
+            <div id="depositFeeDiv_content">
+            </div>
+        </div>
+        <div id="drawFeeDiv" style="position: absolute;display: none">
+            <div id="drawFeeDiv_top"></div>
+            <div id="drawFeeDiv_content">
+            </div>
+        </div>
+        <div id="moneyShowDiv" style="position: absolute;display: none;background: rgba(0,0,0,0.6)">
+            <div id="aTriangle" style="display: none;width: 0px;height: 0px;border-width: 0 10px 10px;border-style: solid;border-color: transparent transparent #383838;position: absolute"></div>
+            <div id="moneyShowDiv_panel" style="top: 10px;position: absolute;width: 60%;height: 182px;background-color: #383838">
+                <div id="moneyShow_mainMoneyBag" style="height: 60px;display: flex;justify-content: center;align-items: center;width: 100%">
+                    <div style="width: 25%;display: flex;justify-content: center;align-items: center">
+                        <img id="moneyWalletImgId" src="pic/themeMain/m_wallet.png" height="15px" />
+                    </div>
+                    <div style="width: 50%">
+                        <div style="font-size: 14px;color: #999999">主钱包</div>
+                        <div class="moneyShowDiv_panel_main_money" id="moneyShow_main_money" style="font-size: 14px;color: #cccccc">0.00</div>
+                    </div>
+                    <div id="moneyShow_refreshBtn" style="width: 25%;display: flex;justify-content: center;align-items: center">
+                        <img id="moneyRefreshImgId" src="pic/themeMain/m_refresh.png" height="20px" />
+                    </div>
+                </div>
+                <div style="height: 1px;background-color: #2A2A2A"></div>
+                <div id="moneyShow_income" style="height: 60px;display: flex;justify-content: center;align-items: center;width: 100%">
+                    <div style="width: 25%;display: flex;justify-content: center;align-items: center">
+                        <img id="moneyComingImgId" src="pic/themeMain/m_coming.png" height="20px" />
+                    </div>
+                    <div style="width: 50%">
+                        <div style="font-size: 14px;color: #cccccc">存款</div>
+                    </div>
+                    <div style="width: 25%;display: flex;justify-content: center;align-items: center">
+                    </div>
+                </div>
+                <div style="height: 1px;background-color: #2A2A2A"></div>
+                <div id="moneyShow_widthdraw" style="height: 60px;display: flex;justify-content: center;align-items: center;width: 100%">
+                    <div style="width: 25%;display: flex;justify-content: center;align-items: center">
+                        <img id="moneyDrawImgId" src="pic/themeMain/m_draw.png" height="20px" />
+                    </div>
+                    <div style="width: 50%">
+                        <div style="font-size: 14px;color: #cccccc">提款</div>
+                    </div>
+                    <div style="width: 25%;display: flex;justify-content: center;align-items: center">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="enterGameNotic" style="position: absolute;display: none;width: 200px;height: 50px;justify-content: center;align-items: center;border-radius: 10px;background: rgba(0,0,0,0.8);color: #cccccc;font-size: 12px">
+            游戏载入中...
+        </div>
+        <div id="serviceDiv" style="position: absolute;display: none;width: 100%;height: 100%">
+            <div id="serviceDiv_top"></div>
+            <div id="serviceDiv_content">
+                <div id="serviceDiv_content_loading" style="width: 100px;height: 100px;"></div>
+            </div>
+        </div>
+        <div id="msgBox" style="position: absolute;display: none;width: 100%;height: 100%;left: 0px;top: 0px;z-index: 20001">
+            <div id="msgBox_background" style="width: 100%; height: 100%;opacity: 0.5;background-color: #000000;position: absolute;top: 0px;left: 0px"
+                onClick="void(0)">
+            </div>
+            <div id="msgBox_content" style="width: 100%;height: 100%;display: flex;flex-direction: column-reverse">
+                <div id="msgBox_content_btns" style="padding-bottom: 30px;display: flex;justify-content: center;align-items: center;width: 100%;height: 45px">
+                    <div id="msgBox_content_btns_cancel" class="msgBox_content_btns_class" style="border-radius: 8px;height: 40px;width: 45%;display: none;justify-content: center;align-items: center">取消</div>
+                    <div id="msgBox_content_btns_sure" class="msgBox_content_btns_class" style="height: 40px;width: 90%;display: flex;justify-content: center;align-items: center">确认</div>
+                </div>
+                <div id="msgBox_content_content" style="width: 100%; height: 200px;background-color: #FFFFFF;display: flex;justify-content: center;align-items: center">
+                </div>
+                <div id="msgBox_content_top" style="display: flex;justify-content: space-between;align-items: center;width: 100%;height: 45px;background-color: #CCCCCC">
+                    <div id="msgBox_content_top_back" style="width: 45px;height: 45px;display: flex;justify-content: center;align-items: center">
+                        <img src="pic/themeMain/back.png" style="height: 15px" />
+                    </div>
+                    <div id="msgBox_content_top_title" style="height: 45px;display: flex;justify-content: center;align-items: center">
+                    </div>
+                    <div style="width: 45px"></div>
+                </div>
+            </div>
+        </div>
+        <div id="toast" style="position: absolute;display: none;width: 100%;height: 100%;left: 0px;top: 0px;z-index: 20002">
+            <div id="toast_background" style="width: 100%; height: 100%;opacity: 0.7;background-color: #000000;position: absolute;top: 0px;left: 0px">
+            </div>
+            <div id="toast_content" style="width: 100%;height: 100%;position: absolute;top: 0px;left: 0px;display: flex;justify-content: center">
+                <div id="toast_content_msgbox" style="word-wrap:break-word;word-break:break-all;height: 35px; border-radius: 15px;background-color: #383838;color: #cccccc;font-size: 12px;display: flex;justify-content: center;align-items: center;padding-left: 10px;padding-right: 10px">
+                    message
+                </div>
+            </div>
+        </div>
+        <div id="loadingDiv" style="position: absolute;display: none;width: 100%;height: 100%;z-index: 20000">
+            <div style="width: 100%;height: 100%;background-color: #000000;opacity: 0.7;position: absolute" onClick="clickEmpty()"></div>
+            <div style="width: 100%;height: 100%;display: flex;justify-content: center;align-items: center">
+                <div id="loadingView" style="width: 100px;height: 100px"></div>
+            </div>
+        </div>
+    </div>
+    <div id="wechatInstall" style="position: absolute;width: 100%;height: 100%;background-color:rgba(0,0,0,0.8);display: none;justify-content: flex-end ">
+        <img id="wechatInstall_img_id" src="pic/themeMain/wechatInstall.png" style="position: absolute;width: 90%" />
+    </div>
+</body>
+
+</html>
+<script>
+    var mUserObj;
+    var mIndexPopWindowObj;
+    var mEventBusObj;
+    var myPJDApp;
+    var mGameAPI;
+    var mMsgBox;
+    var mLoader;
+    var mToast;
+    var mLangObj;
+    var mEnterGameObj;
+    if (isInApp() && isInAndroid()) {
+        Android();
+    } else {
+        IOS();
+    }
+    function IOS() {
+        if (isInApp()) {
+            setTimeout(function () {
+                window.location.assign("zy://app?command=HTML_COMPLETE");
+            }, 1500);
+        }
+        getCurrentServerURL();
+        checkEvent();
+        mUserObj = new userObj();
+        mIndexPopWindowObj = new popBox();
+        mIndexPopWindowObj.init();
+        mEventBusObj = new AppEventBus();
+        mEventBusObj.init();
+        checkLockTouch();
+        mGameAPI = new gameAPI();
+        mGameAPI.init();
+        mMsgBox = new msgBox("");
+        mMsgBox.init();
+        mLoader = new loader();
+        mLoader.init();
+        mToast = new toast();
+        mToast.init();
+        mLangObj = new langObj();
+        mLangObj.init();
+        mEnterGameObj = new enterGameObj();
+        mEnterGameObj.init();
+        myPJDApp = new PJDApp();
+        myPJDApp.setAppStyle();
+        myPJDApp.init();
+    }
+    function Android() {
+        if (isInApp()) {
+            window.location.assign("zy://app?command=HTML_COMPLETE");
+        }
+        mLoader = new loader();
+        mLoader.init();
+        mLoader.show("appInit");
+        getCurrentServerURL();
+        checkEvent();
+        mUserObj = new userObj();
+        mIndexPopWindowObj = new popBox();
+        mIndexPopWindowObj.init();
+        mEventBusObj = new AppEventBus();
+        mEventBusObj.init();
+        mGameAPI = new gameAPI();
+        mGameAPI.init();
+        myPJDApp = new PJDApp();
+        myPJDApp.setAppStyle();
+        checkLockTouch(null, function () {
+            myPJDApp.init();
+            mMsgBox = new msgBox("");
+            mMsgBox.init();
+            mToast = new toast();
+            mToast.init();
+            mLangObj = new langObj();
+            mLangObj.init();
+            mEnterGameObj = new enterGameObj();
+            mEnterGameObj.init();
+            mLoader.unShow("appInit");
+        });
+    }
+</script>

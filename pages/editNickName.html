@@ -1,0 +1,55 @@
+<div style="width:90%;">
+    <div style="height:10px;width:100%;"></div>
+    <input id="nickNameInputs" placeholder="请输入昵称" maxlength="10" type="text" />
+    <div style="height:10px;width:100%;"></div>
+    <div id="nickNameBtn">确定</div>
+</div>
+<script>
+    $("#nickNameInputs").css({
+        "border-radius": "5px",
+        "border": "0px",
+        "background": "white",
+        "width": "100%",
+        "height": "40px",
+        "padding-left": "6px"
+    });
+    $("#nickNameBtn").css({
+        "border-radius": "20px",
+        "color": mainFontColor,
+        "font-size": "14px",
+        "background-color": mainColor,
+        "width": "100%",
+        "height": "40px",
+        "display": "flex",
+        "justify-content": "center",
+        "align-items": "center",
+        "padding": "10px",
+        "box-sizing": "border-box"
+    });
+    setBtnOnTouchEvent($("#nickNameBtn"), function () {
+        var nickVal = $("#nickNameInputs").val();
+        if (nickVal == "") {
+            $("#nickNameInputs").val(userInfo.nickname);
+        } else {
+            if (nickVal != userInfo.nickname) {
+                var mData = "requestType=json&nickname=" + nickVal;
+                requestAjax("user/editUser", mData, function (jsonObj) {
+                    if (jsonObj["code"] == 0) {
+                        userInfo.nickname = nickVal;
+                        if (nickVal.length > 4) {
+                            nickVal = nickVal.substr(0, 4) + "...";
+                        }
+                        $("#nnValue").html(nickVal);
+                    }
+                })
+            }
+        }
+        backClickFun();
+    }, mainColorDeep, mainColor);
+
+    nickNameInputContent();
+    function nickNameInputContent() {
+        $("#nickNameInputs").val(userInfo.nickname);
+        $("#nickNameInputs").focus();
+    }
+</script>

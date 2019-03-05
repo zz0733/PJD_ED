@@ -1,0 +1,29 @@
+<div id="mailContents" style="word-break:break-all;overflow-x: hidden;overflow-y: auto;width: 100%;display: flex;justify-content: flex-start;flex-direction: column;align-items: center;">
+</div>
+
+<script>
+    var mDetailFunObj = new DetailFunObj();
+    function DetailFunObj() {
+
+        this.show = function (DetaList) {
+            bindMailDetail(DetaList);
+        }
+
+        function bindMailDetail(DetaList) {
+            
+            var str = "";
+            var AllDate = getTimeZoneE8(8, new Date(DetaList["ctime"]));
+            var DateWhile = AllDate.format("yyyy-MM-dd");
+            var mHour = AllDate.format("hh:mm:ss");
+            var weekDay = "天一二三四五六".charAt(AllDate.getDay());
+            var title = DetaList["title"];
+            var topContent = "<div style='padding-top: 22px;width:90%;text-align:center;color:" + mainColor + ";'><b>" + title + "</b></div>";
+            var dateContent = "<div style='width:90%;text-align:center;font-size:10px;color:#CCCCCC;padding-top: 20px;'>[content]</div>";
+            dateContent = dateContent.replace("[content]", DateWhile + " " + "星期" + weekDay + " " + mHour);
+            var message = DetaList["message"];
+            var mailContent = "<div style='text-align:left;width: 90%;padding-top: 20px;padding-bottom:10px;box-sizing: border-box;color:gainsboro;font-size:12px'>" + message + "</div>"
+            str = topContent + dateContent + mailContent;
+            $("#mailContents").html(str);
+        }
+    }
+</script>

@@ -1,0 +1,378 @@
+<div style="width: 100%;font-size: 12px">
+    <div style="height:80px;width:100%;display:flex;justify-content:center;align-items:center;font-size:15px">
+        <div id="lucky_menu_schedule" class="lucky_top_menu" style="height:30px;width:30%;border-top-left-radius:15px;border-bottom-left-radius:15px;display:flex;justify-content:center;align-items:center;background-color:#CCA352;color:#ffffff">
+            进度
+        </div>
+        <div id="lucky_menu_rule" class="lucky_top_menu" style="height:30px;width:30%;display:flex;justify-content:center;align-items:center;background-color:#CCA352;color:#ffffff">
+            规则
+        </div>
+        <div id="lucky_menu_record" class="lucky_top_menu" style="height:30px;width:30%;border-top-right-radius:15px;border-bottom-right-radius:15px;display:flex;justify-content:center;align-items:center;background-color:#CCA352;color:#ffffff">
+            抽奖记录
+        </div>
+    </div>
+    <!-- schedule -->
+    <div id="lucky_menu_schedule_content" class="lucky_menu_content" style="width:100%;font-size:12px">
+        <div style="width:100%;height:100%;overflow-x: hidden;overflow-y: auto">
+            <div style="width:100%;height:15px;background:#161616"></div>
+            <div style="display:flex;width:100%;height:30px;align-items: center">
+                <div style="width:100%;padding-left:5%;color:gainsboro;font-size: 12px">
+                    今日累计存款
+                    <font id="lucky_deposit" style="color:#CCA352">0元</font>，完成进度:
+                </div>
+            </div>
+            <div style="width: 90%;padding-left: 5%;height: 27px;display: flex;font-size: 15px;justify-content: center;;align-items: center;">
+                <div style="border-radius:5px;background:gray;width: 100%;height: 20px;color:gainsboro;">
+                    <div id="schedule_t" style="display: flex;border-radius:5px;width:0%;height:20px;background:#6889b7;">&nbsp;0%</div>
+                </div>
+            </div>
+            <div style="display:flex;width:100%;height:30px;align-items: center">
+                <div style="width:100%;padding-left:5%;color:gainsboro;">
+                    <font id="lucky_draw_content">离参与抽奖要求还差</font>
+                    <font id="lucky_draw_schedule" style="color:#CCA352">0元</font>
+                </div>
+            </div>
+            <div style="width:100%;height:15px;background:#161616"></div>
+            <div style="display:flex;width:100%;height:30px;align-items: center">
+                <div style="width:100%;padding-left:5%;color:gainsboro;">
+                    今日有效投注
+                    <font id="lucky_valid" style="color:#CCA352">0元</font>，完成进度:
+                </div>
+            </div>
+            <div id="lucky_dj_content">
+                <div style="width: 90%;padding-left: 5%;height: 27px;display: flex;font-size: 15px;justify-content: center;;align-items: center;">
+                    <div style="height: 20px;color: gainsboro;width: 30%;">第一等级进度</div>
+                    <div style="border-radius:5px;background:gray;width: 70%;height: 20px;color:gainsboro;">
+                        <div id="schedule_t_1" style="display: flex;border-radius:5px;width:0%;height:20px;background:#6889b7;">&nbsp;0%</div>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex;width:100%;height:30px;align-items: center">
+                <div style="width:100%;padding:0px 0px 0px 5%;color:gainsboro;">
+                    离下一等级的转盘抽奖的要求还差
+                    <font id="lucky_draw_valid" style="color:#CCA352">0元</font>
+                </div>
+            </div>
+            <div style="width:100%;height:15px;background:#161616"></div>
+            <div style="width: 100%;background: #2A2A2A;display: flex;padding: 10px 0 10px 0">
+                <div style="width: 50%;color: #cca352;text-align: center">
+                    <div style="width: 100%;color: #cca352;text-align: center;padding: 0 0 10px 0">今日已参与的转盘抽奖:</div>
+                    <div id="lucky_Participation_1" style="font-size:20px;width: 100%;color: gainsboro;text-align: center">0</div>
+                </div>
+                <div style="width:1px;background: black"></div>
+                <div style="width: 50%;color: #cca352;text-align: center">
+                    <div style="width: 100%;color: #cca352;text-align: center;padding: 0 0 10px 0">今日可参与的转盘抽奖:</div>
+                    <div id="lucky_Participation_0" style="font-size:20px;width: 100%;color: gainsboro;text-align: center">0</div>
+                </div>
+            </div>
+            <div style="width:100%;height:15px;background:#161616"></div>
+            <div style="padding-top:20px;width:100%;display: flex;justify-content: center;align-items:center;background-color:#2A2A2A;box-sizing: border-box">
+                <div class="luckyDraw_yesBtn">立即抽奖</div>
+            </div>
+        </div>
+    </div>
+    <!-- rule -->
+    <div id="lucky_menu_rule_content" class="lucky_menu_content" style="width:100%;font-size:12px">
+        <div style="width:100%;height:15px;background:#161616"></div>
+        <div style="width:100%;height:100%;overflow-x: hidden;overflow-y: auto">
+            <!-- 规则内容 -->
+            <div id="rule_content" style="width: 100%;display: flex;flex-direction: column;justify-content: center;align-items: center"></div>
+            <div style="height:10px;"></div>
+        </div>
+    </div>
+    <!-- record -->
+    <div id="lucky_menu_record_content" class="lucky_menu_content" style="width:100%">
+        <div style="width:100%;height:15px;background:#161616"></div>
+        <div style="color:gainsboro;display:flex;width:100%;height:30px;justify-content: center ;align-items: center;font-size: 14px">
+            您近七天抽奖记录如下
+        </div>
+        <div style="width:100%;height:15px;background:#161616"></div>
+        <div id="record_content"></div>
+    </div>
+</div>
+
+<script>
+    setLuckyAllStyle();
+    selectLuckyStyle();
+    function setLuckyAllStyle() {
+        $(".lucky_top_menu").each(function () {
+            setBtnOnTouchEventNoColor($(this), function (mObj) {
+                selectLuckyStyle(mObj.id);
+            }, null);
+        });
+        setBtnOnTouchEvent($(".luckyDraw_yesBtn"), function (mObj) {
+            myPJDApp.showLuckyLpObj();
+        }, mainColorDeep, mainColor);
+        $(".luckyDraw_yesBtn").css({
+            "display": "flex",
+            "justify-content": "center",
+            "align-items": "center",
+            "border-radius": "20px",
+            "color": "#FFFFFF",
+            "background-color": mainColor,
+            "height": "40px",
+            "width": "90%",
+            "font-size": "14px"
+        });
+        $(".lucky_menu_content").css({
+            "overflow": "hidden",
+            "height": screenH - topH - 80
+        });
+    }
+    function selectLuckyStyle(menuId) {
+        $(".lucky_top_menu").css({
+            "background-color": "#2a2a2a",
+            "color": "#cca352",
+            "border": "1px solid " + mainColor,
+        });
+        $("#lucky_menu_rule").css({
+            "background-color": "#2a2a2a",
+            "color": "#cca352",
+            "border": "1px solid " + mainColor,
+            "border-left": "0px solid " + mainColor,
+            "border-right": "0px solid " + mainColor,
+        });
+        $(".lucky_menu_content").css({
+            "display": "none"
+        });
+        if (menuId == null) {
+            $("#lucky_menu_schedule").css({
+                "background-color": mainColor,
+                "color": "white",
+                "border": "1px solid " + mainColor,
+            });
+            $("#lucky_menu_schedule_content").css({
+                "display": "block"
+            });
+            contentScheduleMake();
+        } else {
+            if (menuId == "lucky_menu_rule") {
+                $("#" + menuId).css({
+                    "background-color": mainColor,
+                    "color": "white"
+                });
+            } else {
+                $("#" + menuId).css({
+                    "background-color": mainColor,
+                    "color": "white",
+                    "border": "1px solid " + mainColor,
+                });
+            }
+            $("#" + menuId + "_content").css({
+                "display": "block"
+            });
+            if (menuId == "lucky_menu_schedule") {
+                contentScheduleMake();
+            } else if (menuId == "lucky_menu_rule") {
+                contentRuleMake();
+            } else if (menuId == "lucky_menu_record") {
+                contentRecordMake();
+            }
+        }
+    }
+    function contentScheduleMake() {
+        requestAjax("prize/getTodayUserPrize", "", function (jsonObj) {
+            var obj = jsonObj.result;
+            //存款
+            var deposit = obj["deposit_sum"];
+            //var deposit = 999;
+            $("#lucky_deposit").html(deposit + "元");
+            //投注
+            var valid = obj["valid_sum"];
+            //var valid = 100;
+            $("#lucky_valid").html(valid + "元");
+            //等级
+            var luckyId = obj["lucky_id"];
+            //次数
+            var uses = obj["uses"]; //已抽次数
+            var times = obj["times"]; //可次数
+            $("#lucky_Participation_1").html(uses);
+            $("#lucky_Participation_0").html(times);
+            //聚下一等级
+            requestAjax("prize/getPrizeLuckys", "", function (jsonObj) {
+                var idex;
+                var str = "";
+                var dObj = jsonObj.result;
+                var len = dObj.length;
+                var isDeposit = 0;
+                var isValid = 0;
+                var isValidshow = 0;
+                var sta = 0;
+                for (var i = 0; i < len; i++) {
+                    var listObj = dObj[i];
+                    var item = new Object();
+                    var depositSum = listObj.deposit_sum;
+                    var validSum = listObj.valid_sum;
+                    if (valid > validSum) {
+                        isValidshow = 1;
+                    }
+                    if (isDeposit == 0) {
+                        if (deposit == 0) {
+                            $("#lucky_draw_schedule").html((depositSum - deposit) + "元");
+                            isDeposit = 1;
+                        } else {
+                            var beforeGrade = depositSum;
+                            if (deposit >= dObj[len - 1].deposit_sum) {
+                                $("#lucky_draw_content").html("已完成所有档次存款要求！");
+                                $("#lucky_draw_schedule").html("");
+                                bfB(beforeGrade);
+                                isDeposit = 1;
+                            } else {
+                                if (deposit < depositSum) {
+                                    if (i > 0) {
+                                        $("#lucky_draw_content").html("已完成" + dObj[i - 1].name + ",离下一档次还差:");
+                                        $("#lucky_draw_schedule").html((depositSum - deposit) + "元");
+                                        bfB(deposit);
+                                    } else {
+                                        $("#lucky_draw_schedule").html((depositSum - deposit) + "元");
+                                        bfB(beforeGrade);
+                                    }
+                                    isDeposit = 1;
+                                }
+                            }
+                        }
+                    }
+                    if (isValidshow == 1) {
+                        if (valid < validSum) {
+                            if (isValid == 0) {
+                                idex = (i + 1);
+                                var vBeforeGrade = validSum;
+                                $("#lucky_draw_valid").html((validSum - valid) + "元");
+                                xBfB(vBfB(vBeforeGrade, valid));
+                                isValid = 1;
+                            }
+                        } else {
+                            idex = (i + 1);
+                            var vBeforeGrade = validSum;
+                            $("#lucky_draw_valid").html(0 + "元");
+                            xBfB(vBfB(vBeforeGrade, valid));
+                        }
+                    } else {
+                        if (sta == 0) {
+                            if (valid < validSum) {
+                                sta = 1;
+                                idex = (i + 1);
+                                var vBeforeGrade = validSum;
+                                $("#lucky_draw_valid").html((validSum - valid) + "元");
+                                xBfB(vBfB(vBeforeGrade, valid));
+                            }
+                        }
+                    }
+                }
+                if (str != "") {
+                    $("#lucky_dj_content").html(str);
+                    $(".schedule_t_class").each(function () {
+
+                    })
+                }
+                function bfB(beforeGrade) {
+                    var percentage = vBfB(beforeGrade, deposit);
+                    $("#schedule_t").css({ "width": percentage });
+                    $("#schedule_t").html("&nbsp;" + percentage);
+                    var val = percentage.split("%")[0];
+                    if (val >= 15) {
+                        $("#schedule_t").css({
+                            "justify-content": "center",
+                            "align-items": "center"
+                        });
+                    }
+                }
+
+                function vBfB(beforeGrade, behindGrade) {
+                    var vPercentage = (behindGrade / beforeGrade) * 100;
+                    if (vPercentage >= 100) {
+                        return "100%";
+                    } else {
+                        if (vPercentage >= 10) {
+                            return vPercentage.toString().substr(0, 5) + "%";
+                        } else {
+                            return vPercentage.toString().substr(0, 4) + "%";
+                        }
+                    }
+                }
+
+                function xBfB(content) {
+                    if (idex >= 0) {
+                        var jDiv = '<div id="is_lucky_' + idex + '"  style="width: 90%;padding-left: 5%;height: 27px;display: flex;font-size: 15px;justify-content: center;;align-items: center;">[content]</div>';
+                        var xDiv = '<div style="height: 20px;color: gainsboro;width: 30%;">' + listObj.name + '</div>';
+                        var bDiv = '<div style="border-radius:5px;background:gray;width: 70%;height: 20px;color:gainsboro;">[content]</div>';
+                        var val = content.split("%")[0];
+                        if (val >= 15) {
+                            var zDiv = '<div class="schedule_t_class" id="schedule_t_' + idex + '" style="display: flex;justify-content:center;align-items:center;border-radius:5px;width:' + content + ';height:20px;background:#6889b7;">' + content + '</div>';
+                        } else {
+                            var zDiv = '<div class="schedule_t_class" id="schedule_t_' + idex + '" style="display: flex;border-radius:5px;width:' + content + ';height:20px;background:#6889b7;">&nbsp;' + content + '</div>';
+                        }
+                        bDiv = bDiv.replace("[content]", zDiv);
+                        jDiv = jDiv.replace("[content]", xDiv + bDiv);
+                        str += jDiv;
+                    }
+                }
+            });
+        });
+    }
+    function contentRuleMake() {
+        var layoutId = "rule_content";
+        var ms = "页面加载失败，请重试！";
+        requestAjax("article/getArticleForList", "typeId=[1200]", function (jsonObj) {
+            var code = jsonObj["code"];
+            if (code != 0) { bindFedView(layoutId, ms); return; }
+            var result = jsonObj["result"];
+            if (result[0] != null) {
+                var list = JSON.parse(result[0]["content"]);
+                AppMakeObj.AeToCn(list, layoutId);
+            } else {
+                bindFedView(layoutId, ms);
+            }
+        }, function (error) { bindFedView(layoutId, ms); });
+    }
+    function contentRecordMake() {
+        var columns = [
+            { "title": "序号", "code": "number", "index": "true", "width": "10%", "align": "center" },
+            { "title": "时间", "code": "time", "width": "20%", "align": "center" },
+            { "title": "参与抽奖<br>等级", "code": "grade", "width": "30%", "align": "center" },
+            { "title": "领取状态", "code": "status", "width": "20%", "align": "center" },
+            { "title": "抽中奖项", "code": "prize", "width": "20%", "align": "center" }
+        ];
+        var mData = "requestType=json";
+        var mTable = new tTable("record_content", columns, 30);
+        mTable.init();
+        mTable.setOutTime(2000);
+        mTable.setItemHeight(45);
+        mTable.setLoadOKFunction(function () {
+        });
+        mTable.setParseFunction(function (datas) {
+            return parseGamesData(datas);
+        });
+        mTable.loadData(SERVER_ADD + "prize/getMyWinPrizes", mData);
+
+        function parseGamesData(gamesData) {
+            var datas = new Array();
+            var objList = gamesData.result;
+            var len = objList.length;
+            for (var i = 0; i < len; i++) {
+                var objItem = objList[i];
+                var item = new Object();
+                var time = getTimeZoneE8(8, new Date(objItem.win_time)).format("yyyy-MM-dd");
+                var time1 = getTimeZoneE8(8, new Date(objItem.win_time)).format("hh:mm:ss");
+                item["time"] = "<font color=white>" + time + "<br><font color=gainsboro>" + time1 + "</font></font>";
+                item["grade"] = objItem.dt.lucky_id.name;
+                item["prize"] = objItem.p_name;
+                var status = objItem.status;
+                if (status == 1) {
+                    status = "待抽";
+                } else if (status == 2) {
+                    status = "待领";
+                } else if (status == 3) {
+                    status = "已发放";
+                } else {
+                    status = "作废";
+                }
+                item["status"] = status;
+                datas.push(item);
+            }
+            var returnObj = new Object();
+            returnObj["result"] = new Object();
+            returnObj["result"]["list"] = datas;
+            return returnObj;
+        }
+    }
+</script>

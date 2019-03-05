@@ -1,0 +1,391 @@
+<div id="mDraw" style="display: flex;;justify-content: center;align-items: center;width: 100%">
+    <div style="width: 90%">
+        <div style="height: 20px"></div>
+        <div style="width: 100%;display: flex;justify-content: center;align-items: center;background-color: #2A2A2A;border-radius: 5px;border: 1px solid #cca352">
+            <div style="width: 90%;height: 60px;background-color: #2A2A2A;display: flex;justify-content: space-between;align-items: center">
+                <div>
+                    <div class="mDraw_vaildManey_text">可取金额</div>
+                    <div class="mDraw_vaildManey_text_small">(主钱包余额的整数部分)</div>
+                </div>
+                <div>
+                    <span class="mDraw_moneyFlag">¥&nbsp;</span>
+                    <span id="mDraw_drawCanNumber">0</span>
+                </div>
+            </div>
+        </div>
+        <div class="mDraw_drawDiv_item" id="mDraw_drawDiv_item_select">
+            <div class="mDraw_drawDiv_item_title">
+                <div class="mDraw_drawDiv_item_title_text">提款至</div>
+                <div class="mDraw_drawDiv_item_title_split"></div>
+            </div>
+            <div class="mDraw_drawDiv_item_input">
+                <input type="text" id="mDraw_drawDiv_bank" value="利息钱包" readonly class="mDraw_drawDiv_item_input_controls" />
+            </div>
+            <div class="mDraw_drawDiv_item_ask">
+                <img id="arrowImgId" src="pic/themeMain/arrow.png" height="15px" class="mDraw_drawDiv_selectBank" />
+            </div>
+        </div>
+        <div class="mDraw_drawDiv_line"></div>
+        <div class="mDraw_drawDiv_item">
+            <div class="mDraw_drawDiv_item_title">
+                <div class="mDraw_drawDiv_item_title_text">提款金额</div>
+                <div class="mDraw_drawDiv_item_title_split"></div>
+            </div>
+            <div class="mDraw_drawDiv_item_input">
+                <input type="number" id="mDraw_drawDiv_drawMoney" placeholder="单笔最低200元,最高200000元" class="mDraw_drawDiv_item_input_controls"
+                    autocomplete="new-password" />
+            </div>
+            <div class="mDraw_drawDiv_item_ask"></div>
+        </div>
+        <div class="mDraw_drawDiv_line"></div>
+        <div class="mDraw_drawDiv_item">
+            <div class="mDraw_drawDiv_item_title">
+                <div class="mDraw_drawDiv_item_title_text">提款密码</div>
+                <div class="mDraw_drawDiv_item_title_split"></div>
+            </div>
+            <div class="mDraw_drawDiv_item_input">
+                <input type="password" id="mDraw_drawDiv_drawMoneySN" placeholder="提款密码" class="mDraw_drawDiv_item_input_controls" autocomplete="new-password"
+                />
+            </div>
+            <div class="mDraw_drawDiv_item_ask"></div>
+        </div>
+        <div class="mDraw_drawDiv_line"></div>
+        <div style="height: 20px"></div>
+        <div id="mDraw_alertInfo" style="width: 100%;border-radius: 0px;background-color: #2A2A2A;display: none;flex-direction: column;justify-content: flex-start;;align-items: center">
+            <div style="height: 30px"></div>
+            <div id="mDraw_alertInfo_note_one" style="width: 80%;font-size: 12px;color: #cccccc;height: 25px">
+                • 您的有效投注额未达到
+                <span id="mDraw_alertInfo_note_bet_deposit_rate"></span> 倍存款额度
+            </div>
+            <div id="mDraw_alertInfo_note_two" style="width: 80%;font-size: 12px;color: #cccccc;height: 25px">
+                • 您今日的提款次数超过
+                <span id="mDraw_alertInfo_note_day_limit"></span> 次
+            </div>
+            <div id="mDraw_alertInfo_note_three" style="width: 80%;font-size: 12px;color: #cccccc;height: 25px">
+                • 单笔提款超出最大额度
+                <span id="mDraw_alertInfo_note_max_amount"></span>
+            </div>
+            <div id="mDraw_alertInfo_note_four" style="width: 80%;font-size: 12px;color: #cccccc;height: 25px">
+                • 提款需要支付手续费用
+            </div>
+            <div style="height: 30px"></div>
+        </div>
+        <div style="height: 20px"></div>
+        <div id="mDraw_drawDiv_OK">提 交</div>
+    </div>
+</div>
+
+<script language="javascript" type="text/javascript">
+    $("#arrowImgId").attr("src", themPath + "arrow.png");
+    var mDrawFeeFunObj = new drawFeeFun(); mDrawFeeFunObj.init();
+    function drawFeeFun() {
+        var mDrawBodyObj;
+        this.init = function () {
+            mDrawBodyObj = new drawBodyObj("mDraw");
+            mDrawBodyObj.init();
+            mDrawBodyObj.show();
+        }
+        this.show = function () {
+            mDrawBodyObj.show();
+        }
+        this.unShow = function () {
+            mDrawBodyObj.unShow();
+        }
+        this.reBindBankList = function () {
+            mDrawBodyObj.checkBank();
+        }
+    }
+    function drawBodyObj(prefix) {
+        var myBankList = new Array();
+        var selectBankId = "00";
+        var selectBankIndex = 0;
+        var isStepTwo = false;
+        this.init = function () {
+            $("." + prefix + "_drawDiv_item").css({
+                "width": "100%",
+                "height": "50px",
+                "display": "flex",
+                "justify-content": "space-between",
+                "align-items": "center"
+            });
+            $("." + prefix + "_drawDiv_item_title").css({
+                "width": "120px",
+                "height": "100%",
+                "display": "flex",
+                "justify-content": "space-between",
+                "align-items": "center"
+            });
+            $("." + prefix + "_drawDiv_item_title_text").css({
+                "color": mainColor,
+                "font-size": "16px"
+            });
+            $("." + prefix + "_drawDiv_item_title_split").css({
+                "background-color": splitLineColor,
+                "width": "1px",
+                "height": "50%",
+                "margin-right": "10px",
+                "box-sizing": "border-box"
+            });
+            $("." + prefix + "_drawDiv_line").css({
+                "width": "100%",
+                "height": "1px",
+                "background-color": splitLineColor
+            });
+            $("." + prefix + "_drawDiv_item_input_controls").css({
+                "border": "none",
+                "width": screenW - 120 - 25,
+                "color": mainFontColorMore,
+                "background-color": pageBgColor,
+                "font-size": "14px"
+            });
+            $("." + prefix + "_drawDiv_item_ask").css({
+                "width": "25px",
+                "display": "flex",
+                "justify-content": "center",
+                "align-items": "center"
+            });
+            $("#" + prefix + "_drawDiv_OK").css({
+                "border-radius": "20px",
+                "height": "40px",
+                "color": mainFontColor,
+                "background-color": mainColor,
+                "width": "100%",
+                "font-size": "16px",
+                "display": "flex",
+                "justify-content": "center",
+                "align-items": "center"
+            });
+            $("." + prefix + "_drawDiv_selectBank").css({
+                rotate: "90deg"
+            });
+            $("." + prefix + "_vaildManey_text").css({
+                "color": mainColor,
+                "font-size": "14px"
+            });
+            $("." + prefix + "_vaildManey_text_small").css({
+                "color": mainFontColorMore,
+                "font-size": "12px"
+            });
+            $("." + prefix + "_moneyFlag").css({
+                "color": mainFontColorMore,
+                "font-size": "12px"
+            });
+            $("#" + prefix + "_drawCanNumber").css({
+                "color": mainFontColorMore,
+                "font-size": "24px"
+            });
+            setBtnOnTouchEventNoColor($("#" + prefix + "_drawDiv_item_select"), function () {
+                showBankList();
+            }, null);
+            setBtnOnTouchEvent($("#" + prefix + "_drawDiv_OK"), function () {
+                submitDrawRequest();
+            }, mainColorDeep, mainColor, null);
+            $("#" + prefix + "_drawDiv_drawMoney").focus(function () {
+                var obj = new Object();
+                obj["inputObj"] = $("#" + prefix + "_drawDiv_drawMoney");
+                obj["maxLen"] = 6;
+                obj["FloatLimit"] = 2;
+                obj["isFunds"] = true;
+                mIndexPopWindowObj.show(2, obj);
+                document.activeElement.blur();
+            });
+            $("#" + prefix + "_drawDiv_drawMoneySN").focus(function () {
+                var obj = new Object();
+                obj["inputObj"] = $("#" + prefix + "_drawDiv_drawMoneySN");
+                obj["danIs"] = false;
+                obj["showIs"] = false;
+                obj["maxLen"] = 4;
+                obj["FloatLimit"] = 2;
+                obj["isFunds"] = false;
+                mIndexPopWindowObj.show(2, obj);
+                document.activeElement.blur();
+            });
+        }
+        this.show = function () {
+            $("#" + prefix + "_drawCanNumber").html(parseInt(userMoney));
+            checkBank();
+        }
+        this.unShow = function () {
+            $("#" + prefix + "_alertInfo").css({ "display": "none" });
+            $("#" + prefix + "_drawDiv_OK").html("提 交");
+            $("#" + prefix + "_drawDiv_drawMoney").val("");
+            $("#" + prefix + "_drawDiv_drawMoneySN").val("");
+            isStepTwo = false;
+        }
+        this.checkBank = function () {
+            checkBank();
+        }
+        function submitDrawRequest() {
+            var canDrawMoney = parseInt($("#" + prefix + "_drawCanNumber").html());
+            var requestMoney = $("#" + prefix + "_drawDiv_drawMoney").val();
+            checkInput();
+            function checkInput() {
+                if (canDrawMoney == 0) {
+                    mToast.show("可提款金额为0,请刷新余额再重试!", 1, "");
+                } else {
+                    if (requestMoney == "") {
+                        mToast.show("请输入提款金额!", 1, "");
+                    } else {
+                        if (requestMoney > canDrawMoney) {
+                            mToast.show("提款金额不可大于可提款金额哦～", 1, "");
+                        } else {
+                            if (requestMoney >= 200) {
+                                if ($("#" + prefix + "_drawDiv_drawMoneySN").val() != "") {
+                                    mLoader.show();
+                                    setTimeout(submitDrawRequestFun, 500);
+                                } else {
+                                    mToast.show("提款密码不能为空!", 1, "");
+                                }
+                            } else {
+                                mToast.show("提款金额必须大于等于200哦～", 1, "");
+                            }
+                        }
+                    }
+                }
+            }
+            function submitDrawRequestFun() {
+                if (isStepTwo) {
+                    ajaxDrawFun();
+                } else {
+                    ajaxFun();
+                }
+                function ajaxFun() {
+                    var dataObj = new Object();
+                    dataObj["requestType"] = "json";
+                    dataObj["rand"] = randomString();
+                    requestAjax("payWithdraw/getUserWithdrawInfo", dataObj, function (jsonObj) {
+                        if (jsonObj["code"] == 0) {
+                            var result = jsonObj["result"];
+                            var withdraws = result["withdraws"];
+                            var day_limit = result["day_limit"];
+                            var max_amount = result["max_amount"];
+                            var min_amount = result["min_amount"];
+                            var needpays = result["needpays"];
+                            var needbets = result["needbets"];
+                            var bet_deposit_rate = result["bet_deposit_rate"];
+                            if (needbets > 0) {
+                                mLoader.unShow();
+                                mToast.show("您还未达到可提款流水,再投注" + needbets + "金额即可提款!", 1, "middle");
+                                return;
+                            }
+                            $("#" + prefix + "_alertInfo_note_bet_deposit_rate").html((bet_deposit_rate / 100).toFixed(2));
+                            $("#" + prefix + "_alertInfo_note_day_limit").html(day_limit);
+                            $("#" + prefix + "_alertInfo_note_max_amount").html(max_amount);
+                            var b1 = true;
+                            var b2 = true;
+                            var b3 = true;
+                            if (needpays == 0) {
+                                $("#" + prefix + "_alertInfo_note_one").css({ "display": "none" });
+                            } else {
+                                b1 = false;
+                                $("#" + prefix + "_alertInfo_note_one").css({ "display": "block" });
+                            }
+                            if (requestMoney > max_amount) {
+                                b2 = false;
+                                $("#" + prefix + "_alertInfo_note_three").css({ "display": "block" });
+                            } else {
+                                $("#" + prefix + "_alertInfo_note_three").css({ "display": "none" });
+                            }
+                            if (withdraws > day_limit) {
+                                b3 = false;
+                                $("#" + prefix + "_alertInfo_note_two").css({ "display": "block" });
+                            } else {
+                                $("#" + prefix + "_alertInfo_note_two").css({ "display": "none" });
+                            }
+                            if (b1 && b2 && b3) {
+                                $("#" + prefix + "_alertInfo").css({ "display": "none" });
+                                ajaxDrawFun();
+                            } else {
+                                mLoader.unShow();
+                                $("#" + prefix + "_alertInfo").css({ "display": "flex" });
+                                $("#" + prefix + "_drawDiv_OK").html("继续提交提款申请");
+                                isStepTwo = true;
+                            }
+                        } else if (jsonObj["code"] == 100) {
+                            mLoader.unShow();
+                            mToast.show("登录失效,请重新登录!", 1, "middle");
+                            appLogout(0);
+                        } else {
+                            mLoader.unShow();
+                            mToast.show("提交提款申请失败!<br>" + mLangObj.getZHByCode(jsonObj["tipMessage"]), 2, "middle");
+                        }
+                    }, function (error) {
+                        mLoader.unShow();
+                        mToast.show("提交提款申请失败!" + error, 1, "middle");
+                    });
+                }
+                function ajaxDrawFun() {
+                    getEnKey(function (key) {
+                        var pass = $("#" + prefix + "_drawDiv_drawMoneySN").val();
+                        if (key != null) {
+                            pass = encryptPass(pass, key);
+                        }
+                        var dataObj = new Object();
+                        dataObj["password"] = pass;
+                        dataObj["amount"] = requestMoney;
+                        dataObj["userBankId"] = selectBankId;
+                        dataObj["requestType"] = "json";
+                        dataObj["rand"] = randomString();
+                        requestAjax("payWithdraw/addWithdrawOrder", dataObj, function (jsonObj) {
+                            mLoader.unShow();
+                            if (jsonObj["code"] == 0) {
+                                backClickFun();
+                                mUserObj.getMoneyBag();
+                                mToast.show("提款申请提交成功!", 1, "middle");
+                            } else if (jsonObj["code"] == 100) {
+                                mToast.show("登录失效,请重新登录!", 1, "middle");
+                                appLogout(0);
+                            } else {
+                                mToast.show("提交提款申请失败!<br>" + mLangObj.getZHByCode(jsonObj["tipMessage"]), 2, "middle");
+                            }
+                        }, function (error) {
+                            mLoader.unShow();
+                            mToast.show("提交提款申请失败!", 1, "middle");
+                        });
+                    });
+                }
+            }
+        }
+        function checkBank() {
+            if (bankInfo != null) { bindBankList(); }
+        }
+        function bindBankList() {
+            myBankList = new Array();
+            var len = bankInfo.length;
+            for (var i = 0; i < len; i++) {
+                var item = new Object();
+                item["bankId"] = bankInfo[i]["bank_id"];
+                item["bankName"] = bankInfo[i].dt.bank_id.text;
+                item["cardno"] = bankInfo[i]["cardno"];
+                item["id"] = bankInfo[i]["id"];
+                item["title"] = item["bankName"] + " " + item["cardno"];
+                myBankList.push(item);
+                if (i == len - 1) {
+                    var addObj = new Object();
+                    addObj["title"] = " + 添加银行卡";
+                    addObj["id"] = "addBanksIdLast";
+                    myBankList.push(addObj);
+                    break;
+                }
+            }
+            setSelectItem(0);
+        }
+        function setSelectItem(index) {
+            if (index == myBankList["length"] - 1) {
+                myPJDApp.showAccountAndSafe("bank");
+            } else {
+                var item = myBankList[index];
+                var txt = item["bankName"] + item["cardno"];
+                $("#" + prefix + "_drawDiv_bank").val(txt);
+                selectBankId = item["id"];
+                selectBankIndex = index;
+            }
+        }
+        function showBankList() {
+            if (myBankList == null || myBankList.length == 0) { bindBankList(); }
+            mMsgBox.showList("选择银行卡", myBankList, "title", selectBankIndex, function (index) {
+                setSelectItem(index);
+            }, null);
+        }
+    }
+</script>

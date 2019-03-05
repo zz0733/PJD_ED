@@ -1,0 +1,296 @@
+<div style="position:relative;width:100%;height:100%">
+    <img src="pic/themeMain/lucky_bg.jpg" style="position:absolute;top:0px;width:100%;height:100%;z-index: 1" />
+    <div style="position: absolute;top: 0px;width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;z-index: 2">
+        <div style="width:100%;display:block;justify-content:center;align-items:center">
+            <div id="lucky_bg">
+                <img id="lucky_pointer" src="pic/themeMain/zp3.png">
+                <canvas id="lucky_mCanvas1"></canvas>
+                <div id="lucky_jp_content">
+                    <span class="content_jp" id="z1" style="transform: rotate(-39deg);">奖项一</span>
+                    <span class="content_jp" id="z2" style="transform: rotate(-90deg);">奖项二</span>
+                    <span class="content_jp" id="z3" style="transform: rotate(-141deg);">奖项三</span>
+                    <span class="content_jp" id="z4" style="transform: rotate(-193deg);">奖项四</span>
+                    <span class="content_jp" id="z5" style="transform: rotate(115deg);">奖项五</span>
+                    <span class="content_jp" id="z6" style="transform: rotate(64deg);">奖项六</span>
+                    <span class="content_jp_7" id="z7" style="transform: rotate(13deg);">谢谢惠顾</span>
+                </div>
+            </div>
+            <div style="height:20px"></div>
+            <div style="width:100%;height: 60px;display: flex;justify-content:space-between;align-items: center;box-sizing: border-box;font-size:12px">
+                <div style="width: 50%;color: #cca352;text-align: center">
+                    <div style="width: 100%;color: #cca352;text-align: center;padding: 0 0 10px 0">今日已参与的转盘抽奖</div>
+                    <div id="luckyLp_Participation_1" style="font-size:20px;width: 100%;color: gainsboro;text-align: center">0</div>
+                </div>
+                <div style="width:1px;height: 90%;background: black"></div>
+                <div style="width: 50%;color: #cca352;text-align: center">
+                    <div style="width: 100%;color: #cca352;text-align: center;padding: 0 0 10px 0">今日可参与的转盘抽奖</div>
+                    <div id="luckyLp_Participation_0" style="font-size:20px;width: 100%;color: gainsboro;text-align: center">0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var winW = $(window).width();
+    var winH = $(window).height();
+    var mCanvas1L = Math.round((winW * 0.9) / 11.25);
+    var mCanvas1W = Math.round(winW / 1.36);
+    var pointerL = Math.round(winW / 3.71);
+    var pointerT = Math.round(winW / 4.68);
+
+    document.getElementById("lucky_mCanvas1").width = mCanvas1W;
+    document.getElementById("lucky_mCanvas1").height = mCanvas1W;
+    luckyLpAllStyle();
+    function luckyLpAllStyle() {
+        $("#lucky_bg").css({
+            "width": "90%",
+            "height": "70%",
+            "background": "url(pic/themeMain/zp1.png) no-repeat",
+            "background-size": "100%",
+            "left": "5%",
+            "position": "relative"
+        })
+        $("#lucky_mCanvas1").css({
+            "position": "absolute",
+            "z-index": "5",
+            "top": mCanvas1L + "px",
+            "left": mCanvas1L + "px",
+            "transform": "rotate(13deg)",
+        })
+        $("#lucky_jp_content").css({
+            "position": "absolute",
+            "z-index": "9",
+            "width": mCanvas1W,
+            "height": mCanvas1W,
+            "top": mCanvas1L + "px",
+            "left": mCanvas1L + "px",
+            "transform": "rotate(13deg)",
+            "color": "#fdf2f2"
+        })
+        $(".content_jp").css({
+            "width": mCanvas1W / 3.24,
+            "position": "absolute",
+            "text-align": "center",
+            "height": "20.8"
+        })
+        $(".content_jp_7").css({
+            "width": mCanvas1W / 3.24,
+            "position": "absolute",
+            "text-align": "center",
+            "height": "41.6"
+        })
+        $("#lucky_pointer").css({
+            "position": "absolute",
+            "z-index": "10",
+            "top": pointerT + "px",
+            "left": pointerL + "px",
+            "width": "40%",
+            "background-size": "100%"
+        })
+    }
+    convasLp();
+    bindFun();
+    function convasLp() {
+        var bl = 1 / 7;
+        var b = (360 / 7);
+        var data = [bl, bl, bl, bl, bl, bl, bl];
+        var dataColor = ['#db1c1d', '#129116', '#ffb000', '#0b6eac', '#7420d8', '#e02297', '#363636'];
+        var angleStart = 0,
+            angleEnd, angle;
+        var Q3Canvas = document.getElementById('lucky_mCanvas1');
+        var canvasW = $("#lucky_mCanvas1").width();
+        var ctx = Q3Canvas.getContext("2d");
+        for (var i = 0; i < data.length; i++) {
+            angle = 2 * Math.PI * data[i];
+            angleEnd = angleStart + angle;
+            ctx.beginPath();
+            ctx.fillStyle = dataColor[i];
+            ctx.arc(canvasW / 2, canvasW / 2, canvasW / 2, angleStart, angleEnd);
+            ctx.lineTo(canvasW / 2, canvasW / 2);
+            ctx.closePath();
+            ctx.fill();
+            angleStart = angleEnd;
+        }
+        for (var i = 0; i < data.length; i++) {
+            if (i == 0) {
+                $("#z1").css({
+                    "left": canvasW / 11.77 + "px",
+                    "top": canvasW / 7.6 + "px",
+                })
+            } else if (i == 1) {
+                $("#z2").css({
+                    "left": -(canvasW / 12.619) + "px",
+                    "top": canvasW / 2.18 + "px",
+                })
+            } else if (i == 2) {
+                $("#z3").css({
+                    "left": canvasW / 12.619 + "px",
+                    "top": canvasW / 1.267 + "px",
+                })
+            } else if (i == 3) {
+                $("#z4").css({
+                    "left": canvasW / 2.30 + "px",
+                    "top": canvasW / 1.15 + "px",
+                })
+            } else if (i == 4) {
+                $("#z5").css({
+                    "left": canvasW / 1.38 + "px",
+                    "top": canvasW / 1.568 + "px",
+                })
+            } else if (i == 5) {
+                $("#z6").css({
+                    "left": canvasW / 1.387 + "px",
+                    "top": canvasW / 3.63 + "px",
+                })
+            } else if (i == 6) {
+                $("#z7").css({
+                    "left": canvasW / 2.35 + "px",
+                    "top": canvasW / 23.15 + "px",
+                })
+            }
+        }
+    }
+    var oPointer = $("#lucky_pointer")[0];
+    var oTurntable = $("#lucky_mCanvas1")[0];
+    var oJpContent = $("#lucky_jp_content")[0];
+    var turns = 0; //转的度数
+    var sNum = 0; //上一次转圈结束后停留的度数
+    var offOn = true; //是否正在抽奖
+    var jpName = ""; //奖项
+    oPointer.onclick = function () {
+        if (offOn) {
+            xJ();
+        }
+    }
+    function getLuckyLp() {
+        return jpName;
+    }
+    //结果
+    function xJ() {
+        requestAjax("prize/luckDraw", "", function (jsonObj) {
+            var code = jsonObj.code;
+            var z;
+            if (code == 999) {
+                mToast.show("您没有足够的抽奖次数哦!");
+            } else if (code == 0) {
+                var obj = jsonObj.result;
+                var name = "";
+                offOn = !offOn;
+                $("#lucky_mCanvas1").css({ "transition": "all 8s" });
+                $("#lucky_jp_content").css({ "transition": "all 8s" });
+                if (obj.status == 0) {
+                    z = 7;
+                } else if (obj.status == 1) {
+                    name = obj.drawInfo.winPrize.p_name;
+                    $(".content_jp").each(function () {
+                        if (name == $(this).html()) {
+                            var id = $(this).attr("id");
+                            z = id.split("z")[1];
+                            return false;
+                        }
+                    })
+                }
+                jpName = name;
+                ratating(z, name);
+                $("#luckyLp_Participation_1").html(obj.drawInfo.uses);
+                $("#lucky_Participation_1").html(obj.drawInfo.uses);
+            } else {
+                mToast.show("您暂无抽奖资格哦!");
+            }
+        });
+    }
+    //旋转
+    function ratating(z, name) {
+        var timer = null;
+        timer = setInterval(function () {
+            var xzds = (GetRandozjNum(z)) + 13
+            oTurntable.style.transform = "rotate(" + xzds + "deg)";
+            oJpContent.style.transform = "rotate(" + xzds + "deg)";
+            clearInterval(timer);
+            setTimeout(function () {
+                setTimeout(function () {
+                    var obj = new Object();
+                    obj["name"] = "pages/luckyLpBg.html";
+                    obj["addCompete"] = true;
+                    mIndexPopWindowObj.show(6, obj, "none");
+                    offOn = !offOn;
+                }, 3500);
+            }, 6500);
+        });
+    }
+
+    function GetRandomNum(Max, Min) {
+        var Range = Max - Min;
+        var Rand = Math.random();
+        return (Min + Math.round(Rand * Range));
+    }
+
+    function GetRandozjNum(rNum) {
+        var num = 0;
+        if (rNum == 1) {
+            num = GetRandomNum(3, 48);
+        } else if (rNum == 2) {
+            num = GetRandomNum(55, 98);
+        } else if (rNum == 3) {
+            num = GetRandomNum(106, 150)
+        } else if (rNum == 4) {
+            num = GetRandomNum(158, 201);
+        } else if (rNum == 5) {
+            num = GetRandomNum(209, 257);
+        } else if (rNum == 6) {
+            num = GetRandomNum(261, 308);
+        } else {
+            num = GetRandomNum(312, 356);
+        }
+        console.log(rNum + "号中奖!");
+        turns = turns - sNum + (GetRandomNum(15, 20) * 360) + num;
+        sNum = num;
+        console.log("中奖区域停留的位置: " + sNum);
+        console.log("旋转的度数: " + turns);
+        return turns;
+    }
+    function bindFun() {
+        requestAjax("prize/getTodayUserPrize", "", function (jsonObj) {
+            var obj = jsonObj.result;
+            //等级
+            var luckyId = obj["lucky_id"];
+            //var luckyId = 3;
+            //次数
+            var uses = obj["uses"]; //已抽次数
+            var times = obj["times"]; //可次数
+            $("#luckyLp_Participation_1").html(uses);
+            $("#luckyLp_Participation_0").html(times);
+            requestAjax("prize/getPrizeLuckys", "", function (jsonObj) {
+                var dObj = jsonObj.result;
+                var len = dObj.length;
+                for (var i = 0; i < len; i++) {
+                    var listObj = dObj[i];
+                    if (luckyId == listObj.id) {
+                        var peizes = listObj.prizes;
+                        var index = 0;
+                        $(".content_jp").each(function () {
+                            if (index > len) {
+                                return false;
+                            }
+                            $(this).html(peizes[index]["name"]);
+                            index++;
+                        })
+                    } else if (luckyId == null) {
+                        if ((i + 1) == len) {
+                            var peizes = listObj.prizes;
+                            var index = 0;
+                            $(".content_jp").each(function () {
+                                if (index > len) {
+                                    return false;
+                                }
+                                $(this).html(peizes[index]["name"]);
+                                index++;
+                            })
+                        }
+
+                    }
+                }
+            })
+        })
+    }
+</script>

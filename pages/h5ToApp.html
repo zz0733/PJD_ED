@@ -1,0 +1,59 @@
+<div id="h5ToAppRoot" style="position:relative;width:100%;height:100%;background-color:#1d1d1d">
+    <img id="h5ToAppBgImg" src="pic/themeMain/h5ToAppAll.jpg" style="position:absolute;width:100%;height:100%;left:0px;top:0px"
+    />
+    <div id="h5ToAppCloseBtn" style="position:absolute">继续访问H5版本</div>
+    <div id="h5ToAppInsBtn" style="position:absolute">立即安装APP版新葡京</div>
+</div>
+<script>
+    if (APP_GAME_PK_TYPE == 0) {
+        $("#h5ToAppBgImg").attr("src", themPath + "h5ToAppAll.jpg");
+        $("#h5ToAppInsBtn").html("立即安装APP版新葡京");
+    } else if (APP_GAME_PK_TYPE == 1) {
+        $("#h5ToAppBgImg").attr("src", themPath + "h5ToAppCp.jpg");
+        $("#h5ToAppInsBtn").attr("立即安装APP版葡京岛彩票");
+    }
+    var btnW = screenW - 100;
+    $("#h5ToAppRoot").css({
+        "width": screenW,
+        "height": screenH
+    });
+    $("#h5ToAppBgImg").css({
+        "width": screenW,
+        "height": "auto"
+    });
+    $("#h5ToAppCloseBtn").css({
+        "top": screenH - 160,
+        "left": "50px",
+        "border-radius": "20px",
+        "color": mainFontColor,
+        "font-size": "14px",
+        "background-color": "#6F87B4",
+        "width": btnW,
+        "display": "flex",
+        "justify-content": "center",
+        "align-items": "center",
+        "padding": "6px 10px 6px 10px",
+        "box-sizing": "border-box"
+    });
+    $("#h5ToAppInsBtn").css({
+        "top": screenH - 100,
+        "left": "50px",
+        "border-radius": "20px",
+        "color": mainFontColor,
+        "font-size": "14px",
+        "background-color": "#6F87B4",
+        "width": btnW,
+        "display": "flex",
+        "justify-content": "center",
+        "align-items": "center",
+        "padding": "6px 10px 6px 10px",
+        "box-sizing": "border-box"
+    });
+    setBtnOnTouchEvent($("#h5ToAppInsBtn"), function () {
+        mIndexPopWindowObj.close();
+        location.href = "install/install.html";
+    }, "#37435A", "#6F87B4", null);
+    setBtnOnTouchEvent($("#h5ToAppCloseBtn"), function () {
+        mIndexPopWindowObj.close();
+    }, "#37435A", "#6F87B4", null);
+</script>

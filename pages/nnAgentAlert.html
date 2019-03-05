@@ -1,0 +1,129 @@
+<div id="luckLp_Bgc"
+    style="position:relative;width:100%;height:100%;display: flex;flex-direction: column;justify-content: center;align-items: center;background: rgba(000, 000, 000,0.3)">
+    <div
+        style="display:block;height:70%;width: 85%;display: flex;flex-direction: column;justify-content: flex-start;align-items: center;box-sizing: border-box;border-radius: 10px;border: 1px solid #4d4d4d;background-color: rgba(0, 0, 0, 0.8);">
+        <div
+            style="width: 100%;padding: 2px 10px 15px 10px;box-sizing: border-box;display: flex;justify-content: space-between;align-items: center">
+            <div style="width: 10%"></div>
+            <div
+                style="width: 80%;display: flex;justify-content: center;align-items: center;font-size: 18px;color: white">
+                邀请好友安装</div>
+            <div style="width: 10%">
+                <div id="closeAgent" style="font-size:30px;color:white;">×</div>
+            </div>
+        </div>
+        <div style="width: 90%;overflow-x: hidden;overflow-y: auto;">
+            <div>
+                <div
+                    style="width: 100%;display: flex;justify-content: center;align-items: center;font-size: 12px;color: white">
+                    两种方式立即把新葡京APP分享给您的好友
+                </div>
+            </div>
+            <div style="height:15px;"></div>
+            <div style="background:#151515;">
+                <div
+                    style="width: 100%;height: 30px;display: flex;justify-content: center;align-items: center;font-size: 16px;color: #cca352">
+                    方式① 您的专属二维码
+                </div>
+                <div
+                    style="width: 100%;display: flex;justify-content: center;align-items: center;font-size: 12px;color:#a6a6a6;">
+                    下属会员直接扫描二维码或者保存到相册
+                </div>
+                <div style="height:2px;"></div>
+                <div>
+                    <div
+                        style="flex-shrink: 0;width: 100%;display: flex;justify-content: center;align-items: center;font-size: 12px;color: #cccccc">
+                        <div id="nnAgentQrCodeImgId"
+                            style="border:5px solid white;display: flex;justify-content: center;align-items: center">
+                        </div>
+                    </div>
+                </div>
+                <div
+                    style="width: 100%;height: 30px;display: flex;justify-content: center;align-items: center;font-size: 14px;color: #cccccc">
+                </div>
+            </div>
+            <div style="height:15px;"></div>
+            <div style="background:#151515;">
+                <div
+                    style="width: 100%;height: 30px;display: flex;justify-content: center;align-items: center;font-size: 16px;color: #cca352">
+                    方式② 您的专属链接
+                </div>
+                <div
+                    style="width: 100%;display: flex;justify-content: center;align-items: center;font-size: 12px;color: a6a6a6">
+                    复制下方链接发送给您的下属会员
+                </div>
+                <div style="height:2px;"></div>
+                <div id="agentUrl"
+                    style="font-size: 12px;color:#a6a6a6;display: flex;justify-content: center;align-items: center;">
+                </div>
+                <div style="height:5px;"></div>
+                <div style="width: 100%;display: flex;justify-content: center;align-items: center;">
+                    <div id="agentCodeCopy"
+                        style="border-radius: 20px;width: 40%;height: 22px;display: flex;justify-content: center;align-items: center;font-size: 14px;background-color: #6F88B3;color: #ffffff ">
+                        复制链接
+                    </div>
+                </div>
+                <div style="height:10px;"></div>
+            </div>
+        </div>
+        <div style="height:25px"></div>
+    </div>
+</div>
+</div>
+<script>
+    //var contentH = screenH - topH - menuH - 0.5 - chMenuH;
+    var Codeurl = "";
+    $("#luckLp_Bgc").css({
+        "width": screenW,
+        "height": screenH
+    });
+    setBtnOnTouchEvent($("#closeAgent"), function () {
+        mIndexPopWindowObj.close();
+    }, null, null);
+    
+    setBtnOnTouchEvent($("#agentCodeCopy"), function () {
+        copyInApp($("#agentUrl").html(), 1);
+        $("#agentCodeCopy").html("已复制");
+    }, "#6080B0", "#6F88B3", null);
+    if (userInfo["rurl"] != null && userInfo["rurl"] != "") {
+        $("#agentUrl").html(userInfo.rurl);
+        new QRCode("nnAgentQrCodeImgId", {
+            text: userInfo.rurl,
+            width: screenW / 3,
+            height: screenW / 3,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+        Codeurl = userInfo.rurl;
+    } else if (userInfo["url"] != null && userInfo["url"] != "") {
+        $("#agentUrl").html(userInfo.rurl);
+        new QRCode("nnAgentQrCodeImgId", {
+            text: userInfo.url,
+            width: screenW / 3,
+            height: screenW / 3,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+        Codeurl = userInfo.url;
+    }
+    setBtnOnTouchEvent($("#nnAgentQrCodeImgId"), function () {
+        mIndexPopWindowObj.close();
+        myPJDApp.showAgentQRCode(Codeurl, null, true);
+    }, null, null);
+    // function downloadClick() {
+    //     // 获取base64的图片节点
+    //     var img = $('#nnAgentQrCodeImgId img')[0];
+    //     // 构建画布
+    //     var canvas = document.createElement('canvas');
+    //     canvas.width = img.width;
+    //     canvas.height = img.height;
+    //     canvas.getContext('2d').drawImage(img, 0, 0);
+    //     // 构造url
+    //     url = canvas.toDataURL('image/png');
+    //     // 构造a标签并模拟点击
+    //     var downloadLink = $('#downloadLink').attr("href", url).attr("download", "二维码.png");
+    //     downloadLink[0].click();
+    // }
+</script>

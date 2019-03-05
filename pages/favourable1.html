@@ -1,0 +1,160 @@
+<div id="favourableDetailsContent" style="overflow-x: hidden;overflow-y: auto;width: 100%;display: flex;justify-content: flex-start;flex-direction: column;align-items: center">
+    <div id="favourable_title" class="mainColorFont14" style="flex-shrink: 0;font-size: 20px;display: flex;justify-content: center;align-items: center;width: 100%;height: 50px">
+        下载APP送38元彩金方案
+    </div>
+    <div style="flex-shrink: 0;width: 100%;display: flex;justify-content: center;align-items: center;flex-direction: column;flex-shrink: 0">
+        <div style="height: 10px;"></div>
+        <img id="youhuiTwoImgId" src="pic/themeMain/youhuiThree.png" width="75%" />
+        <div style="height: 10px;"></div>
+    </div>
+    <div style="flex-shrink: 0;width: 100%;height: 30px;background-color: #232323;color: #4c5f6b;font-size: 12px;display: flex;justify-content: center;align-items: center">
+        剩&nbsp;余&nbsp;时&nbsp;间
+    </div>
+    <div style="flex-shrink: 0;width: 100%;height: 60px;background-color: #2d2d2d;color: #4c5f6b;font-size: 12px;display: flex;justify-content: center;align-items: center">
+        <div style="width: 25%" class="favourableTimeItem">
+            <div id="favourableTimeItem_d">0</div>
+            <div class="favourableTimeItemTitle">天</div>
+        </div>
+        <div style="width: 25%" class="favourableTimeItem">
+            <div id="favourableTimeItem_h">0</div>
+            <div class="favourableTimeItemTitle">时</div>
+        </div>
+        <div style="width: 25%" class="favourableTimeItem">
+            <div id="favourableTimeItem_m">0</div>
+            <div class="favourableTimeItemTitle">分</div>
+        </div>
+        <div style="width: 25%" class="favourableTimeItem">
+            <div id="favourableTimeItem_s">0</div>
+            <div class="favourableTimeItemTitle">秒</div>
+        </div>
+    </div>
+    <div style="flex-shrink: 0;display: flex;justify-content: center;align-items: center;height: 80px; width: 100%">
+        <div id="favourableRequestBtn" class="PJDCommBtn" style="width: 90%">立即申请</div>
+    </div>
+    <div style="flex-shrink: 0;width: 90%;padding: 10px;box-sizing: border-box;background-color: #2d2d2d;color: #cccccc;font-size: 12px;line-height: 150%">
+        <br> 活动时间：2018年9月1日至2018年12月31日
+        <br>
+        <br> 活动对象：葡京岛所有会员
+        <br>
+        <br> 申请方式：需通过在线客服申请
+        <br>
+        <br> 活动内容：
+        <br> 1、存款100元+ 以上，均可获得参与资格
+        <br> 2、下载移动APP后，联系在线客服领取38元彩金
+        <br> 3、存款和彩金需要1倍流水才可以提款
+        <br>
+        <br>
+        <h3 class="favourable_content_tone" style="color: #ff5e1b;text-align: center">规则与条款</h3>
+        <br>1、只有成功通过审核的会员才具有获得此优惠彩金的资格，奖金将在申请通过后的24个工作小时内注入会员账户。
+        <br>
+        <br>2、符合资格的会员在优惠期间只能领取一次“38元彩金”，如果会员在优惠期间申请了多次“38元彩金”，只有第一笔的“38元彩金”被视为有效，而其他申请将被视为无效。
+        <br>
+        <br>3、此项优惠活动只针对娱乐性质的会员，如发现用户拥有超过一个账户，包括同一姓名、同一邮件地址、同一网络环境、同一IP地址、同一借记卡/信用卡、同一银行账户、同一电脑以及公用的电脑，例如网吧及工作场所，葡京岛只提供一次彩金优惠。
+        <br>
+        <br>4、任何个体/团队/组织被怀疑存在使用不诚实方式或欺诈行为骗取/滥用奖金为目的等其他任何不正常投注行为一经核实，葡京岛将保留冻结相关账户盈利及余额的权利。
+        <br>
+        <br>5、此项优惠活动对象为在线娱乐玩家，任何有非娱乐目的利用彩金获利的玩家将可能被取消或拒绝参与或享受本彩金的资格，葡京岛保留所有权利在任何时候都可以停止、取消彩金或索回已支付的全部彩金。
+        <br>
+        <br>6、葡京岛有权随时中止或取消本活动。
+        <br>
+        <br>7、葡京岛保留对本活动的最终解释权。
+        <br>
+    </div>
+</div>
+
+<style type="text/css">
+    .favourableTimeItem {
+        font-size: 22px;
+        color: #4e95ca;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column
+    }
+
+    .favourableTimeItemTitle {
+        font-size: 12px;
+        color: #4c5f6b;
+        font-weight: 500
+    }
+</style>
+
+<script>
+    var aboutAppName = "葡京岛";
+    var pid = document.getElementsByName("p");
+    for (var i = 0; i < pid.length; i++) {
+        pid[i].id = "p" + i;
+        new Vue({
+            el: "#" + pid[i].id,
+            data: {
+                message: aboutAppName
+            }
+        })
+    }
+    $("#youhuiTwoImgId").attr("src", themPath + "youhuiThree.png");
+    $(".mainColorFont14").css({ "color": mainColor });
+    $(".favourable_content_tone").css({ "color": mainColor });
+    $(".PJDCommBtn").css({ "background-color": mainColor });
+
+    var mFavourableFunObj = new favourableFun();
+    mFavourableFunObj.init();
+    function favourableFun() {
+        var year;
+        var month;
+        var day;
+        var hour;
+        var minute;
+        var second;
+        var timeInterval;
+        this.init = function () {
+            $("#favourableDetailsContent").css({ "height": screenH - topH });
+            setTimeTimer();
+
+            setBtnOnTouchEvent($("#favourableRequestBtn"), function () {
+                openService();
+            }, mainColorDeep, mainColor, null);
+        }
+        this.show = function () {
+            setTimeTimer();
+        }
+        this.exit = function () {
+            stopTimeTimer();
+        }
+        function stopTimeTimer() {
+            if (timeInterval != null) {
+                clearInterval(timeInterval);
+            }
+        }
+        function setTimeTimer() {
+            year = 2019;
+            month = 1;
+            day = 1;
+            hour = 0;
+            minute = 0;
+            second = 0;
+            timeInterval = setInterval(leftTimer, 1000);
+        }
+        function leftTimer() {
+            var leftTime = (new Date(year, month - 1, day, hour, minute, second)) - getTimeZoneE8(8, (new Date())); //计算剩余的毫秒数 
+            var days = parseInt(leftTime / 1000 / 60 / 60 / 24, 10); //计算剩余的天数 
+            var hours = parseInt(leftTime / 1000 / 60 / 60 % 24, 10); //计算剩余的小时 
+            var minutes = parseInt(leftTime / 1000 / 60 % 60, 10);//计算剩余的分钟 
+            var seconds = parseInt(leftTime / 1000 % 60, 10);//计算剩余的秒数 
+            days = checkTime(days);
+            hours = checkTime(hours);
+            minutes = checkTime(minutes);
+            seconds = checkTime(seconds);
+            $("#favourableTimeItem_d").html(days);
+            $("#favourableTimeItem_h").html(hours);
+            $("#favourableTimeItem_m").html(minutes);
+            $("#favourableTimeItem_s").html(seconds);
+        }
+        function checkTime(i) { //将0-9的数字前面加上0，例1变为01 
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+    }
+</script>

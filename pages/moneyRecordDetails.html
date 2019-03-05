@@ -1,0 +1,495 @@
+<div id="moneyRecordDetails_root_div" style="width:100%">
+    <div style="width:100%;height: 50px;display: flex">
+        <div style="width: 60%;display: flex;justify-content: flex-start;align-items: center">
+            <div style="width: 25px"></div>
+            <div id="moneyRecordDetails_title" style="font-size: 14px;color: #cccccc"></div>
+        </div>
+        <div style="width: 40%;display: flex;justify-content: flex-end;align-items: center">
+            <div id="moneyRecordDetails_status" style="font-size: 14px;color: #999999"></div>
+            <div style="width: 25px"></div>
+        </div>
+    </div>
+    <div style="width:100%;height: 20px;background-color: #2a2a2a;"></div>
+    <div style="width:100%;height: auto;padding-top: 10px;padding-bottom: 10px;box-sizing: border-box;">
+        <div class="moneyRecordDetails_item">
+            <div class="moneyRecordDetails_item_left">
+                <div class="moneyRecordDetails_blank"></div>
+                <div class="moneyRecordDetails_text">金额</div>
+            </div>
+            <div class="moneyRecordDetails_item_right">
+                <div style="font-size: 20px;color: #eeeeee" id="moneyRecordDetails_amount"></div>
+                <div class="moneyRecordDetails_blank"></div>
+            </div>
+        </div>
+        <div class="moneyRecordDetails_item">
+            <div class="moneyRecordDetails_item_left">
+                <div class="moneyRecordDetails_blank"></div>
+                <div class="moneyRecordDetails_text">时间</div>
+            </div>
+            <div class="moneyRecordDetails_item_right">
+                <div class="moneyRecordDetails_text" id="moneyRecordDetails_time"></div>
+                <div class="moneyRecordDetails_blank"></div>
+            </div>
+        </div>
+        <div class="moneyRecordDetails_item" id="moneyRecordDetails_item_strTime" style="display: none;">
+            <div class="moneyRecordDetails_item_left">
+                <div class="moneyRecordDetails_blank"></div>
+                <div class="moneyRecordDetails_text">下注时间</div>
+            </div>
+            <div class="moneyRecordDetails_item_right">
+                <div class="moneyRecordDetails_text" id="moneyRecordDetails_strTime"></div>
+                <div class="moneyRecordDetails_blank"></div>
+            </div>
+        </div>
+        <div class="moneyRecordDetails_item">
+            <div class="moneyRecordDetails_item_left">
+                <div class="moneyRecordDetails_blank"></div>
+                <div class="moneyRecordDetails_text">方式</div>
+            </div>
+            <div class="moneyRecordDetails_item_right">
+                <div class="moneyRecordDetails_text" id="moneyRecordDetails_type"></div>
+                <div class="moneyRecordDetails_blank"></div>
+            </div>
+        </div>
+        <div class="moneyRecordDetails_item" id="moneyRecordDetails_item_bank">
+            <div class="moneyRecordDetails_item_left">
+                <div class="moneyRecordDetails_blank"></div>
+                <div class="moneyRecordDetails_bank">银行卡</div>
+            </div>
+            <div class="moneyRecordDetails_item_right">
+                <div class="moneyRecordDetails_text" id="moneyRecordDetails_bank"></div>
+                <div class="moneyRecordDetails_blank"></div>
+            </div>
+        </div>
+        <div class="moneyRecordDetails_item" id="moneyRecordDetails_item_remark">
+            <div class="moneyRecordDetails_item_left">
+                <div class="moneyRecordDetails_blank"></div>
+                <div class="moneyRecordDetails_text">备注</div>
+            </div>
+            <div class="moneyRecordDetails_item_right">
+                <div class="moneyRecordDetails_text" id="moneyRecordDetails_remark"></div>
+                <div class="moneyRecordDetails_blank"></div>
+            </div>
+        </div>
+        <div class="moneyRecordDetails_item">
+            <div class="moneyRecordDetails_item_left">
+                <div class="moneyRecordDetails_blank"></div>
+                <div class="moneyRecordDetails_text">单号</div>
+            </div>
+            <div class="moneyRecordDetails_item_right">
+                <div class="moneyRecordDetails_text" id="moneyRecordDetails_id"></div>
+                <div class="moneyRecordDetails_blank"></div>
+            </div>
+        </div>
+    </div>
+    <div style="width:100%;height: 20px;background-color: #2a2a2a;"></div>
+
+    <div id="moneyRecordDetails_button_div" style="width: 100%;height: auto;padding: 25px;box-sizing: border-box;">
+        <div id="moneyRecordDetails_cancel_btn">取消提款</div>
+    </div>
+    <div id="moneyRecordDetails_cancel_2_Style" style="width: 100%;height: auto;padding: 25px;box-sizing: border-box;">
+        <div id="moneyRecordDetails_cancel_2_btn">转账已完成,提交审核!</div>
+    </div>
+</div>
+
+<style type="text/css">
+    .moneyRecordDetails_item {
+        width: 100%;
+        display: flex;
+        height: 40px;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        color: #cccccc;
+    }
+
+    .moneyRecordDetails_item_left {
+        width: 30%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center
+    }
+
+    .moneyRecordDetails_item_right {
+        width: 70%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center
+    }
+
+    .moneyRecordDetails_blank {
+        width: 25px
+    }
+</style>
+
+<script language="javascript" type="text/javascript">
+    setMrdStyle();
+    moneyRecordDetailsFun();
+
+    function moneyRecordDetailsFun() {
+        var itemData = moneyRecordFunObj.getSelectItemData();
+        var requestType = moneyRecordFunObj.getRequestType();
+        var theTitle;
+        var amount;
+        var timeStr;
+        var strTime;
+        var remark;
+        var theId;
+        var bankStr;
+
+        if (requestType == "income") { // 存款
+            $("#moneyRecordDetails_cancel_2_Style").css({"display": "none"});
+            var infoObj = itemData.details;
+            
+            theTitle = infoObj.dt.channel_id.name;
+            
+            var status = infoObj.status;
+            if (status == 1) {
+                status = "<font color=#CCCCCC>成功</font>";
+            } else if (status == 9) {
+                status = "<font color=red>拒绝</font>";
+            } else if (status == 0) {
+                status = "<font color=#CCCCCC>审核中</font>";
+            } else if (status == 10) {
+                status = "<font color=#CCCCCC>预下单</font>";
+                console.log(infoObj);
+                $("#moneyRecordDetails_cancel_2_Style").css({"display": ""});
+                setBtnOnTouchEvent($("#moneyRecordDetails_cancel_2_btn"), function (obj) {
+                    mMsgBox.show("线下银行汇款", "您是否继续提交申请", function () {
+                        var mMoneyrecordsObj = new moneyrecordObj();mMoneyrecordsObj.init();
+                        requestAjax("payOrder/confirmDepositOrder", "orderId=" + infoObj["id"], function (jsonObj) {
+                            var obj = jsonObj["code"];
+                            if (obj == 0) {
+                                $("#moneyRecordDetails_cancel_2_Style").css({"display": "none"});
+                                mMoneyrecordsObj.show();
+                                mToast.show("订单 " + infoObj["id"] + " 已提交成功,正等待系统处理!");
+                            } else {
+                                mMoneyrecordsObj.show();
+                                mToast.show("存款失败,请重试!");
+                            }
+                        }, function (error) {
+                            mMoneyrecordsObj.show();
+                            mToast.show("存款失败,请重试!");
+                        });
+                    });
+                }, mainColorDeep, mainColor, null);
+            }
+
+            $("#moneyRecordDetails_item_strTime").css({
+                "display": "none"
+            });
+
+            amount = "<font color=" + winFontColor + ">+" + doubleValue(infoObj.amount) + "</font>";
+
+            timeStr = "<font color=#CCCCCC>" +
+                getTimeZoneE8(8, infoObj.order_time).format("yyyy-MM-dd hh:mm:ss") + "</font>";
+
+            var payType = infoObj.pay_type_id;
+
+            var theType = "";
+            if (payType == 1) {
+                theType = "<font color=#CCCCCC>" + infoObj.dt.deposit_type_id.name + "</font>";
+            } else if (payType == 2) {
+                theType = "<font color=#CCCCCC>" + infoObj.dt.channel_id.name + "</font>";
+                theTitle = infoObj.dt.pay_type_id.name;
+            } else if (payType == 3) {
+                theType = "<font color=#CCCCCC>" + infoObj.dt.pay_type_id.name + "-" +
+                    infoObj.dt.deposit_type_id.name + "</font>";
+                theTitle = infoObj.dt.pay_type_id.name;
+            } else if (payType == 61) {
+                theType = "<font color=#CCCCCC>" + "(" + infoObj.fromUser.name + ")" + infoObj.dt.pay_type_id.name + "</font>";
+                theTitle = infoObj.dt.pay_type_id.name;
+            }
+
+            remark = infoObj.remark;
+            if (remark == null) {
+                remark = "<font color=#CCCCCC>无</font>";
+                $("#moneyRecordDetails_item_remark").css({
+                    "display": "none"
+                });
+            } else {
+                remark = "<font color=#CCCCCC>" + remark + "</font>";
+                $("#moneyRecordDetails_item_remark").css({
+                    "display": "flex"
+                });
+            }
+
+            theId = "<font color=#CCCCCC>" + infoObj.id + "</font>";
+
+            if (payType == 1) {
+                $("#moneyRecordDetails_item_bank").css({ "display": "flex" });
+                bankStr = "<font color=#CCCCCC>" + infoObj.dt.operator_bank_id.dt.bank_id.text + "-" +
+                    infoObj.dt.operator_bank_id.cardno + "</font>";
+            } else {
+                $("#moneyRecordDetails_item_bank").css({ "display": "none" });
+            }
+
+            $("#moneyRecordDetails_cancel_btn").css({
+                "display": "none"
+            });
+        } else if (requestType == "draw") { // 提款
+            var infoObj = itemData.details;
+
+            theTitle = infoObj.dt.pay_type_id.name;
+
+            var status = infoObj.status;
+            if (status == 2) {
+                status = "<font color=#CCCCCC>成功</font>";
+            } else if (status == 9) {
+                status = "<font color=red>拒绝</font>";
+            } else if (status == 8) {
+                status = "<font color=#CCCCCC>用户取消</font>";
+            } else if ((status == 0) || (status == 1)) {
+                status = "<font color=#CCCCCC>审核中</font>";
+            }
+
+            $("#moneyRecordDetails_item_strTime").css({
+                "display": "none"
+            });
+            $("#moneyRecordDetails_cancel_2_Style").css({"display":"none"});
+
+            amount = "<font color=" + lossFontColor + ">-" + doubleValue(infoObj.amount) + "</font>";
+
+            timeStr = "<font color=#CCCCCC>" +
+                getTimeZoneE8(8, infoObj.order_time).format("yyyy-MM-dd hh:mm:ss") + "</font>";
+            if (infoObj["toUser"] != null) {
+                if (infoObj["toUser"]["name"]) {
+                    var theType = "<font color=#CCCCCC>" + infoObj.dt.pay_type_id.name + "(" + infoObj.toUser.name + ")" + "</font>";
+                } else {
+                    var theType = "<font color=#CCCCCC>" + infoObj.dt.pay_type_id.name + "</font>";
+                }
+            } else {
+                var theType = "<font color=#CCCCCC>" + infoObj.dt.pay_type_id.name + "</font>";
+            }
+
+            var remark1 = infoObj.remark1;
+            var remark2 = infoObj.remark2;
+
+            if (remark1 == null && remark2 == null) {
+                $("#moneyRecordDetails_item_remark").css({
+                    "display": "none"
+                });
+            } else {
+
+                if (remark1 == null) {
+                    remark1 = "无";
+                }
+                if (remark2 == null) {
+                    remark2 = "无";
+                }
+                $("#moneyRecordDetails_item_remark").css({
+                    "display": "flex"
+                });
+            }
+
+            remark = "<font color=#CCCCCC>" + remark1 + "," + remark2 + "</font>";
+
+            theId = "<font color=#CCCCCC>" + infoObj.id + "</font>";
+
+            try {
+                bankStr = "<font color=#CCCCCC>" + infoObj.userBank.dt.bank_id.text + "-" +
+                    infoObj.userBank.cardno + "</font>";
+                $("#moneyRecordDetails_item_bank").css({ "display": "flex" });
+                $("#moneyRecordDetails_bank").css({ "display": "flex" });
+            } catch (e) {
+                bankStr = "";
+                $("#moneyRecordDetails_item_bank").css({ "display": "none" });
+                $("#moneyRecordDetails_bank").css({ "display": "none" });
+            }
+
+            if (infoObj.status == 0) {
+                $("#moneyRecordDetails_cancel_btn").css({
+                    "display": "flex"
+                });
+            } else {
+                $("#moneyRecordDetails_cancel_btn").css({
+                    "display": "none"
+                });
+            }
+
+            setBtnOnTouchEvent($("#moneyRecordDetails_cancel_btn"), function () {
+                mMsgBox.show("提款", "是否取消提款?", function () {
+                    backClickFun();
+                    var rData = "id=" + infoObj["id"] + "&requestType=json";
+                    mLoader.show("cancelWo");
+                    requestAjax("payWithdraw/cancelWithdrawOrder", rData, function (data) {
+                        mLoader.unShow("cancelWo");
+                        if (data["code"] == 0) {
+                            $("#moneyRecordDetails_status").html("已取消");
+                            $("#moneyRecordDetails_cancel_btn").css({
+                                "display": "none"
+                            });
+                            moneyRecordFunObj.showListContent();
+                            mToast.show("取消成功!", 1, "middle");
+                        } else {
+                            mToast.show("取消失败,请稍后重试!", 1, "middle");
+                        }
+                    }, function (error) {
+                        mLoader.unShow("cancelWo");
+                        mToast.show("取消失败,请稍后重试!", 1, "middle");
+                    });
+                });
+            }, mainColorDeep, mainColor, null);
+        } else if (requestType == "reback") { // 返水
+            var infoObj = itemData.details;
+
+            theTitle = "返水记录";
+
+            var status = infoObj.status;
+            if (status == 1) {
+                status = "<font color=#CCCCCC>成功</font>";
+            } else if (status == 9) {
+                status = "<font color=red>拒绝</font>";
+            } else if (status == 0) {
+                status = "<font color=#CCCCCC>审核中</font>";
+            }
+
+            amount = "<font color=" + winFontColor + ">+" + doubleValue(infoObj.amount) + "</font>";
+
+            timeStr = "<font color=#CCCCCC>" +
+                getTimeZoneE8(8, infoObj.order_time).format("yyyy-MM-dd hh:mm:ss") + "</font>";
+
+            var payType;
+            if (infoObj.dt["game_no"] != null) {
+                payType = infoObj.dt.pay_type_id.name + "(" + infoObj.dt["game_no"]["name"] + ")";
+            } else {
+                payType = infoObj.dt.pay_type_id.name;
+            }
+
+            var theType = "<font color=#CCCCCC>" + payType + "</font>";
+
+            if (infoObj["game_rep_time"] != null) {
+                strTime = "<font color=#CCCCCC>" +
+                    getTimeZoneE8(8, infoObj.game_rep_time).format("yyyy-MM-dd") + "</font>";
+
+                $("#moneyRecordDetails_item_strTime").css({
+                    "display": "flex"
+                });
+            } else {
+                $("#moneyRecordDetails_item_strTime").css({
+                    "display": "none"
+                });
+            }
+
+            remark = infoObj.remark;
+            if (remark == null) {
+                remark = "<font color=#CCCCCC>无</font>";
+                $("#moneyRecordDetails_item_remark").css({
+                    "display": "none"
+                });
+            } else {
+                remark = "<font color=#CCCCCC>" + remark + "</font>";
+                $("#moneyRecordDetails_item_remark").css({
+                    "display": "flex"
+                });
+            }
+
+            theId = "<font color=#CCCCCC>" + infoObj.id + "</font>";
+
+            bankStr = "";
+            $("#moneyRecordDetails_item_bank").css({ "display": "none" });
+
+            $("#moneyRecordDetails_cancel_btn").css({
+                "display": "none"
+            });
+
+            $("#moneyRecordDetails_cancel_2_Style").css({"display:":"none"});
+        } else {
+            var infoObj = itemData.details;
+
+            theTitle = "佣金记录";
+
+            var status = infoObj.status;
+            if (status == 1) {
+                status = "<font color=#CCCCCC>成功</font>";
+            } else if (status == 9) {
+                status = "<font color=red>拒绝</font>";
+            } else if (status == 0) {
+                status = "<font color=#CCCCCC>审核中</font>";
+            }
+
+            $("#moneyRecordDetails_item_strTime").css({
+                "display": "none"
+            });
+
+            amount = "<font color=" + winFontColor + ">+" + doubleValue(infoObj.amount) + "</font>";
+
+            timeStr = "<font color=#CCCCCC>" +
+                getTimeZoneE8(8, infoObj.order_time).format("yyyy-MM-dd hh:mm:ss") + "</font>";
+                
+            var gameName = infoObj["dt"]["game_no"]["name"];
+            if(gameName != null && gameName != ""){
+                var theType = "<font color=#CCCCCC>" + infoObj.dt.pay_type_id.name + "(" + gameName + ")</font>";
+            } else {
+                var theType = "<font color=#CCCCCC>" + infoObj.dt.pay_type_id.name + "</font>";
+            }
+
+            remark = infoObj.remark;
+            if (remark == null) {
+                remark = "<font color=#CCCCCC>无</font>";
+                $("#moneyRecordDetails_item_remark").css({
+                    "display": "none"
+                });
+            } else {
+                remark = "<font color=#CCCCCC>" + remark + "</font>";
+                $("#moneyRecordDetails_item_remark").css({
+                    "display": "flex"
+                });
+            }
+
+            theId = "<font color=#CCCCCC>" + infoObj.id + "</font>";
+
+            bankStr = "";
+            $("#moneyRecordDetails_item_bank").css({ "display": "none" });
+
+            $("#moneyRecordDetails_cancel_btn").css({
+                "display": "none"
+            });
+
+            $("#moneyRecordDetails_item_strTime").css({
+                "display": "none"
+            });
+            $("#moneyRecordDetails_cancel_2_Style").css({"display:":"none"});
+        }
+
+        // bind1界面数据
+        $("#moneyRecordDetails_title").html(theTitle);
+        $("#moneyRecordDetails_status").html(status);
+        $("#moneyRecordDetails_amount").html(amount);
+        $("#moneyRecordDetails_time").html(timeStr);
+        $("#moneyRecordDetails_strTime").html(strTime);
+        $("#moneyRecordDetails_type").html(theType);
+        $("#moneyRecordDetails_remark").html(remark);
+        $("#moneyRecordDetails_id").html(theId);
+        $("#moneyRecordDetails_bank").html(bankStr);
+    }
+
+    function setMrdStyle() {
+        $("#moneyRecordDetails_cancel_btn").css({
+            "border-radius": "20px",
+            "color": mainFontColor,
+            "font-size": "14px",
+            "background-color": mainColor,
+            "width": "100%",
+            "height": "40px",
+            "display": "flex",
+            "justify-content": "center",
+            "align-items": "center",
+            "padding": "10px",
+            "box-sizing": "border-box"
+        });
+        $("#moneyRecordDetails_cancel_2_btn").css({
+            "border-radius": "20px",
+            "color": mainFontColor,
+            "font-size": "14px",
+            "background-color": mainColor,
+            "width": "100%",
+            "height": "40px",
+            "display": "flex",
+            "justify-content": "center",
+            "align-items": "center",
+            "padding": "10px",
+            "box-sizing": "border-box"
+        });
+    }
+</script>

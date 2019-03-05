@@ -1,0 +1,67 @@
+<div id="luckLp_Bgc" style="position:relative;width:100%;height:100%;background: rgba(000, 000, 000,0.3)">
+    <img id="luckLp_Bg_img" src="pic/themeMain/luckyLp_BG.png" style="width:100%;height: 100%;display: none" />
+    <div style="position: absolute;top: 0px;width:100%;height: 100%;display: flex;justify-content: center;align-items: center">
+        <img id="luckLp_Bgc_img" src="pic/themeMain/noPrize.png" style="width:80%" />
+    </div>
+    <div id="luckLp_Bgc_text" style="position:absolute;top:0px;width:100%;display:flex;justify-content:center;align-items: center">
+        谢谢惠顾
+    </div>
+    <div id="zjBtn" style="position:absolute">确定</div>
+</div>
+<script>
+    // luckyLp_BG.png
+    var btnW = screenW - 100;
+    var imgH = screenH / 2;
+    var imgW = screenW - 30;
+    var prize = getLuckyLp();
+    if (prize != null && prize.trim() != "") {
+        imgH = screenH / 1.7;
+        $("#luckLp_Bgc_text").html(prize);
+        $("#luckLp_Bgc_img").attr({
+            "src": "pic/themeMain/luckyLp_prize.png"
+        });
+        $("#luckLp_Bgc_text").css({
+            "top": (screenH / 1.95),
+            "font-size":"30px",
+            "font-weight": "bold",
+            "color": "white"
+        });
+        $("#luckLp_Bg_img").css({"display":"block"});
+    } else {
+        $("#luckLp_Bgc_text").html("谢谢参与<br>再接再厉");
+        $("#luckLp_Bgc_text").css({
+            "top": (screenH / 2) - (imgH / 2 / 2),
+            "font-size":"30px",
+            "font-weight": "bold",
+            "color": "white"
+        });
+    }
+    $("#luckLp_Bgc").css({
+        "width": screenW,
+        "height": screenH
+    });
+    $("#luckLp_Bgc_img").css({
+        "width": imgW,
+        "height": imgH
+    });
+    $("#zjBtn").css({
+        "border-radius": "20px",
+        "color": mainFontColor,
+        "font-size": "14px",
+        "background-color": "#89683f",
+        "width": imgW-130,
+        "height": "40px",
+        "top": (screenH / 2) + (imgH / 2 / 2),
+        "left": "80px",
+        "display": "flex",
+        "justify-content": "center",
+        "align-items": "center",
+        "box-sizing": "border-box"
+    });
+    setBtnOnTouchEvent($("#zjBtn"), function () {
+        mIndexPopWindowObj.close();
+    }, null, null);
+    setBtnOnTouchEvent($("#luckLp_Bgc"), function () {
+        mIndexPopWindowObj.close();
+    }, null, null);
+</script>

@@ -1,0 +1,32 @@
+<div id="declareContent" style="overflow-x: hidden;overflow-y: auto;width: 100%;display: flex;justify-content: flex-start;flex-direction: column;align-items: center;box-sizing: border-box">
+</div>
+<script>
+	var mDeclareFunObj = new declareFun();
+	mDeclareFunObj.init(); mDeclareFunObj.show();
+
+	function declareFun() {
+		var spinner = new Spinner({ "color": "white" });
+		this.init = function () {
+			$("#declareContent").css({ "height": screenH - 52 - topH - 10 });
+		}
+
+		this.show = function () {
+			showLoad();
+			makeContent();
+		}
+		function showLoad() {
+		    spinner.spin(document.getElementById("declareContent"));
+		}
+		function makeContent() {
+			var rootId = "declareContent";
+			var ms = "页面加载失败，请重试！";
+			requestAjax("article/getArticleForList", "typeId=[1022]", function (jsonObj) {
+				var code = jsonObj["code"];
+				if (code != 0) { bindFedView(rootId, ms, rootId); return; }
+				var result = jsonObj["result"];
+				var list = JSON.parse(result[0]["content"]);
+				AppMakeObj.AeToCn(list, rootId);
+			}, function (error) { bindFedView(rootId, ms, rootId); });
+		}
+	}
+</script>

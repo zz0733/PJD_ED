@@ -1,0 +1,157 @@
+<div style="width: 100%">
+    <!--总资产-->
+    <div style="background-color:#003153;height: 150px;">
+        <div style="width:100%;height: 15px;"></div>
+        <div style="width:100%;height: 70px;">
+            <div style="color: white;font-size:15px;display:flex;justify-content: center;align-items:center">利息宝总资产(元)</div>
+            <div id="total" style="color:white;font-size:30px;display: flex;justify-content: center;align-items: center;">1234515616</div>
+        </div>
+        <div style="width:100%;height:70px;">
+            <div style="display: flex;width:100%;">
+                <div style="width:50%;color: white;font-size:15px;display: flex;justify-content: center;align-items: center;">上月收益(元)</div>
+                <div style="width:50%;color: white;font-size:15px;display: flex;justify-content: center;align-items: center;">累计收益(元)</div>
+            </div>
+            <div style="display: flex;width:100%;">
+                <div id="preceding" style="width:50%;color:white;font-size:20px;display: flex;justify-content: center;align-items: center;">0.00</div>
+                <div id="grand" style="width:50%;color:white;font-size:20px;display: flex;justify-content: center;align-items: center;">0.00</div>
+            </div>
+        </div>
+    </div>
+    <!--横-->
+    <div style="width:100%;height:8px;background:black;"></div>
+    <div style="width:100%;height:25px;display: flex;display: flex;align-items:center;background:black;">
+        <div style="width: 15px;display: flex"></div>
+        <div style="background-color: #cca352;width: 4px;height: 18px;display: flex;"></div>
+        <div style="width: 10px;display: flex"></div>
+        <div style="color:#cca352;display: flex;justify-content: center;align-items:center">理财产品</div>
+    </div>
+    <div style="width:100%;height:8px;background:black;"></div>
+    <!--购买-->
+    <div style="width:100%;height:50px;display: flex;background-color:#2A2A2A">
+        <div style="width: 15px;display: flex"></div>
+        <div style="width:30% ;font-size: 12px;color: white">
+            <font style="font-size: 18px;color: #cca352">10.03%
+                <br>
+            </font>
+            年化收益
+        </div>
+        <div style="width:42% ;font-size: 12px;color: white">
+            <font style="font-size: 18px;color: #cca352">新葡京30天定存
+                <br>
+            </font>
+            低风险 收益高 利滚利
+        </div>
+        <div style="width:27% ;height: 100%;">
+            <div style="width:100%;height:12px;"></div>
+            <div class="payBtn">购买</div>
+        </div>
+    </div>
+    <!--横-->
+    <div style="width:100%;height:8px;background:black;"></div>
+    <div style="width:100%;height:25px;display: flex;background:black;">
+        <div style="width:74%;height:25px;display: flex;align-items:center">
+            <div style="width: 15px;display: flex"></div>
+            <div style="background-color: #cca352;width: 4px;height: 18px;display: flex;"></div>
+            <div style="width: 10px;display: flex"></div>
+            <div style="color:#cca352;display: flex;justify-content: center;align-items:center">持仓中</div>
+        </div>
+        <div style="width:26% ;">
+            <div id="interest_pastRecord" class="keepBtn" style="border:1.5px solid #cca352">过往记录</div>
+        </div>
+    </div>
+    <div style="width:100%;height:8px;background:black;"></div>
+
+    <div id="interestbaoDiv_content_list" style="width:100%;"></div>
+</div>
+<div id=""></div>
+<script>
+    $(".keepBtn").css({
+        "display": "flex",
+        "justify-content": "center",
+        "align-items": "center",
+        "border-radius": "15px",
+        "color": "#cca352",
+        "height": "25px",
+        "width": "80%",
+        "font-size": "12px"
+    });
+    $(".payBtn").css({
+        "display": "flex",
+        "justify-content": "center",
+        "align-items": "center",
+        "border-radius": "15px",
+        "color": "#FFFFFF",
+        "background-color": "#cca352",
+        "height": "27px",
+        "width": "82%",
+        "font-size": "12px"
+    });
+    $(".payBtn").click(function () {
+        myPJDApp.showBuyInterest();
+    });
+    setBtnOnTouchEvent($("#interest_pastRecord"), function (mObj) {
+        myPJDApp.showPastRecordObj();
+    }, "#2A3A3A", "black");
+    bindList();
+    topBindList();
+    function topBindList() {
+        requestAjax("account/getAccountTr", "start=2018-9-1&end=2018-11-15&notIncludeGame=1&typeId=2", function (jsonObj) {
+            console.log("----" + jsonObj);
+        });
+    }
+    function bindList() {
+        var columns = [];
+        var mData = "requestType=json&notIncludeGame=1&typeId=2&start=2018-9-1&end=2018-11-15";
+        var mDatas = "requestType=json";
+        var mTable = new tTable("interestbaoDiv_content_list", columns, 30);
+        mTable.init();
+        mTable.setOutTime(2000);
+        mTable.setItemHeight(45);
+        mTable.setParseFunction(function (datas) {
+            return parseGamesData(datas);
+        });
+        mTable.loadData(SERVER_ADD + "userFproduct/getUserFproducts", mDatas);
+
+        function parseGamesData(interestData) {
+            var datas = new Array();
+            var objList = interestData.result.list;
+            var len = objList.length;
+            var profitsSum = 0;
+            var str = "";
+            if (len > 0) {
+                var ObjData = new Array();
+                for (var i = 0; i < len; i++) {
+                    var item = new Object();
+                    var objItem = objList[i];
+                    str += '<div class="profit_class" id="profits_' + i + '" style="width: 100%;height: 60px;display: flex;justify-content: center;align-items: center">';
+                    str += '<div style="width: 25%">';
+                    str += '<div style="font-size: 14px;color: white">' + doubleValue(objItem["amount"]) + '</div>';
+                    str += '<div style="font-size: 12px;color: #cccccc">本金</div></div>';
+
+                    str += '<div style="width: 35%">';
+                    str += '<div style="font-size: 14px;color: white">' + getTimeZoneE8(8, objItem["end_time"]).format("yyyy-MM-dd") + '</div>';
+                    str += '<div style="font-size: 12px;color: #cccccc">到期日</div></div>';
+
+                    str += '<div style="width: 30%">';
+                    str += '<div style="font-size: 14px;color: #cca352">' + doubleValue(objItem["f_profits"]) + '</div>';
+                    str += '<div style="font-size: 12px;color: #cccccc">预计利息</div></div>';
+                    str += '<div style="font-size: 12px;color: #cccccc"><img src=pic/themeMain/arrow.png style=width:6px /></div></div>';
+                    str += '<div style="width: 100%;height: 2px;background-color: black"></div>';
+                    profitsSum += objItem["profits_sum"];
+                    ObjData.push(objItem);
+                }
+                $("#interestbaoDiv_content_list").html(str);
+                $("#grand").html(doubleValue(profitsSum));
+                $(".profit_class").each(function () {
+                    setBtnOnTouchEvent($(this), function (mObj) {
+                        var index = (mObj.id.split("_"))[1];
+                        myPJDApp.showInterestDetailObj(ObjData[index]);
+                    }, "#2A3A3A", "#2A2A2A");
+                });
+            } else {
+                str = "<div style='color:gainsboro;display: flex;justify-content: center;align-items: center'>您还没有数据!<div>";
+                $("#interestbaoDiv_content_list").html(str);
+            }
+        }
+    }
+</script>

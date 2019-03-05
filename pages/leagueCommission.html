@@ -1,0 +1,1214 @@
+<div style="width: 100%;display: flex;flex-direction: column;justify-content: flex-start;align-items: center;">
+	<div style="height: 40px;background-color: #2A2A2A;width: 100%;display: flex;justify-content: space-between;align-items: center">
+		<div id="league_menu_commission" class="league_menu_class" style="height: 40px;width: 20%;justify-content: center;align-items: center;display: flex">
+			佣金
+		</div>
+		<div id="league_menu_unde" class="league_menu_class" style="height: 40px;width: 20%;justify-content: center;align-items: center;display: flex">
+			下线
+		</div>
+		<div id="league_menu_one" class="league_menu_class" style="height: 40px;width: 20%;justify-content: center;align-items: center;display: flex">
+			分享
+		</div>
+		<div id="league_menu_two" class="league_menu_class" style="height: 40px;width: 20%;justify-content: center;align-items: center;display: flex">
+			介绍
+		</div>
+		<div id="league_menu_three" class="league_menu_class" style="height: 40px;width: 20%;justify-content: center;align-items: center;display: flex">
+			帮助
+		</div>
+	</div>
+	<div style="width: 100%;height: 2px;background-color: #000000;display: flex;justify-content: center;align-items: center">
+		<div style="width: 20%; height: 100%" id="league_menu_commission_select" class="league_menu_select_class"></div>
+		<div style="width: 20%; height: 100%" id="league_menu_unde_select" class="league_menu_select_class"></div>
+		<div style="width: 20%; height: 100%" id="league_menu_one_select" class="league_menu_select_class"></div>
+		<div style="width: 20%; height: 100%" id="league_menu_two_select" class="league_menu_select_class"></div>
+		<div style="width: 20%; height: 100%" id="league_menu_three_select" class="league_menu_select_class"></div>
+	</div>
+	<div id="leagueContent" style="overflow-x: hidden;overflow-y: auto;width: 100%;display: flex;flex-direction: column;justify-content: flex-start;align-items: center;">
+		<div id="league_commission" style="width: 100%;height: 100%;align-items: center;background: #2A2A2A">
+			<div style="height: 10px;width: 100%"></div>
+			<div id="commission_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
+			</div>
+			<div id="commission_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;padding: 10px;box-sizing: border-box;">
+				<div style="width: 50%;text-align: left;font-size: 14px;color: #909090">佣金合计</div>
+				<div style="width: 50%;text-align: right;font-weight: bold;font-size: 14px;color: #E86835" id="commission_bottom_sum">￥:0.00</div>
+			</div>
+		</div>
+		<div id="league_unde" style="width: 100%;height: 100%;align-items: center;background: #2A2A2A">
+			<div id="unde_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto"></div>
+			<div id="unde_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content:space-between;align-items: center;padding: 10px;box-sizing: border-box;">
+				<div style="width: 50%;text-align: left;font-size: 14px;color: #8C8C8C">合计下线会员数</div>
+				<div style="width: 50%;text-align: right;font-weight: bold;font-size: 14px;color: #E96734" id="unde_bottom_sum">0人</div>
+			</div>
+		</div>
+		<div id="league_one" style="display: flex;width: 100%;flex-direction: column;justify-content: flex-start;align-items: center">
+			<div style="height: 40px"></div>
+			<div style="width:100%;padding-left: 20px;padding-right: 20px;box-sizing: border-box">
+				<div style="height: 30px;font-size: 12px;color: #cccccc;flex-shrink: 0;display: flex;justify-content: center;align-items: center;text-align: center">
+					您只要通过下面两种方式之一把新葡京APP分享给您的朋友,他完成注册后即成为您的下线会员。
+				</div>
+				<div style="height: 10px"></div>
+				<div style="flex-shrink:0;width:100%;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;background-color: black;border: 1px solid #CCA352">
+					<div class="league_commission_tone" style="flex-shrink: 0;width: 100%;height: 30px;display: flex;justify-content: center;align-items: center;font-size: 16px;color: #CCA352">
+						方式① 您的专属发展新下线会员二维码
+					</div>
+					<div style="flex-shrink: 0;width: 100%;height: 25px;display: flex;justify-content: center;align-items: center;font-size: 12px;color: #cccccc">
+						下属会员直接扫描二维码或者保存到相册发送给朋友
+					</div>
+					<div style="flex-shrink: 0;width: 100%;display: flex;justify-content: center;align-items: center;font-size: 12px;color: #cccccc">
+						<div id="leagueQrCodeImgId" style="width: 100%;display: flex;justify-content: center;align-items: center"></div>
+					</div>
+					<div style="height: 10px"></div>
+				</div>
+				<div style="height: 10px"></div>
+				<div style="flex-shrink:0;width:100%;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;background-color:black;border: 1px solid #CCA352">
+					<div class="league_commission_tone" style="flex-shrink: 0;width: 100%;height: 30px;display: flex;justify-content: center;align-items: center;font-size: 16px;color: #CCA352">
+						方式② 您的专属发展新下线会员链接
+					</div>
+					<div style="flex-shrink: 0;width: 100%;height: 25px;display: flex;justify-content: center;align-items: center;font-size: 12px;color: #cccccc">
+						请您申请自己的推广域名,将域名发送至以下邮箱申请绑定:
+					</div>
+					<div style="flex-shrink: 0;width: 100%;height: 25px;display: flex;justify-content: center;align-items: center;font-size: 12px;color: #cccccc">
+						aff@pjd666.com
+					</div>
+					<div>
+						<input type="button" onClick="copyInApp('aff@pjd666.com')" value="复制邮箱" style="border: 0px;background: #72b3e9;border-radius: 25px;color: white;width: 80px"
+						/>
+					</div>
+					<div style="height: 10px"></div>
+				</div>
+			</div>
+			<div style="height: 40px"></div>
+		</div>
+		<div id="league_two" style="display: flex;width: 100%;flex-direction: column;justify-content: flex-start;align-items: center">
+			<div style="display: flex;width: 100%;flex-shrink: 0;flex-direction: column;justify-content: flex-start;align-items: center">
+				<div style="width: 100%">
+					<img id="leagueBannerImgBgId" src="pic/themeMain/leagueBanner.jpg" width="100%" />
+				</div>
+				<div style="flex-shrink: 0;flex-direction: column;justify-content: flex-start;align-items: center;display: flex">
+					<div style="height: 20px"></div>
+					<div style="font-size: 14px;color: #cccccc;line-height: 150%;width: 90%;flex-shrink: 0">
+						新葡京提供业界最优质的合作伙伴计划！加入“新葡京”无需任何费用，只要您介绍会员到新葡京，就可以获得高达50%的丰厚利润。
+					</div>
+					<div style="height: 40px"></div>
+					<div style="width: 100%;height: 200px;flex-shrink: 0;display: flex;justify-content: flex-start;align-items: center;flex-direction: column">
+						<div style="position: relative;width: 100%;height: 5px;background-color: #e1a54f;flex-shrink: 0"></div>
+						<div style="position: relative;display: flex;justify-content: space-between;align-items: center;width: 100%;height: 190px;background-color: #2a2a2a;flex-shrink: 0">
+							<div style="width:20%;display: flex;justify-content: center;align-items: center;flex-direction: column">
+								<div style="width: 100%;height: 60px;display: flex;justify-content: center;align-items:flex-end;">
+									<img id="agentNumberOneImgId" src="pic/agentNumberOne.png" style="width: 40%;" />
+								</div>
+								<div style="width: 100%;display: flex;justify-content: center;align-items: center">
+									<img id="agentHeadersOne" src="header/B_001.jpg" style="width: 50px;border-radius: 25px" />
+								</div>
+								<div style="height: 8px;"></div>
+								<div id="agentNamesOne" style="font-size: 10px;color: #cccccc;display: flex;justify-content: center;align-items: center">
+									hhAn**jj
+								</div>
+								<div style="height: 29px;"></div>
+								<div id="agentsOneMoney" style="display: flex;justify-content: center;align-items: center;width: 100%;height: 30px;background-color: #000000;font-size: 12px;color: #e1a54f">
+									12345678
+								</div>
+							</div>
+							<div style="height: 100%;width: 1px; background-color: #413328"></div>
+							<div style="width:20%;display: flex;justify-content: center;align-items: center;flex-direction: column">
+								<div style="width: 100%;height: 60px;display: flex;justify-content: center;align-items:flex-end">
+									<img id="agentNumberTwoImgId" src="pic/agentNumberTwo.png" style="width: 40%" />
+								</div>
+								<div style="width: 100%;display: flex;justify-content: center;align-items: center">
+									<img id="agentHeadersTwo" src="header/B_002.jpg" style="width: 50px;border-radius: 25px" />
+								</div>
+								<div style="height: 8px;"></div>
+								<div id="agentNamesTwo" style="font-size: 10px;color: #cccccc;display: flex;justify-content: center;align-items: center">
+									hhAn**jj
+								</div>
+								<div style="height: 29px;"></div>
+								<div id="agentsTwoMoney" style="display: flex;justify-content: center;align-items: center;width: 100%;height: 30px;background-color: #000000;font-size: 12px;color: #ffffff">
+									12345678
+								</div>
+							</div>
+							<div style="height: 100%;width: 1px; background-color: #413328"></div>
+							<div style="width:20%;display: flex;justify-content: center;align-items: center;flex-direction: column">
+								<div style="width: 100%;height: 60px;display: flex;justify-content: center;align-items:flex-end">
+									<img id="agentNumberThreeImgId" src="pic/agentNumberThree.png" style="width: 40%" />
+								</div>
+								<div style="width: 100%;display: flex;justify-content: center;align-items: center">
+									<img id="agentHeadersThree" src="header/B_003.jpg" style="width: 50px;border-radius: 25px" />
+								</div>
+								<div style="height: 8px;"></div>
+								<div id="agentNamesThree" style="font-size: 10px;color: #cccccc;display: flex;justify-content: center;align-items: center">
+									hhAn**jj
+								</div>
+								<div style="height: 29px;"></div>
+								<div id="agentsThreeMoney" style="display: flex;justify-content: center;align-items: center;width: 100%;height: 30px;background-color: #000000;font-size: 12px;color: #e1a54f">
+									12345678
+								</div>
+							</div>
+							<div style="height: 100%;width: 1px; background-color: #413328"></div>
+							<div style="width:20%;display: flex;justify-content: center;align-items: center;flex-direction: column">
+								<div style="width: 100%;height: 60px;display: flex;justify-content: center;align-items:flex-end">
+									<img id="agentNumberFourImgId" src="pic/agentNumberFour.png" style="width: 40%" />
+								</div>
+								<div style="width: 100%;display: flex;justify-content: center;align-items: center">
+									<img id="agentHeadersFour" src="header/B_004.jpg" style="width: 50px;border-radius: 25px" />
+								</div>
+								<div style="height: 8px;"></div>
+								<div id="agentNamesFour" style="font-size: 10px;color: #cccccc;display: flex;justify-content: center;align-items: center">
+									hhAn**jj
+								</div>
+								<div style="height: 29px;"></div>
+								<div id="agentsFourMoney" style="display: flex;justify-content: center;align-items: center;width: 100%;height: 30px;background-color: #000000;font-size: 12px;color: #ffffff">
+									12345678
+								</div>
+							</div>
+							<div style="height: 100%;width: 1px; background-color: #413328"></div>
+							<div style="width:20%;display: flex;justify-content: center;align-items: center;flex-direction: column">
+								<div style="width: 100%;height: 60px;display: flex;justify-content: center;align-items:flex-end">
+									<img id="agentNumberFiveImgId" src="pic/agentNumberFive.png" style="width: 40%" />
+								</div>
+								<div style="width: 100%;display: flex;justify-content: center;align-items: center">
+									<img id="agentHeadersFive" src="header/B_005.jpg" style="width: 50px;border-radius: 25px" />
+								</div>
+								<div style="height: 8px;"></div>
+								<div id="agentNamesFive" style="font-size: 10px;color: #cccccc;display: flex;justify-content: center;align-items: center">
+									hhAn**jj
+								</div>
+								<div style="height: 29px;"></div>
+								<div id="agentsFiveMoney" style="display: flex;justify-content: center;align-items: center;width: 100%;height: 30px;background-color: #000000;font-size: 12px;color: #e1a54f">
+									12345678
+								</div>
+							</div>
+						</div>
+						<div style="position: relative;width: 100%;height: 5px;background-color: #e1a54f;flex-shrink: 0"></div>
+						<div style="top: -215px;position: relative;flex-shrink: 0">
+							<img id="agentGoldImgId" src="pic/agentGold.png" style="height: 30px;" />
+						</div>
+						<div style="top: -242px;flex-shrink: 0;height: 15px;font-size: 12px;color: #000000;position: relative;display: flex;justify-content: center;align-items: center">
+							本月佣金排行榜
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="height: 30px"></div>
+			<div id="leagueSuggest" style="font-size: 14px;color: #cccccc;width: 90%">
+			</div>
+			<div style="font-size: 14px;color: #cccccc;width: 90%;flex-shrink: 0">
+				<div style="color: #CCA352">联系方式</div>
+				<div style="height: 10px"></div>
+				<div style="float: left;width: 15%">
+					<img style="width: 35px;height: 35px" src="pic/skype.png" />
+				</div>
+				<div style="float: left;width: 25%">
+					<span style="color: gray">
+						&nbsp;skype:
+					</span>
+					<input type="button" onClick="copyInApp('aff_308')" value="aff_308" style="border:0px;background:#2a2a2a;color:white" />
+				</div>
+				<div style="float: left;width: 15%">
+					<img style="width: 35px;height: 35px" src="pic/email.png" />
+				</div>
+				<div style="float: left;width: 15%">
+					<span style="color: gray">
+						&nbsp;邮箱:
+						<br>
+					</span>
+					<input type="button" onClick="copyInApp('aff@pjd666.com')" value="aff@pjd666.com" style="border:0px;background:#2a2a2a;color:white"
+					/>
+				</div>
+				<div style="height: 50px"></div>
+			</div>
+		</div>
+		<div id="league_three" style="display: flex;width: 100%;flex-direction: column;justify-content: flex-start;align-items: center;">
+			<div style="height: 10px"></div>
+			<div style="width:100%;height: 50px;display: flex;justify-content: center;align-items: center">
+				<div id="league_three_menu_1" style="border-top-left-radius: 15px;border-bottom-left-radius: 15px;height: 30px;;color: #ffffff;width:45%;display: flex;justify-content: center;align-items: center;background-color: #CCA352">
+					常见问题
+				</div>
+				<div id="league_three_menu_2" style="border-top-right-radius: 15px;height: 30px;;border-bottom-right-radius: 15px;color: #ffffff;width:45%;display: flex;justify-content: center;align-items: center;background-color: #CCA352">
+					规则条款
+				</div>
+			</div>
+			<div style="height: 10px"></div>
+			<div id="league_three_content" style="overflow-x: hidden;overflow-y: auto;width: 100%;display: flex;justify-content: flex-start;flex-direction: column;align-items: center;padding-top: 15px;box-sizing: border-box">
+				<div id="league_three_menu_1_content" style="overflow-x: hidden;overflow-y: auto;width: 90%;display: flex;justify-content: flex-start;flex-direction: column;align-items: center;padding-top: 15px;box-sizing: border-box">
+				</div>
+				<div id="league_three_menu_2_content" style="overflow-x: hidden;overflow-y: auto;width: 90%;display: flex;justify-content: flex-start;flex-direction: column;align-items: center;padding-top: 15px;box-sizing: border-box">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(".mail").css({ "color": mainColor });
+	$(".league_commission_tone").css({ "color": mainColor });
+	$("#leagueBannerImgBgId").attr("src", themPath + "leagueBanner.jpg");
+	$("#leagueLinkImgId").attr("src", themPath + "leagueLink.png");
+	$("#leagueQrCodeImgId").attr("src", themPath + "leagueQrCode.png");
+	var isType = null;
+	var mleagueLoadingFunObj = new leagueLoadingFun();
+	function leagueLoadingFun(){
+        this.show = function (type) {
+			if(type == null){
+				var mleagueFunObj = new leagueFun();
+				mleagueFunObj.init();
+			} else {
+				isType = type;
+				var mleagueFunObj = new leagueFun();
+				mleagueFunObj.init();
+			}
+		}
+		this.returnGet = function () {
+			var mleagueFunObj = new leagueFun();
+				mleagueFunObj.reGet();
+		}
+	}
+	function leagueFun() {
+		var mAgentRankingObj = new agentRankingObj();
+		var leagueDetailsFunObj = new leagueDetailsFun(); leagueDetailsFunObj.init();
+		var agentObj = new agentFun(); agentObj.init();
+		var gamesObj = new gamesFun(); gamesObj.init();
+		var costObj = new costFun(); costObj.init();
+		var dateUtil = getTimeZoneE8(timeZone, new Date()); dateUtil.setDate(dateUtil.getDate() + (-1) * 365);
+		var startData = dateUtil.format("yyyy-MM");
+		var endData = getTimeZoneE8(8, new Date()).format("yyyy-MM");
+		this.init = function () {
+			$(".league_menu_class").css({ "color": mainColor, "font-size": "14px" });
+			$("#leagueContent").css({ "width": "100%", "height": screenH - topH - 40 });
+			$("#league_three_content").css({ "height": screenH - topH - 40 - 70 });
+			$("#commission_content_list").css({ "height": screenH - topH - 98 });
+			$("#unde_content_list").css({ "height": screenH - topH - 40 - 2 - 45 });
+			setBtnOnTouchEventNoColor($("#league_menu_commission"), function () {
+				topSelect(1);
+			}, null);
+			setBtnOnTouchEventNoColor($("#league_menu_unde"), function () {
+				topSelect(2);
+			}, null);
+			setBtnOnTouchEventNoColor($("#league_menu_one"), function () {
+				topSelect(3);
+			}, null);
+			setBtnOnTouchEventNoColor($("#league_menu_two"), function () {
+				topSelect(4);
+			}, null);
+			setBtnOnTouchEventNoColor($("#league_menu_three"), function () {
+				topSelect(5);
+			}, null);
+			setBtnOnTouchEventNoColor($("#league_three_menu_1"), function () {
+				contentSelectByThree(1);
+			}, null);
+			setBtnOnTouchEventNoColor($("#league_three_menu_2"), function () {
+				contentSelectByThree(2);
+			}, null);
+			setBtnOnTouchEventNoColor($("#leagueQrCodeImgId"), function () {
+				myPJDApp.showAgentQRCode(userInfo.rurl, null, true);
+			}, null);
+			loadRealNote();
+			bindCommissionList();
+			bindUndeList();
+			var rootIdOne = "league_three_menu_1_content";
+			var rootIdTwo = "league_three_menu_2_content";
+			var rootIdThree = "leagueSuggest";
+			var ms = "页面加载失败,请重试!";
+			requestAjax("article/getArticleForList", "typeId=[1024,1025,1026]", function (jsonObj) {
+				var code = jsonObj["code"];
+				if (code != 0) {
+					bindFedView(rootIdOne, ms,rootIdOne);
+					bindFedView(rootIdTwo, ms,rootIdTwo);
+					bindFedView("league_two", ms,rootIdThree);
+					return;
+				}
+				var result = jsonObj["result"];
+				for (var i = 0; i < result["length"]; i++) {
+					var item = result[i];
+					var list = JSON.parse(item["content"]);
+					switch (item["type_id"]) {
+						case 1024:
+							AppMakeObj.AeToCn(list, rootIdOne);
+							break;
+						case 1025:
+							AppMakeObj.AeToCn(list, rootIdTwo);
+							break;
+						case 1026:
+							AppMakeObj.AeToCn(list, rootIdThree);
+							break;
+					}
+				}
+			}, function (error) {
+				bindFedView(rootIdOne, ms,rootIdOne);
+				bindFedView(rootIdTwo, ms,rootIdTwo);
+				bindFedView("league_two", ms,rootIdThree);
+			});
+		}
+		this.reGet = function () {
+			bindCommissionList();
+			bindUndeList();
+		}
+		function loadAgentRanking() {
+			$("#agentsOneMoney").html((agentRankingList.co[0]).profit);
+			$("#agentsTwoMoney").html((agentRankingList.co[1]).profit);
+			$("#agentsThreeMoney").html((agentRankingList.co[2]).profit);
+			$("#agentsFourMoney").html((agentRankingList.co[3]).profit);
+			$("#agentsFiveMoney").html((agentRankingList.co[4]).profit);
+			$("#agentNamesOne").html(getName((agentRankingList.co[0]).name));
+			$("#agentNamesTwo").html(getName((agentRankingList.co[1]).name));
+			$("#agentNamesThree").html(getName((agentRankingList.co[2]).name));
+			$("#agentNamesFour").html(getName((agentRankingList.co[3]).name));
+			$("#agentNamesFive").html(getName((agentRankingList.co[4]).name));
+			o("agentHeadersOne").src = "header/" + (agentRankingList.co[0]).avatar;
+			o("agentHeadersTwo").src = "header/" + (agentRankingList.co[1]).avatar;
+			o("agentHeadersThree").src = "header/" + (agentRankingList.co[2]).avatar;
+			o("agentHeadersFour").src = "header/" + (agentRankingList.co[3]).avatar;
+			o("agentHeadersFive").src = "header/" + (agentRankingList.co[4]).avatar;
+			function getName(ms) {
+				var len = ms.length;
+				return ms[0] + ms[1] + "***" + ms[len - 2] + ms[len - 1];
+			}
+		}
+		function loadRealNote() {
+			mAgentRankingObj.getAgentRankingData(loadAgentRanking);
+			if(isType != null){
+				if(isNaN(isType)){
+					isType = isType.split("_");
+					topSelect(Number(isType[0]));
+					contentSelectByThree(Number(isType[1]));
+				} else {
+					topSelect(isType);
+					contentSelectByThree(1);
+				}
+			} else {
+				topSelect(1);
+				contentSelectByThree(1);
+			}
+			$("#leagueQrCodeImgId").html("");
+			new QRCode("leagueQrCodeImgId", {
+				text: userInfo.rurl,
+				width: screenW / 2,
+				height: screenW / 2,
+				colorDark: "#000000",
+				colorLight: "#ffffff",
+				correctLevel: QRCode.CorrectLevel.H
+			});
+		}
+		function topSelect(index) {
+			$("#leagueContent").scrollTop(0);
+			var m1 = $("#league_menu_commission_select"); var m1t = $("#league_menu_commission"); var c1 = $("#league_commission");
+			var m2 = $("#league_menu_unde_select"); var m2t = $("#league_menu_unde"); var c2 = $("#league_unde");
+			var m3 = $("#league_menu_one_select"); var m3t = $("#league_menu_one"); var c3 = $("#league_one");
+			var m4 = $("#league_menu_two_select"); var m4t = $("#league_menu_two"); var c4 = $("#league_two");
+			var m5 = $("#league_menu_three_select"); var m5t = $("#league_menu_three"); var c5 = $("#league_three");
+			switch (index) {
+				case 1:
+					m1.css({ "background-color": mainColor }); m1t.css({ "color": mainColor }); c1.css({ "display": "block" });
+					m2.css({ "background-color": "" }); m2t.css({ "color": mainFontColorDeep }); c2.css({ "display": "none" });
+					m3.css({ "background-color": "" }); m3t.css({ "color": mainFontColorDeep }); c3.css({ "display": "none" });
+					m4.css({ "background-color": "" }); m4t.css({ "color": mainFontColorDeep }); c4.css({ "display": "none" });
+					m5.css({ "background-color": "" }); m5t.css({ "color": mainFontColorDeep }); c5.css({ "display": "none" });
+					break;
+				case 2:
+					m1.css({ "background-color": "" }); m1t.css({ "color": mainFontColorDeep }); c1.css({ "display": "none" });
+					m2.css({ "background-color": mainColor }); m2t.css({ "color": mainColor }); c2.css({ "display": "block" });
+					m3.css({ "background-color": "" }); m3t.css({ "color": mainFontColorDeep }); c3.css({ "display": "none" });
+					m4.css({ "background-color": "" }); m4t.css({ "color": mainFontColorDeep }); c4.css({ "display": "none" });
+					m5.css({ "background-color": "" }); m5t.css({ "color": mainFontColorDeep }); c5.css({ "display": "none" });
+					break;
+				case 3:
+					m1.css({ "background-color": "" }); m1t.css({ "color": mainFontColorDeep }); c1.css({ "display": "none" });
+					m2.css({ "background-color": "" }); m2t.css({ "color": mainFontColorDeep }); c2.css({ "display": "none" });
+					m3.css({ "background-color": mainColor }); m3t.css({ "color": mainColor }); c3.css({ "display": "flex" });
+					m4.css({ "background-color": "" }); m4t.css({ "color": mainFontColorDeep }); c4.css({ "display": "none" });
+					m5.css({ "background-color": "" }); m5t.css({ "color": mainFontColorDeep }); c5.css({ "display": "none" });
+					break;
+				case 4:
+					m1.css({ "background-color": "" }); m1t.css({ "color": mainFontColorDeep }); c1.css({ "display": "none" });
+					m2.css({ "background-color": "" }); m2t.css({ "color": mainFontColorDeep }); c2.css({ "display": "none" });
+					m3.css({ "background-color": "" }); m3t.css({ "color": mainFontColorDeep }); c3.css({ "display": "none" });
+					m4.css({ "background-color": mainColor }); m4t.css({ "color": mainColor }); c4.css({ "display": "flex" });
+					m5.css({ "background-color": "" }); m5t.css({ "color": mainFontColorDeep }); c5.css({ "display": "none" });
+					break;
+				case 5:
+					m1.css({ "background-color": "" }); m1t.css({ "color": mainFontColorDeep }); c1.css({ "display": "none" });
+					m2.css({ "background-color": "" }); m2t.css({ "color": mainFontColorDeep }); c2.css({ "display": "none" });
+					m3.css({ "background-color": "" }); m3t.css({ "color": mainFontColorDeep }); c3.css({ "display": "none" });
+					m4.css({ "background-color": "" }); m4t.css({ "color": mainFontColorDeep }); c4.css({ "display": "none" });
+					m5.css({ "background-color": mainColor }); m5t.css({ "color": mainColor }); c5.css({ "display": "flex" });
+					break;
+			}
+		}
+		function contentSelectByThree(index) {
+			$("#league_three_content").scrollTop(0);
+			var m1 = $("#league_three_menu_1"); var c1 = $("#league_three_menu_1_content");
+			var m2 = $("#league_three_menu_2"); var c2 = $("#league_three_menu_2_content");
+			switch (index) {
+				case 1:
+					m1.css({ "background-color": mainColor, "color": mainFontColor, "border": "1px solid " + mainColor });
+					m2.css({ "background-color": lighterBackColor, "color": mainColor, "border": "1px solid " + mainColor });
+					c1.css({ "display": "block" }); c2.css({ "display": "none" });
+					break;
+				case 2:
+					m2.css({ "background-color": mainColor, "color": mainFontColor, "border": "1px solid " + mainColor });
+					m1.css({ "background-color": lighterBackColor, "color": mainColor, "border": "1px solid " + mainColor });
+					c2.css({ "display": "block" }); c1.css({ "display": "none" });
+					break;
+			}
+		}
+		var mCommissionList = null;
+		function bindCommissionList() {
+			var comSum = 0;
+			var mData = "requestType=json&start=" + startData + "&end=" + endData;
+			var columns = ["[itemRootId]", "[topDate]", "[btn1Id]", "[btn2Id]",
+				"[allcoms]", "[midDivId]", "[betSum]", "[allWinLoss]", "[allCost]",
+				"[coms]", "[bottomDivId]", "[sum]", "[allProxyComs]", "[comsTic]", "[allCostId]"];
+			if (mCommissionList != null) {
+				mCommissionList.loadData(SERVER_ADD + "coAgentSumByMonth/getCoAgentSumByMonths", mData);
+				return;
+			}
+			mCommissionList = new elandList("commission_content_list", columns, 30);
+			mCommissionList.init();
+			mCommissionList.setOutTime(2000);
+			mCommissionList.setItemViewGetFunction(function (itemData, index, rootId) {
+				var rootDiv = "<div class=\"" + rootId + "_root_div\" id=\"[itemRootId]\">%content%</div>";
+
+				var topDiv = "<div class=\"" + rootId + "_top_div\">%content%</div>";
+				var dateDiv = "<div class=\"" + rootId + "_top_date_div\">[topDate]</div>";
+				var btnDiv = "<div class=\"" + rootId + "_top_btn_div\"><font color=#808080>状态:</font>%content%</div>";
+				var btn1 = "<div class=\"" + rootId + "_top_btn1\" id=\"[btn1Id]\">可申领</div>";
+				var btn2 = "<div class=\"" + rootId + "_top_btn2\" id=\"[btn2Id]\">按游戏展开</div>";
+				var btn1ov = "<div class=\"" + rootId + "_top_btn1ov\">%content%</div>";
+				var status = itemData["status"]; // 状态: 0-预算中,1-待核算,2-可申领,3-已申请,4-已出款,9-已取消
+				switch (status) {
+					case 0: btn1ov = btn1ov.replace("%content%", "<font color=#408A2A>预算中</font>"); break;
+					case 1: btn1ov = btn1ov.replace("%content%", "<font color=#408A2A>待核算</font>"); break;
+					case 3: btn1ov = btn1ov.replace("%content%", "<font color=#408A2A>已申请</font>"); break;
+					case 4: btn1ov = btn1ov.replace("%content%", "<font color=#8C8C8C>已领取</font>"); break;
+					case 9: btn1ov = btn1ov.replace("%content%", "<font color=#8C8C8C>已取消</font>"); break;
+				}
+				var allComsDiv = "<div class=\"" + rootId + "_top_allcoms_div\"><font color=#808080>本月总佣金:</font><div style=\"width:3px\" />[allcoms]</div>";
+				if (status == 2) {
+					btnDiv = btnDiv.replace("%content%", btn1 + btn2);
+				} else {
+					btnDiv = btnDiv.replace("%content%", btn1ov + btn2);
+				}
+				topDiv = topDiv.replace("%content%", dateDiv + btnDiv + allComsDiv);
+
+				var arrowImg = "<img src=\"" + themPath + "arrow.png\" style=\"width:6px\" />";
+				var font1 = "<font color=#808080>%txt%</font>";
+				var font2 = "<font color=" + subColor + ">%txt%</font>";
+				var font3 = "<font color=white>%txt%</font>";
+				var font4 = "<font color=#7a6b4e>%txt%</font>";
+
+				var midDiv = "<div class=\"" + rootId + "_mid_div\" id=\"[midDivId]\">%content%</div>";
+				var tagMidDiv = "<div class=\"" + rootId + "_mid_tag_div\">下线<br>会员</div>";
+				var betSumDiv = "<div class=\"" + rootId + "_content_text_class\">" + font1.replace("%txt%", "投注人数") + "<br>" + font3.replace("%txt%", "[betSum]") + "</div>";
+				var winLossDiv = "<div class=\"" + rootId + "_content_text_class\">" + font1.replace("%txt%", "总输赢") + "<br>" + font3.replace("%txt%", "[allWinLoss]") + "</div>";
+				var costDiv = "<div class=\"" + rootId + "_allcost_text_class\" id=\"[allCostId]\">" + font4.replace("%txt%", "总成本") + "<br>" + font4.replace("%txt%", "[allCost]") + "</div>";
+				var comsDiv = "<div class=\"" + rootId + "_content_text_class\">" + font1.replace("%txt%", "佣金") + "<br>" + font3.replace("%txt%", "[coms]") + "</div>";
+				midDiv = midDiv.replace("%content%", tagMidDiv + betSumDiv + winLossDiv + costDiv + comsDiv + arrowImg);
+
+				var bottomDiv = "<div class=\"" + rootId + "_bottom_div\" id=\"[bottomDivId]\">%content%</div>";
+				var tagBtmDiv = "<div class=\"" + rootId + "_btm_tag_div\">下线<br>代理</div>";
+				var sumDiv = "<div class=\"" + rootId + "_content_text_class\">" + font1.replace("%txt%", "人数") + "<br>" + font3.replace("%txt%", "[sum]") + "</div>";
+				var allProxycomsDiv = "<div class=\"" + rootId + "_content_text_class\">" + font1.replace("%txt%", "代理总佣金") + "<br>" + font3.replace("%txt%", "[allProxyComs]") + "</div>";
+				var comsTicDiv = "<div class=\"" + rootId + "_content_text_class\">" + font1.replace("%txt%", "佣金提成") + "<br>" + font3.replace("%txt%", "[comsTic]") + "</div>";
+				bottomDiv = bottomDiv.replace("%content%", tagBtmDiv + sumDiv + allProxycomsDiv + comsTicDiv + arrowImg);
+
+				rootDiv = rootDiv.replace("%content%", topDiv + midDiv + bottomDiv);
+				return rootDiv;
+			});
+			mCommissionList.setItemStyleSetFunction(function (rootId) {
+				$("." + rootId + "_root_div").css({
+					"width": "100%",
+					"height": "auto",
+					"text-align": "center",
+					"background": "#3D3D3D",
+					"border-radius": "5px",
+					"padding-top": "10px",
+					"padding-bottom": "10px",
+					"padding-left": "8px",
+					"padding-right": "8px",
+					"margin-top": "10px",
+					"box-sizing": "border-box"
+				});
+				$("." + rootId + "_top_div").css({
+					"display": "flex",
+					"justify-content": "space-between",
+					"align-items": "center",
+					"width": "100%"
+				});
+				$("." + rootId + "_top_date_div").css({
+					"text-align": "left",
+					"font-size": "12px",
+					"color": "white"
+				});
+				$("." + rootId + "_top_btn_div").css({
+					"display": "flex",
+					"justify-content": "flex-start",
+					"align-items": "center",
+					"font-size": "12px"
+				});
+				$("." + rootId + "_top_btn1").css({
+					"border-radius": "4px",
+					"color": "white",
+					"font-size": "10px",
+					"background-color": mainColor,
+					"width": "40px",
+					"height": "25px",
+					"display": "flex",
+					"justify-content": "center",
+					"align-items": "center",
+					"padding": "3px",
+					"margin-left": "2px",
+					"box-sizing": "border-box"
+				});
+				$("." + rootId + "_top_btn2").css({
+					"border-radius": "4px",
+					"border": "1px solid #13a1ff",
+					"color": "#13a1ff",
+					"font-size": "10px",
+					"background-color": "",
+					"width": "auto",
+					"height": "25px",
+					"display": "flex",
+					"justify-content": "center",
+					"align-items": "center",
+					"padding": "3px",
+					"margin-left": "3px",
+					"box-sizing": "border-box"
+				});
+				$("." + rootId + "_top_btn1ov").css({
+					"font-size": "10px",
+					"width": "40px",
+					"height": "25px",
+					"display": "flex",
+					"justify-content": "center",
+					"align-items": "center",
+					"padding": "3px",
+					"margin-left": "2px",
+					"box-sizing": "border-box"
+				});
+				$("." + rootId + "_top_allcoms_div").css({
+					"display": "flex",
+					"justify-content": "center",
+					"align-items": "center",
+					"font-size": "12px"
+				});
+				$("." + rootId + "_mid_div").css({
+					"display": "flex",
+					"justify-content": "space-between",
+					"align-items": "center",
+					"background": "#181818",
+					"width": "100%",
+					"height": "50px",
+					"margin-top": "5px",
+					"padding-right": "5px",
+					"font-size": "12px",
+					"box-sizing": "border-box"
+				});
+				$("." + rootId + "_mid_tag_div").css({
+					"display": "flex",
+					"justify-content": "center",
+					"align-items": "center",
+					"width": "50px",
+					"height": "50px",
+					"background": "#0C0C0C",
+					"font-size": "12px",
+					"color": "#747474"
+				});
+				$("." + rootId + "_bottom_div").css({
+					"display": "flex",
+					"justify-content": "space-between",
+					"background": "#252525",
+					"align-items": "center",
+					"width": "100%",
+					"height": "50px",
+					"margin-top": "5px",
+					"padding-right": "5px",
+					"font-size": "12px",
+					"box-sizing": "border-box"
+				});
+				$("." + rootId + "_btm_tag_div").css({
+					"display": "flex",
+					"justify-content": "center",
+					"align-items": "center",
+					"width": "50px",
+					"height": "50px",
+					"background": "#161616",
+					"font-size": "12px",
+					"color": "#747474"
+				});
+				$("." + rootId + "_content_text_class").css({
+					"text-align": "center",
+					"font-size": "12px"
+				});
+				$("." + rootId + "_allcost_text_class").css({
+					"text-align": "center",
+					"font-size": "12px",
+					"text-decoration": "underline"
+				});
+				$("." + rootId + "_top_btn1").each(function () {
+					setBtnOnTouchEvent($(this), function (mObj) {
+						var id = mObj.id;
+						var idList = id.split("_");
+						var iLen = idList.length;
+						var index = idList[iLen - 1];
+						var itemData = mCommissionList.getItemData(index);
+						requestAjax("coAgentSumByMonth/applyDrawCoAgentSumByMonths", "id=" + itemData["id"], function (jsonObj) {
+							var isSuss = jsonObj.result;
+							if (isSuss) {
+								bindCommissionList();
+								mToast.show("申请成功!", 1, "middle");
+							} else {
+								mToast.show("申请失败,请重试!", 1, "middle");
+							}
+						}, function (error) {
+							mToast.show("申请错误,请重试!", 1, "middle");
+						});
+						console.log("click item status:" + itemData["status"]);
+					}, mainColorDeep, mainColor, null);
+				});
+				$("." + rootId + "_top_btn2").each(function () {
+					setBtnOnTouchEvent($(this), function (mObj) {
+						var id = mObj.id;
+						var idList = id.split("_");
+						var iLen = idList.length;
+						var index = idList[iLen - 1];
+						var itemData = mCommissionList.getItemData(index);
+						gamesObj.show(itemData);
+						console.log("click item status:" + itemData["status"]);
+					}, subColorDK, "", null);
+				});
+				$("." + rootId + "_mid_div").each(function () {
+					setBtnOnTouchEvent($(this), function (mObj) {
+						var id = mObj.id;
+						var idList = id.split("_");
+						var iLen = idList.length;
+						var index = idList[iLen - 1];
+						var itemData = mCommissionList.getItemData(index);
+						leagueDetailsFunObj.show(itemData);
+						console.log("click item status:" + itemData["status"]);
+					}, "#363636", "#181818", null);
+				});
+				$("." + rootId + "_bottom_div").each(function () {
+					setBtnOnTouchEvent($(this), function (mObj) {
+						var id = mObj.id;
+						var idList = id.split("_");
+						var iLen = idList.length;
+						var index = idList[iLen - 1];
+						var itemData = mCommissionList.getItemData(index);
+						agentObj.show(itemData);
+						console.log("click item status:" + itemData["status"]);
+					}, "#505050", "#252525", null);
+				});
+				$("." + rootId + "_allcost_text_class").each(function () {
+					setBtnOnTouchEventNoColor($(this), function (mObj) {
+						var id = mObj.id;
+						var idList = id.split("_");
+						var iLen = idList.length;
+						var index = idList[iLen - 1];
+						var itemData = mCommissionList.getItemData(index);
+						costObj.show(itemData);
+						console.log("allcost click item status:" + itemData["status"]);
+					}, null);
+				});
+			});
+			mCommissionList.setLoadOKFunction(function () {
+				$("#commission_bottom_sum").html("￥:" + comSum);
+			});
+			mCommissionList.setParseFunction(function (gamesData, oldSize, rootId) {
+				if (oldSize == null) {
+					oldSize = 0;
+				}
+				var datas = new Array();
+				var objList = gamesData.result.list;
+				var len = objList.length;
+				for (var i = 0; i < len; i++) {
+					var objItem = objList[i];
+					var item = new Object();
+					comSum += objItem.commisions;
+					dateUtil.setTime(objItem.rep_time);
+					item["[itemRootId]"] = rootId + "_itemRootId_" + (i + oldSize);
+					item["[btn1Id]"] = rootId + "_btn1Id_" + (i + oldSize);
+					item["[btn2Id]"] = rootId + "_btn2Id_" + (i + oldSize);
+					item["[midDivId]"] = rootId + "_midDivId_" + (i + oldSize);
+					item["[bottomDivId]"] = rootId + "_bottomDivId_" + (i + oldSize);
+					item["[allCostId]"] = rootId + "_allCostId_" + (i + oldSize);
+					item["[topDate]"] = getTimeZoneE8(8, dateUtil).format("yyyy-MM");
+					item["[allcoms]"] = "<font color=" + mainColor + ">" + doubleValue(objItem.commisions) + "</font>";
+					item["[betSum]"] = objItem.bet_users;
+					item["[allWinLoss]"] = doubleValue(objItem.win_loss_sum);
+					item["[allCost]"] = doubleValue(objItem.cost_sum);
+					item["[coms]"] = doubleValue(objItem.bet_commisions);
+					item["[sum]"] = objItem.agent_users;
+					item["[allProxyComs]"] = doubleValue(objItem.sub_commision_sum);
+					item["[comsTic]"] = doubleValue(objItem.sub_commisions);
+					item["status"] = objItem.co_status;
+					item["id"] = objItem.id;
+					item["u_id"] = objItem.u_id;
+					item["winandloss"] = doubleValue(objItem.win_loss_sum);
+					item["costsum"] = doubleValue(objItem.cost_sum);
+					item["commsum"] = doubleValue(objItem.commisions);
+					item["g_cost"] = doubleValue(objItem.g_cost);
+					item["withdraw_cost"] = doubleValue(objItem.withdraw_cost);
+					item["deposit_cost"] = doubleValue(objItem.deposit_cost);
+					item["backwater"] = doubleValue(objItem.backwater);
+					item["allComs"] = doubleValue(objItem.sub_commision_sum);
+					item["Ticoms"] = doubleValue(objItem.sub_commisions);
+					item["DataTime"] = getTimeZoneE8(8, dateUtil).format("yyyy-MM");
+					datas.push(item);
+				}
+				comSum = doubleValue(comSum);
+				var returnObj = new Object();
+				returnObj["result"] = new Object();
+				returnObj["result"]["list"] = datas;
+				return returnObj;
+			});
+			mCommissionList.setIsLoadMore(true);
+			mCommissionList.loadData(SERVER_ADD + "coAgentSumByMonth/getCoAgentSumByMonths", mData);
+		}
+		var mUndeList = null;
+		function bindUndeList() {
+			var sum = 0;
+			var columns = [
+				{ "title": "序号", "code": "number", "index": "true", "width": "16%", "align": "center" },
+				{ "title": "下线账号", "code": "undeAcc", "width": "28%", "align": "left" },
+				{ "title": "开户<br>时间", "code": "accTime", "width": "28%", "align": "center" },
+				{ "title": "是否<br>	存款", "code": "loginTime", "width": "28%", "align": "center" }
+			];
+			if (mUndeList != null) {
+				mUndeList.loadData(SERVER_ADD + "user/getChildUsers", "");
+				return;
+			}
+			mUndeList = new tTable("unde_content_list", columns, 30);
+			mUndeList.init();
+			mUndeList.setOutTime(2000);
+			mUndeList.setLoadOKFunction(function () {
+				$("#unde_bottom_sum").html(sum);
+			});
+			mUndeList.setParseFunction(function (gamesData) {
+				var font = "<font color=white>%ms%</font>";
+				var datas = new Array();
+				var peoCount = gamesData.result;
+				var objList = gamesData.result.list;
+				var len = objList.length;
+				for (var i = 0; i < len; i++) {
+					var objItem = objList[i];
+					var item = new Object();
+					if (objItem.is_agent > 0) {
+						item["undeAcc"] = "<font color=white>" + objItem.name + "&nbsp;&nbsp;&nbsp;<img src=pic/themeMain/commisions.png style=width:27px /></font>";
+					} else {
+						item["undeAcc"] = "<font color=white>" + objItem.name + "</font>";
+					}
+					item["accTime"] = font.replace("%ms%", getTimeZoneE8(8, new Date(objItem.reg_time)).format("yy-MM-dd <br> hh:mm:ss"));
+					if (objItem.is_deposit == 1) {
+						item["loginTime"] = "<font color=white>是</font>";
+					} else {
+						item["loginTime"] = "<font color=red>否</font>";
+					}
+					datas.push(item);
+					sum = peoCount.total + "人";
+				}
+				var returnObj = new Object();
+				returnObj["result"] = new Object();
+				returnObj["result"]["list"] = datas;
+				return returnObj;
+			});
+			mUndeList.setIsLoadMore(true);
+			mUndeList.loadData(SERVER_ADD + "user/getChildUsers", "");
+		}
+	}
+	function leagueDetailsFun() {
+		var mPage = new pageObj("leagueDetailsDiv", "下线会员详情");
+		var commObj = new commGamescountFun(); commObj.init();
+		this.init = function () {
+			mPage.init();
+			$("#leagueDetailsDiv_content").css({ "background-color": mainBackColor });
+			$("#leagueDetailsDiv_content_list").css({ "height": screenH - topH - 45 });
+			$("#leagueDetailsDiv_bottom_0").html("合计");
+			$("#leagueDetailsDiv_bottom_1").html("0");
+			$("#leagueDetailsDiv_bottom_2").html("0.00");
+			$("#leagueDetailsDiv_bottom_3").html("0.00");
+			$("#leagueDetailsDiv_bottom_4").html("0.00");
+		}
+		this.show = function (itemData) {
+			var time = itemData["DataTime"];
+			var winloss = itemData["winandloss"];
+			var costsum = itemData["costsum"];
+			var commsum = itemData["commsum"];
+			mPage.setTitle(time + "下线会员详情");
+			mPage.show(function () {
+			});
+			bindList(time, winloss, costsum, commsum);
+		}
+		function bindList(time, winloss, costsum, commsum) {
+			var sum1 = 0;
+			var sum2 = 0;
+			var sum3 = 0;
+			var sum4 = 0;
+			var columns = [
+				{ "title": "", "code": "a", "width": "5%", "align": "left" },
+				{ "title": "下线会员账号", "code": "undeAcc", "width": "20%", "align": "left" },
+				{ "title": "存款金额", "code": "userDeposit", "width": "20%", "align": "right" },
+				{ "title": "", "code": "b", "width": "5%", "align": "center" },
+				{ "title": "输赢", "code": "lossWin", "width": "20%", "align": "right" },
+				{ "title": "", "code": "c", "width": "5%", "align": "center" },
+				{ "title": "成本", "code": "costSum", "width": "20%", "align": "right" },
+				{ "title": "", "code": "d", "width": "5%", "align": "center" }
+			];
+			var mData = "requestType=json&repMonth=" + time;
+			var mTable = new tTable("leagueDetailsDiv_content_list", columns, 30);
+			mTable.init();
+			mTable.setOutTime(2000);
+			mTable.setItemHeight(45);
+			mTable.setLoadOKFunction(function () {
+				$("#leagueDetailsDiv_bottom_1").html(sum1);
+				$("#leagueDetailsDiv_bottom_2").html(sum2);
+				$("#leagueDetailsDiv_bottom_3").html(sum3);
+				$("#leagueDetailsDiv_bottom_4").html(sum4);
+			});
+			mTable.itemClickFunction(function (dataItem, id) {
+				commObj.show(dataItem);
+			});
+			mTable.setParseFunction(function (datas) {
+				return parseGamesData(datas);
+			});
+			mTable.loadData(SERVER_ADD + "agentUsersRep/getUsersRepByMonth", mData);
+
+			function parseGamesData(gamesData) {
+				var datas = new Array();
+				var objList = gamesData.result.list;
+				var len = objList.length;
+				for (var i = 0; i < len; i++) {
+					var objItem = objList[i];
+					var item = new Object();
+					if (objItem.dt.u_id.is_agent == 1) {
+						item["undeAcc"] = "<font color=white>" + objItem.dt.u_id.name + "&nbsp;<img src=pic/themeMain/commisions.png style=width:27px /></font>";
+					} else {
+						item["undeAcc"] = "<font color=white>" + objItem.dt.u_id.name + "</font>";
+					}
+					item["userName"] = objItem.dt.u_id.name;
+					item["uId"] = objItem.u_id;
+					item["userDeposit"] = doubleValue(objItem.user_deposit);
+					if (objItem.win_loss_sum > 0) {
+						item["lossWin"] = "<font color=#13a1ff>" + doubleValue(objItem.win_loss_sum) + "</font>";
+					} else if (objItem.win_loss_sum < 0) {
+						item["lossWin"] = "<font color=red>" + doubleValue(objItem.win_loss_sum) + "</font>";
+					} else {
+						item["lossWin"] = "<font color=white>" + doubleValue(objItem.win_loss_sum) + "</font>";
+					}
+					item["costSum"] = "<font color=gainsboro>" + doubleValue(objItem.g_cost) + "&nbsp;&nbsp;&nbsp;&nbsp;<img src=pic/themeMain/arrow.png style=width:6px /></font>";
+					sum1 = "<font color=gainsboro>投注人数<br></font><font color=#ffd700>" + len + "</font>";
+					if (winloss > 0) {
+						sum2 = "<font color=gainsboro>总输赢<br></font><font color=#13a1ff>" + winloss + "</font>";
+					} else if (winloss < 0) {
+						sum2 = "<font color=gainsboro>总输赢<br></font><font color=red>" + winloss + "</font>";
+					} else {
+						sum2 = "<font color=gainsboro>总输赢<br></font><font color=white>" + winloss + "</font>";
+					}
+					sum3 = "<font color=gainsboro>总成本<br></font><font color=#ffd700>" + costsum + "</font>";
+					sum4 = "<font color=gainsboro>佣金<br></font><font color=#ffd700>" + commsum + "</font>";
+					item["repTime"] = getTimeZoneE8(timeZone, new Date(objItem.rep_time)).format("yyyy-MM");
+					datas.push(item);
+				}
+				var returnObj = new Object();
+				returnObj["result"] = new Object();
+				returnObj["result"]["list"] = datas;
+				return returnObj;
+			}
+		}
+	}
+	function agentFun() {
+		var mPage = new pageObj("agentCommsDiv", "下线代理详情");
+		this.init = function () {
+			mPage.init();
+			$("#agentCommsDiv_content").css({ "background-color": mainBackColor });
+			$("#agentCommsDiv_content_list").css({ "height": screenH - topH - 45 });
+			$("#agentCommsDiv_bottom_0").html("合计");
+			$("#agentCommsDiv_bottom_1").html("0");
+			$("#agentCommsDiv_bottom_2").html("0.00");
+			$("#agentCommsDiv_bottom_3").html("0.00");
+		}
+		this.show = function (itemData) {
+			var time = itemData["DataTime"];
+			mPage.setTitle(time + "下线代理详情");
+			mPage.show(function () {
+				$("#agentCommsDiv_bottom_1").html("0");
+				$("#agentCommsDiv_bottom_2").html("0.00");
+				$("#agentCommsDiv_bottom_3").html("0.00");
+			});
+			bindList(time, itemData);
+		}
+		function bindList(time, itemData) {
+			var sum1 = 0;
+			var sum2 = 0;
+			var sum3 = 0;
+			var allComs = itemData["allComs"];
+			var Ticoms = itemData["Ticoms"];
+			var columns = [
+				{ "title": "下线代理账号", "code": "agentId", "width": "33%", "align": "center" },
+				{ "title": "代理佣金", "code": "agentComm", "width": "33%", "align": "center" },
+				{ "title": "佣金提成", "code": "commDraw", "width": "33%", "align": "center" },
+			];
+			var mData = "requestType=json&repTime=" + time;
+			var mTable = new tTable("agentCommsDiv_content_list", columns, 30);
+			mTable.init();
+			mTable.setOutTime(2000);
+			mTable.setItemHeight(45);
+			mTable.setLoadOKFunction(function () {
+				$("#agentCommsDiv_bottom_1").html(sum1);
+				$("#agentCommsDiv_bottom_2").html(sum2);
+				$("#agentCommsDiv_bottom_3").html(sum3);
+			});
+			mTable.setParseFunction(function (datas) {
+				return parseGamesData(datas);
+			});
+			mTable.loadData(SERVER_ADD + "coAgentSumByMonth/getChildCoAgentSumByMonths", mData);
+			function parseGamesData(gamesData) {
+				var datas = new Array();
+				var objList = gamesData.result.list;
+				var len = objList.length;
+				for (var i = 0; i < len; i++) {
+					var objItem = objList[i];
+					var item = new Object();
+					item["agentId"] = "<font color=white>" + objItem.dt.u_id.name + "</font>";
+					item["agentComm"] = "<font color=gainsboro>" + doubleValue(objItem.commisions) + "</font>";
+					item["commDraw"] = "<font color=gainsboro>" + doubleValue(objItem.sub_commisions) + "</font>";
+
+					datas.push(item);
+				}
+				sum1 = "<font color=gainsboro>总人数<br></font><font color=#ffd700>" + len + "</font>";
+				sum2 = "<font color=gainsboro>代理总佣金<br></font><font color=#ffd700>" + allComs + "</font>";
+				sum3 = "<font color=gainsboro>佣金提成<br></font><font color=#ffd700>" + Ticoms + "</font>";
+				var returnObj = new Object();
+				returnObj["result"] = new Object();
+				returnObj["result"]["list"] = datas;
+				return returnObj;
+			}
+		}
+	}
+	function gamesFun() {
+		var mPage = new pageObj("gamesDiv", "按游戏统计");
+		this.init = function () {
+			mPage.init();
+			$("#gamesDiv_content").css({ "background-color": mainBackColor });
+			$("#gamesDiv_content_list").css({ "height": screenH - topH - 45 });
+			$("#gamesDiv_bottom_0").html("合计");
+			$("#gamesDiv_bottom_1").html("0.00");
+			$("#gamesDiv_bottom_2").html("0.00");
+		}
+		this.show = function (itemData) {
+			var uId = itemData["u_id"];
+			var repTime = itemData["DataTime"];
+			mPage.setTitle(repTime + "按游戏统计");
+			mPage.show(function () {
+				$("#gamesDiv_bottom_1").html("0.00");
+				$("#gamesDiv_bottom_2").html("0.00");
+			});
+			bindList(uId, repTime);
+		}
+		function bindList(uId, repTime) {
+			var sum1 = 0.00;
+			var sum2 = 0.00;
+			var columns = [
+				{ "title": "游戏类型", "code": "gameType", "width": "33%", "align": "center" },
+				{ "title": "有效投注", "code": "validAmount", "width": "33%", "align": "center" },
+				{ "title": "输赢", "code": "costSum", "width": "33%", "align": "center" },
+			];
+			var mData = "requestType=json&uId=" + uId + "&repMonth=" + repTime;
+			var mTable = new tTable("gamesDiv_content_list", columns, 30);
+			mTable.init();
+			mTable.setOutTime(2000);
+			mTable.setItemHeight(45);
+			mTable.setLoadOKFunction(function () {
+				$("#gamesDiv_bottom_1").html(sum1);
+				$("#gamesDiv_bottom_2").html(sum2);
+			});
+			mTable.setParseFunction(function (datas) {
+				return parseGamesData(datas);
+			});
+			mTable.loadData(SERVER_ADD + "agentOrdersRep/getAgentGamesRepByMonth", mData);
+			function parseGamesData(gamesData) {
+				var datas = new Array();
+				var objList1 = gamesData.result.stats;
+				var objList = gamesData.result.games;
+				var len = objList.length;
+				for (var i = 0; i < len; i++) {
+					var objItem = objList[i].games;
+					for (var j = 0; j < objItem.length; j++) {
+						var gameItem = objItem[j];
+						var item = new Object();
+						item["gameType"] = "<font color=white>" + gameItem.name + "</font>";
+						item["validAmount"] = "<font color=gainsboro>" + doubleValue(gameItem.stats.valid_amount_sum) + "</font>";
+
+						if (gameItem.stats.win_loss_sum > 0) {
+							item["costSum"] = "<font color=#13a1ff>" + doubleValue(gameItem.stats.win_loss_sum) + "</font>";
+						} else if (gameItem.stats.win_loss_sum < 0) {
+							item["costSum"] = "<font color=red>" + doubleValue(gameItem.stats.win_loss_sum) + "</font>";
+						} else {
+							item["costSum"] = "<font color=gainsboro>" + doubleValue(gameItem.stats.win_loss_sum) + "</font>";
+						}
+						datas.push(item);
+					}
+				}
+				sum1 = "<font color=gainsboro>总有效投注<br></font><font color=#ffd700>" + doubleValue(objList1.valid_amount_sum) + "</font>";
+				if (objList1.win_loss_sum > 0) {
+					sum2 = "<font color=gainsboro>总输赢<br></font><font color=#13a1ff>" + doubleValue(objList1.win_loss_sum) + "</font>";
+				} else if (objList1.win_loss_sum < 0) {
+					sum2 = "<font color=gainsboro>总输赢<br></font><font color=red>" + doubleValue(objList1.win_loss_sum) + "</font>";
+				} else {
+					sum2 = "<font color=gainsboro>总输赢<br></font><font color=white>" + doubleValue(objList1.win_loss_sum) + "</font>";
+				}
+				var returnObj = new Object();
+				returnObj["result"] = new Object();
+				returnObj["result"]["list"] = datas;
+				return returnObj;
+			}
+		}
+	}
+	function costFun() {
+		var mPage = new pageObj("costDiv", "成本详情");
+		this.init = function () {
+			mPage.init();
+			$("#costDiv_content").css({ "background-color": pageBgColor });
+			$("#costDiv_content_list").css({ "height": screenH - topH - 45 });
+			$("#costDiv_bottom_0").html("合计");
+			$("#costDiv_bottom_1").html("0.00");
+		}
+		this.show = function (itemData) {
+			var repTime = itemData["DataTime"];
+			var gcost = itemData["g_cost"];
+			var withdrawCost = itemData["withdraw_cost"];
+			var depositCost = itemData["deposit_cost"];
+			var backWater = itemData["backwater"];
+			var costsum = itemData["costsum"];
+			mPage.setTitle(repTime + "成本详情");
+			mPage.show(function () {
+				$("#costDiv_bottom_1").html("0.00");
+			});
+			var str = "<div style='width:100%;height:45;display:flex;background-color:#383838'>";
+			str = str + "<div style='font-size:12px;width:50%;height:100%;color:#999999;display:flex;justify-content: center;align-items:center'>成本类型</div>";
+			str = str + "<div style='font-size:12px;width:50%;height:100%;color:#999999;display:flex;justify-content: center;align-items: center'>成本金额</div>";
+			str = str + "</div>";
+			str = str + "<div style='width:100%;height:10px'></div>";
+
+			str = str + "<div style='width:100%;height:45;display:flex;background-color:#383838'>";
+			str = str + "<div style='font-size:12px;width:50%;height:100%;color:gainsboro;display:flex;justify-content: center;align-items:center'>游戏成本</div>";
+			str = str + "<div style='font-size:12px;width:50%;height:100%;color:gainsboro;display:flex;justify-content: center;align-items: center'>" + gcost + "</div>";
+			str = str + "</div>";
+			str = str + "<div style='width:100%;height:1px'></div>";
+
+			str = str + "<div style='width:100%;height:45;display:flex;background-color:#383838'>";
+			str = str + "<div style='font-size:12px;width:50%;height:100%;color:gainsboro;display:flex;justify-content: center;align-items:center'>存款成本</div>";
+			str = str + "<div style='font-size:12px;width:50%;height:100%;color:gainsboro;display:flex;justify-content: center;align-items: center'>" + depositCost + "</div>";
+			str = str + "</div>";
+			str = str + "<div style='width:100%;height:1px'></div>";
+
+			str = str + "<div style='width:100%;height:45;display:flex;background-color:#383838'>";
+			str = str + "<div style='font-size:12px;width:50%;height:100%;color:gainsboro;display:flex;justify-content: center;align-items:center'>取款成本</div>";
+			str = str + "<div style='font-size:12px;width:50%;height:100%;color:gainsboro;display:flex;justify-content: center;align-items: center'>" + withdrawCost + "</div>";
+			str = str + "</div>";
+			str = str + "<div style='width:100%;height:1px'></div>";
+
+			str = str + "<div style='width:100%;height:45;display:flex;background-color:#383838'>";
+			str = str + "<div style='font-size:12px;width:50%;height:100%;color:gainsboro;display:flex;justify-content: center;align-items:center'>返水成本</div>";
+			str = str + "<div style='font-size:12px;width:50%;height:100%;color:gainsboro;display:flex;justify-content: center;align-items: center'>" + backWater + "</div>";
+			str = str + "</div>";
+			str = str + "<div style='width:100%;height:1px'></div>";
+			$("#costDiv_content_list").html(str);
+
+			$("#costDiv_bottom_1").html("<font color=#ffd700>" + doubleValue(costsum) + "</font>");
+		}
+	}
+	function commGamescountFun() {
+		var mPage = new pageObj("commGamesDiv", "按游戏统计");
+		var repTime;
+		var cName;
+		var uId;
+		this.init = function () {
+			mPage.init();
+			$("#commGamesDiv_content").css({ "background-color": mainBackColor });
+			$("#commGamesDiv_top_list").css({ "background-color": mainBackColor });
+			$("#commGamesDiv_content_list").css({ "height": screenH - topH - 45 - 45 - 10 });
+			$("#commGamesDiv_bottom_0").html("合计");
+			$("#commGamesDiv_bottom_1").html("0.00");
+			$("#commGamesDiv_bottom_2").html("0.00");
+			$("#commGamesDiv_bottom_3").html("0.00");
+		}
+		this.show = function (dataItem) {
+			cName = dataItem["userName"];
+			uId = dataItem["uId"];
+			repTime = dataItem["repTime"];
+			console.log("commGamescount uId: " + uId);
+			$("#commGamesDiv_top_0").html("下线会员账号:" + cName);
+			$("#commGamesDiv_top_1").html("时间:" + repTime);
+			mPage.setTitle("按游戏统计");
+			mPage.show(function () {
+				$("#commGamesDiv_bottom_1").html("0.00");
+				$("#commGamesDiv_bottom_2").html("0.00");
+				$("#commGamesDiv_bottom_3").html("0.00");
+			});
+			bindList(uId, repTime);
+		}
+		function bindList(uId, repTime) {
+			var sum1 = 0.00;
+			var sum2 = 0.00;
+			var sum3 = 0.00;
+			var sum4 = 0.00;
+			var columns = [
+				{ "title": "游戏类型", "code": "gameType", "width": "25%", "align": "center" },
+				{ "title": "投注", "code": "amount", "width": "25%", "align": "center" },
+				{ "title": "有效投注", "code": "validAmount", "width": "25%", "align": "center" },
+				{ "title": "输赢", "code": "costSum", "width": "25%", "align": "center" },
+			];
+			var mData = "requestType=json&uId=" + uId + "&repMonth=" + repTime;
+			var mTable = new tTable("commGamesDiv_content_list", columns, 30);
+			mTable.init();
+			mTable.setOutTime(2000);
+			mTable.setItemHeight(45);
+			mTable.setLoadOKFunction(function () {
+				$("#commGamesDiv_bottom_1").html(sum1);
+				$("#commGamesDiv_bottom_2").html(sum2);
+				$("#commGamesDiv_bottom_3").html(sum3);
+			});
+			mTable.setParseFunction(function (datas) {
+				return parseGamesData(datas);
+			});
+			mTable.loadData(SERVER_ADD + "agentUsersRep/getUserGamesRepByMonth", mData);
+			function parseGamesData(gamesData) {
+				var datas = new Array();
+				var objList1 = gamesData.result.stats;
+				var objList = gamesData.result.games;
+				var len = objList.length;
+				for (var i = 0; i < len; i++) {
+					var objItem = objList[i].games;
+					for (var j = 0; j < objItem.length; j++) {
+						var gameItem = objItem[j];
+						var item = new Object();
+						item["gameType"] = "<font color=white>" + gameItem.name + "</font>";
+						item["amount"] = "<font color=white>" + doubleValue(gameItem.stats.stake_amount_sum) + "</font>";
+						item["validAmount"] = "<font color=gainsboro>" + doubleValue(gameItem.stats.valid_amount_sum) + "</font>";
+
+						if (gameItem.stats.win_loss_sum > 0) {
+							item["costSum"] = "<font color=#13a1ff>" + doubleValue(gameItem.stats.win_loss_sum) + "</font>";
+						} else if (gameItem.stats.win_loss_sum == 0) {
+							item["costSum"] = "<font color=gainsboro>" + doubleValue(gameItem.stats.win_loss_sum) + "</font>";
+						} else {
+							item["costSum"] = "<font color=red>" + doubleValue(gameItem.stats.win_loss_sum) + "</font>";
+						}
+						datas.push(item);
+					}
+				}
+				sum1 = "<font color=gainsboro>投注<br></font><font color=#ffd700>" + doubleValue(objList1.stake_amount_sum) + "</font>";
+				sum2 = "<font color=gainsboro>有效投注<br></font><font color=#ffd700>" + doubleValue(objList1.valid_amount_sum) + "</font>";
+				if (objList1.win_loss_sum > 0) {
+					sum3 = "<font color=gainsboro>总输赢<br></font><font color=#13a1ff>" + doubleValue(objList1.win_loss_sum) + "</font>";
+				} else if (objList1.win_loss_sum < 0) {
+					sum3 = "<font color=gainsboro>总输赢<br></font><font color=red>" + doubleValue(objList1.win_loss_sum) + "</font>";
+				} else {
+					sum3 = "<font color=gainsboro>总输赢<br></font><font color=white>" + doubleValue(gameItem.stats.win_loss_sum) + "</font>";
+				}
+				var returnObj = new Object();
+				returnObj["result"] = new Object();
+				returnObj["result"]["list"] = datas;
+				return returnObj;
+			}
+		}
+	}
+</script>

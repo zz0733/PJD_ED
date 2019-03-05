@@ -1,0 +1,869 @@
+<div style="width: 100%;display: flex;flex-direction: column;justify-content: flex-start;align-items: center;">
+    <div style="height: 40px;background-color: #2A2A2A;width: 100%;display: flex;justify-content: space-between;align-items: center">
+        <div id="league_menu_commission" class="league_menu_class" style="height: 40px;width: 50%;justify-content: center;align-items: center;display: flex">
+            佣金
+        </div>
+        <div id="league_menu_unde" class="league_menu_class" style="height: 40px;width: 50%;justify-content: center;align-items: center;display: flex">
+            下线
+        </div>
+        <div id="league_menu_one" class="league_menu_class" style="height: 40px;width: 50%;justify-content: center;align-items: center;display: flex">
+            分享
+        </div>
+        <div id="league_menu_two" class="league_menu_class" style="height: 40px;width: 50%;justify-content: center;align-items: center;display: flex">
+            介绍
+        </div>
+        <div id="league_menu_three" class="league_menu_class" style="height: 40px;width: 50%;justify-content: center;align-items: center;display: flex">
+            帮助
+        </div>
+    </div>
+    <div style="width: 100%;height: 2px;background-color: #000000;display: flex;justify-content: center;align-items: center">
+        <div style="width: 20%; height: 100%" id="league_menu_commission_select" class="league_menu_select_class"></div>
+        <div style="width: 20%; height: 100%" id="league_menu_unde_select" class="league_menu_select_class"></div>
+        <div style="width: 20%; height: 100%" id="league_menu_one_select" class="league_menu_select_class"></div>
+        <div style="width: 20%; height: 100%" id="league_menu_two_select" class="league_menu_select_class"></div>
+        <div style="width: 20%; height: 100%" id="league_menu_three_select" class="league_menu_select_class"></div>
+    </div>
+    <div id="leagueContent" style="overflow-x: hidden;overflow-y: auto;width: 100%;display: flex;flex-direction: column;justify-content: flex-start;align-items: center;">
+        <div id="league_commission" style="width: 100%;height: 100%;display: block;background: #2A2A2A">
+            <div id="league_commission_content_select" style="width: 100%;height: 45px;display: flex;justify-content: center;align-items: center">
+                <div id="league_commission_timeSelect"></div>
+            </div>
+            <div style="height: 10px;width: 100%"></div>
+            <div id="league_commission_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto"></div>
+            <div id="league_commission_bottom" style="height: 45px;width: 100%;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;padding: 10px;box-sizing: border-box">
+                <div id="league_commission_bottom_left" style="width: 50%;text-align: left;font-size: 14px">
+                    <font color=#939393>合计有效投注</font>
+                    <br>
+                    <font color=#EB6734>0元</font>
+                </div>
+                <div id="league_commission_bottom_right" style="width: 50%;text-align: right;font-size: 14px">
+                    <font color=#939393>合计返佣</font>
+                    <br>
+                    <font color=#EB6734>0元</font>
+                </div>
+            </div>
+        </div>
+        <div id="league_unde" style="width: 100%;height: 100%;display: block;background: #2A2A2A">
+            <div id="league_unde_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto"></div>
+            <div id="league_unde_bottom" style="height: 45px;width: 100%;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;padding: 10px;box-sizing: border-box">
+                <div style="width: 50%;text-align: left;font-size: 14px;color: #939393">合计下线会员数</div>
+                <div id="league_unde_right" style="width: 50%;text-align: right;font-size: 14px;font-weight: bold;color: #EB6734">0人</div>
+            </div>
+        </div>
+        <div id="league_one" style="display: flex;width: 100%;flex-direction: column;justify-content: flex-start;align-items: center;">
+
+            <div id="leagueTwoTypeTwoImgId" style="background: url(pic/themeMain/leagueTypeTwo.png);height: 150px;width: 100%;background-size:cover;flex-shrink: 0">
+            </div>
+
+            <div id="leagueNoteContent" style="flex-shrink: 0;flex-direction: column;justify-content: flex-start;align-items: center;display: flex">
+                <div style="height: 20px;flex-shrink: 0"></div>
+                <div id="leagueRequestBtn" style="flex-shrink: 0;border-radius: 20px;width: 90%;height: 40px;display: flex;justify-content: center;align-items: center;font-size: 14px;color: #ffffff ">
+                    申请成为合作人
+                </div>
+                <div style="height: 40px;flex-shrink: 0"></div>
+
+                <div id="agentRankListDiv" style="width: 100%;height: 200px;flex-shrink: 0;display: none;justify-content: flex-start;align-items: center;flex-direction: column">
+
+                    <div style="position: relative;width: 100%;height: 5px;background-color: #e1a54f;flex-shrink: 0"></div>
+
+                    <div style="position: relative;display: flex;justify-content: space-between;align-items: center;width: 100%;height: 190px;background-color: #2a2a2a;flex-shrink: 0">
+                        <div style="width:20%;display: flex;justify-content: center;align-items: center;flex-direction: column">
+                            <div style="width: 100%;height: 60px;display: flex;justify-content: center;align-items:flex-end">
+                                <img src="pic/agentNumberOne.png" style="width: 50%" />
+                            </div>
+                            <div style="height: 3px;"></div>
+                            <div id="agentOneMoney" style="display: flex;justify-content: center;align-items: center;width: 100%;height: 25px;background-color: #000000;font-size: 12px;color: #e1a54f">
+                                12345678
+                            </div>
+                            <div style="height: 8px;"></div>
+                            <div style="width: 100%;display: flex;justify-content: center;align-items: center">
+                                <img id="agentHeaderOne" src="header/B_001.jpg" style="width: 50px;border-radius: 25px" />
+                            </div>
+                            <div style="height: 3px;"></div>
+                            <div id="agentNameOne" style="font-size: 10px;color: #cccccc;display: flex;justify-content: center;align-items: center">
+                                hhAn**jj
+                            </div>
+                        </div>
+                        <div style="height: 100%;width: 1px; background-color: #413328"></div>
+
+                        <div style="width:20%;display: flex;justify-content: center;align-items: center;flex-direction: column">
+                            <div style="width: 100%;height: 60px;display: flex;justify-content: center;align-items:flex-end">
+                                <img src="pic/agentNumberTwo.png" style="width: 50%" />
+                            </div>
+                            <div style="height: 3px;"></div>
+                            <div id="agentTwoMoney" style="display: flex;justify-content: center;align-items: center;width: 100%;height: 25px;background-color: #000000;font-size: 12px;color: #ffffff">
+                                12345678
+                            </div>
+                            <div style="height: 8px;"></div>
+                            <div style="width: 100%;display: flex;justify-content: center;align-items: center">
+                                <img id="agentHeaderTwo" src="header/B_002.jpg" style="width: 50px;border-radius: 25px" />
+                            </div>
+                            <div style="height: 3px;"></div>
+                            <div id="agentNameTwo" style="font-size: 10px;color: #cccccc;display: flex;justify-content: center;align-items: center">
+                                hhAn**jj
+                            </div>
+                        </div>
+
+                        <div style="height: 100%;width: 1px; background-color: #413328"></div>
+
+                        <div style="width:20%;display: flex;justify-content: center;align-items: center;flex-direction: column">
+                            <div style="width: 100%;height: 60px;display: flex;justify-content: center;align-items:flex-end">
+                                <img src="pic/agentNumberThree.png" style="width: 50%" />
+                            </div>
+                            <div style="height: 3px;"></div>
+                            <div id="agentThreeMoney" style="display: flex;justify-content: center;align-items: center;width: 100%;height: 25px;background-color: #000000;font-size: 12px;color: #e1a54f">
+                                12345678
+                            </div>
+                            <div style="height: 8px;"></div>
+                            <div style="width: 100%;display: flex;justify-content: center;align-items: center">
+                                <img id="agentHeaderThree" src="header/B_003.jpg" style="width: 50px;border-radius: 25px" />
+                            </div>
+                            <div style="height: 3px;"></div>
+                            <div id="agentNameThree" style="font-size: 10px;color: #cccccc;display: flex;justify-content: center;align-items: center">
+                                hhAn**jj
+                            </div>
+                        </div>
+                        <div style="height: 100%;width: 1px; background-color: #413328"></div>
+
+                        <div style="width:20%;display: flex;justify-content: center;align-items: center;flex-direction: column">
+                            <div style="width: 100%;height: 60px;display: flex;justify-content: center;align-items:flex-end">
+                                <img src="pic/agentNumberFour.png" style="width: 40%" />
+                            </div>
+                            <div style="height: 3px;"></div>
+                            <div id="agentFourMoney" style="display: flex;justify-content: center;align-items: center;width: 100%;height: 25px;background-color: #000000;font-size: 12px;color: #ffffff">
+                                12345678
+                            </div>
+                            <div style="height: 8px;"></div>
+                            <div style="width: 100%;display: flex;justify-content: center;align-items: center">
+                                <img id="agentHeaderFour" src="header/B_004.jpg" style="width: 50px;border-radius: 25px" />
+                            </div>
+                            <div style="height: 3px;"></div>
+                            <div id="agentNameFour" style="font-size: 10px;color: #cccccc;display: flex;justify-content: center;align-items: center">
+                                hhAn**jj
+                            </div>
+                        </div>
+
+                        <div style="height: 100%;width: 1px; background-color: #413328"></div>
+
+                        <div style="width:20%;display: flex;justify-content: center;align-items: center;flex-direction: column">
+                            <div style="width: 100%;height: 60px;display: flex;justify-content: center;align-items:flex-end">
+                                <img src="pic/agentNumberFive.png" style="width: 40%" />
+                            </div>
+                            <div style="height: 3px;"></div>
+                            <div id="agentFiveMoney" style="display: flex;justify-content: center;align-items: center;width: 100%;height: 25px;background-color: #000000;font-size: 12px;color: #e1a54f">
+                                12345678
+                            </div>
+                            <div style="height: 8px;"></div>
+                            <div style="width: 100%;display: flex;justify-content: center;align-items: center">
+                                <img id="agentHeaderFive" src="header/B_005.jpg" style="width: 50px;border-radius: 25px" />
+                            </div>
+                            <div style="height: 3px;"></div>
+                            <div id="agentNameFive" style="font-size: 10px;color: #cccccc;display: flex;justify-content: center;align-items: center">
+                                hhAn**jj
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div style="position: relative;width: 100%;height: 5px;background-color: #e1a54f;flex-shrink: 0"></div>
+
+                    <div style="top: -215px;position: relative;flex-shrink: 0">
+                        <img src="pic/agentGold.png" style="height: 30px;" />
+                    </div>
+
+                    <div style="top: -242px;flex-shrink: 0;height: 15px;font-size: 12px;color: #000000;position: relative;display: flex;justify-content: center;align-items: center">
+                        今日洗码返水排行榜
+                    </div>
+
+                </div>
+
+                <div style="height: 20px;flex-shrink: 0"></div>
+                <div style="font-size: 14px;color: #cccccc;line-height: 150%;width: 90%;flex-shrink: 0">
+
+                    如果您周围的朋友喜爱博彩游戏，拥有一定数量的客户群和良好的人际关系，您即可马上加入成为我们的洗码联盟合作人，合作无风险，您的会员投注您即可产生相应的洗码返点。
+                    <br>
+                    <br> 邀请来的对象可以享有一级的洗码奖励，而邀请来的对象再介绍的还可享受二级的洗码奖励，然而奖励还并没有结束！二级好友介绍来的好友还可再享有三级的现金奖励！
+
+                </div>
+
+            </div>
+            <div style="height: 20px;flex-shrink: 0;"></div>
+            <div id="league_note" style="flex-shrink: 0;width: 90%;display: flex;flex-direction: column;justify-content: flex-start;align-items: center;background-color: #2A2A2A">
+                <div name="p" class="league_commission_tone" style="flex-shrink: 0;height: 30px;width: 100%;display: flex;justify-content: center;align-items: center;font-size: 12px;color: #ff5e1b">
+                    两种便利的方式把{{ message }}App分享给您的下属会员
+                </div>
+                <div style="flex-shrink: 0;width: 100%;display: flex;justify-content: center;align-items: center">
+                    <div style="flex-shrink: 0;color: #cccccc;width: 50%;font-size: 14px;display: flex;flex-direction: column;justify-content: flex-start;align-items: center">
+                        <div style="flex-shrink: 0;font-size: 12px">让TA扫描</div>
+                        <div>您的专属二维码</div>
+                        <img id="leagueQrCodeImgId" src="pic/themeMain/leagueQrCode.png" style="width: 80%" />
+                    </div>
+                    <div style="flex-shrink: 0;color: #cccccc;width: 50%;display: flex;flex-direction: column;justify-content: flex-start;align-items: center">
+                        <div style="font-size: 12px">让TA点击</div>
+                        <div>您的专属链接</div>
+                        <img id="leagueLinkImgId" src="pic/themeMain/leagueLink.png" style="width: 80%" />
+                    </div>
+                </div>
+                <div style="height: 40px;"></div>
+            </div>
+            <div id="league_note_real" style="flex-shrink: 0;width: 90%;display: none;flex-direction: column;justify-content: flex-start;align-items: center;">
+                <div id="league_note_real_note" style="height: 30px;font-size: 12px;color: #cccccc;flex-shrink: 0;display: flex;justify-content: center;align-items: center">
+                    <p name="p">两种方式立即把{{ message }}App分享给您的下属会员</p>
+                </div>
+                <div style="height: 10px;flex-shrink: 0"></div>
+                <div style="flex-shrink:0;width:95%;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;background-color: #2A2A2A">
+                    <div class="league_commission_tone" style="flex-shrink: 0;width: 100%;height: 30px;display: flex;justify-content: center;align-items: center;font-size: 16px;color: #ff5e1b">
+                        方式① 您的专属二维码
+                    </div>
+                    <div style="flex-shrink: 0;width: 100%;height: 25px;display: flex;justify-content: center;align-items: center;font-size: 12px;color: #cccccc">
+                        下属直接扫描二维码或者发送二维码图片给会员
+                    </div>
+                    <div style="flex-shrink: 0;width: 100%;display: flex;justify-content: center;align-items: center;font-size: 12px;color: #cccccc">
+                        <img id="agentQrCodeImg" src="" style="flex-shrink: 0;width: 60%" />
+                    </div>
+                    <div style="height: 10px;flex-shrink: 0"></div>
+                </div>
+                <div style="height: 10px;flex-shrink: 0"></div>
+
+                <div style="flex-shrink:0;width:95%;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;background-color:#2A2A2A">
+                    <div class="league_commission_tone" class="league_commission_tone" style="flex-shrink: 0;width: 100%;height: 30px;display: flex;justify-content: center;align-items: center;font-size: 16px;color: #ff5e1b">
+                        方式② 您的专属链接
+                    </div>
+                    <div style="flex-shrink: 0;width: 100%;height: 25px;display: flex;justify-content: center;align-items: center;font-size: 12px;color: #cccccc">
+                        复制下方链接发送给您的下属会员
+                    </div>
+                    <div id="agentLink" style="flex-shrink: 0;width: 100%;height: 25px;display: flex;justify-content: center;align-items: center;font-size: 12px;color: #cccccc">
+                        XXXXXXXX
+                    </div>
+                    <div style="width: 100%;display: flex;justify-content: center;align-items: center">
+                        <div id="agentCopyLinkBtn" style="flex-shrink: 0;width:40%;height: 30px;display: flex;justify-content: center;align-items: center;font-size: 14px;color: #ffffff;border-radius: 15px;background-color: #4189dd">
+                            复制链接
+                        </div>
+                    </div>
+                    <div style="height: 10px;flex-shrink: 0"></div>
+                </div>
+
+                <div style="height: 40px;flex-shrink: 0"></div>
+            </div>
+        </div>
+        <div id="league_two" style="flex-shrink: 0;font-size: 12px;flex-direction: column;color: #cccccc;width: 100%;display: flex;justify-content: center;align-items: center">
+            <div style="height: 20px;flex-shrink: 0"></div>
+            <div style="width: 90%;flex-shrink: 0">
+                呼朋唤友一起玩耍吧！三级返利，返利多多，佣金多多！
+                <br>
+                <br> 如果您周围的朋友喜爱博彩游戏，拥有一定数量的客户群和良好的人际关系，您即可马上加入成为我们的洗码联盟合作人，合作无风险，您的会员投注您即可产生相应的洗码返点。邀请来的对象可以享有一级的洗码奖励，而邀请来的对象再介绍的还可享受二级的洗码奖励，然而奖励还并没有结束！二级好友介绍来的好友还可再享有三级的现金奖励！
+                <br>
+                <br>
+
+                <img id="leagueTwoNoteImgId" src="pic/themeMain/leagueTwoNote.png" style="width: 100%" />
+
+                <br>
+                <br> 洗码联盟合作人（我）可以获得一级好友有效投注额的0.1%，可获得二级好友有效投注额的0.03%，又可再获得三级好友有效投注额的0.02%
+                <br>
+                <br> 例子：
+                <br>
+                <br> 推荐了10个人（我），每人投注额100000，比率0.1% ，返利1000；
+                <br>
+                <br> 10个人（一级），分别每人又推荐了10个人（二级），那么就是100个（二级），每人投注了100,000，比率0.03%，返利3000；
+                <br>
+                <br> 100个（二级），每人又推荐了10个人（三级），那么就是1000个（三级），每人投注了100,000，比率0.02%，返利共20000 。
+                <br>
+                <br> 所以你只需要推荐10个人，这10个人分别在推荐10个人，以此类推那么按照三级分销裂变模式来算，你的一、二、三级下线为您创造了共计利润：24000
+                <br>
+                <br>
+                <br>
+
+
+
+
+                <br>
+                <br>
+                <br>
+
+            </div>
+        </div>
+        <div id="league_three" style="display: flex;width: 100%;flex-direction: column;justify-content: flex-start;align-items: center;">
+            <div style="height: 10px;;flex-shrink: 0"></div>
+            <div style="width:100%;height: 50px;display: flex;justify-content: center;align-items: center;flex-shrink: 0">
+                <div id="league_three_menu_1" style="border-top-left-radius: 15px;border-bottom-left-radius: 15px;height: 30px;;color: #ffffff;width:45%;display: flex;justify-content: center;align-items: center;background-color: #ff5e1b">
+                    常见问题
+                </div>
+                <div id="league_three_menu_2" style="border-top-right-radius: 15px;height: 30px;;border-bottom-right-radius: 15px;color: #ffffff;width:45%;display: flex;justify-content: center;align-items: center;background-color: #ff5e1b">
+                    规则条款
+                </div>
+            </div>
+            <div style="height: 10px;flex-shrink: 0"></div>
+            <div id="league_three_content" style="width:90%;overflow-x: hidden;overflow-y: auto;flex-shrink: 0">
+                <div id="league_three_menu_1_content" style="width:90%;font-size: 12px;color: #cccccc;line-height: 150%;flex-shrink: 0">
+
+                    <h3 name="p" style="color: #ff5e1b">{{ message }}洗码联盟合作计划是怎么回事？</h3>
+
+                    如果您周围的朋友喜爱博彩游戏，拥有一定数量的客户群和良好的人际关系，您即可马上加入成为我们的洗码联盟合作人，邀请来的对象根据有效投注额得到相应比例的返利，除了一级对象，还可以获得二级对象，三级对象投注额相应比例的返利。
+
+
+                    <br>
+                    <br>
+                    <h3 name="p" style="color: #ff5e1b">加入{{ message }}联盟合作计划是否需要先交纳保证金？</h3>
+                    <p name="p">不需要，加入{{ message }}合作项目不以交纳保证金为条件，它是一个零投入的项目。
+                        <br>
+                        <br>
+                    </p>
+
+
+
+                    <h3 name="p" style="color: #ff5e1b">为什么要加入{{ message }}洗联盟合作计划？</h3>
+                    <p name="p">{{ message }}为洗码联盟合作伙伴提供最佳的合作回报，三级返利，返利多多；
+                        <br> {{ message }}洗码联盟合作伙伴每天结算，无须申请；
+                        <br> {{ message }}有专业的合作部门团队来协助联盟合作伙伴业务上的问题；
+                        <br> {{ message }}为合作伙伴提供最为便捷的咨询服务通道随时提供服务。
+
+
+
+
+
+
+
+
+
+
+                        <br>
+                        <br>
+                    </p>
+                    <h3 name="p" style="color: #ff5e1b">是否需要有一个网站才可以加入{{ message }}联盟合作计划？</h3>
+                    通常情况下，合作者都是用自己网站作为推广媒介，使用网站去推广效果更佳。但如果您有其他的推广渠道，我们也同样欢迎您的加入。
+                    <br>
+                    <br>
+                    <h3 name="p" style="color: #ff5e1b">如何开始推广{{ message }}？</h3>
+                    <p name="p">将二维码发送给你的朋友扫描注册或通过您的网站链接到{{ message }}（我们会提供一条您的专属链接）。 无论您使用何种方式进行推广，会员必须通过我们为您提供的链接点击注册才会被跟踪记录。 如果我有多个网站或渠道想要推广怎么办？
+                        实际上您推广的范围越广，带来的绩效肯定也越好。我们为您提供的链接适用于您在多个网站进行放置。但不接受相同的个人、群体或机构开设多个合作账户。
+                        <br>
+                        <br>
+                    </p>
+                    <h3 style="color: #ff5e1b">如何查看推广业绩？</h3>
+                    只需登入系统，系统中提供了各类详细的统计报表，可方便的掌握您的推广情况。
+                    <br>
+                    <br>
+                    <h3 style="color: #ff5e1b">如何界定推荐的有效性？</h3>
+
+
+                    <p name="p"> 所推荐的会员注册时间须在您正式成为联盟合作伙伴之后； 所推荐的会员在{{ message }}的帐号为可以正常使用的帐号，即帐号为真实有效，激活状态且该帐号是此会员在{{ message }}的唯一帐号；
+                        洗码联盟合作伙伴本人的投注帐户不能纳入其合作业务的范畴； 所推荐的会员未成为其他合作伙伴的推荐会员,若有两个或以上联盟合作伙伴推荐同一会员,以{{ message }}的判定为准。
+
+
+
+                        <br>
+                        <br>
+                    </p>
+                    <h3 style="color: #ff5e1b">如何申请佣金提款？</h3>
+
+                    <p name="p">{{ message }}会按天计算洗码佣金, 根据本合作协议为防止佣金套利与欺诈行为, 我们有权力在佣金注入前, 进行合作帐户审核。
+
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </p>
+                </div>
+                <div id="league_three_menu_2_content" style="width:90%;font-size: 12px;color: #cccccc;line-height: 150%;flex-shrink: 0">
+
+
+
+
+
+
+
+
+                    <h2 style="color: #ff5e1b">洗码联盟合作规则与条款</h1>
+
+                        <p name="p">这份合约书中包括了{{ message }}及各机构(联盟合作伙伴)于{{ message }}联盟合作计划中须遵守的条约，在合约书中“会员”是指在{{ message }}新开户及存入款项的客户。
+                            <br>
+                            <br> 1. 登记申请联盟合作伙伴计划
+                            <br> 2. {{ message }}的权利和义务
+                            <br> 3. 联盟合作伙伴的权利和义务
+                            <br> 4. 条件及终止合约
+                            <br> 5. 洗码联盟合作伙伴关系
+                            <br> 6. 保护
+                            <br> 7. 不索赔声明
+                            <br> 8. 有限责任
+                            <br> 9. 独立投资
+                            <br> 10. 法例监管
+                            <br> 11. 遵守
+                            <br> 12. 修订权限
+                            <br> 13. 补救条款
+                            <br> 14. 撤销
+                            <br>
+                            <br>
+                        </p>
+
+                        <h3 style="color: #ff5e1b">一. 登记申请联盟合作伙伴计划</h3>
+                        <h4 name="p">1.1 {{ message }}评估申请</h4>
+                        <p name="p">在开通程中，申请者须在{{ message }}的网站上有过投注和绑定银行卡，经{{ message }}评估后通过审核即可开通。
+                            <br>
+                        </p>
+                        <h4>1.2 不适合的注册申请</h4>
+                        通常情况下，申请合作需要有适合开展合作业务的网站。如果我们决定(仅出于我们单方面的考虑) 申请者的网站或机构团体，或个人不适合与我们合作，我们可能不会通过申请，对于已经通过了申请的，我们也可能无条件的随时终止合作。不适合的情况包括但不局限于：宣传对象为儿童的、色情的、宣传暴力的、宣传歧视的(包括种族、性别、宗教、民族、残疾、性取向、或年龄等)、宣传非法活动或侵犯知识产权权益等。
+                        <br>
+                        <h4>1.3 重复合作账户</h4>
+                        <p name="p">联盟合作伙伴不能在没有{{ message }}的书面通知或许可情况下开设多于一个的合作账户，更不能假借不同的身份操控多个合作帐户，{{ message }}有权根据迹象判定相关联的合作账户，如违返上述事项，{{
+                            message }}有权终止所有现在及将来该合作伙伴的所有佣金并取消其合作账户。
+                            <br>
+                        </p>
+                        <h3 name="p" style="color: #ff5e1b">二. {{ message }}权利与义务</h3>
+                        <h4>2.1 登记合作伙伴的会员</h4>
+                        <p name="p">{{ message }}会登记阁下的会员及会观察他们的交易。联盟合作伙伴推荐的会员必须首先符合以下条件才有可能被认可： 通过点击我们给您的专用链接或专用二维码进入到{{ message }}注册的会员；
+                            会员必须是新会员，新会员是指该会员在被推荐之前从未在{{ message }}有过任何帐号和记录； 会员在{{ message }}只能拥有唯一的账号； 会员没有同时具有“被推荐的会员”与“联盟合作伙伴”两种身份；
+                            会员在{{ message }}开设的账户，必须同意{{ message }}所注明的会员条例，政策及操作程序，如{{ message }}认为有必要，可以保留拒绝或暂定不合格会员户口的权利。{{
+                            message }}有权对合作伙伴所推荐的会员随时进行审核和复核，有权要求会员提供有效的证明文件，以供{{ message }}验证会员的身份。
+                            <br>
+                        </p>
+                        <h4>2.2 观察会员的下注情况</h4>
+                        <p name="p">{{ message }}将跟踪会员的交易，并根据会员的户口提供报告及计算合作伙伴的佣金。如因人为失误或系统故障导致统计错误，{{ message }}有权取消和修正。
+                            <br>
+                        </p>
+                        <h4>2.3 佣金支付</h4>
+                        <p name="p">根据{{ message }}联盟合作条款与佣金计算准则，对符合条件的合作伙伴支付佣金。
+                            <br>
+                        </p>
+                        <h4>2.4 修改</h4>
+                        <p name="p">{{ message }}拥有在任何时间修改合约书所有条款的权利，包括：现有的佣金范围、佣金计划、付款程序、及参考计划条例等。修改完成之后，{{ message }}会以电邮、在网站发布通知或新合约等方式通知联盟合作伙伴。请随时留意合作规则与条款的更新,
+                            如果合作伙伴不接受任何修改，合作伙伴可选择终止合约。如果修改之后，合作伙伴没有任何异议，便视作默认接受所有修改，那么合作伙伴便必须遵守更改内容所列举的所有事项。
+                        </p>
+
+                        <h3 style="color: #ff5e1b">三. 联盟合作伙伴的权利与义务</h3>
+                        <h4>3.1 域名</h4>
+                        <p name="p">联盟合作伙伴应该避免注册或使用任何与{{ message }}的名称相同或相似的，或其他任何可能被理解为指向{{ message }}名称的域名。
+                            <br>
+                        </p>
+                        <h4 name="p">3.2 建立链接到{{ message }}的网站</h4>
+                        <p name="p">如果您同意参与此合作项目，并已经通过了我们的评估，那么您必须使用{{ message }}提供的专用链接，且必须通过我们提供或认可的标识、电子邮件、文章或文字等宣传内容链接到{{ message
+                            }}的网站。这是您推广{{ message }}的唯一途径，此外，若您想要放置链接在其他任何地方，必须经由{{ message }}的同意。
+                            <br>
+                        </p>
+                        <h4>3.3 最低业绩标准</h4>
+                        <p name="p">所有{{ message }}的合作伙伴需要保持每月至少有5个有效的投注会员(如某个会员当月在彩票、棋牌、真人、体育等均有投注，只算做1个投注会员)，任何联盟合作伙伴如达不到该标准，将不能获取佣金，同时，{{
+                            message }}有权终止与其合作。 这里指的“有效”投注会员必须符合条款2.1(登记联盟合作伙伴的会员)中的要求，且成功存款投注于彩票、棋牌、真人、体育等产品,此外如果我们发现有利用我们的网站和合作业务，进行对冲交易套利或以小额投注账户维持5个投注会员而获取佣金等非正常合作现象，这些现象的判定仅仅依据{{
+                            message }}自身的审核判定，不接受任何申辩，也无论联盟合作伙伴知情或不知情，{{ message }}都有权利采取任何措施，这些措施包括但不局限于取消合作伙伴佣金、终止合作等。
+                            <br>
+                        </p>
+                        <h4>3.4 正当投注</h4>
+                        <p name="p">您的会员不得使用任何设备，自动设备，软件，程序或类似的其它方法进行非正当投注，这些现象的判定仅仅依据{{ message }}自身的审核判定，不接受任何申辩，也无论合作伙伴知情或不知情，{{ message
+                            }}都有权利采取任何措施，这些措施包括但不局限于取消合作伙伴佣金、终止合作等。
+                            <br>
+                        </p>
+                        <h4>3.5 垃圾邮件</h4>
+                        <p name="p">联盟合作伙伴不得在没有{{ message }}要求和授权之下发邮件给大批量地址或以任何其他方式宣传我们的服务，否则，我们将无条件立即终止与其合作。您不可以要求我们给出任何声明或承诺，同时，您也没有任何权利将我们约束在任何义务之下。
+                            <br>
+                        </p>
+                        <h4>3.6 品牌词的限制</h4>
+                        <p name="p">联盟合作伙伴不能注册或使用任何与{{ message }}商业商标相同或类似的关键词、搜索词或其他标识符用于任何搜索引擎、网络入口、广告服务或其他搜索及中介服务，例如：您不能注册或使用“{{ message
+                            }}”、“{{ message }}彩票”、等等诸如此类的词和它们的变更方式，也包括在联盟合作伙伴网站或其他宣传工具上的与任何{{ message }}商业商标相同或相似的关键词，以及其他任何我们不认可的关键词。
+                            <br>
+                        </p>
+                        <h4>3.7 授权</h4>
+                        <p name="p">通过此协议，我们授予您非独家经营的，不可转让的在遵守本协议的规则和条款下引导会员到{{ message }}网站的权利，这是协议没有属于您独家经营和特权，{{ message }}有权随时获取他人的类似性质的服务。您不能够授权其他人来代理与我们的合作，包括申请佣金或其它合作事宜。
+                            <br>
+                        </p>
+                        <h4>3.8 使用核准的推广方式</h4>
+                        <p name="p"> 联盟合作伙伴仅可以使用经我们核准的广告创意(条幅、超文本邮件发送、图片和徽标、文字等)，且不能改变其外观，也不能在任何此外的宣传资料中提及与规则条款及宣传不相符的内容。所有广告创意和链接都将由我们设计和指明，且由我们授权才允许使用。联盟合作伙伴尤其不能自由创建关于{{
+                            message }}网站优惠信息的宣传内容和链接。
+                            <br>
+                        </p>
+                        <h4>3.9 延续的宣传</h4>
+                        <p name="p"> 您应该显著和不间断地在您的网站上以我们同意的方式和位置展示由我们提供的最近更新的宣传内容和链接，如没有我们事先的书面许可，您不能改变它们的内容、形式、位置或链接。如果您未经许可，随意更改，我们视为您滥用此合作计划，将保留降低或不支付佣金的权利；如果您减低吸引新的会员的宣传力度，我们也将保留降低您的佣金范围的权利；如果您停止对我们网站的宣传，我们将视您终止了合作,并且有拒绝支付您佣金的权力。
+                            <br>
+                        </p>
+                        <h4>3.10 诚信</h4>
+                        <p name="p"> 您不可以蓄意从已知或涉嫌的欺诈交易中获利。无论是否对我们造成损失，出于诚信，您必须遵守此协议。否则欺诈交易一旦被我方认定，无论您是否存心，我们仍然保留扣留或取消有关此交易佣金的权利。 不论您是蓄意还是无意进行任何篡改或滥用{{
+                            message }}政策和促销活动，我们保留冻结或关闭联盟合作伙伴的账户，且不必支付任何佣金的权利。这些情况包括但不仅仅局限于进行对冲交易套利或以小额投注账户维持5个有效投注会员而获取佣金等非正常合作现象。
+                            <br>
+                        </p>
+                        <h4>3.11 推广责任</h4>
+                        <p name="p">联盟合作伙伴须尽其责任及力量广泛地宣传，销售及推广{{ message }}以求使联盟合作伙伴及{{ message }} 利润最大化。联盟合作伙伴必须在不违返法律下，以正面形象宣传、销售及推广{{
+                            message }}。合作伙伴必须承担宣传、销售及推广{{ message }}到其客户的费用。
+                            <br>
+                        </p>
+                        <h4>3.12 不能转让</h4>
+                        <p name="p">此合作项目旨在您的直接参与，您不应以其他任何人的名义开设合作账户。我们不接受任何为第三方开设账户和转让账户的行为，除非得到我们的特许。
+                            <br>
+                        </p>
+                        <h4>3.13 联盟</h4>
+                        在我们的网站和您的网站之间不可建立任何联盟关系。
+                        <br>
+                        <h4>3.14 使用标志的许可</h4>
+                        在此协议期间，在我们授权之后，您可使用我们已经准许使用的企业名称、商标、服务标志、徽标和其他任何宣传资料，但您不能将这个使用权利转让、分派给其他人，您使用我们标识的权利仅限于此许可的使用范围。您不可以以任何行文和方式声明无效、不可执行、或是争夺商标的所有权、您也不可以采取任何有可能伤害到我们商标权的行为，同样，您也不能削弱这些商标的有效性和与他们相关的声誉。
+                        <br>
+                        <h4>3.15 保密责任</h4>
+                        <p name="p">在合约执行期间，联盟合作伙伴可能委托有关商业的、运作的、或技术以及合作伙伴计划(包括：从计划中所得的佣金)的商业机密信息。联盟合作伙伴必须同意不会未经授权将上述机密暴露给第三方或其它人仕使用这些机密，除非得到{{
+                            message }}书面同意。联盟合作伙伴有义务在合约终止后仍执行机密文件的保密。</p>
+
+                        <h3 style="color: #ff5e1b">四. 条件及终止合约</h3>
+                        <h4>4.1 条件</h4>
+                        <p name="p">合约内的条件会于{{ message }}书面通知接受合作伙伴加入此计划后开始执行。合约终结仅仅取决于任何一方的意愿而无论是否有原因，{{ message }}及联盟合作伙伴可在任何时间终止此合约。如任何一方要求终止合作，请联系{{
+                            message }}客服。{{ message }}有权利对合作伙伴各方面的表现 (诸如业绩表现、推广方式、运作过程等) 随时复审。如联盟合作伙伴违反合约条例，{{ message }}有权无条件终止合约。
+                            <br>
+                        </p>
+                        <h4>4.2 关于合约终止：</h4>
+                        <p name="p">合约终止时，所有发给联盟合作伙伴的权利及许可都会立即被终止； 在合约终止时，联盟合作伙伴将不会被发配佣金，合作伙伴所推荐的会员佣金也会于合约终止时而终止； 如联盟合作伙伴已经和{{ message
+                            }}终止合约，而{{ message }}准许其所推荐的客户继续此活动(增加收益活动)，这并不表示与合作伙伴的合约延续、更新或取消合约的终止。 合作伙伴必须退回{{ message }}所有机密文件，及所有在运作其间的相关复印件、授权及管理。
+                            在合约终止后，除关于合约终止之后幸存的那些义务之外，联盟合作伙伴及{{ message }}不须要履行双方的其他权利及义务。终止合约并不会解除合作伙伴于终止合约前应履行的义务。</p>
+
+                        <h3 style="color: #ff5e1b">五. 联盟合作伙伴关系</h3>
+                        <p name="p">{{ message }}及联盟合作伙伴是独立的立契者，这合约不会派生成合股关系、联合企业、中介、特许经营、营业代表、代理、总代理或雇佣关系，联盟合作伙伴没有权利以我们及以上提及的名义制作任何许诺和接受任何提议及请求，也不能采取任何未经我们认可的推广方式。无论在您的网站上或其他任何地方，您都不能发表任何与此协议相抵触的声明。
+                        </p>
+                        <h3 style="color: #ff5e1b">六. 保护</h3>
+                        联盟合作伙伴须保障我们的利益，以保护我们的管理者、员工、代表不受来自于负债、损失、危害和花费等方面的侵害：这包括(a) 任何来自您的承诺和对此协议中的条款和陈述的违背；(b) 阁下在合约上的责任及义务的表现；(c) 阁下之疏忽；(d) 直接或间接因为您的过失、疏忽或者有意和无意的行为造成的伤害，以及未被授权的使用我们的广告和连接或这个合作伙伴计划所引起的任何伤害。
+                        <h3 style="color: #ff5e1b">七. 不索赔声明</h3>
+                        <p name="p">关于合作项目、佣金及付款安排等，{{ message }}没有也不会有任何明指或暗指的陈述或保证。我们不发表任何关于我们网站将会无干扰和无错误的声明，因而即便一旦出现问题我们也将对此不负任何责任。如果我们提供给您的报告和我们的数据库所提供的报告之间有差异的话，以我们数据库的数据为准。
+                        </p>
+                        <h3 style="color: #ff5e1b">八. 有限责任</h3>
+                        <p name="p">{{ message }}不会为与此协议和合作项目相关所产生的间接的、特殊的和重大的危害承担债务 (如收入的损失、利益和数据等) ，即使我们已经考虑过这中危害的可能性。此外，由此协议和合作项目所产生的责任综合是不会超出您在此协议下已经收到的或应得到的佣金综合。在此协议下的债务并不构成我们公司管理者、雇员、和股东的个人债务。任何在此协议下产生的债务应只能从所产生的佣金中扣除，并仅限于直接的损失。
+                        </p>
+                        <h3 style="color: #ff5e1b">九. 独立投资</h3>
+                        <p name="p">联盟合作伙伴知道、细阅及同意合约书上的条例细侧。阁下须理解{{ message }}在任何时间都可能间接或直接的征收推荐会员，可能与其他在运作类似网站的经营者进行合作，从而与阁下的网站造成竞争。在此合作协议中，您已经自主评估了参与的意愿，且不依赖于任何在此协议之外的言论、保证和声明。
+                        </p>
+                        <h3 style="color: #ff5e1b">十. 法例监管</h3>
+                        这合约会受到执照国家监管，及不能罔顾此法律规章的选择。所有在合约上的相关行动必须带到护照国家，同时您不可逃避地认可执照国家法庭的审判权。
+                        <h3 style="color: #ff5e1b">十一. 遵守</h3>
+                        <p name="p">在没有在事前书面通知{{ message }}，联盟合作伙伴不能利用法律或其它的操作来取消此合约。根据这一约束，此协议将受制于、利益生效于、并可强行实施于我们以及我们各自的继承者和指定人之间。
+                        </p>
+                        <h3 style="color: #ff5e1b">十二. 修订权限</h3>
+                        <p name="p">在这合约上我们没有强行去规定阁下的表现，这并不构成我们对随后强制实施此协议的规定或任何其他规定权利的放弃。此协议不允许合作伙伴擅自修改、附加、删除和插行补充，除非获得{{ message }}许可或{{
+                            message }}官方进行修订。合作伙伴的雇员、工作人员或者代理也不能口头更改，编辑或宣布放弃该合约中的任何条款。
+                        </p>
+                        <h3 style="color: #ff5e1b">十三. 补救条款</h3>
+                        <p name="p">我们的权利及补救措施可能会被互相包含，即行使合约上的任何规定将不阻止其它规定的行使。您须承认、确认并同意：违反或先兆违反任何合约上的规定都是不适当的。我们可能通过特定的表现、指令或其它公正的补救方式来寻求强制执行和遵守协议。在这合约上不会包括限制或影响我们的法律权利，对于违返或先兆违反合约上的任何规定，我们的权利应是公正的法律上是可强制执行的，而这个规定的目的是让我们的权利清晰化。
+                        </p>
+                        <h3 style="color: #ff5e1b">十四. 撤销</h3>
+                        <p name="p">合约上的每项规定应被理解后有效及合法，但如合约上的任何规定是不合法，非法或不能执行，在这些情况下相关的规定将不生效，但不包括其它不相关之规定。所以没有口头的通知撤回或强行执行任何权利，必须以书面形式才作有效。
+                            <br>
+                            <br>
+                            <br>
+                            <br> 更新时间：2018-7-1 {{ message }}
+                            <br>
+                            <br>
+                            <br>
+                        </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var aboutAppName = "新葡京";
+    var pid = document.getElementsByName("p");
+    for (var i = 0; i < pid.length; i++) {
+        pid[i].id = "p" + i;
+        new Vue({
+            el: "#" + pid[i].id,
+            data: {
+                message: aboutAppName
+            }
+        })
+    }
+    $("h2").css({ "color": mainColor });
+    $("h3").css({ "color": mainColor });
+    $(".league_commission_tone").css({ "color": mainColor });
+    $("#agentCopyLinkBtn").css({ "background-color": subColor });
+    $("#leagueLinkImgId").attr("src", themPath + "leagueLink.png");
+    $("#leagueQrCodeImgId").attr("src", themPath + "leagueQrCode.png");
+    $("#leagueTwoNoteImgId").attr("src", themPath + "leagueTwoNote.png");
+    $("#leagueTwoTypeTwoImgId").css({ "background": "url(" + themPath + "leagueTypeTwo.png)" });
+    var mLeagueFunObj = new leagueFun(); mLeagueFunObj.init();
+    function leagueFun() {
+        var leaguetwoDesObj = new leagueTwoDetailsFun();
+        var mAgentRankingObj = new agentRankingObj();
+        var dateUtil = new Date(); dateUtil.setDate(dateUtil.getDate() - 0);
+        var startData = dateUtil.format("yyyy-MM-dd");
+        var endData = (new Date()).format("yyyy-MM-dd");
+        this.init = function () {
+            $(".league_menu_class").css({ "color": mainColor, "font-size": "14px" });
+            $("#leagueContent").css({ "width": "100%", "height": screenH - topH - 40 });
+            $("#league_three_content").css({ "height": screenH - topH - 40 - 70 });
+            $("#league_commission_content_list").css({ "height": screenH - topH - 40 - 2 - 100 });
+            $("#league_unde_content_list").css({ "height": screenH - topH - 40 - 2 - 45 });
+            $("#leagueRequestBtn").css({ "background-color": mainColor });
+            setBtnOnTouchEventNoColor($("#league_menu_commission"), function () {
+                topSelect(1);
+            }, null);
+            setBtnOnTouchEventNoColor($("#league_menu_unde"), function () {
+                topSelect(2);
+            }, null);
+            setBtnOnTouchEventNoColor($("#league_menu_one"), function () {
+                topSelect(3);
+            }, null);
+            setBtnOnTouchEventNoColor($("#league_menu_two"), function () {
+                topSelect(4);
+            }, null);
+            setBtnOnTouchEventNoColor($("#league_menu_three"), function () {
+                topSelect(5);
+            }, null);
+            setBtnOnTouchEventNoColor($("#league_three_menu_1"), function () {
+                contentSelectByThree(1);
+            }, null);
+            setBtnOnTouchEventNoColor($("#league_three_menu_2"), function () {
+                contentSelectByThree(2);
+            }, null);
+            contentSelectByThree(1);
+            setBtnOnTouchEvent($("#leagueRequestBtn"), function () {
+                if (isLogin()) {
+                    if (userInfo.complete == 3) {
+                        myPJDApp.showLeagueAgreement("two");
+                    } else {
+                        myPJDApp.showComplete("noMenu");
+                    }
+                } else {
+                    myPJDApp.showLogin();
+                }
+            }, mainColorDeep, mainColor, null);
+            setBtnOnTouchEventNoColor($("#agentQrCodeImg"), function () {
+                myPJDApp.showAgentQRCode($("#agentQrCodeImg").attr("src"));
+            }, null);
+            setBtnOnTouchEventNoColor($("#agentCopyLinkBtn"), function () {
+                window.location.assign("zy://app?command=copy&type=0&value=" + $("#agentLink").html());
+                mToast.show("复制成功！", 1, "middle");
+            }, null);
+            if (agentRankingList == null) {
+                mAgentRankingObj.getAgentRankingData(loadAgentRankingOne);
+            } else {
+                loadAgentRankingOne();
+            }
+            if (userInfo != null) {
+                if (userInfo["is_agent"] == 1) {
+                    loadRealNote();
+                    bindCommissionBar();
+                    bindCommissionList();
+                    bindUndeList();
+                } else {
+                    loadNote();
+                }
+            } else {
+                loadNote();
+            }
+        }
+        this.agentChanage = agentChanage;
+        function agentChanage() {
+            if (userInfo.is_agent == 1) {
+                loadRealNote();
+                bindCommissionBar();
+                bindCommissionList();
+                bindUndeList();
+            } else {
+                loadNote();
+            }
+        }
+        function loadAgentRankingOne() {
+            $("#agentRankListDiv").css({ "display": "flex" });
+            $("#agentOneMoney").html((agentRankingList.bw[0]).profit);
+            $("#agentTwoMoney").html((agentRankingList.bw[1]).profit);
+            $("#agentThreeMoney").html((agentRankingList.bw[2]).profit);
+            $("#agentFourMoney").html((agentRankingList.bw[3]).profit);
+            $("#agentFiveMoney").html((agentRankingList.bw[4]).profit);
+            $("#agentNameOne").html(getName((agentRankingList.bw[0]).name));
+            $("#agentNameTwo").html(getName((agentRankingList.bw[1]).name));
+            $("#agentNameThree").html(getName((agentRankingList.bw[2]).name));
+            $("#agentNameFour").html(getName((agentRankingList.bw[3]).name));
+            $("#agentNameFive").html(getName((agentRankingList.bw[4]).name));
+            o("agentHeaderOne").src = "header/" + (agentRankingList.bw[0]).avatar;
+            o("agentHeaderTwo").src = "header/" + (agentRankingList.bw[1]).avatar;
+            o("agentHeaderThree").src = "header/" + (agentRankingList.bw[2]).avatar;
+            o("agentHeaderFour").src = "header/" + (agentRankingList.bw[3]).avatar;
+            o("agentHeaderFive").src = "header/" + (agentRankingList.bw[4]).avatar;
+            function getName(ms) {
+                var len = ms.length;
+                return ms[0] + ms[1] + "***" + ms[len - 2] + ms[len - 1];
+            }
+        }
+        function loadRealNote() {
+            $("#league_menu_commission").css({ "display": "flex" });
+            $("#league_menu_unde").css({ "display": "flex" });
+            $("#league_menu_commission_select").css({ "display": "block" });
+            $("#league_menu_unde_select").css({ "display": "block" });
+            $(".league_menu_select_class").css({ "width": "20%" });
+            topSelect(1);
+            $("#leagueNoteContent").css({ "display": "none" });
+            $("#league_note").css({ "display": "none" });
+            $("#league_note_real").css({ "display": "flex" });
+            $("#leagueRequestBtn").css({ "display": "none" });
+            $("#agentQrCodeImg").attr("src", userInfo.codeurl);
+            $("#agentLink").html(userInfo.rurl);
+        }
+        function loadNote() {
+            $("#league_menu_commission").css({ "display": "none" });
+            $("#league_menu_unde").css({ "display": "none" });
+            $("#league_menu_commission_select").css({ "display": "none" });
+            $("#league_menu_unde_select").css({ "display": "none" });
+            $(".league_menu_select_class").css({ "width": "33%" });
+            topSelect(3);
+            $("#league_note").css({ "display": "flex" });
+            $("#league_note_real").css({ "display": "none" });
+            $("#leagueRequestBtn").css({ "display": "flex" });
+            $("#agentQrCodeImg").attr("src", "");
+            $("#agentLink").html("");
+        }
+        function topSelect(index) {
+            $("#leagueContent").scrollTop(0);
+            var m1 = $("#league_menu_commission_select"); var m1t = $("#league_menu_commission"); var c1 = $("#league_commission");
+            var m2 = $("#league_menu_unde_select"); var m2t = $("#league_menu_unde"); var c2 = $("#league_unde");
+            var m3 = $("#league_menu_one_select"); var m3t = $("#league_menu_one"); var c3 = $("#league_one");
+            var m4 = $("#league_menu_two_select"); var m4t = $("#league_menu_two"); var c4 = $("#league_two");
+            var m5 = $("#league_menu_three_select"); var m5t = $("#league_menu_three"); var c5 = $("#league_three");
+            switch (index) {
+                case 1:
+                    m1.css({ "background-color": mainColor }); m1t.css({ "color": mainColor }); c1.css({ "display": "block" });
+                    m2.css({ "background-color": "" }); m2t.css({ "color": mainFontColorDeep }); c2.css({ "display": "none" });
+                    m3.css({ "background-color": "" }); m3t.css({ "color": mainFontColorDeep }); c3.css({ "display": "none" });
+                    m4.css({ "background-color": "" }); m4t.css({ "color": mainFontColorDeep }); c4.css({ "display": "none" });
+                    m5.css({ "background-color": "" }); m5t.css({ "color": mainFontColorDeep }); c5.css({ "display": "none" });
+                    break;
+                case 2:
+                    m1.css({ "background-color": "" }); m1t.css({ "color": mainFontColorDeep }); c1.css({ "display": "none" });
+                    m2.css({ "background-color": mainColor }); m2t.css({ "color": mainColor }); c2.css({ "display": "block" });
+                    m3.css({ "background-color": "" }); m3t.css({ "color": mainFontColorDeep }); c3.css({ "display": "none" });
+                    m4.css({ "background-color": "" }); m4t.css({ "color": mainFontColorDeep }); c4.css({ "display": "none" });
+                    m5.css({ "background-color": "" }); m5t.css({ "color": mainFontColorDeep }); c5.css({ "display": "none" });
+                    break;
+                case 3:
+                    m1.css({ "background-color": "" }); m1t.css({ "color": mainFontColorDeep }); c1.css({ "display": "none" });
+                    m2.css({ "background-color": "" }); m2t.css({ "color": mainFontColorDeep }); c2.css({ "display": "none" });
+                    m3.css({ "background-color": mainColor }); m3t.css({ "color": mainColor }); c3.css({ "display": "flex" });
+                    m4.css({ "background-color": "" }); m4t.css({ "color": mainFontColorDeep }); c4.css({ "display": "none" });
+                    m5.css({ "background-color": "" }); m5t.css({ "color": mainFontColorDeep }); c5.css({ "display": "none" });
+                    break;
+                case 4:
+                    m1.css({ "background-color": "" }); m1t.css({ "color": mainFontColorDeep }); c1.css({ "display": "none" });
+                    m2.css({ "background-color": "" }); m2t.css({ "color": mainFontColorDeep }); c2.css({ "display": "none" });
+                    m3.css({ "background-color": "" }); m3t.css({ "color": mainFontColorDeep }); c3.css({ "display": "none" });
+                    m4.css({ "background-color": mainColor }); m4t.css({ "color": mainColor }); c4.css({ "display": "flex" });
+                    m5.css({ "background-color": "" }); m5t.css({ "color": mainFontColorDeep }); c5.css({ "display": "none" });
+                    break;
+                case 5:
+                    m1.css({ "background-color": "" }); m1t.css({ "color": mainFontColorDeep }); c1.css({ "display": "none" });
+                    m2.css({ "background-color": "" }); m2t.css({ "color": mainFontColorDeep }); c2.css({ "display": "none" });
+                    m3.css({ "background-color": "" }); m3t.css({ "color": mainFontColorDeep }); c3.css({ "display": "none" });
+                    m4.css({ "background-color": "" }); m4t.css({ "color": mainFontColorDeep }); c4.css({ "display": "none" });
+                    m5.css({ "background-color": mainColor }); m5t.css({ "color": mainColor }); c5.css({ "display": "flex" });
+                    break;
+            }
+        }
+        function contentSelectByThree(index) {
+            $("#league_three_content").scrollTop(0);
+            var m1 = $("#league_three_menu_1"); var c1 = $("#league_three_menu_1_content");
+            var m2 = $("#league_three_menu_2"); var c2 = $("#league_three_menu_2_content");
+            switch (index) {
+                case 1:
+                    m1.css({ "background-color": mainColor, "color": mainFontColor, "border": "1px solid " + mainColor });
+                    m2.css({ "background-color": lighterBackColor, "color": mainColor, "border": "1px solid " + mainColor });
+                    c1.css({ "display": "block" });
+                    c2.css({ "display": "none" });
+                    break;
+                case 2:
+                    m2.css({ "background-color": mainColor, "color": mainFontColor, "border": "1px solid " + mainColor });
+                    m1.css({ "background-color": lighterBackColor, "color": mainColor, "border": "1px solid " + mainColor });
+                    c2.css({ "display": "block" });
+                    c1.css({ "display": "none" });
+                    break;
+            }
+        }
+        function bindCommissionList() {
+            var leftMs = "<font color=#939393>合计有效投注</font><br><font color=#EB6734>%comSum%元</font>";
+            var rightMs = "<font color=#939393>合计返佣</font><br><font color=#EB6734>%comSum%元</font>";
+            var comleftSum = 0;
+            var comRightSum = 0;
+            var mData = "requestType=json&start=" + startData + "&end=" + endData;
+            var columns = [
+                { "title": "日期", "code": "dateTime", "width": "25%", "align": "center" },
+                { "title": "下线<br>有效投注", "code": "undeBet", "width": "25%", "align": "center" },
+                { "title": "佣金", "code": "commission", "width": "25%", "align": "center" },
+                { "title": "下线<br>会员数", "code": "vipCount", "width": "25%", "align": "center" }
+            ];
+            var mTable = new tTable("league_commission_content_list", columns, 30);
+            mTable.init();
+            mTable.setOutTime(3000);
+            mTable.setLoadOKFunction(function () {
+                $("#league_commission_bottom_left").html(leftMs.replace("%comSum%", comleftSum));
+                $("#league_commission_bottom_right").html(rightMs.replace("%comSum%", comRightSum));
+            });
+            mTable.setParseFunction(function (datas) {
+                return parseGamesData(datas);
+            });
+            mTable.setIsLoadMore(true);
+            function parseGamesData(gamesData) {
+                var datas = new Array();
+                var objList = gamesData.result.list;
+                var len = objList.length;
+                for (var i = 0; i < len; i++) {
+                    var objItem = objList[i];
+                    var item = new Object();
+                }
+                var returnObj = new Object();
+                returnObj["result"] = new Object();
+                returnObj["result"]["list"] = datas;
+                return returnObj;
+            }
+            mTable.loadData(SERVER_ADD + "bwAgentSumByDay/getBwAgentSumByDays", mData);
+        }
+        function bindCommissionBar() {
+            var times = {
+                "list": [
+                    { "text": "今天", "value": "0" },
+                    { "text": "昨天", "value": "1" },
+                    { "text": "最近7天", "value": "7" },
+                    { "text": "最近30天", "value": "30" }
+                ]
+            };
+            new tSelect("league_commission_timeSelect", "league_commission", screenW, 45, times, selectCallBack);
+            function selectCallBack(index) {
+                var dateNow = new Date();
+                dateNow = getTimeZoneE8(8, dateNow);
+                var value = times["list"][index].value;
+                dateNow.setDate(dateNow.getDate() + (-1) * value);
+                startData = dateNow.format("yyyy-MM-dd");
+                endData = getTimeZoneE8(8, (new Date())).format("yyyy-MM-dd");
+                $("#league_commission_content_list").html("");
+                bindCommissionList();
+            }
+        }
+        function bindUndeList() {
+            var sum = 0;
+            var columns = [
+                { "title": "序号", "code": "number", "index": "true", "width": "16%", "align": "center" },
+                { "title": "下线账号", "code": "undeAcc", "width": "28%", "align": "center" },
+                { "title": "开户时间", "code": "accTime", "width": "28%", "align": "center" },
+                { "title": "最后<br>登录时间", "code": "loginTime", "width": "28%", "align": "center" }
+            ];
+            var mTable = new tTable("league_unde_content_list", columns, 20);
+            mTable.init();
+            mTable.setOutTime(3000);
+            mTable.setLoadOKFunction(function () {
+                $("#league_unde_right").html(sum + "人");
+            });
+            mTable.setParseFunction(function (datas) {
+                return parseGamesData(datas);
+            });
+            mTable.setIsLoadMore(true);
+            mTable.loadData(SERVER_ADD + "user/getChildUsers", "");
+            function parseGamesData(gamesData) {
+                var font = "<font color=white>%ms%</font>";
+                var datas = new Array();
+                var objList = gamesData.result.list;
+                var len = objList.length;
+                for (var i = 0; i < len; i++) {
+                    var objItem = objList[i];
+                    var item = new Object();
+                    item["undeAcc"] = font.replace("%ms%", objItem.name);
+                    item["accTime"] = font.replace("%ms%", getTimeZoneE8(8, new Date(objItem.reg_time)).format("yy-MM-dd <br> hh:mm"));
+                    item["loginTime"] = font.replace("%ms%", getTimeZoneE8(8, new Date(objItem.last_login)).format("yy-MM-dd <br> hh:mm"));
+                    datas.push(item);
+                    sum++;
+                }
+                var returnObj = new Object();
+                returnObj["result"] = new Object();
+                returnObj["result"]["list"] = datas;
+                return returnObj;
+            }
+        }
+    }
+    function leagueTwoDetailsFun() {
+    }
+</script>

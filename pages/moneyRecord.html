@@ -1,0 +1,401 @@
+<div id="moneyrecordDiv_list" style="width: 100%">
+    <div id="moneyrecordDiv_list_select" style="width: 100%;height: 50px;display: flex;justify-content: center;align-items: center">
+        <div id="moneyrecordDiv_list_select_time"></div>
+    </div>
+    <div style="height: 5px"></div>
+    <div style="width: 100%;height: 50px;display: flex;justify-content: space-between;align-items: center">
+        <div id="moneyrecordDiv_type_item_income" class="moneyrecordDiv_type_item_class" style="width: 30%;height: 50px;display: flex;justify-content: center;align-items: center;background-color: #383838;font-size: 14px;color: white">
+            存款
+        </div>
+        <div id="moneyrecordDiv_type_item_draw" class="moneyrecordDiv_type_item_class" style="width: 30%;height: 50px;display: flex;justify-content: center;align-items: center;background-color: #383838;font-size: 14px;color: white">
+            提款
+        </div>
+        <div id="moneyrecordDiv_type_item_reback" style="width: 24.5%;height: 50px;display: none;justify-content: center;align-items: center;background-color: #383838;font-size: 14px;color: white">
+            返水
+        </div>
+        <div id="moneyrecordDiv_type_item_interest" class="moneyrecordDiv_type_item_class" style="width: 30%;height: 50px;display: flex;justify-content: center;align-items: center;background-color: #383838;font-size: 14px;color: white">
+            佣金
+        </div>
+    </div>
+    <div style="height: 5px"></div>
+    <div id="moneyrecordDiv_list_listContent" style="width: 100%;height: 100%;overflow-x: hidden;overflow-y: auto"></div>
+</div>
+
+<script language="javascript" type="text/javascript">
+    var moneyRecordFunObj = new moneyRecordListObj();
+    moneyRecordFunObj.init();
+
+    function moneyRecordListObj() {
+        var mMoneyrecordDetailsObj = new moneyrecordDetailsObj();
+        var selectItemData = null;
+        var mTable = null;
+        var startData = getTimeZoneE8(8, (new Date())).format("yyyy-MM-dd");
+        var endData = getTimeZoneE8(8, (new Date())).format("yyyy-MM-dd");
+        var recordType = "income";
+        var dateSelect;
+
+        this.init = function () {
+            mMoneyrecordDetailsObj.init();
+            $("#moneyrecordDiv_type_item_reback").css({ "display": "none" });
+            $(".moneyrecordDiv_type_item_class").css({
+                "width": (screenW - 6) / 3,
+                "background-color": lighterBackColor,
+                "color": mainFontColorDeep
+            });
+            $(".moneyrecordDiv_type_item_class").each(function () {
+                setBtnOnTouchEvent($(this), function (mObj) {
+                    var id = mObj.id;
+                    var idList = id.split("_");
+                    var len = idList.length;
+                    var type = idList[len - 1];
+                    if (type == recordType) { return; }
+                    $("#moneyrecordDiv_type_item_" + recordType).css({
+                        "background-color": lighterBackColor,
+                        "color": mainFontColorDeep
+                    });
+                    $("#" + id).css({
+                        "background-color": topBarTouchColor,
+                        "color": mainFontColor
+                    });
+                    recordType = type;
+                    showListContent();
+                }, topBarTouchColor, lighterBackColor, null);
+            });
+            $("#moneyrecordDiv_type_item_income").css({
+                "background-color": topBarTouchColor,
+                "color": mainFontColor
+            });
+            bindBar();
+            showListContent();
+        }
+
+        this.showListContent = function () {
+            showListContent();
+        }
+
+        this.getSelectItemData = function () {
+            return selectItemData;
+        }
+
+        this.getRequestType = function () {
+            return recordType;
+        }
+
+        function bindBar() {
+            var timeList = {
+                "list": [
+                    { "text": "今天", "value": "0" },
+                    { "text": "昨天", "value": "yesterday" },
+                    { "text": "最近7天", "value": "7" },
+                ]
+            };
+            var selectId = "moneyrecordDiv_list_select_time";
+            var rootId = "moneyrecordDiv_list";
+            var w = screenW;
+            var h = 50;
+            dateSelect = new tSelect(selectId, rootId, w, h, timeList, function (theIndex) {
+                var dateNow = new Date();
+                dateNow = getTimeZoneE8(8, dateNow);
+                var dateValue = timeList["list"][theIndex].value;
+                if (dateValue == "yesterday") {
+                    dateNow.setDate(dateNow.getDate() - 1);
+                    startData = dateNow.format("yyyy-MM-dd");
+                    endData = startData;
+                } else {
+                    dateNow.setDate(dateNow.getDate() + (-1) * timeList["list"][theIndex].value);
+                    startData = dateNow.format("yyyy-MM-dd");
+                    endData = getTimeZoneE8(8, (new Date())).format("yyyy-MM-dd");
+                }
+                showListContent();
+            }, null);
+        }
+
+        function showListContent() {
+            var columns = [
+                { "title": "", "code": "", "width": "5%", "align": "left" },
+                { "title": "类型/时间", "code": "note", "width": "40%", "align": "left" },
+                { "title": "金额", "code": "money", "width": "30%", "align": "right" },
+                { "title": "状态", "code": "status", "width": "20%", "align": "center" },
+                { "title": "", "code": "arrow", "width": "5%", "align": "center" }
+            ];
+            var mData = "requestType=json&start=" + startData + "&end=" + endData;
+            if (mTable != null) {
+                if (recordType == "income") {
+                    mData = mData + "&payTypeId=[61,1,2,3]"; //发出
+                    mTable.loadData(SERVER_ADD + "payOrder/getPayOrders", mData);
+                } else if (recordType == "draw") {
+                    mData = mData + "&payTypeId=[60,10,11]";
+                    mTable.loadData(SERVER_ADD + "payWithdraw/getWithdrawOrders", mData);
+                } else if (recordType == "reback") {
+                    mTable.loadData(SERVER_ADD + "payOrder/getBackwaters", mData);
+                } else if (recordType == "interest") {
+                    mData = mData + "&notIncludeGame=1";
+                    mTable.loadData(SERVER_ADD + "payOrder/getCommissions", mData);
+                } else {
+                    mData = mData + "&payTypeId=[61]"; //收到
+                    mTable.loadData(SERVER_ADD + "payOrder/getPayOrders", mData);
+
+                    mData = mData + "&payTypeId=[60]"; //发出
+                    mTable.loadData(SERVER_ADD + "payWithdraw/getWithdrawOrders", mData);
+                }
+                return;
+            }
+            mTable = new tTable("moneyrecordDiv_list_listContent", columns, 100);
+            mTable.init();
+            mTable.setItemHeight(50);
+            mTable.setIsLoadMore(true);
+            mTable.setParseFunction(function (theDatas) {
+                return parseGamesData(theDatas);
+            });
+            mTable.itemClickFunction(function (itemData, objId) {
+                selectItemData = itemData;
+                mMoneyrecordDetailsObj.show();
+            });
+            if (recordType == "income") {
+                mData = mData + "&payTypeId=[61,1,2,3]"; //发出
+                mTable.loadData(SERVER_ADD + "payOrder/getPayOrders", mData);
+            } else if (recordType == "draw") {
+                mData = mData + "&payTypeId=[60,10,11]";
+                mTable.loadData(SERVER_ADD + "payWithdraw/getWithdrawOrders", mData);
+            } else if (recordType == "reback") {
+                mTable.loadData(SERVER_ADD + "payOrder/getBackwaters", mData);
+            } else if (recordType == "interest") {
+                mData = mData + "&notIncludeGame=1";
+                mTable.loadData(SERVER_ADD + "payOrder/getCommissions", mData);
+            } else {
+                mData = mData + "&payTypeId=[61]"; //收到
+                mTable.loadData(SERVER_ADD + "payOrder/getPayOrders", mData);
+
+                mData = mData + "&payTypeId=[60]"; //发出
+                mTable.loadData(SERVER_ADD + "payWithdraw/getWithdrawOrders", mData);
+            }
+
+            function parseGamesData(gamesData) {
+                var returnObj = new Object();
+                if (recordType == "income") { // 存款
+                    var datas = new Array();
+                    var objList = gamesData.result.list;
+                    var len = objList.length;
+                    for (var i = 0; i < len; i++) {
+                        if (objList[i].pay_type_id == 1) {
+                            var item = new Object();
+                            var str = "<div style=\"font-size:14px;color:#cccccc\">" + objList[i].dt.deposit_type_id.name + "</div>";
+                            var timeStr = getTimeZoneE8(8, objList[i].order_time).format("yyyy-MM-dd hh:mm:ss");
+                            str = str + "<div style=\"font-size:10px;color:" + mainFontColorDeep + "\">" + timeStr + "</div>";
+                            item["note"] = str;
+                            var money = doubleValue(objList[i].amount);
+                            if (money > 0) {
+                                money = "+" + money;
+                            }
+                            item["money"] = "<div style=\"font-size:14px;color:" + winFontColor + "\">" + money + "</div>";
+                            var status = objList[i].status;
+                            if (status == 1) {
+                                status = "<font color=#CCCCCC>成功</font>";
+                            } else if (status == 9) {
+                                status = "<font color=red>拒绝</font>";
+                            } else if (status == 0) {
+                                status = "<font color=#CCCCCC>审核中</font>";
+                            } else if (status == 10) {
+                                status = "<font color=#CCCCCC>预下单</font>";
+                            }
+                            item["status"] = status;
+                            item["arrow"] = "<img src=" + themPath + "arrow.png height=8px />";
+                            item["details"] = objList[i];
+                            datas.push(item);
+                        } else if (objList[i].pay_type_id == 2) {
+                            var item = new Object();
+                            var str = "<div style=\"font-size:14px;color:#cccccc\">" + objList[i].dt.channel_id.name + "</div>";
+                            var timeStr = getTimeZoneE8(8, objList[i].order_time).format("yyyy-MM-dd hh:mm:ss");
+                            str = str + "<div style=\"font-size:10px;color:" + mainFontColorDeep + "\">" + timeStr + "</div>";
+                            item["note"] = str;
+                            var money = doubleValue(objList[i].amount);
+                            if (money > 0) {
+                                money = "+" + money;
+                            }
+                            item["money"] = "<div style=\"font-size:14px;color:" + winFontColor + "\">" + money + "</div>";
+                            var status = objList[i].status;
+                            if (status == 1) {
+                                status = "<font color=#CCCCCC>成功</font>";
+                            } else if (status == 9) {
+                                status = "<font color=red>拒绝</font>";
+                            } else if (status == 0) {
+                                status = "<font color=#CCCCCC>审核中</font>";
+                            }
+                            item["status"] = status;
+                            item["arrow"] = "<img src=" + themPath + "arrow.png height=8px />";
+                            item["details"] = objList[i];
+                            datas.push(item);
+                        } else if (objList[i].pay_type_id == 3) {
+                            var item = new Object();
+                            var str = "<div style=\"font-size:14px;color:#cccccc\">" + objList[i].dt.pay_type_id.name + "</div>";
+                            var timeStr = getTimeZoneE8(8, objList[i].order_time).format("yyyy-MM-dd hh:mm:ss");
+                            str = str + "<div style=\"font-size:10px;color:" + mainFontColorDeep + "\">" + timeStr + "</div>";
+                            item["note"] = str;
+                            var money = doubleValue(objList[i].amount);
+                            if (money > 0) {
+                                money = "+" + money;
+                            }
+                            item["money"] = "<div style=\"font-size:14px;color:" + winFontColor + "\">" + money + "</div>";
+                            var status = objList[i].status;
+                            if (status == 1) {
+                                status = "<font color=#CCCCCC>成功</font>";
+                            } else if (status == 9) {
+                                status = "<font color=red>拒绝</font>";
+                            } else if (status == 0) {
+                                status = "<font color=#CCCCCC>审核中</font>";
+                            }
+                            item["status"] = status;
+                            item["arrow"] = "<img src=" + themPath + "arrow.png height=8px />";
+                            item["details"] = objList[i];
+                            datas.push(item);
+                        } else if (objList[i].pay_type_id == 61) {
+                            var item = new Object();
+                            var str = "<div style=\"font-size:14px;color:#cccccc\">" + objList[i].dt.pay_type_id.name + "</div>";
+                            var timeStr = getTimeZoneE8(8, objList[i].order_time).format("yyyy-MM-dd hh:mm:ss");
+                            str = str + "<div style=\"font-size:10px;color:" + mainFontColorDeep + "\">" + timeStr + "</div>";
+                            item["note"] = str;
+                            var money = doubleValue(objList[i].amount);
+                            if (money > 0) {
+                                money = "+" + money;
+                            }
+                            item["money"] = "<div style=\"font-size:14px;color:" + winFontColor + "\">" + money + "</div>";
+                            var status = objList[i].status;
+                            if (status == 1) {
+                                status = "<font color=#CCCCCC>成功</font>";
+                            } else if (status == 9) {
+                                status = "<font color=red>拒绝</font>";
+                            } else if (status == 0) {
+                                status = "<font color=#CCCCCC>审核中</font>";
+                            }
+                            item["status"] = status;
+                            item["arrow"] = "<img src=" + themPath + "arrow.png height=8px />";
+                            item["details"] = objList[i];
+                            datas.push(item);
+                        }
+                    }
+
+                    returnObj["result"] = new Object();
+                    returnObj["result"]["list"] = datas;
+                } else if (recordType == "draw") { // 提款
+                    var datas = new Array();
+                    var objList = gamesData.result.list;
+                    var len = objList.length;
+                    for (var i = 0; i < len; i++) {
+                        var item = new Object();
+                        var str = "<div style=\"font-size:14px;color:#cccccc\">" + objList[i].dt.pay_type_id.name + "</div>";
+                        var timeStr = getTimeZoneE8(8, objList[i].order_time).format("yyyy-MM-dd hh:mm:ss");
+                        str = str + "<div style=\"font-size:10px;color:" + mainFontColorDeep + "\">" + timeStr + "</div>";
+                        item["note"] = str;
+                        var money = doubleValue(objList[i].amount);
+                        money = "-" + money;
+
+                        item["money"] = "<div style=\"font-size:14px;color:" + lossFontColor + "\">" + money + "</div>";
+                        var status = objList[i].status;
+                        if (status == 2) {
+                            status = "<font color=#CCCCCC>成功</font>";
+                        } else if (status == 8) {
+                            status = "<font color=#CCCCCC>已取消</font>";
+                        } else if (status == 9) {
+                            status = "<font color=red>拒绝</font>";
+                        } else if (status == 0) {
+                            status = "<font color=#CCCCCC>审核中</font>";
+                        } else if (status == 1) {
+                            status = "<font color=#CCCCCC>审核中</font>";
+                        }
+                        item["status"] = status;
+                        item["arrow"] = "<img src=" + themPath + "arrow.png height=8px />";
+                        item["details"] = objList[i];
+                        datas.push(item);
+                    }
+
+                    returnObj["result"] = new Object();
+                    returnObj["result"]["list"] = datas;
+                } else if (recordType == "reback") { // 返水
+                    var datas = new Array();
+                    var objList = gamesData.result.list;
+                    var len = objList.length;
+                    for (var i = 0; i < len; i++) {
+                        try {
+                            var item = new Object();
+                            var payType;
+                            if (objList[i].dt["game_no"] != null) {
+                                payType = objList[i].dt.pay_type_id.name + "(" + objList[i].dt["game_no"]["name"] + ")";
+                            } else {
+                                payType = objList[i].dt.pay_type_id.name;
+                            }
+                            var str = "<div style=\"font-size:12px;color:#cccccc\">" + payType + "</div>";
+                            var timeStr = getTimeZoneE8(8, objList[i].order_time).format("yyyy-MM-dd hh:mm:ss");
+                            str = str + "<div style=\"font-size:10px;color:" + mainFontColorDeep + "\">" + timeStr + "</div>";
+                            item["note"] = str;
+                            var money = doubleValue(objList[i].amount);
+                            if (money > 0) {
+                                money = "+" + money;
+                            }
+                            item["money"] = "<div style=\"font-size:14px;color:" + winFontColor + "\">" + money + "</div>";
+                            var status = objList[i].status;
+                            if (status == 1) {
+                                status = "<font color=#CCCCCC>成功</font>";
+                            } else if (status == 9) {
+                                status = "<font color=red>拒绝</font>";
+                            } else if (status == 0) {
+                                status = "<font color=#CCCCCC>审核中</font>";
+                            }
+                            item["status"] = status;
+                            item["arrow"] = "<img src=" + themPath + "arrow.png height=8px />";
+                            item["details"] = objList[i];
+                            datas.push(item);
+                        } catch (error) {
+                            alert(error);
+                        }
+                    }
+
+                    returnObj["result"] = new Object();
+                    returnObj["result"]["list"] = datas;
+                } else { // 佣金
+                    var datas = new Array();
+                    var objList = gamesData.result.list;
+                    var len = objList.length;
+                    for (var i = 0; i < len; i++) {
+                        var item = new Object();
+                        var str = "<div style=\"font-size:14px;color:#cccccc\">" + objList[i].dt.pay_type_id.name + "</div>";
+                        var timeStr = getTimeZoneE8(8, objList[i].order_time).format("yyyy-MM-dd hh:mm:ss");
+                        str = str + "<div style=\"font-size:10px;color:" + mainFontColorDeep + "\">" + timeStr + "</div>";
+                        item["note"] = str;
+                        var money = doubleValue(objList[i].amount);
+                        if (money > 0) {
+                            money = "+" + money;
+                        }
+                        item["money"] = "<div style=\"font-size:14px;color:" + winFontColor + "\">" + money + "</div>";
+                        var status = objList[i].status;
+                        if (status == 1) {
+                            status = "<font color=#CCCCCC>成功</font>";
+                        } else if (status == 9) {
+                            status = "<font color=red>拒绝</font>";
+                        } else if (status == 0) {
+                            status = "<font color=#CCCCCC>审核中</font>";
+                        }
+                        item["status"] = status;
+                        item["arrow"] = "<img src=" + themPath + "arrow.png height=8px />";
+                        item["details"] = objList[i];
+                        datas.push(item);
+                    }
+
+                    returnObj["result"] = new Object();
+                    returnObj["result"]["list"] = datas;
+                }
+                // 返回解析结果对象
+                return returnObj;
+            }
+        }
+
+        setStyle();
+        function setStyle() {
+            $("#moneyrecordDiv_list_listContent").css({
+                "width": "100%",
+                "height": screenH - topH - 110,
+                "overflow-x": "hidden",
+                "overflow-y": "auto"
+            });
+        }
+    }
+</script>

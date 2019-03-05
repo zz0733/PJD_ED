@@ -1,0 +1,856 @@
+// 英文键盘接口
+启动接口:
+1.mIndexPopWindowObj.show(3, obj,align,tmd);
+(启动后 document.activeElement.blur() 移除焦点)
+启动方式: 
+1. input focus回调中启动;
+启动参数: 
+1.index=3; 
+2.键盘控制对象参数:
+        1.需要 inputObj 属性设置input对象
+        2.需要 showIs 属性设置是否显示输入展示板
+        3.需要 numberIs 属性设置是否可输入数字
+        4.需要 symbolIs 属性设置是否可输入符号
+        5.可选 symbolList 属性设置符号集(暂时只能容纳16个符号)
+        6.可选 enterFun 属性设置回车回调
+        7.可选 maxLen 属性设置最大输入长度
+        8,可选 InputHighlightIs 属性设置input框是否高亮
+3.窗口对齐方式:
+        1.center 居中
+        2.top 居上
+        3.bottom 居下
+4.窗口透明度( tmd <=1 )
+示例:
+$("#loginDiv_password").focus(function () {
+    var obj = new Object();
+    obj["inputObj"] = $("#loginDiv_password");
+    obj["showIs"] = false;
+    obj["numberIs"] = true;
+    obj["symbolIs"] = true;
+    obj["symbolList"] = ["?","?","?"];
+    mIndexPopWindowObj.show(3, obj,"bottom",0);
+    document.activeElement.blur();
+});
+
+// 数字键盘接口
+启动接口:
+1.mIndexPopWindowObj.show(2, obj);
+(启动后 document.activeElement.blur() 移除焦点)
+启动方式: 
+1. input focus回调中启动;
+启动参数: 
+1.index=2; 
+2.键盘控制对象参数:
+        1.需要 inputObj 属性设置input对象
+        2.可选 enterFun 属性设置回车回调
+        3.可选 maxLen 属性设置最大输入长度
+        4.可选 FloatLimit 属性设置浮点限制
+        5.可选 danIs 属性设置是否可输入浮点数
+        6.可选 isFunds 属性设置是否为金额输入(默认为flas,当设置为flas时danIs属性无效)
+        8,可选 InputHighlightIs 属性设置input框是否高亮
+3.窗口对齐方式:
+        1.center 居中
+        2.top 居上
+        3.bottom 居下
+4.窗口透明度( tmd <=1 )
+示例:
+inputObj.focus(function () {
+    mIndexPopWindowObj.show(2, inputObj,"bottom",0);
+    document.activeElement.blur();
+});
+
+// 手势密码接口
+启动接口:
+1.mIndexPopWindowObj.show(1, obj, "none");
+(启动前 document.activeElement.blur() 移除焦点)
+启动参数:
+1.index=1;
+2.手势对象参数:
+        1.需要 backCallFun 属性设置验证/设置完成回调
+        2.需要 SwitchAccountFun 属性设置切换账号回调
+        3.需要 isNotBack 属性设置是否禁止返回
+        4.可选 titleMs 属性设置手势标题头
+        5.可选 r 属性设置手势点外圆半径 (不得超过[屏幕窄边/3 - 60*2])
+        6.可选 nR 属性设置手势点内圆半径(不得超出外圆半径,否则等于外圆半径)
+        7.可选 wColor 属性设置手势点外圆颜色
+        8.可选 nColor 属性设置手势点内圆颜色
+        9.可选 touchColor 属性设置手势点触摸颜色
+        10.可选 lineColor 属性设置连接线颜色
+3 窗口对齐方式:
+        1.在index=1时只接收"none"属性(满屏窗口)
+4.窗口透明度:( tmd <= 1)
+
+// App内订阅/发布模块
+app 内部基于订阅/发布者模式实现消息同步(实现模块解耦)
+1.订阅:
+
+  mEventBusObj.subscription(eventTheme,eventIndex,function(obj){});
+  参数:
+  1. eventTheme 订阅主题
+  2. eventIndex 事件总线中的唯一标识(建议使用uuid)
+  3. function(obj){} 消息回调方法(obj:事件对象)
+  返回:
+  1. true/false 订阅成功/失败(一般由于唯一标识重复导致);
+
+  mEventBusObj.subscriptionForce(eventTheme,function(obj){});
+  参数:
+  1. eventTheme 订阅主题
+  2. function(obj){} 消息回调方法(obj:事件对象)
+  返回:
+  1. eventIndex 事件总线中的唯一标识
+
+2.发布:
+
+  mEventBusObj.release(obj); 
+  参数:
+  1. obj事件对象:
+     必要 obj["theme"] 属性设置发布主题(空主题与'all'主题无法发布)
+  返回:
+  1. true/false 发布成功/失败
+
+  mEventBusObj.releaseList(objList);
+  参数:
+  1. obj事件对象组:
+     组元素对象必要 obj["theme"] 属性设置发布主题(空主题与'all'主题无法发布)
+  返回:
+  1. true/false 发布成功/失败
+
+  3. 取消订阅:
+
+     mEventBusObj.unsubscribe(eventIndex);
+     参数:
+     1. 事件总线中唯一标识
+     返回:
+     1. true/false 取消订阅成功/失败
+
+// 选项卡构造器
+var mElanTab = new elandTab("leagueDetailsDiv_content", ["基本信息", "投注详情"], opts);
+"leagueDetailsDiv_content" : (必选) 指定构造容器DivID;
+["基本信息", "投注详情"] : (必选) 指定选项卡页及标题;
+opts : (可选) 定制选项卡样式(具体属性参照默认值)
+
+mElanTab.backTabSelect(function (index, contentId) {});
+选项卡切换回调
+index : 选项卡项
+contentId : 该项内容DivID
+
+mElanTab.backTabContentId(function (contentIdList) {});
+选项卡内容DivID回调(初始化后回调)
+contentIdList : 所有项内容DivID数组
+
+mElanTab.defaultSelectTab(0);
+默认选中项(必须在初始化之前设置否则无效)
+
+mElanTab.init();
+选项卡初始化(在回调设置后调用)
+
+mElanTab.showTab(0);
+选项卡显示指定项(必须是被隐藏的项)
+
+mElanTab.hiddenTab(0);
+选项卡隐藏指定项(必须是显示的项)
+
+mElanTab.selectTab(0);
+选项卡跳转到指定项
+
+// 浮动选项卡构造器
+var mElanTab = new elandFloatTab("leagueDetailsDiv_content", ["基本信息", "投注详情"], opts);
+"leagueDetailsDiv_content" : (必选) 指定构造容器DivID;
+["基本信息", "投注详情"] : (必选) 指定选项卡页及标题;
+opts : (可选) 定制选项卡样式(具体属性参照默认值)
+
+mElanTab.backTabSelect(function (index, contentId) {});
+选项卡切换回调
+index : 选项卡项
+contentId : 该项内容DivID
+
+mElanTab.backTabContentId(function (contentIdList) {});
+选项卡内容DivID回调(初始化后回调)
+contentIdList : 所有项内容DivID数组
+
+mElanTab.defaultSelectTab(0);
+默认选中项(必须在初始化之前设置否则无效)
+
+mElanTab.init();
+选项卡初始化(在回调设置后调用)
+
+mElanTab.selectTab(0);
+选项卡跳转到指定项
+
+function JPNNPage() {
+    var TAG = "JPNNGAME: ";
+    var mPage = new pageObj("nnDiv", "抢庄牛牛");
+    var token = null; var isSetToken = false;
+    var isBack = true;
+    var resetLoginTimeOut;
+    var mLoader = new Spinner({ "color": "white" });
+    var timeoutMidObj;
+    var timeoutBackObj;
+    var iframeId = "#mapDiv_content_frame";
+    var tableCode = null; // 预进桌
+    var isResLoadOK = false;
+    var isEnterTable = false;
+    var isExitTable = false;
+    var is1003codeHandle = false;
+    var reLoadFrameTimeOutObj = null;
+    this.loadUI = function () {
+        mPage.init(exitGame);
+        var src = $(iframeId).attr("src");
+        if (src != "JPNN/index.html") {
+            $(iframeId).attr("src", "JPNN/index.html");
+            reLoadTimeout();
+        }
+        $("#nnDiv_content").css({
+            "width": screenW,
+            "height": screenH - topH
+        });
+        $(iframeId).css({
+            "width": screenW,
+            "height": screenH - topH
+        });
+        $("#mapDiv_content_fed").css({
+            "background": pageBgColor,
+            "width": screenW,
+            "height": screenH - topH,
+            "display": "flex",
+            "justify-content": "center",
+            "align-items": "center"
+        });
+        $("#mapDiv_content_load").css({
+            "width": screenW,
+            "height": screenH - topH,
+            "display": "flex",
+            "justify-content": "center",
+            "align-items": "center"
+        });
+        $("#mapDiv_content_fed_root_top_txt").css({
+            "color": mainColor
+        });
+        AppAddEvent(document, "visibilitychange", appHiddenChange, true);
+    }
+    this.show = function () {
+        mPage.show(); isBack = false;
+        openGame();
+    }
+    this.openGame = openGame;
+    this.notify = notify;
+    this.enterTable = enterTable;
+    this.exitTable = exitTable;
+    this.resetOpenGame = resetOpenGame;
+    this.openAnimation = openAnimation;
+    this.stopAnimation = stopAnimation;
+    this.reLoadFrame = reLoadFrame;
+    function openGame() {
+        reSet();
+        openAnimation();
+        if (token != null) {
+            showGame();
+            var vv = getParentVv("setToken");
+            if (vv != null && isSetToken) {
+                vv.resume(); if (isLogin()) { mGameAPI.enterGame("nn", 1, onLoginFed); }
+            } else if (vv != null) {
+                vv.setToken(token, onTokenBack);
+            }
+        } else {
+            var result = mGameAPI.getAPILoginResult("nn");
+            if (result == null) { tokenNot(); return; }
+            var data = result["data"];
+            if (data == null) { tokenNot(); return; }
+            token = data["token"];
+            if (token == null) { tokenNot(); return; }
+            showGame();
+            var vv = getParentVv("setToken");
+            if (vv != null) {
+                vv.setToken(token, onTokenBack);
+            } else {
+                isSetToken = false;
+            }
+        }
+        function tokenNot() {
+            if (isLogin()) {
+                showLoad();
+                onLoginJPNN();
+            }
+        }
+    }
+    function exitGame() {
+        mEnterGameObj.unShow();
+        isBack = true;
+        reSet();
+        var vv = getParentVv("exitRoom");
+        if (vv != null) {
+            vv.exitRoom();
+        }
+    }
+    function notify(code, data) {
+        switch (code) {
+            case 1000:
+                clearReLoadTimeout();
+                isResLoadOK = true;
+                stopAnimation();
+                var vv = getParentVv("setToken");
+                if (vv == null || isBack || token == null || isSetToken) { return; }
+                vv.setToken(token, onTokenBack);
+                break;
+            case 1001:
+                token = null;
+                mGameAPI.setAPILoginResult("nn", null);
+                resetOpenGame();
+                break;
+            case 1002:
+                tableCode = data;
+                if (isLogin()) {
+                    token = null;
+                    mGameAPI.setAPILoginResult("nn", null);
+                    resetOpenGame();
+                } else {
+                    myPJDApp.showLogin();
+                }
+                break;
+            case 1003:
+                if (!is1003codeHandle) {
+                    tableCode = data;
+                    is1003codeHandle = true;
+                    var vv = getParentVv("enterRoom");
+                    if (vv == null || tableCode == null) {
+                        is1003codeHandle = false;
+                        return;
+                    }
+                    setTimeout(function () {
+                        if (isBack) {
+                            is1003codeHandle = false;
+                            return;
+                        }
+                        vv.enterRoom(tableCode);
+                        tableCode = null; // 消费掉预桌号
+                    }, 800);
+                } else {
+                    is1003codeHandle = false;
+                    showIncome();
+                }
+                break;
+            case 9999:
+                token = null;
+                mGameAPI.setAPILoginResult("nn", null);
+                resetOpenGame();
+                $(iframeId).attr("src", "JPNN/index.html");
+                reLoadTimeout();
+                break;
+            default: break;
+        }
+        console.log(TAG + "notify code:" + code);
+    }
+    function enterTable() {
+        if (isBack) { return; }
+        isEnterTable = true;
+        mPage.hiddenBtn();
+    }
+    function exitTable() {
+        if (isEnterTable) {
+            isExitTable = true;
+            isEnterTable = false;
+        }
+        mPage.showBtn();
+    }
+    function resetOpenGame() {
+        if (isBack) { return; }
+        MJPNNObj.openGame();
+    }
+    function onLoginJPNN() {
+        mGameAPI.loginToAPI("nn", 1, onLoginOK, onLoginFed);
+    }
+    function onLoginOK() {
+        var result = mGameAPI.getAPILoginResult("nn");
+        if (result == null || result == "") { showFed("游戏无法打开,请稍后重试!"); return; }
+        var data = result["data"];
+        if (data == null || data == "") { showFed("游戏无法打开,请稍后重试!"); return; }
+        token = data["token"];
+        if (token == null || token == "") { showFed("游戏无法打开,请稍后重试!"); return; }
+        showGame();
+        var vv = getParentVv("setToken");
+        if (vv != null) {
+            vv.setToken(token, onTokenBack);
+        } else {
+            isSetToken = false;
+        }
+    }
+    function onLoginFed(error) {
+        if (isBack) {
+            clearResetLogin();
+            return;
+        }
+        if (error == 900) {
+            clearResetLogin();
+            showFed("游戏正在维护中," + errorMesage);
+        } else {
+            clearResetLogin();
+            resetLoginTimeOut = setTimeout(function () {
+                onLoginJPNN();
+            }, 3000);
+        }
+        function clearResetLogin() {
+            if (resetLoginTimeOut != null) {
+                clearTimeout(resetLoginTimeOut);
+                resetLoginTimeOut = null;
+            }
+        }
+    }
+    function onTokenBack(data) {
+        if (data == null || !data["success"]) {
+            if (data != null && data["msg"] != null && data["msg"] != "") {
+                showFed(data["msg"]);
+            } else {
+                showFed("游戏登录失败,请稍后重试!");
+            }
+            isSetToken = false;
+            return;
+        }
+        isSetToken = true;
+        var vv = getParentVv("resume");
+        if (vv == null) {
+            showFed("游戏内部错误,请稍后重试!");
+            return;
+        }
+        vv.resume();
+        if (tableCode != null && !isNaN(tableCode)) {
+            vv.enterRoom(tableCode);
+            tableCode = null; // 消费掉预桌号
+        }
+        if (isLogin() && !isExitTable) { mGameAPI.forceEnterGame("nn", onLoginFed); }
+        isExitTable = false;
+        console.log("onTokenBack isSuccess:" + data["success"]);
+    }
+    function getParentVv(funName) {
+        if (!isResLoadOK) { return null; }
+        if (funName == null) { funName = "setToken" }
+        try {
+            var vv = $(window.parent.document).contents().find(iframeId)[0].contentWindow.cc.vv;
+            if (vv[funName] != null) {
+                console.log("getParentVv func succ:" + funName);
+                return vv;
+            }
+            console.log("getParentVv func fed:" + funName);
+            return null;
+        } catch (e) {
+            console.log("getParentVv func error:" + funName);
+            return null;
+        }
+    }
+    var isShowLoad = false;
+    var isShowGame = false;
+    var isShowFed = false;
+    function showFed(tsMsg) {
+        if (isShowFed) { return; }
+        mLoader.spin();
+        $("#mapDiv_content_fed").css({ "display": "flex" });
+        $("#mapDiv_content_load").css({ "display": "none" });
+        $("#mapDiv_content_fed_root_ts").html(tsMsg);
+        isShowFed = true;
+        isShowLoad = false;
+        isShowGame = false;
+        clearLoadingTimeout();
+    }
+    function showLoad() {
+        if (isShowLoad) { return; }
+        mLoader.spin();
+        $("#mapDiv_content_fed").css({ "display": "none" });
+        $("#mapDiv_content_load").css({ "display": "flex" });
+        $("#mapDiv_content_load_root_view").html("");
+        $("#mapDiv_content_load_root_ts").html("正在加载中,请稍后!");
+        mLoader.spin(o("mapDiv_content_load_root_view"));
+        isShowLoad = true;
+        isShowFed = false;
+        isShowGame = false;
+        clearLoadingTimeout();
+        timeoutMidObj = setTimeout(function () {
+            if (!isShowLoad) { return; }
+            $("#mapDiv_content_load_root_ts").html("加载时间较长,请耐心等待...");
+        }, timeoutMidTime);
+        timeoutBackObj = setTimeout(function () {
+            if (!isShowLoad) { return; }
+            showFed("游戏无法打开,请稍后重试!");
+        }, timeoutBackTime);
+    }
+    function showGame() {
+        if (isShowGame) { return; }
+        mLoader.spin();
+        $("#mapDiv_content_fed").css({ "display": "none" });
+        $("#mapDiv_content_load").css({ "display": "none" });
+        isShowGame = true;
+        isShowLoad = false;
+        isShowFed = false;
+        clearLoadingTimeout();
+    }
+    function reSet() {
+        clearLoadingTimeout();
+        isShowLoad = false;
+        isShowGame = false;
+        isShowFed = false;
+        $("#mapDiv_content_fed").css({ "display": "none" });
+        $("#mapDiv_content_load").css({ "display": "none" });
+    }
+    function clearLoadingTimeout() {
+        if (timeoutMidObj != null) {
+            clearTimeout(timeoutMidObj);
+            timeoutMidObj = null;
+        }
+        if (timeoutBackObj != null) {
+            clearTimeout(timeoutBackObj);
+            timeoutBackObj = null;
+        }
+    }
+    function openAnimation() {
+        if (isBack) { return; }
+        var vv = getParentVv("resume");
+        if (vv != null) { vv.resume(); }
+    }
+    function stopAnimation(isForce) {
+        if (isForce == null) { isForce = false; }
+        if (!isBack && !isForce) { return; }
+        var vv = getParentVv("exitRoom");
+        if (vv != null) { vv.exitRoom(); }
+    }
+    function appHiddenChange() {
+        var isHidden = document.hidden;
+        if (isHidden) {
+            stopAnimation();
+            console.log("document visibilitychange hidden");
+        } else {
+            setTimeout(function () { stopAnimation(); }, 0);
+            console.log("document visibilitychange not hidden");
+        }
+    }
+    function reLoadFrame() {
+        if (reLoadFrameTimeOutObj == null) { return; }
+        $(iframeId).attr("src", "JPNN/index.html");
+        reLoadTimeout();
+    }
+    function reLoadTimeout() {
+        clearReLoadTimeout();
+        reLoadFrameTimeOutObj = setTimeout(reLoadFrame, 60000);
+        console.log(TAG + "reLoadTimeout");
+    }
+    function clearReLoadTimeout() {
+        if (reLoadFrameTimeOutObj != null) {
+            clearTimeout(reLoadFrameTimeOutObj);
+            reLoadFrameTimeOutObj = null;
+            console.log(TAG + "clearReLoadTimeout success");
+        }
+        console.log(TAG + "clearReLoadTimeout");
+    }
+    function showIncome() {
+        if (isBack || !isLogin()) { return; }
+        var obj = new Object();
+        obj["backIs"] = true;
+        obj["title"] = "余额不足";
+        obj["viewFun"] = function (id) {
+            var root = "<div id=\"" + id + "_disconnectRoot\">[content]</div>";
+            var loadIcon = "<div id=\"" + id + "_disconnectLoadIcon\">[content]</div>";
+            var img = "<img id=\"" + id + "_disconnectImg\" src=\"" + themPath + "insufficient_balance.png\" style=\"width:85px\"/>";
+            loadIcon = loadIcon.replace("[content]", img);
+            var txt = "<div id=\"" + id + "_disconnectTxt\">您当前的余额不足!</div>";
+            var txtSub = "<div id=\"" + id + "_disconnectTxtSub\">请充值</div>";
+            var btnCome = "<div id=\"" + id + "_disconnectBtnCome\">立即存款</div>";
+            var btnBack = "<div id=\"" + id + "_disconnectBtnBack\">取消</div>";
+            return root.replace("[content]", loadIcon + txt + txtSub + btnCome + btnBack);
+        };
+        obj["styleFun"] = function (id) {
+            $("#" + id + "_disconnectRoot").css({
+                "align-items": "center",
+                "text-align": "center",
+                "width": "100%",
+                "height": "auto",
+                "padding": "15px",
+                "box-sizing": "border-box"
+            });
+            $("#" + id + "_disconnectLoadIcon").css({
+                "display": "flex",
+                "justify-content": "center",
+                "align-items": "center",
+                "width": "100%",
+                "height": "auto",
+                "box-sizing": "border-box"
+            });
+            $("#" + id + "_disconnectTxt").css({
+                "display": "flex",
+                "justify-content": "center",
+                "align-items": "center",
+                "width": "100%",
+                "height": "auto",
+                "font-size": "14px",
+                "color": "#A8A8A8",
+                "margin-top": "10px",
+                "box-sizing": "border-box"
+            });
+            $("#" + id + "_disconnectTxtSub").css({
+                "display": "flex",
+                "justify-content": "center",
+                "align-items": "center",
+                "width": "100%",
+                "height": "auto",
+                "font-size": "16px",
+                "color": mainColor,
+                "margin-top": "2px",
+                "box-sizing": "border-box"
+            });
+            $("#" + id + "_disconnectBtnCome").css({
+                "border-radius": "20px",
+                "color": mainFontColor,
+                "font-size": "14px",
+                "background-color": mainColor,
+                "width": "100%",
+                "display": "flex",
+                "justify-content": "center",
+                "align-items": "center",
+                "padding": "10px",
+                "margin-top": "15px",
+                "box-sizing": "border-box"
+            });
+            $("#" + id + "_disconnectBtnBack").css({
+                "border-radius": "20px",
+                "border": "1px solid " + mainColor,
+                "color": mainColor,
+                "font-size": "14px",
+                "background-color": "",
+                "width": "100%",
+                "display": "flex",
+                "justify-content": "center",
+                "align-items": "center",
+                "padding": "10px",
+                "margin-top": "15px",
+                "box-sizing": "border-box"
+            });
+            setBtnOnTouchEvent($("#" + id + "_disconnectBtnCome"), function () {
+                if (isLogin()) {
+                    mMsgBox.hide();
+                    myPJDApp.showDeposit();
+                } else {
+                    mMsgBox.hide();
+                    myPJDApp.showLogin();
+                }
+            }, mainColorDeep, mainColor, null);
+            setBtnOnTouchEvent($("#" + id + "_disconnectBtnBack"), function () {
+                mMsgBox.hide();
+            }, mainColorDeep, "", null);
+        };
+        mMsgBox.showImp(obj);
+    }
+}
+
+function bindNn() {
+var obj = $("#content_poker_content_nn");
+var nnContent = "<div style='width:100%;font-size:11px;justify-content: center;align-items: center'>[content]</div>";
+var tipImg = '<div style="position:relative;width:100%;">[content]</div>';
+var countM = '<div id="jpnnSpan">￥0</div>';
+var backImg = '<img style="width:100%;" src="pic/themeMain/jpnnt.png"  />';
+tipImg = tipImg.replace("[content]", countM + backImg);
+var nnContent1 = "<div style='color:gainsboro;box-sizing: border-box;text-align:center'>葡京岛抢庄牛牛是最快速刺激的可搓牌抢庄牛牛游戏。</div>";
+var nnContent2 = "<div style='color:gainsboro;box-sizing: border-box;text-align:center'>六个等级公共房间任您加入，更可邀好友到自建房间私下比拼！</div>";
+var nnContent3 = "<div style='color:gainsboro;box-sizing: border-box;text-align:center'>每局10元就有可能中JACKPOT大奖，赢取巨额彩金！</div>";
+var contentLine = "<div style='width:100%;height:15px;'></div>"
+var contentBtn = '<div id="nnContentBtn">立即进入</div>';
+
+var contentImg = '<div style="display: flex;justify-content:center;align-items:center;width: 100%;">%content%</div>';
+var t1 = '<div style="width:30%;">%content%</div>';
+var t1ImgStr = '<img style="width:100%;" src="pic/themeMain/jpnn1.png"  />';
+t1 = t1.replace("%content%", t1ImgStr)
+
+var t2 = '<div style="padding-left:10px;padding-right:10px;width:30%;">%content%</div>';
+var t2ImgStr = '<img style="width:100%;" src="pic/themeMain/jpnn2.png"  />';
+t2 = t2.replace("%content%", t2ImgStr)
+
+var t3 = '<div style="width:30%;">%content%</div>';
+var t3ImgStr = '<img style="width:100%;" src="pic/themeMain/jpnn3.png"  />';
+t3 = t3.replace("%content%", t3ImgStr)
+contentImg = contentImg.replace("%content%", t1 + t2 + t3);
+nnContent = nnContent.replace("[content]", tipImg + contentLine + nnContent1 + nnContent2 + nnContent3 + contentLine + contentBtn + contentLine + contentImg);
+
+obj.html(nnContent);
+$("#nnContentBtn").css({
+"border-radius": "20px",
+"color": mainFontColor,
+"font-size": "14px",
+"background-color": mainColor,
+"width": "100%",
+"height": "40px",
+"display": "flex",
+"justify-content": "center",
+"align-items": "center",
+"padding": "10px",
+"box-sizing": "border-box"
+});
+$("#jpnnSpan").css({
+"position": "absolute",
+"width": "100%",
+"bottom": "12px",
+"text-align": "center",
+"font-family": "wxcH",
+"font-size": "30px",
+"background": "linear-gradient(to top, #c67908,#efce44,#f9e465)",
+"-webkit-background-clip": "text",
+"color": "transparent"
+});
+setBtnOnTouchEvent($("#nnContentBtn"), function () {
+MJPNNObj.show();
+}, mainColorDeep, mainColor, null);
+}
+
+<script>
+  function getJPNNService() {
+    if (parent.IS_TEST_SERVER) {
+      return "nn1.bctt.co";
+    } else {
+      return parent.NiceJpnnDomain;
+    }
+  }
+</script>
+
+if (parent.isInApp() && parent.isInIOS()) {
+    parent.openRecorde(function (isSucc) {
+        // isSucc 为是否成功启动录音
+    });
+}
+if (parent.isInApp() && parent.isInIOS()) {
+    parent.stopRecorde(function (src) {
+        // src 为acc文件路径
+    });
+    parent.playeRecorde(function (isSucc) {
+        // isSucc 为是否成功播放录音文件
+    });
+}
+
+<script>
+    function getJPNNService() {
+    if (parent.IS_TEST_SERVER) {
+        return "nn1.bctt.co";
+    } else {
+        return parent.NiceJpnnDomain; // nn2.qilibank.net
+    }
+    }
+    function openRecorde(call) {
+    parent.openRecorde(call);
+    }
+    function stopRecorde(call) {
+    parent.stopRecorde(call);
+    }
+    function playeRecorde(call) {
+    parent.playeRecorde(call);
+    }
+    function isInApp() {
+    try {
+        return parent.isInApp();
+    } catch (e) {
+        return false;
+    }
+    }
+    function isInIOS() {
+    var u = navigator.userAgent;
+    if (u.match(/(iPhone|iPod|iPad);?/i)) { return true; }
+    return false;
+    }
+</script>
+if (parent && parent.mEventBusObj) {
+    var canvasIndex = parent.mEventBusObj.subscriptionForce("canvasHeightResize", function (obj) {
+    var h = obj["height"];
+    setTimeout(function () {
+        var root = document.getElementById('Cocos2dGameContainer');
+        var gameCanvas = document.getElementById('GameCanvas');
+        root.style.height = h + "px";
+        gameCanvas.style.height = h + "px";
+        gameCanvas.setAttribute("height", h * 2);
+        console.log("JPNN GameCanvas getAttributeHeight:" + gameCanvas.getAttribute("height"));
+        console.log("JPNN GameCanvas resize height:" + gameCanvas.style.height + " rootH:" + root.style.height
+        + " clientHeight:" + gameCanvas.clientHeight + " offsetHeight:" + gameCanvas.offsetHeight + " scrollHeight:" + gameCanvas.scrollHeight);
+    }, 1000);
+    console.log("JPNN canvasHeightResize height:" + h);
+    });
+    console.log("JPNN subscriptionForce canvasHeightResize");
+}
+// 工程配置及初始化控制
+var APP_VERSION = "1.6.5";
+var APP_GAME_PK_TYPE = 1; // app类型 0:综合 1:彩票
+var appRootDomain = null;
+var SERVER_ADD = "https://w8.bctt.co:8000/"; // 测试
+// var SERVER_ADD = "https://www.pjd111.com/"; // 综合
+// var SERVER_ADD = https://www.pjd11.com/; // 彩票
+var IS_TEST_SERVER = true; // 是否是测试服务器(更改服务地址时必须更改该值)
+var ORDER_TIMEOUT = 15000;
+var appDownloadUrl = null;
+var ipaInstallUrl = null;
+var lmgGetDataUrl = null;
+var isLockTouchOpen = false; // 是否开启手势验证
+// ------------------------------------------
+
+// 文章转内容接口
+$("#" + layoutId).html(AppMakeObj.AeToCn(list, layoutId, function (item) {});
+list : JSON.parse(jsonObj["result"][index]["content"]); -- index为下标
+function : 遍历list时的每一项的回调
+// 为生成的内容设置样式
+$("." + layoutId + "_img").css({
+    "width": "100%",
+    "padding": "5px 10px 5px 10px",
+    "box-sizing": "border-box"
+});
+$("." + layoutId + "_text").css({
+    "width": "100%",
+    "padding": "5px 10px 5px 10px",
+    "box-sizing": "border-box"
+});
+
+// 文章转内容接口 示例1:
+var rootId = "aboutContent";
+var ms = "页面加载失败，请重试！";
+requestAjax("article/getArticleForList", "typeId=[1011]", function (jsonObj) {
+    var code = jsonObj["code"];
+    if (code != 0) { bindFedView(rootId, ms); return; }
+    var result = jsonObj["result"];
+    var list = JSON.parse(result[0]["content"]);
+    $("#" + rootId).html(AppMakeObj.AeToCn(list, rootId));
+    $("." + rootId + "_img").css({
+        "width": "100%",
+        "padding": "5px 10px 5px 10px",
+        "box-sizing": "border-box"
+    });
+    $("." + rootId + "_text").css({
+        "width": "100%",
+        "padding": "5px 10px 5px 10px",
+        "box-sizing": "border-box"
+    });
+}, function (error) { bindFedView(rootId, ms); });
+
+// 文章转内容接口 示例2:
+var layoutId = "favourableDetailsContent";
+var item = JSON.parse(datas);
+$("#" + layoutId).html(AppMakeObj.AeToCn(item, layoutId, function (item) {
+    if (item["type"] == "count" && item["end"] != null && item["end"] != "") {
+        endTime = new Date(item["end"].replace(/-/g, '/'));
+        var ms = "";
+        ms += '<div style="flex-shrink: 0;width: 100%;height: 30px;background-color: #232323;color: #4c5f6b;font-size: 12px;display: flex;justify-content: center;align-items: center">';
+        ms += '剩&nbsp;余&nbsp;时&nbsp;间</div>'
+        ms += '<div id="favourable_countDown" style="flex-shrink: 0;width: 100%;height: 60px;background-color: #2d2d2d;color: #4c5f6b;font-size: 12px;display: flex;justify-content: center;align-items: center">';
+        ms += '<div style="width: 25%" class="favourableTimeItem"><div id="favourableTimeItem_d">0</div><div class="favourableTimeItemTitle">天</div></div>';
+        ms += '<div style="width: 25%" class="favourableTimeItem"><div id="favourableTimeItem_h">0</div><div class="favourableTimeItemTitle">时</div></div>';
+        ms += '<div style="width: 25%" class="favourableTimeItem"><div id="favourableTimeItem_m">0</div><div class="favourableTimeItemTitle">分</div></div>';
+        ms += '<div style="width: 25%" class="favourableTimeItem"><div id="favourableTimeItem_s">0</div><div class="favourableTimeItemTitle">秒</div></div>';
+        ms += '</div>';
+        ms += '<div id="favourable_btn" style="flex-shrink: 0;display: flex;justify-content: center;align-items: center;height: 80px; width: 100%">';
+        ms += '<div id="favourableRequestBtn" class="PJDCommBtn" style="width: 90%;background-color:#cca352;">立即申请</div></div>';
+        return ms;
+    }
+    return null;
+}));
+$("." + layoutId + "_img").css({
+    "width": "100%",
+    "padding": "5px 10px 5px 10px",
+    "box-sizing": "border-box"
+});
+$("." + layoutId + "_text").css({
+    "width": "100%",
+    "padding": "5px 10px 5px 10px",
+    "box-sizing": "border-box"
+});
+console.log("makeContentSuccess");
+
+"overflow": "hidden",
+"text-overflow": "ellipsis",
+"white-space": "nowrap",

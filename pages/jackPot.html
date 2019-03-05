@@ -1,0 +1,664 @@
+<div style="position: relative;width: 100%;height:100%;">
+    <div id="jp_nn_root" style="position: absolute;top: 0px;width: 100%;display: flex;flex-direction: column;justify-content: flex-start;align-items: center;background-color: #1b1b1b">
+        <div id="jp_nn_hei" style="width: 100%;height:105px;display: flex;">
+            <div style="position:relative;width:100%;height:100%;box-sizing: border-box">
+                <img src="pic/themeMain/jpnntNew.png" style="width:100%;height:105px;position: absolute;left: 0px" />
+                <div style="position:absolute;left:0px;width:100%;height:100%;display:flex;justify-content:center">
+                    <div id="jp_nn_content"></div>
+                </div>
+            </div>
+            <div id="jackPotRlueBtn" style="position: absolute;left: 12%;top:30px;display: flex;justify-content: flex-start;align-items: center;">
+                <img src="pic/themeMain/m_newmem.png" width="12px" />
+                <div style="padding-left:5px;box-sizing: border-box;color:#ebc16e;font-size:12px ">规则</div>
+            </div>
+        </div>
+        <div style="height:5px"></div>
+        <div style="font-size:14px;width: 90%;height:20px;display: flex;justify-content: space-around;align-items: center;color: #ba9957">
+            <div>游戏ID</div>
+            <div>中奖金额</div>
+            <div>花色</div>
+            <div>时间</div>
+        </div>
+        <div style="height:5px"></div>
+        <div style="width: 80%;height: 1.5px;background:#796539;display: flex;"></div>
+        <div class="jp_nn_list" style="font-size:13px;width: 100%;position: relative;height: 200px;overflow: hidden;">
+            <div class="jp_nn_rowup" style="position: relative;-webkit-animation: 10s rowup linear infinite normal;animation: 11s rowup linear infinite normal;color:white">
+            </div>
+        </div>
+        <div style="padding: 12px 10px 12px 10px;width:100%;background:#272727;display:flex;justify-content: space-between;align-items: center;box-sizing: border-box">
+            <div id="jp_nn_create_room_btn" style="background:#3e392f;border-radius: 50px;height:40px;width:48%;display:flex;justify-content: center;align-items: center;color: #f7f7f7;font-size: 16px">
+                <img src="pic/themeMain/jpnnC.png" width="13%" />&nbsp;&nbsp;创建私房
+            </div>
+            <div id="jp_nn_open_room_btn" style="background:#3e392f;border-radius: 50px;height:40px;width:48%;display:flex;justify-content: center;align-items: center;color: #f7f7f7;font-size: 16px">
+                <img src="pic/themeMain/jpnnJ.png" width="13%" />&nbsp;&nbsp;进入私房
+            </div>
+        </div>
+        <div style="height:15px"></div>
+        <div style="padding:0px 12px 0px 12px;width:100%;display: flex;justify-content:space-between;align-items: center;box-sizing: border-box">
+            <div class="jackOpenRoom" id="jackOpenRoomBtn_1" style="border:1px solid #635132;width: 32%;height: 62px;box-sizing:border-box">
+                <div class="jackdzBtn">
+                    <div style="color:#c29f60;font-size: 14px">
+                        <font style="font-size:18px;">1</font>元底注
+                    </div>
+                    <div style="color:#676767;font-size:10px;">余额6准入</div>
+                </div>
+                <div class="JackPotccBtn">体验场<div class="JackPotccImg">流畅</div>
+                </div>
+            </div>
+            <div class="jackOpenRoom" id="jackOpenRoomBtn_2" style="border:1px solid #635132;width: 32%;height: 62px;box-sizing:border-box">
+                <div class="jackdzBtn">
+                    <div style="color:#c29f60;font-size: 14px">
+                        <font style="font-size:18px;">4</font>元底注
+                    </div>
+                    <div style="color:#676767;font-size:10px;">余额24准入</div>
+                </div>
+                <div class="JackPotccBtn">初级场<div class="JackPotccImg">流畅</div>
+                </div>
+            </div>
+            <div class="jackOpenRoom" id="jackOpenRoomBtn_3" style="border:1px solid #635132;width: 32%;height: 62px;box-sizing:border-box">
+                <div class="jackdzBtn">
+                    <div style="color:#c29f60;font-size: 14px">
+                        <font style="font-size:18px;">10</font>元底注
+                    </div>
+                    <div style="color:#676767;font-size:10px;">余额60准入</div>
+                </div>
+                <div class="JackPotccBtn">中级场<div class="JackPotccImg">流畅</div>
+                </div>
+            </div>
+        </div>
+        <div style="height:10px"></div>
+        <div style="padding:0px 12px 0px 12px;width:100%;display: flex;justify-content:space-between;align-items: center;box-sizing: border-box">
+            <div class="jackOpenRoom" id="jackOpenRoomBtn_4" style="border:1px solid #635132;width: 32%;height: 62px;box-sizing:border-box">
+                <div class="jackdzBtn">
+                    <div style="color:#c29f60;font-size: 14px">
+                        <font style="font-size:18px;">30</font>元底注
+                    </div>
+                    <div style="color:#676767;font-size:10px;">余额180准入</div>
+                </div>
+                <div class="JackPotccBtn">高级场<div class="JackPotccImg">流畅</div>
+                </div>
+            </div>
+            <div class="jackOpenRoom" id="jackOpenRoomBtn_5" style="border:1px solid #635132;width: 32%;height: 62px;box-sizing:border-box">
+                <div class="jackdzBtn">
+                    <div style="color:#c29f60;font-size: 14px">
+                        <font style="font-size:18px;">100</font>元底注
+                    </div>
+                    <div style="color:#676767;font-size:10px;">余额600准入</div>
+                </div>
+                <div class="JackPotccBtn">顶级场<div class="JackPotccImg">流畅</div>
+                </div>
+            </div>
+            <div class="jackOpenRoom" id="jackOpenRoomBtn_6" style="border:1px solid #635132;width: 32%;height: 62px;box-sizing:border-box">
+                <div class="jackdzBtn">
+                    <div style="color:#c29f60;font-size: 14px">
+                        <font style="font-size:18px;">300</font>元底注
+                    </div>
+                    <div style="color:#676767;font-size:10px;">余额1800准入</div>
+                </div>
+                <div class="JackPotccBtn">巅峰场<div class="JackPotccImg">流畅</div>
+                </div>
+            </div>
+        </div>
+        <div style="height:15px"></div>
+    </div>
+    <div id="jp_nn_window_one" style="position:absolute;top: 0px;width: 100%;display: none;justify-content: center;align-items: center;background-color: rgba(0, 0, 0, 0.5)">
+        <div style="display:block;width: 90%;align-items: center;box-sizing: border-box;border-radius: 10px;border: 1px solid #4d4d4d;background-color: rgba(0, 0, 0, 0.8)">
+            <div style="height:20px"></div>
+            <div style="display: block;text-align: center">
+                <div style="font-size: 18px;font-weight: bold;color: #c29f60">创建私房</div>
+                <div style="font-size: 16px;color: #676767">请选择底注金额与准入金额</div>
+            </div>
+            <div style="height:20px"></div>
+            <div style="padding:0px 10px 0px 10px;width:100%;display: flex;justify-content:space-between;align-items: center;box-sizing: border-box">
+                <div id="jackPotcRomm_1" class="jackPotcRoom">
+                    <div style="display: block;text-align: center">
+                        <div style="color:#c29f60;font-size: 15px">
+                            <font style="font-size:20px;">1</font>元底注
+                        </div>
+                        <div style="color:#676767;font-size:12px;">余额6准入</div>
+                    </div>
+                </div>
+                <div id="jackPotcRomm_4" class="jackPotcRoom">
+                    <div style="display: block;text-align: center">
+                        <div style="color:#c29f60;font-size: 15px">
+                            <font style="font-size:20px;">4</font>元底注
+                        </div>
+                        <div style="color:#676767;font-size:12px;">余额24准入</div>
+                    </div>
+                </div>
+                <div id="jackPotcRomm_10" class="jackPotcRoom">
+                    <div style="display: block;text-align: center">
+                        <div style="color:#c29f60;font-size: 15px">
+                            <font style="font-size:20px;">10</font>元底注
+                        </div>
+                        <div style="color:#676767;font-size:12px;">余额60准入</div>
+                    </div>
+                </div>
+            </div>
+            <div style="height:20px"></div>
+            <div style="padding:0px 10px 0px 10px;width:100%;display: flex;justify-content:space-between;align-items: center;box-sizing: border-box">
+                <div id="jackPotcRomm_30" class="jackPotcRoom">
+                    <div style="display: block;text-align: center">
+                        <div style="color:#c29f60;font-size: 15px">
+                            <font style="font-size:20px;">30</font>元底注
+                        </div>
+                        <div style="color:#676767;font-size:12px;">余额180准入</div>
+                    </div>
+                </div>
+                <div id="jackPotcRomm_100" class="jackPotcRoom">
+                    <div style="display: block;text-align: center">
+                        <div style="color:#c29f60;font-size: 15px">
+                            <font style="font-size:20px;">100</font>元底注
+                        </div>
+                        <div style="color:#676767;font-size:12px;">余额600准入</div>
+                    </div>
+                </div>
+                <div id="jackPotcRomm_300" class="jackPotcRoom">
+                    <div style="display: block;text-align: center">
+                        <div style="color:#c29f60;font-size: 15px">
+                            <font style="font-size:20px;">300</font>元底注
+                        </div>
+                        <div style="color:#676767;font-size:12px;">余额1800准入</div>
+                    </div>
+                </div>
+            </div>
+            <div style="height:25px"></div>
+            <div style="padding:0px 15px 0px 15px;width:100%;display: flex;justify-content:space-between;align-items: center;box-sizing: border-box">
+                <div id="cancelNNRoom" class="createNNRoomBtn" style="border:1px solid #4e4129;width: 40%;height: 40px;">
+                    取消
+                </div>
+                <div id="confirmNNRoom" class="createNNRoomBtn" style="border:1px solid #4e4129;width: 40%;height: 40px;">
+                    确定
+                </div>
+            </div>
+            <div style="height:20px"></div>
+        </div>
+    </div>
+
+    <div id="jp_nn_window_two" style="position:absolute;top: 0px;width: 100%;display: none;justify-content: center;align-items: center;background-color: rgba(0, 0, 0, 0.5)">
+        <div style="display:block;width: 90%;display: flex;flex-direction: column;justify-content: flex-start;align-items: center;box-sizing: border-box;border-radius: 10px;border: 1px solid #4d4d4d;background-color: rgba(0, 0, 0, 0.8)">
+            <h3 style="color:#cca352;font-size:16px;text-align: center">提示</h3>
+            <div style="width:80%;background:#212121;padding: 10px 10px 10px 10px;text-align: center">
+                <div style="color:#b7b7b7;font-size:15px;text-align: center">私房已创建成功，房间号为:</div>
+                <div id="jackPotRoomId" style="color:#6889b7;font-size:32px;text-align: center">0</div>
+            </div>
+            <div style="padding:15px 15px 15px 15px;width:100%;display: flex;justify-content:center;align-items: center;box-sizing: border-box">
+                <div id="copyRoomIdBtn" style="background:#6889b7;width: 40%;height: 25px;">
+                    复制文字
+                </div>
+            </div>
+            <div style="color:#b7b7b7;font-size:15px;text-align: center">
+                请通过发送文字或截图的方式<br>立即邀请好友进入私房一起牛吧牛!
+            </div>
+            <div style="height: 15px"></div>
+            <div class="opensRoomBtn" id="openPrivRoomBtnId" style="border:1px solid #4e4129;width: 55%;height: 35px;">
+                进入私房游戏
+            </div>
+            <div style="height:20px"></div>
+        </div>
+    </div>
+
+    <div id="jp_nn_window_open" style="position:absolute;top: 0px;width: 100%;display: none;flex-direction: column;justify-content: flex-start;align-items: center;background-color: rgba(0, 0, 0, 0.5)">
+        <div style="height:20px"></div>
+        <div style="display:block;width: 90%;display: flex;flex-direction: column;justify-content: flex-start;align-items: center;box-sizing: border-box;border-radius: 10px;border: 1px solid #4d4d4d;background-color: rgba(0, 0, 0, 0.8)">
+            <div style="height:15px;"></div>
+            <div style="width:100%;display:flex;justify-content:space-between;padding: 0px 15px 0px 15px;align-items: center;box-sizing: border-box">
+                <div id="jackPotclose" style="color:white;font-size: 14px">取消</div>
+                <div style="color:#cca352;font-size: 18px">进入私房</div>
+                <div id="jackPotOpen" style="color:white;font-size: 14px">进入</div>
+            </div>
+            <div style="height:30px;"></div>
+            <input class="jackPotInputStyle" id="jackPotRoomIdInput" type="text" placeholder="请输入私房房间号码" />
+            <div style="width:80%;height:1px;background:#4d4d4d;"></div>
+            <div style="height:20px"></div>
+        </div>
+    </div>
+
+    <div id="jp_nn_window_rule" style="position:absolute;top: 0px;width: 100%;display: none;flex-direction: column;justify-content: flex-start;align-items: center;background-color: rgba(0, 0, 0, 0.5);">
+        <div style="height:20%"></div>
+        <div style="display:block;height:70%;width: 85%;display: flex;flex-direction: column;justify-content: flex-start;align-items: center;box-sizing: border-box;border-radius: 10px;border: 1px solid #4d4d4d;background-color: rgba(0, 0, 0, 0.8);">
+            <div style="width: 100%;padding: 15px 10px 15px 10px;box-sizing: border-box;display: flex;justify-content: space-between;align-items: center">
+                <div style="width: 10%"></div>
+                <div style="width: 80%;display: flex;justify-content: center;align-items: center;font-size: 18px;color: white">
+                    JACKPOT规则</div>
+                <div style="width: 10%">
+                    <div id="closeRule" style="font-size:30px;color:white;">×</div>
+                </div>
+            </div>
+            <div style="width: 90%;overflow-x: hidden;overflow-y: auto;">
+                <div style="padding: 0px 0px 20px 0px;color:#a6a6a6;">
+                    <div style="font-size: 14px;">
+                        在游戏开局时选择下注JACKPOT，则一局游戏结束后获得以下牌型的，可以从奖池中获取大量的奖金哦！
+                    </div>
+                    <div style="font-size: 14px;">
+                        JACKPOT中奖后，系统会收取中奖金额的5%作为服务费用。
+                    </div>
+                </div>
+                <div id="ruleWidth">
+                    <table style="width: 100%" cellpadding="5" cellspacing="1">
+                        <tr style="background-color: #b1b1b1;font-size: 13px;color: black;text-align: center">
+                            <td width="50%"><b>中奖牌型</b></td>
+                            <td width="50%"><b>对应奖金</b></td>
+                        </tr>
+                        <tr style="background-color: #050505;font-size: 12px;color: #a6a6a6;text-align: center">
+                            <td width="50%">
+                                <img src="pic/themeMain/jackPotP1.png" width="100px" />
+                                <br>皇家同花顺</td>
+                            <td width="50%">领取奖池全部奖金</td>
+                        </tr>
+                        <tr style="background-color: #050505;font-size: 12px;color: #a6a6a6;text-align: center">
+                            <td width="50%">
+                                <img src="pic/themeMain/jackPotP2.png" width="100px" />
+                                <br>同花顺 </td>
+                            <td width="50%">领取奖池10%奖金</td>
+                        </tr>
+                        <tr style="background-color: #050505;font-size: 12px;color: #a6a6a6;text-align: center">
+                            <td width="50%">
+                                <img src="pic/themeMain/jackPotP3.png" width="100px" />
+                                <br>四条</td>
+                            <td width="50%">领取2500元</td>
+                        </tr>
+                        <tr style="background-color: #050505;font-size: 12px;color: #a6a6a6;text-align: center">
+                            <td width="50%">
+                                <img src="pic/themeMain/jackPotP4.png" width="100px" />
+                                <br>葫芦</td>
+                            <td width="50%">领取1500元</td>
+                        </tr>
+                        <tr style="background-color: #050505;font-size: 12px;color: #a6a6a6;text-align: center">
+                            <td width="50%">
+                                <img src="pic/themeMain/jackPotP5.png" width="100px" />
+                                <br>同花</td>
+                            <td width="50%">领取1000元</td>
+                        </tr>
+                        <tr style="background-color: #050505;font-size: 12px;color: #a6a6a6;text-align: center">
+                            <td width="50%">
+                                <img src="pic/themeMain/jackPotP6.png" width="100px" />
+                                <br>顺子</td>
+                            <td width="50%">领取500元</td>
+                        </tr>
+                        <tr style="background-color: #050505;font-size: 12px;color: #a6a6a6;text-align: center">
+                            <td width="50%">
+                                <img src="pic/themeMain/jackPotP7.png" width="100px" />
+                                <br>三条</td>
+                            <td width="50%">领取40元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div style="height:25px"></div>
+        </div>
+    </div>
+
+    <div id="jp_nn_window_load" style="position:absolute;top: 0px;width: 100%;display: none;justify-content: center;align-items: center;background-color: rgba(0, 0, 0, 0.5);">
+        <div id="jp_nn_window_load_view" style="display: flex;justify-content: center;align-items: center;box-sizing: border-box"></div>
+    </div>
+</div>
+<style>
+    @keyframes rowup {
+        0% {
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+
+        100% {
+            -webkit-transform: translate3d(0, -307px, 0);
+            transform: translate3d(0, -307px, 0);
+        }
+    }
+</style>
+<script>
+    JackPotFun();
+    function JackPotFun() {
+        var contentH = screenH - topH - menuH - 0.5 - chMenuH;
+        var roomId = 0;
+        var mLoader = new Spinner({ "color": "white" });
+        allStyle();
+        requestAjax("https://" + NiceJpnnDomain + "/get_jackpot?", "", function (jsonObj) {
+            var setMoneyInterval = null;
+            var obj = jsonObj["data"];
+            var money = obj["money"];
+            var addInterval = obj["addInterval"];
+            var addValue = obj["addValue"];
+            if (setMoneyInterval != null) { clearInterval(setMoneyInterval); }
+            setMoneyInterval = setInterval(function () {
+                var nnMoney = money.toString();
+                if (nnMoney["length"] <= 5) {
+                    var n1 = nnMoney.substr(nnMoney["length"] - 2);
+                    nnMoney = nnMoney.substr(0, nnMoney["length"] - 2);
+                    requestAnimationFrame(function () {
+                        $("#jp_nn_content").html("￥" + nnMoney + "." + n1);
+                    });
+                } else {
+                    var n1 = nnMoney.substr(nnMoney["length"] - 2);
+                    nnMoney = nnMoney.substr(0, nnMoney["length"] - 2);
+                    var n2 = nnMoney.substr(nnMoney["length"] - 3);
+                    nnMoney = nnMoney.substr(0, nnMoney["length"] - 3);
+                    requestAnimationFrame(function () {
+                        $("#jp_nn_content").html("￥" + nnMoney + "," + n2 + "." + n1);
+                    });
+                }
+                money += addValue;
+            }, addInterval);
+            var jLists = obj["jackpotList"];
+            var jLen = jLists.length;
+            var str = "";
+            for (var i = 0; i < jLen; i++) {
+                var listObj = jLists[i];
+                var gName = listObj.name;
+                if (gName.length > 6) {
+                    gName = gName.substr(0, 6) + "...";
+                }
+                var jpMoney = (listObj.money).toString();
+                if (jpMoney.length >= 3) {
+                    var h2 = jpMoney.substr(jpMoney.length - 2);
+                    jpMoney = jpMoney.substr(0, jpMoney.length - 2);
+                    jpMoney = jpMoney + "." + h2;
+                }
+                var oldDate = getTimeZoneE8(8, new Date()).getTime();
+                var nowDate = oldDate - new Date(listObj.date).getTime();
+                var testDiv = '<div style="display: flex;justify-content: space-around;align-items: center;" class="item">[content]</div>';
+                var gameName = '<div style="text-align:center;width:28%;">' + gName + '</div>';
+                var jmoney = '<div style="text-align:center;width:29%;">' + jpMoney + '</div>';
+                var desc = '<div style="text-align:center;width:19%;">' + listObj.desc + '</div>';
+                var time = '<div style="text-align:center;width:25%;">' + bindTimeContents(nowDate) + '</div>';
+                testDiv = testDiv.replace("[content]", gameName + jmoney + desc + time);
+                str += testDiv;
+            }
+            $(".jp_nn_rowup").html(str);
+        });
+        function bindTimeContents(time) {
+            var imgH = screenH / 6.13;
+            var rtime = "";
+            var days = parseInt(time / 1000 / 60 / 60 / 24, 10);
+            var hours = parseInt(time / 1000 / 60 / 60 % 24, 10);
+            var minutes = parseInt(time / 1000 / 60 % 60, 10);
+            if (days >= 1) {
+                rtime = days + "天前";
+            } else if (hours >= 1) {
+                rtime = hours + "小时前";
+            } else if (minutes >= 1) {
+                rtime = minutes + "分钟前";
+            } else {
+                rtime = "1分钟前";;
+            }
+            return rtime;
+        }
+        function showCreateRoom() {
+            $("#jp_nn_window_one").css({ "display": "flex" });
+        }
+        function closeCreateRoom() {
+            $("#jp_nn_window_one").css({ "display": "none" });
+        }
+        function showRoomCretOK() {
+            $("#jp_nn_window_two").css({ "display": "flex" });
+        }
+        function closeRoomCretOK() {
+            $("#jp_nn_window_two").css({ "display": "none" });
+        }
+        function showOpenPrivRoom() {
+            $("#jp_nn_window_open").css({ "display": "flex" });
+        }
+        function closeOpenPrivRoom() {
+            $("#jp_nn_window_open").css({ "display": "none" });
+        }
+        function showRule() {
+            $("#jp_nn_window_rule").css({ "display": "flex" });
+        }
+        function closeRule() {
+            $("#jp_nn_window_rule").css({ "display": "none" });
+        }
+        function showLoading() {
+            $("#jp_nn_window_load").css({ "display": "flex" });
+            mLoader.spin(o("jp_nn_window_load_view"));
+        }
+        function closeLoading() {
+            mLoader.spin();
+            $("#jp_nn_window_load").css({ "display": "none" });
+        }
+        function allStyle() {
+            $(".jackPotInputStyle").focus(function () {
+                var obj = new Object();
+                obj["inputObj"] = $(".jackPotInputStyle");
+                obj["showIs"] = false;
+                obj["danIs"] = false;
+                obj["maxLen"] = 8;
+                mIndexPopWindowObj.show(2, obj);
+                document.activeElement.blur();
+            });
+            $(".jackPotInputStyle").css({
+                "width": "80%",
+                "height": "28px",
+                "color": "#B0B0B0",
+                "outline": "medium",
+                "border": "none",
+                "background": "transparent",
+                "text-align": "center"
+            });
+            $(".jackPotcRoom").css({
+                "border": "1px solid #4e4129",
+                "width": "32%",
+                "height": "70px",
+                "display": "flex",
+                "justify-content": "center",
+                "align-items": "center"
+            })
+            $(".jackPotcRoom").each(function () {
+                $("#jackPotcRomm_1").css({
+                    "border": "1px solid #cca352",
+                    "background": "#161616",
+                })
+                roomId = 1;
+                setBtnOnTouchEvent($(this), function (obj) {
+                    var id = obj.id;
+                    var iList = id.split("_");
+                    var iLen = iList.length;
+                    var type = iList[iLen - 1];
+                    $(".jackPotcRoom").css({
+                        "border": "1px solid #4e4129",
+                        "background": ""
+                    })
+                    $("#" + id).css({
+                        "border": "1px solid #cca352",
+                        "background": "#161616",
+                    })
+                    roomId = type;
+                }, "#2b2b2b", null, null);
+            });
+            $(".jp_nn_list").css({
+                "background-image": "-webkit-linear-gradient(top,#0d1306,#472809)",
+                "height": contentH - 105 - 30 - 1.5 - 64 - 15 - 62 - 10 - 62 - 15
+            })
+            $("#jp_nn_content").css({
+                "font-size": "33px",
+                "font-family": "wxcH",
+                "line-height": "144px",
+                "background-image": "-webkit-linear-gradient(bottom,#f9e464,#c77c0a,#f9e464)",
+                "-webkit-background-clip": "text",
+                "-webkit-text-fill-color": "transparent"
+            });
+            setBtnOnTouchEvent($("#cancelNNRoom"), function () {
+                closeCreateRoom();
+            }, mainColorDeep, null);
+            setBtnOnTouchEvent($("#closeRule"), function () {
+                closeRule();
+            }, null);
+            setBtnOnTouchEvent($("#jackPotclose"), function () {
+                closeOpenPrivRoom();
+            }, null);
+            setBtnOnTouchEvent($("#jackPotOpen"), function () {
+                if (isLogin()) {
+                    var jpRoomId = $("#jackPotRoomIdInput").val();
+                    if (jpRoomId != "") {
+                        mJpnnPageObj.show(jpRoomId, 1);
+                    } else {
+                        mToast.show("请输入房间号!");
+                    }
+                } else {
+                    myPJDApp.showLogin();
+                }
+                $("#jackPotRoomIdInput").val("");
+                closeOpenPrivRoom();
+            }, null);
+            $("#ruleWidth").css({
+                "width": "100%",
+                "background": "#CCCCCC"
+            })
+            $(".jackdzBtn").css({
+                "width": "100%",
+                "height": "64%",
+                "padding": "0px 5px 0px 5px",
+                "box-sizing": "border-box",
+                "background": "#101010"
+            })
+            $(".JackPotccBtn").css({
+                "width": "100%",
+                "height": "36%",
+                "padding": "0px 5px 0px 5px",
+                "background": "#24201c",
+                "display": "flex",
+                "justify-content": "space-between",
+                "align-items": "center",
+                "color": "white",
+                "font-size": "12px",
+                "box-sizing": "border-box"
+            })
+            $(".JackPotccImg").css({
+                "background": "#75b030",
+                "border-radius": "15px",
+                "width": "30%",
+                "color": "black",
+                "font-size": "8px",
+                "text-align": "center"
+            })
+            $(".createNNRoomBtn").css({
+                "border-radius": "20px",
+                "border": "1px solid #c29f5b",
+                "color": "#c29f5b",
+                "font-size": "14px",
+                "font-weight": "normal",
+                "background-color": "",
+                "display": "flex",
+                "justify-content": "center",
+                "align-items": "center",
+                "padding": "10px",
+                "box-sizing": "border-box"
+            });
+            $(".opensRoomBtn").css({
+                "border-radius": "20px",
+                "border": "1px solid #c29f5b",
+                "color": "#c29f5b",
+                "font-size": "14px",
+                "font-weight": "normal",
+                "background-color": "",
+                "display": "flex",
+                "justify-content": "center",
+                "align-items": "center",
+                "box-sizing": "border-box"
+            });
+            $("#copyRoomIdBtn").css({
+                "border-radius": "15px",
+                "color": "white",
+                "font-size": "14px",
+                "font-weight": "normal",
+                "background-color": "#6889b7",
+                "width": "40%",
+                "display": "flex",
+                "justify-content": "center",
+                "align-items": "center",
+                "padding": "10px",
+                "box-sizing": "border-box"
+            });
+            setBtnOnTouchEvent($("#copyRoomIdBtn"), function () {
+                var roomId = $("#jackPotRoomId").html();
+                copyInApp(roomId);
+            }, "#34455B", "#6889b7", null);
+            $("#jp_nn_root").css({
+                "height": contentH
+            });
+            $("#jp_nn_window_one").css({
+                "height": contentH
+            });
+            $("#jp_nn_window_two").css({
+                "height": contentH
+            });
+            $("#jp_nn_window_open").css({
+                "height": contentH
+            });
+            $("#jp_nn_window_rule").css({
+                "height": contentH
+            });
+            $("#jp_nn_window_load").css({
+                "height": contentH
+            });
+            setBtnOnTouchEvent($("#jp_nn_create_room_btn"), function () {
+                if (isLogin()) {
+                    showCreateRoom();
+                } else {
+                    myPJDApp.showLogin();
+                }
+            }, mainColorDeep, "#3e392f", null);
+            $("#jackPotRlueBtn").click(function () {
+                showRule();
+            })
+            setBtnOnTouchEvent($("#jp_nn_open_room_btn"), function () {
+                if (isLogin()) {
+                    showOpenPrivRoom();
+                } else {
+                    myPJDApp.showLogin();
+                }
+            }, mainColorDeep, "#3e392f", null);
+            setBtnOnTouchEvent($("#openPrivRoomBtnId"), function () {
+                var jpRoomId = $("#jackPotRoomId").html();
+                if (jpRoomId != 0) {
+                    mJpnnPageObj.show(jpRoomId, 1);
+                } else {
+                    mToast.show("房间号不存在!");
+                }
+                $("#jackPotRoomId").html("0");
+                closeRoomCretOK();
+            }, mainColorDeep, null, null);
+            setBtnOnTouchEvent($("#confirmNNRoom"), function () {
+                if (isLogin()) {
+                    if (roomId != 0) {
+                        showLoading();
+                        mJpnnPageObj.createPrivRoom(roomId, function (obj) {
+                            closeLoading();
+                            var succ = obj["success"];
+                            var openIs = obj["openIs"];
+                            var room;
+                            if (succ) {
+                                room = obj["roomId"];
+                                closeCreateRoom();
+                                if (openIs == false) {
+                                    showRoomCretOK();
+                                    $("#jackPotRoomId").html(room);
+                                } else {
+                                    mJpnnPageObj.show(room, 1);
+                                }
+                            } else {
+                                mToast.show("创建错误,请选择房间重试!");
+                            }
+                        });
+                    } else {
+                        mToast.show("创建错误,请选择房间重试!");
+                    }
+                } else {
+                    myPJDApp.showLogin();
+                }
+            }, mainColorDeep, null, null);
+            $(".jackOpenRoom").each(function () {
+                setBtnOnTouchEvent($(this), function (obj) {
+                    var id = obj.id;
+                    var iList = id.split("_");
+                    var iLen = iList.length;
+                    var type = iList[iLen - 1];
+                    if (isLogin()) {
+                        mJpnnPageObj.show(type, 2);
+                    } else {
+                        myPJDApp.showLogin();
+                    }
+                }, "#2b2b2b", null, null);
+            });
+        }
+    }
+</script>
