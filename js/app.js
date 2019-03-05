@@ -2313,6 +2313,21 @@ function getResettingSign() {
     if (isHiden == 1) { isHiden = true } else { isHiden = false; }
     return isHiden;
 }
+function loadIsAgent() {
+    var isAgent = false;
+    if (isLogin()) {
+        if (userInfo["is_agent"] != 0) {
+            isAgent = true;
+        }
+    }
+    return isAgent;
+}
+function nnAgentAlert() {
+    var obj = new Object();
+    obj["name"] = "pages/nnAgentAlert.html";
+    obj["addCompete"] = true;
+    mIndexPopWindowObj.show(6, obj, "none");
+}
 var toolbarTopColor = "#0f0f0f";
 var toolbarTopColorDK = "#212121";
 var toolbarIndexColor = "#cccccc";

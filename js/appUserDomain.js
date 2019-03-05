@@ -640,6 +640,7 @@ function loginObj() {
         if (userInfo["complete"] == 3) {
             mUserObj.getBankInfo(null);
         }
+        loadIsAgent();
         mUserObj.getMoneyBag();
         ReadNoticeMessage();
         myPJDApp.hiddenMeLeagueMenu();
@@ -712,6 +713,7 @@ function userObj() {
             }
             userInfo = jsonObj["result"];
             userId = userInfo["name"];
+            loadIsAgent();
             MJPNNObj.resetOpenGame();
             myPJDApp.updateMeLogInStatus(1);
             myPJDApp.showUserInfo();
