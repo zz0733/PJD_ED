@@ -3917,10 +3917,8 @@ function AppMake() {
         if (cList == null || layoutId == null || cList["length"] == 0) { return ""; }
         var text = "<div class=\"" + layoutId + "_text\" style=\"display:none;text-align:[ta];color:[cr];font-weight:[fw];font-size:[se]\">[cn]</div>";
         var img = "<div class=\"" + layoutId + "_img\"><img id=\"[id]\" src=\"[src]\" style=\"display:none;width:100%\" /></div>";
-        var lineDiv = "<div calss='makeLine' style='width:100%;height:20px;background:#272727;'></div>"
-        var lineImgDiv = "<div calss='makeLineImg' style='width:100%;height:5px;background:#272727;'></div>"
-        var imgPre = lineImgDiv+"<div class=\"make_content_imgPre_"+layoutId+"\"></div>"+lineImgDiv;
-        var contentPre = lineDiv+"<div class=\"make_content_contentPre_"+layoutId+"\"></div>"+lineDiv;
+        var imgPre = "<div class=\"make_content_imgPre_"+layoutId+"\"></div>";
+        var contentPre = "<div class=\"make_content_contentPre_"+layoutId+"\"></div>";
         var len = cList["length"];
         var index = 0;
         var divs = "";
@@ -3964,34 +3962,34 @@ function AppMake() {
         $("#" + layoutId).html(divs);
         $("." + layoutId + "_img").css({
             "width": "100%",
-            "padding": "5px 20px 5px 20px",
+            "padding": "5px 22px 5px 22px",
             "box-sizing": "border-box"
         });
         $("." + layoutId + "_text").css({
             "width": "100%",
-            "padding": "5px 20px 5px 20px",
+            "padding": "5px 22px 5px 22px",
             "box-sizing": "border-box"
         });
         $(".make_content_imgPre_" + layoutId).css({
             "width": "100%",
-            "height":"80px",
-            "padding": "5px 20px 5px 20px",
+            "height":"120px",
+            "padding": "5px 22px 5px 22px",
+            "border":"10px solid #272727",
             "box-sizing": "border-box",
             "background":"#2f2f2f",
         });
         $(".make_content_contentPre_" + layoutId).css({
             "width": "100%",
-            "height":"20px",
-            "padding": "5px 20px 5px 20px",
+            "height":"40px",
+            "padding": "5px 22px 5px 22px",
+            "border":"10px solid #272727",
             "box-sizing": "border-box",
             "background":"#2f2f2f",
         });
         var imgTotal = imgPath.length;
-        
         if (imgTotal <= 0) {
             $("." + layoutId + "_text").css({ "display": "" });
             $(".make_content_contentPre_" + layoutId).css({"display":"none"});
-            $(".makeLine").css({"display":"none"});
         }
         imgContent();
         function imgContent(){
@@ -4002,14 +4000,12 @@ function AppMake() {
                     flag++;
                     if(flag > 0){
                         $("." + layoutId + "_text").css({ "display": "" });
-                        $(".makeLine").css({"display":"none"});
                         $(".make_content_contentPre_" + layoutId).css({"display":"none"});
                     }
                     if (flag == imgTotal) {
                         for (var j = 0; j < imgTotal; j++) {
                             $("#"+layoutId+"_content_img_" + j).attr("src", imgPath[j]);
                             $("#"+layoutId+"_content_img_" + j).css({"display":""});
-                            $(".makeLineImg").css({"display":"none"});
                             $(".make_content_imgPre_" + layoutId).css({"display":"none"});
                         }
                     }
