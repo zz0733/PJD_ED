@@ -1057,14 +1057,15 @@ function PJDApp() {
         }
         $(".menuClass").each(function () {
             setBtnOnTouchEventNoColor($("#" + this.id), function (mObj) {
-                if (mObj.id.split("_")[1] == 5) {
+                var index = mObj.id.split("_")[1];
+                if (index == 3) {
                     if (isLogin()) {
                         myPJDApp.showLuckyDrawObj();
                     } else {
                         mLoginObj.show();
                     }
                 } else {
-                    setSelectMenu(mObj.id.split("_")[1]);
+                    setSelectMenu(index);
                 }
             }, null);
         });
