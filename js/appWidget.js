@@ -3917,8 +3917,8 @@ function AppMake() {
         if (cList == null || layoutId == null || cList["length"] == 0) { return ""; }
         var text = "<div class=\"" + layoutId + "_text\" style=\"display:none;text-align:[ta];color:[cr];font-weight:[fw];font-size:[se]\">[cn]</div>";
         var img = "<div class=\"" + layoutId + "_img\"><img id=\"[id]\" src=\"[src]\" style=\"display:none;width:100%\" /></div>";
-        var imgPre = "<div class=\"make_content_imgPre_"+layoutId+"\"></div>";
-        var contentPre = "<div class=\"make_content_contentPre_"+layoutId+"\"></div>";
+        var imgPre = "<div class=\"make_content_imgPre_" + layoutId + "\"></div>";
+        var contentPre = "<div class=\"make_content_contentPre_" + layoutId + "\"></div>";
         var len = cList["length"];
         var index = 0;
         var divs = "";
@@ -3945,10 +3945,10 @@ function AppMake() {
                     .replace("[cn]", item["content"]);
                 divs += contentPre;
             } else if (item["type"] == "img") {
-                divs += img.replace("[id]", layoutId+"_content_img_" + index)
+                divs += img.replace("[id]", layoutId + "_content_img_" + index)
                     .replace("[src]", "");
                 divs += imgPre;
-                imgPreId.push(layoutId+"_content_img_"+index);
+                imgPreId.push(layoutId + "_content_img_" + index);
                 imgPath.push(item["url"]);
                 index++;
             }
@@ -3972,47 +3972,47 @@ function AppMake() {
         });
         $(".make_content_imgPre_" + layoutId).css({
             "width": "100%",
-            "height":"120px",
+            "height": "120px",
             "padding": "5px 22px 5px 22px",
-            "border":"10px solid #272727",
+            "border": "10px solid #272727",
             "box-sizing": "border-box",
-            "background":"#2f2f2f",
+            "background": "#2f2f2f",
         });
         $(".make_content_contentPre_" + layoutId).css({
             "width": "100%",
-            "height":"40px",
+            "height": "40px",
             "padding": "5px 22px 5px 22px",
-            "border":"10px solid #272727",
+            "border": "10px solid #272727",
             "box-sizing": "border-box",
-            "background":"#2f2f2f",
+            "background": "#2f2f2f",
         });
         var imgTotal = imgPath.length;
         if (imgTotal <= 0) {
             $("." + layoutId + "_text").css({ "display": "" });
-            $(".make_content_contentPre_" + layoutId).css({"display":"none"});
+            $(".make_content_contentPre_" + layoutId).css({ "display": "none" });
         }
         imgContent();
-        function imgContent(){
+        function imgContent() {
             for (var i = 0; i < imgTotal; i++) {
                 imgPreId[i] = new Image();
                 imgPreId[i].src = imgPath[i];
                 imgPreId[i].onload = function () {
                     flag++;
-                    if(flag > 0){
+                    if (flag > 0) {
                         $("." + layoutId + "_text").css({ "display": "" });
-                        $(".make_content_contentPre_" + layoutId).css({"display":"none"});
+                        $(".make_content_contentPre_" + layoutId).css({ "display": "none" });
                     }
                     if (flag == imgTotal) {
                         for (var j = 0; j < imgTotal; j++) {
-                            $("#"+layoutId+"_content_img_" + j).attr("src", imgPath[j]);
-                            $("#"+layoutId+"_content_img_" + j).css({"display":""});
-                            $(".make_content_imgPre_" + layoutId).css({"display":"none"});
+                            $("#" + layoutId + "_content_img_" + j).attr("src", imgPath[j]);
+                            $("#" + layoutId + "_content_img_" + j).css({ "display": "" });
+                            $(".make_content_imgPre_" + layoutId).css({ "display": "none" });
                         }
                     }
                 }
             }
         }
-        if(flag >= imgTotal){
+        if (flag >= imgTotal) {
             return;
         } else {
             imgContent();
@@ -4417,20 +4417,36 @@ function checkPageBackFromHome() {
     console.log("checkBackFromHome:" + backFunArr.length);
 }
 function VisibleTime(time) {
-    var result = "";
-    var days = parseInt(time / 1000 / 60 / 60 / 24, 10);
-    var hours = parseInt(time / 1000 / 60 / 60 % 24, 10);
-    var minutes = parseInt(time / 1000 / 60 % 60, 10);
-    if (days >= 1) {
-        result = days + "天前";
-    } else if (hours >= 1) {
-        result = getTimeZoneE8(timeZone, new Date(time)).format("hh:mm");
-    } else if (minutes >= 1) {
-        result = minutes + "分钟前";
+    var nowDate = getTimeZoneE8(timeZone, new Date());
+    var nowTime = nowDate.getTime(); // 时间戳
+    var nowYear = nowDate.getFullYear(); // 年
+    var nowMonte = nowDate.getMonth() + 1; // 月
+    var nowDay = nowDate.getDate(); // 日
+    console.log("nowYear:" + nowYear + " nowMonte:" + nowMonte + " nowDay:" + nowDay);
+    var fromDate = getTimeZoneE8(timeZone, new Date(time));
+    var fromTime = fromDate.getTime();
+    var year = fromDate.getFullYear();
+    var monte = fromDate.getMonth() + 1;
+    var day = fromDate.getDate();
+    if (nowYear == year) {
+        if (nowMonte == monte && nowDay == day) {
+            var timeDifference = Math.abs(nowTime - fromTime);
+            console.log("timeDifference:" + timeDifference);
+            if (timeDifference < (60 * 60 * 1000)) {
+                var mm = parseInt(timeDifference / 1000 / 60);
+                console.log("minuteDifference:" + mm);
+                if (mm >= 1) { return mm + "分钟前"; } else { return "刚刚"; }
+            } else {
+                return fromDate.format("hh:mm");
+            }
+        } else if (nowMonte == monte) {
+            return Math.abs(nowDay - day) + "天前 " + fromDate.format("hh:mm");
+        } else {
+            return fromDate.format("MM-dd hh:mm");
+        }
     } else {
-        result = "刚刚";
+        return fromDate.format("yyyy-MM-dd hh:mm");
     }
-    return result;
 }
 var timeOutAjax = 2000;
 var T0EventList = new Array();
