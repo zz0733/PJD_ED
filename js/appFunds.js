@@ -633,7 +633,6 @@ function feedbackInfoObj() {
         });
     }
 }
-// 线上存款渠道
 function DepositBindViewObj(rootViewId) {
     var rootId;
     var rootObj;
@@ -1260,7 +1259,6 @@ function DepositBindViewObj(rootViewId) {
         return isValid;
     }
 }
-// 线上存款
 function incomeOnlineObj() {
     var mPage = new pageObj("incomeOnlineDiv", "在线存款");
     var mLoader = new Spinner({ "color": "white" });
@@ -1423,7 +1421,6 @@ function incomeOnlineObj() {
         }
     }
 }
-// 线下存款
 function incomeOfflineObj() {
     var rootId = "incomeOfflineDiv";
     var mPage = new pageObj(rootId, "线下存款");
