@@ -51,7 +51,7 @@ function payObj() {
             resultItem.list = rootItem.items;
             if (isBanks) {
                 if (resultItem.id == 1) {
-                    if(userInfo["dt"]["grade_id"]["weixin_show"] == 1){
+                    if (userInfo["dt"]["grade_id"]["weixin_show"] == 1) {
                         var obj = new Object();
                         obj["name"] = "微信转银行卡";
                         obj["channel_type"] = "_offline_channel_wxto_";
@@ -62,7 +62,7 @@ function payObj() {
                         resultItem.list.push(obj);
                     }
                 } else if (resultItem.id == 2) {
-                    if(userInfo["dt"]["grade_id"]["alipay_show"] == 1){
+                    if (userInfo["dt"]["grade_id"]["alipay_show"] == 1) {
                         var obj = new Object();
                         obj["name"] = "支付宝转银行卡";
                         obj["channel_type"] = "_offline_channel_zfbto_";
@@ -838,7 +838,7 @@ function DepositBindViewObj(rootViewId) {
         var minM = channelItem.min_amount;
         if (isinput == 0) { // 可自定义金额
             var inMs = "请输入" + minM + "-" + maxM;
-            input = "<input id=\"" + rootId + "_rgPaychannel_head_topInput\" type=\"tel\"  placeholder=\"" + inMs + "\" />";
+            input = "<input id=\"" + rootId + "_rgPaychannel_head_topInput\" type=\"tel\"  placeholder=\"" + inMs + "\"/>";
         }
 
         // 筹码view
@@ -961,8 +961,8 @@ function DepositBindViewObj(rootViewId) {
                     var vae = inputObj.val();
                     var vLen = vae.length;
                     if (isNaN(vae)) { // 非数字
-                        inputObj.val(vae.substr(0, vLen - 1));
-                        mToast.show("请输入纯数字!", "1", "middle");
+                        inputObj.val("");
+                        mIndexPopWindowObj.close();
                     } else { // 数字
                         selectChannel.amount = vae;
                         if (fixedClickId != null) {
@@ -1904,7 +1904,7 @@ function incomeOfflineObj() {
             mMsgBox.show("线下银行汇款", userInfo["u_name"] + "您是否向" + bankObj["account"] + "汇款" + item["amount"] + "元?", function () {
                 requestAjax("payOrder/confirmDepositOrder", "orderId=" + id, function (jsonObj) {
                     var obj = jsonObj["code"];
-                    if(obj == 0){
+                    if (obj == 0) {
                         backClickFun();
                         mIncomeOfflineSuccessObj.show(id);
                     } else {
