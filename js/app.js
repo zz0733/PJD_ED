@@ -2314,6 +2314,14 @@ function getResettingSign() {
     if (isHiden == 1) { isHiden = true } else { isHiden = false; }
     return isHiden;
 }
+function loadAlert(){
+    mIndexPopWindowObj.close(true);
+    if (userInfo["agent_type"] == 3) {
+        myPJDApp.showAgent();
+    } else {
+        myPJDApp.showPyramid();
+    }
+}
 function loadIsAgent() {
     var isAgent = false;
     if (isLogin()) {

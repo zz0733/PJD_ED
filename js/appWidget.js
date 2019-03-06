@@ -3254,7 +3254,9 @@ function IndexBulletin(id) {
     function bindView() {
         var close = "<div id=\"" + layoutId + "_close\"><img id=\"" + layoutId + "_closeImg\" src=\"" +
             themPath + "xclose.png\" style=\"width:30px\" /></div>";
-        var root = "<div id=\"" + layoutId + "_root\">[content]</div>";
+        var topImg = "<div style='position:relative;top:15px;z-index:3;display: flex;justify-content: center;align-items: center;'><img style='width:50%' src='pic/themeMain/alertTop.png' /></div>";
+        var linDiv = "<div style='height:10px;'></div>"
+        var root = "<div id=\"" + layoutId + "_root\">"+linDiv+"[content]</div>";
         var rootSll = "<div id=\"" + layoutId + "_rootSll\">[content]</div>";
         var content = contentObj["content"];
         var isList = contentObj["isList"];
@@ -3262,13 +3264,14 @@ function IndexBulletin(id) {
         if (bindTime == null || isNaN(bindTime)) {
             bindTime = 1000;
         }
+        root = root.replace("[content]", rootSll);
+        powContentObj.html(topImg + root + close);
         if (isList) {
-            rootSll = rootSll.replace("[content]", AppMakeObj.AeToCn(content, layoutId));
+            var newId = layoutId + "_rootSll";
+            rootSll = rootSll.replace("[content]", AppMakeObj.AeToCn(content, newId));
         } else {
             rootSll = rootSll.replace("[content]", content);
         }
-        root = root.replace("[content]", rootSll);
-        powContentObj.html(root + close);
         setStyle();
         setTimeout(function () {
             mIndexPopWindowObj.bindOK(true);
