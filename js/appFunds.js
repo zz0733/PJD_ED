@@ -1512,6 +1512,7 @@ function incomeOfflineObj() {
         var bot_bank_line_1_left = bot_bank_line_left.replace("[content]", "银行名称 :");
         var bot_bank_line_2_left = bot_bank_line_left.replace("[content]", "开户姓名 :");
         var bot_bank_line_3_left = bot_bank_line_left.replace("[content]", "账号 :");
+        var bot_bank_line_5_left = bot_bank_line_left.replace("[content]", "开户行 :");
         var bot_bank_line_4_left = bot_bank_line_left.replace("[content]", "转账金额 :");
         var bot_bank_line_right = "<div class=\"" + rootId + "_bot_bank_right\">[content]</div>";
         var bot_bank_line_right_txt = "<div id=\"[id]\" class=\"" + rootId + "_bot_bank_right_txt\">[content]</div>";
@@ -1528,15 +1529,20 @@ function incomeOfflineObj() {
         temp = bot_bank_line_right_txt.replace("[id]", rootId + "_bot_bank_right_txt_user").replace("[content]", "账号")
             + xsp_min + bot_bank_line_right_copy.replace("[id]", rootId + "_bot_bank_right_copy_user");
         var bot_bank_line_3_right = bot_bank_line_right.replace("[content]", temp);
+        // 开户支行
+        temp = bot_bank_line_right_txt.replace("[id]", rootId + "_bot_bank_right_txt_cardname").replace("[content]", "开户行")
+            + xsp_min + bot_bank_line_right_copy.replace("[id]", rootId + "_bot_bank_right_copy_cardname");
+        var bot_bank_line_5_right = bot_bank_line_right.replace("[content]", temp);
         // 转账金额
         temp = bot_bank_line_right_txt.replace("[id]", rootId + "_bot_bank_right_txt_money").replace("[content]", "转账金额")
             + xsp_min + bot_bank_line_right_copy.replace("[id]", rootId + "_bot_bank_right_copy_money");
         var bot_bank_line_4_right = bot_bank_line_right.replace("[content]", temp);
         var bot_bank_line_1 = bot_bank_line.replace("[content]", bot_bank_line_1_left + bot_bank_line_1_right);
+        var bot_bank_line_5 = bot_bank_line.replace("[content]", bot_bank_line_5_left + bot_bank_line_5_right);
         var bot_bank_line_2 = bot_bank_line.replace("[content]", bot_bank_line_2_left + bot_bank_line_2_right);
         var bot_bank_line_3 = bot_bank_line.replace("[content]", bot_bank_line_3_left + bot_bank_line_3_right);
         var bot_bank_line_4 = bot_bank_line.replace("[content]", bot_bank_line_4_left + bot_bank_line_4_right);
-        bot_bank = bot_bank.replace("[content]", bot_bank_line_1 + sp_mid + bot_bank_line_2 + sp_mid + bot_bank_line_3 + sp_mid + bot_bank_line_4);
+        bot_bank = bot_bank.replace("[content]", bot_bank_line_1 + sp_mid + bot_bank_line_2 + sp_mid + bot_bank_line_3 + sp_mid + bot_bank_line_5 + sp_mid + bot_bank_line_4);
         var bot_bot_ts = "<div id=\"" + rootId + "_bot_bot_ts\">*请勿保存我们的收款银行账号信息,我们会不定时使用不同的收款银行账号!</div>";
         var bot_btn = "<div id=\"" + rootId + "_bot_btn\">已通过支付宝完成转账,提交审核!</div>";
         bot = bot.replace("[content]", bot_title + sp_mmin + bot_sub_title + sp_mid + bot_bank + sp_mid + bot_bot_ts + sp_mmax + bot_btn);
@@ -1569,9 +1575,10 @@ function incomeOfflineObj() {
         });
     }
     function bindBank() {
-        $("#" + rootId + "_bot_bank_right_txt_bankname").html(bankObj["open_bank"]);
+        $("#" + rootId + "_bot_bank_right_txt_bankname").html(bankObj["dt"]["bank_id"]["text"]);
         $("#" + rootId + "_bot_bank_right_txt_name").html(bankObj["account"]);
         $("#" + rootId + "_bot_bank_right_txt_user").html(bankObj["cardno"]);
+        $("#" + rootId + "_bot_bank_right_txt_cardname").html(bankObj["open_bank"]);
         $("#" + rootId + "_bot_bank_right_txt_money").html(item["amount"]);
         $("#" + rootId + "_mid_2_right").html(item["amount"] + "元");
         $("#" + rootId + "_mid_3_right").html(userInfo["u_name"]);
