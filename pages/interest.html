@@ -29,17 +29,6 @@
 
 	var profits = new profitsFun();
 	profits.init(); profits.show();
-	var aboutAppName = "新葡京";
-	var pid = document.getElementsByName("p");
-	for (var i = 0; i < pid.length; i++) {
-		pid[i].id = "p" + i;
-		new Vue({
-			el: "#" + pid[i].id,
-			data: {
-				message: aboutAppName
-			}
-		})
-	}
 
 	function profitsFun() {
 		$("#interestBannerBgId").attr("src", themPath + "interestBanner.jpg");
