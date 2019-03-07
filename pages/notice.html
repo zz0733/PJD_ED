@@ -192,7 +192,7 @@
         } else {
             readIsDiv = readIsDiv.replace("[content]", "<div style='width:18px'></div>");
         }
-        var dateTimeDiv = '<div style="width:20%;text-align:right;color:gainsboro;font-size:12px">' + VisibleTime(nowDate) + '</div>';
+        var dateTimeDiv = '<div style="width:20%;text-align:right;color:gainsboro;font-size:12px">' + bindTimeContent(nowDate) + '</div>';
         title = objItem["title"];
         if (title.length > 15) {
             title = title.substr(0, 15) + "···";

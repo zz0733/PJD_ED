@@ -4419,6 +4419,7 @@ function checkPageBackFromHome() {
     }
     console.log("checkBackFromHome:" + backFunArr.length);
 }
+//完整时间
 function VisibleTime(time) {
     var nowDate = getTimeZoneE8(timeZone, new Date());
     var nowTime = nowDate.getTime(); // 时间戳
@@ -4450,6 +4451,23 @@ function VisibleTime(time) {
     } else {
         return fromDate.format("yyyy-MM-dd hh:mm");
     }
+}
+//相差时间戳
+function bindTimeContent(time) {
+    var rtime = "";
+    var days = parseInt(time / 1000 / 60 / 60 / 24, 10);
+    var hours = parseInt(time / 1000 / 60 / 60 % 24, 10);
+    var minutes = parseInt(time / 1000 / 60 % 60, 10);
+    if (days >= 1) {
+        rtime = days + "天前";
+    } else if (hours >= 1) {
+        rtime = hours + "小时前";
+    } else if (minutes >= 1) {
+        rtime = minutes + "分钟前";;
+    } else {
+        rtime = "刚刚";
+    }
+    return rtime;
 }
 var timeOutAjax = 2000;
 var T0EventList = new Array();
