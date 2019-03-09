@@ -91,6 +91,8 @@
 </div>
 
 <script>
+
+    var divFrist = 0;
     setLuckyAllStyle();
     selectLuckyStyle();
     function setLuckyAllStyle() {
@@ -161,152 +163,167 @@
                 "display": "block"
             });
             if (menuId == "lucky_menu_schedule") {
-                contentScheduleMake();
+                if(divFrist != 0){
+                    divFrist = 0;
+                    contentScheduleMake();
+                }
             } else if (menuId == "lucky_menu_rule") {
-                contentRuleMake();
+                if(divFrist != 1){
+                    divFrist = 1;
+                    contentRuleMake();
+                }
             } else if (menuId == "lucky_menu_record") {
-                contentRecordMake();
+                if(divFrist != 2){
+                    divFrist = 2;
+                    contentRecordMake();
+                }
             }
         }
     }
     function contentScheduleMake() {
         requestAjax("prize/getTodayUserPrize", "", function (jsonObj) {
-            var obj = jsonObj.result;
-            //存款
-            var deposit = obj["deposit_sum"];
-            //var deposit = 999;
-            $("#lucky_deposit").html(deposit + "元");
-            //投注
-            var valid = obj["valid_sum"];
-            //var valid = 100;
-            $("#lucky_valid").html(valid + "元");
-            //等级
-            var luckyId = obj["lucky_id"];
-            //次数
-            var uses = obj["uses"]; //已抽次数
-            var times = obj["times"]; //可次数
-            $("#lucky_Participation_1").html(uses);
-            $("#lucky_Participation_0").html(times);
-            //聚下一等级
-            requestAjax("prize/getPrizeLuckys", "", function (jsonObj) {
-                var idex;
-                var str = "";
-                var dObj = jsonObj.result;
-                var len = dObj.length;
-                var isDeposit = 0;
-                var isValid = 0;
-                var isValidshow = 0;
-                var sta = 0;
-                for (var i = 0; i < len; i++) {
-                    var listObj = dObj[i];
-                    var item = new Object();
-                    var depositSum = listObj.deposit_sum;
-                    var validSum = listObj.valid_sum;
-                    if (valid > validSum) {
-                        isValidshow = 1;
-                    }
-                    if (isDeposit == 0) {
-                        if (deposit == 0) {
-                            $("#lucky_draw_schedule").html((depositSum - deposit) + "元");
-                            isDeposit = 1;
-                        } else {
-                            var beforeGrade = depositSum;
-                            if (deposit >= dObj[len - 1].deposit_sum) {
-                                $("#lucky_draw_content").html("已完成所有档次存款要求！");
-                                $("#lucky_draw_schedule").html("");
-                                bfB(beforeGrade);
+            if(jsonObj.code == 0){
+                var obj = jsonObj.result;
+                //存款
+                var deposit = obj["deposit_sum"];
+                //var deposit = 999;
+                $("#lucky_deposit").html(deposit + "元");
+                //投注
+                var valid = obj["valid_sum"];
+                //var valid = 100;
+                $("#lucky_valid").html(valid + "元");
+                //等级
+                var luckyId = obj["lucky_id"];
+                //次数
+                var uses = obj["uses"]; //已抽次数
+                var times = obj["times"]; //可次数
+                $("#lucky_Participation_1").html(uses);
+                $("#lucky_Participation_0").html(times);
+                //聚下一等级
+                requestAjax("prize/getPrizeLuckys", "", function (jsonObj) {
+                    var idex;
+                    var str = "";
+                    var dObj = jsonObj.result;
+                    var len = dObj.length;
+                    var isDeposit = 0;
+                    var isValid = 0;
+                    var isValidshow = 0;
+                    var sta = 0;
+                    for (var i = 0; i < len; i++) {
+                        var listObj = dObj[i];
+                        var item = new Object();
+                        var depositSum = listObj.deposit_sum;
+                        var validSum = listObj.valid_sum;
+                        if (valid > validSum) {
+                            isValidshow = 1;
+                        }
+                        if (isDeposit == 0) {
+                            if (deposit == 0) {
+                                $("#lucky_draw_schedule").html((depositSum - deposit) + "元");
                                 isDeposit = 1;
                             } else {
-                                if (deposit < depositSum) {
-                                    if (i > 0) {
-                                        $("#lucky_draw_content").html("已完成" + dObj[i - 1].name + ",离下一档次还差:");
-                                        $("#lucky_draw_schedule").html((depositSum - deposit) + "元");
-                                        bfB(deposit);
-                                    } else {
-                                        $("#lucky_draw_schedule").html((depositSum - deposit) + "元");
-                                        bfB(beforeGrade);
-                                    }
+                                var beforeGrade = depositSum;
+                                if (deposit >= dObj[len - 1].deposit_sum) {
+                                    $("#lucky_draw_content").html("已完成所有档次存款要求！");
+                                    $("#lucky_draw_schedule").html("");
+                                    bfB(beforeGrade);
                                     isDeposit = 1;
+                                } else {
+                                    if (deposit < depositSum) {
+                                        if (i > 0) {
+                                            $("#lucky_draw_content").html("已完成" + dObj[i - 1].name + ",离下一档次还差:");
+                                            $("#lucky_draw_schedule").html((depositSum - deposit) + "元");
+                                            bfB(deposit);
+                                        } else {
+                                            $("#lucky_draw_schedule").html((depositSum - deposit) + "元");
+                                            bfB(beforeGrade);
+                                        }
+                                        isDeposit = 1;
+                                    }
+                                }
+                            }
+                        }
+                        if (isValidshow == 1) {
+                            if (valid < validSum) {
+                                if (isValid == 0) {
+                                    idex = (i + 1);
+                                    var vBeforeGrade = validSum;
+                                    $("#lucky_draw_valid").html((validSum - valid) + "元");
+                                    xBfB(vBfB(vBeforeGrade, valid));
+                                    isValid = 1;
+                                }
+                            } else {
+                                idex = (i + 1);
+                                var vBeforeGrade = validSum;
+                                $("#lucky_draw_valid").html(0 + "元");
+                                xBfB(vBfB(vBeforeGrade, valid));
+                            }
+                        } else {
+                            if (sta == 0) {
+                                if (valid < validSum) {
+                                    sta = 1;
+                                    idex = (i + 1);
+                                    var vBeforeGrade = validSum;
+                                    $("#lucky_draw_valid").html((validSum - valid) + "元");
+                                    xBfB(vBfB(vBeforeGrade, valid));
                                 }
                             }
                         }
                     }
-                    if (isValidshow == 1) {
-                        if (valid < validSum) {
-                            if (isValid == 0) {
-                                idex = (i + 1);
-                                var vBeforeGrade = validSum;
-                                $("#lucky_draw_valid").html((validSum - valid) + "元");
-                                xBfB(vBfB(vBeforeGrade, valid));
-                                isValid = 1;
-                            }
-                        } else {
-                            idex = (i + 1);
-                            var vBeforeGrade = validSum;
-                            $("#lucky_draw_valid").html(0 + "元");
-                            xBfB(vBfB(vBeforeGrade, valid));
-                        }
-                    } else {
-                        if (sta == 0) {
-                            if (valid < validSum) {
-                                sta = 1;
-                                idex = (i + 1);
-                                var vBeforeGrade = validSum;
-                                $("#lucky_draw_valid").html((validSum - valid) + "元");
-                                xBfB(vBfB(vBeforeGrade, valid));
-                            }
-                        }
-                    }
-                }
-                if (str != "") {
-                    $("#lucky_dj_content").html(str);
-                    $(".schedule_t_class").each(function () {
+                    if (str != "") {
+                        $("#lucky_dj_content").html(str);
+                        $(".schedule_t_class").each(function () {
 
-                    })
-                }
-                function bfB(beforeGrade) {
-                    var percentage = vBfB(beforeGrade, deposit);
-                    $("#schedule_t").css({ "width": percentage });
-                    $("#schedule_t").html("&nbsp;" + percentage);
-                    var val = percentage.split("%")[0];
-                    if (val >= 15) {
-                        $("#schedule_t").css({
-                            "justify-content": "center",
-                            "align-items": "center"
-                        });
+                        })
                     }
-                }
-
-                function vBfB(beforeGrade, behindGrade) {
-                    var vPercentage = (behindGrade / beforeGrade) * 100;
-                    if (vPercentage >= 100) {
-                        return "100%";
-                    } else {
-                        if (vPercentage >= 10) {
-                            return vPercentage.toString().substr(0, 5) + "%";
-                        } else {
-                            return vPercentage.toString().substr(0, 4) + "%";
-                        }
-                    }
-                }
-
-                function xBfB(content) {
-                    if (idex >= 0) {
-                        var jDiv = '<div id="is_lucky_' + idex + '"  style="width: 90%;padding-left: 5%;height: 27px;display: flex;font-size: 15px;justify-content: center;;align-items: center;">[content]</div>';
-                        var xDiv = '<div style="height: 20px;color: gainsboro;width: 30%;">' + listObj.name + '</div>';
-                        var bDiv = '<div style="border-radius:5px;background:gray;width: 70%;height: 20px;color:gainsboro;">[content]</div>';
-                        var val = content.split("%")[0];
+                    function bfB(beforeGrade) {
+                        var percentage = vBfB(beforeGrade, deposit);
+                        $("#schedule_t").css({ "width": percentage });
+                        $("#schedule_t").html("&nbsp;" + percentage);
+                        var val = percentage.split("%")[0];
                         if (val >= 15) {
-                            var zDiv = '<div class="schedule_t_class" id="schedule_t_' + idex + '" style="display: flex;justify-content:center;align-items:center;border-radius:5px;width:' + content + ';height:20px;background:#6889b7;">' + content + '</div>';
-                        } else {
-                            var zDiv = '<div class="schedule_t_class" id="schedule_t_' + idex + '" style="display: flex;border-radius:5px;width:' + content + ';height:20px;background:#6889b7;">&nbsp;' + content + '</div>';
+                            $("#schedule_t").css({
+                                "justify-content": "center",
+                                "align-items": "center"
+                            });
                         }
-                        bDiv = bDiv.replace("[content]", zDiv);
-                        jDiv = jDiv.replace("[content]", xDiv + bDiv);
-                        str += jDiv;
                     }
-                }
-            });
+
+                    function vBfB(beforeGrade, behindGrade) {
+                        var vPercentage = (behindGrade / beforeGrade) * 100;
+                        if (vPercentage >= 100) {
+                            return "100%";
+                        } else {
+                            if (vPercentage >= 10) {
+                                return vPercentage.toString().substr(0, 5) + "%";
+                            } else {
+                                return vPercentage.toString().substr(0, 4) + "%";
+                            }
+                        }
+                    }
+
+                    function xBfB(content) {
+                        if (idex >= 0) {
+                            var jDiv = '<div id="is_lucky_' + idex + '"  style="width: 90%;padding-left: 5%;height: 27px;display: flex;font-size: 15px;justify-content: center;;align-items: center;">[content]</div>';
+                            var xDiv = '<div style="height: 20px;color: gainsboro;width: 30%;">' + listObj.name + '</div>';
+                            var bDiv = '<div style="border-radius:5px;background:gray;width: 70%;height: 20px;color:gainsboro;">[content]</div>';
+                            var val = content.split("%")[0];
+                            if (val >= 15) {
+                                var zDiv = '<div class="schedule_t_class" id="schedule_t_' + idex + '" style="display: flex;justify-content:center;align-items:center;border-radius:5px;width:' + content + ';height:20px;background:#6889b7;">' + content + '</div>';
+                            } else {
+                                var zDiv = '<div class="schedule_t_class" id="schedule_t_' + idex + '" style="display: flex;border-radius:5px;width:' + content + ';height:20px;background:#6889b7;">&nbsp;' + content + '</div>';
+                            }
+                            bDiv = bDiv.replace("[content]", zDiv);
+                            jDiv = jDiv.replace("[content]", xDiv + bDiv);
+                            str += jDiv;
+                        }
+                    }
+                });
+            } else {
+                setTimeout(function () {
+                    contentScheduleMake();
+                }, 1500);
+            }
         });
     }
     function contentRuleMake() {
