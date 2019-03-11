@@ -815,7 +815,7 @@
 		}
 	}
 	function leagueDetailsFun() {
-		var mPage = new pageObj("leagueDetailsDiv", "下线会员详情");
+		var mPage = new Activity("leagueDetailsDiv", "下线会员详情");
 		var commObj = new commGamescountFun(); commObj.init();
 		this.init = function () {
 			mPage.init();
@@ -915,7 +915,7 @@
 		}
 	}
 	function agentFun() {
-		var mPage = new pageObj("agentCommsDiv", "下线代理详情");
+		var mPage = new Activity("agentCommsDiv", "下线代理详情");
 		this.init = function () {
 			mPage.init();
 			$("#agentCommsDiv_content").css({ "background-color": mainBackColor });
@@ -984,7 +984,7 @@
 		}
 	}
 	function gamesFun() {
-		var mPage = new pageObj("gamesDiv", "按游戏统计");
+		var mPage = new Activity("gamesDiv", "按游戏统计");
 		this.init = function () {
 			mPage.init();
 			$("#gamesDiv_content").css({ "background-color": mainBackColor });
@@ -1063,7 +1063,7 @@
 		}
 	}
 	function costFun() {
-		var mPage = new pageObj("costDiv", "成本详情");
+		var mPage = new Activity("costDiv", "成本详情");
 		this.init = function () {
 			mPage.init();
 			$("#costDiv_content").css({ "background-color": pageBgColor });
@@ -1117,7 +1117,7 @@
 		}
 	}
 	function commGamescountFun() {
-		var mPage = new pageObj("commGamesDiv", "按游戏统计");
+		var mPage = new Activity("commGamesDiv", "按游戏统计");
 		var repTime;
 		var cName;
 		var uId;

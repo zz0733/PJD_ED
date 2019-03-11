@@ -1,3 +1,267 @@
+/*
+CryptoJS v1.0.1
+Create by elandTong
+Tool Library
+*/
+var zIndexMax = 1000;
+var isTouchLockOK = false; // 手势密码是否锁定屏幕
+var isDisconnectService = false; // 服务连接是否中断(只能由原生刷新才能重置)
+var isLoaderShow = false;
+var disconnectServiceCount = 0;
+var timeOutAjax = 2000;
+var T0EventList = new Array();
+var backFunArr = new Array(); // 界面队列
+var mEventBusObj = new AppEventBus(); mEventBusObj.init();
+function TopToolbar(topId, title) {
+    this.init = function () {
+        $("#" + topId).css({
+            "background": "-webkit-linear-gradient(top, " + toolbarTopColor + " 0%," + toolbarTopColorDK + " 100%)",
+            "width": screenW,
+            "height": topH,
+            "display": "flex",
+            "justify-content": "space-between",
+            "align-items": "center"
+        });
+    }
+    this.addControls = function (backFun) {
+        var devMs = "<div style=\"width:3px\"></div>";
+        var devMaxMs = "<div style=\"width:10px\"></div>";
+        var leftMs = "<div style=\"width:50%;display:flex;justify-content:flex-start;align-items: center\">[content]</div>";
+        var rightMs = "<div id=\"" + topId + "_controls\" style=\"width:50%;display:flex;justify-content:flex-end;align-items: center\">[content]</div>";
+        var backMs = "<div id=" + topId + "_back style=\"width:40px;height:40px;display:flex;justify-content:center;align-items: center \">[content]</div>";
+        var backImg = "<img src=" + themPath + "back.png height=15px />";
+        backMs = backMs.replace("[content]", backImg);
+        var titleMs = "<div id=" + topId + "_title style=\"color:" + toolbarFontColor + ";font-size:15px;width:auto\">" + title + "</div>";
+        leftMs = leftMs.replace("[content]", devMs + backMs + devMs + titleMs);
+
+        var mailDiv = '<div id=' + topId + '_notice class=topNoticeBtn style="width: 40px;height: 40px;">[content]</div>';
+        var relDiv = '<div style="position: relative;width: 40px;height: 40px;">[content]</div>';
+        var mailImg = '<div style="position: absolute;width: 40px;height: 40px;top: 0px;display: flex;justify-content: center;align-items: center;">[content]</div>';
+        mailImg = mailImg.replace("[content]", '<img id="topIsLogin_mail_img" src="pic/themeMain/servicetop_message2.png" height="24px" />');
+
+        var readDiv = '<div style="position: absolute;width: 18px;height: 18px;left: 25px;;display: flex;justify-content: center;align-items: center;">[content]</div>';
+        var readNum = "<div class='appNoticeReadSize' id='" + topId + "_IsRead' style='border-radius:50%;width:14px;height:14px;background:red;color:white;font-size: 12px;display: none;justify-content: center;align-items: center;'></div>";
+        readDiv = readDiv.replace("[content]", readNum);
+        relDiv = relDiv.replace("[content]", mailImg + readDiv);
+        mailDiv = mailDiv.replace("[content]", relDiv);
+
+        var serviceMs = "<div id=" + topId + "_service class=topServiceBtn><img src=" + themPath + "service.png height=20px /></div>";
+        var moneyMs = "<div id=" + topId + "_money_btn class=topMoneyBtn><img src=" + themPath + "m_money.png height=22px /></div>";
+        rightMs = rightMs.replace("[content]", devMaxMs + mailDiv + devMaxMs + serviceMs + devMaxMs + moneyMs + devMaxMs);
+        $("#" + topId).html(leftMs + rightMs);
+        $("#" + topId + "_back").css({ "border-radius": "50%" });
+        setBtnOnTouchEvent($("#" + topId + "_back"), function () {
+            backFun();
+        }, mainColorDeep, "", null);
+        $("#" + topId + "_service").css({
+            "width": "40px",
+            "height": "40px",
+            "border-radius": "50%",
+            "display": "flex",
+            "justify-content": "center",
+            "align-items": "center"
+        });
+        setBtnOnTouchEvent($("#" + topId + "_service"), function () {
+            openService();
+        }, mainColorDeep, "", null);
+        $("#" + topId + "_money_btn").css({
+            "width": "40px",
+            "height": "40px",
+            "border-radius": "50%",
+            "display": "flex",
+            "justify-content": "center",
+            "align-items": "center"
+        });
+        setBtnOnTouchEvent($("#" + topId + "_money_btn"), function () {
+            myPJDApp.showMoneyWindow();
+        }, mainColorDeep, "", null);
+        $("#" + topId + "_notice").css({
+            "width": "40px",
+            "height": "40px",
+            "border-radius": "50%",
+            "display": "flex",
+            "justify-content": "center",
+            "align-items": "center"
+        });
+        if (NUMBER_MESSAGE_READ > 0) {
+            var temp = NUMBER_MESSAGE_READ;
+            if (NUMBER_MESSAGE_READ > 9) { temp = "9+"; }
+            $("#" + topId + "_IsRead").html(temp);
+            $("#" + topId + "_IsRead").css({ "display": "flex" });
+        }
+        setBtnOnTouchEvent($("#" + topId + "_notice"), function () {
+            myPJDApp.showNotice();
+        }, mainColorDeep, "", null);
+    }
+    this.show = function () {
+        $("#" + topId).css({ "display": "flex" });
+    }
+    this.hidden = function () {
+        $("#" + topId).css({ "display": "none" });
+    }
+    this.showBtn = function () {
+        $("#" + topId + "_controls").css({ "display": "flex" });
+    }
+    this.hiddenBtn = function () {
+        $("#" + topId + "_controls").css({ "display": "none" });
+    }
+    this.showServiceBtn = function () {
+        $("#" + topId + "_service").css({ "display": "flex" });
+    }
+    this.hiddenServiceBtn = function () {
+        $("#" + topId + "_service").css({ "display": "none" });
+    }
+    this.showNoticeBtn = function () {
+        $("#" + topId + "_notice").css({ "display": "flex" });
+    }
+    this.hiddenNoticeBtn = function () {
+        $("#" + topId + "_notice").css({ "display": "none" });
+    }
+    this.showFunds = function () {
+        $("#" + topId + "_money_btn").css({ "display": "flex" });
+    }
+    this.hiddenFunds = function () {
+        $("#" + topId + "_money_btn").css({ "display": "none" });
+    }
+    this.showBack = function () {
+        $("#" + topId + "_back").css({ "display": "flex" });
+    }
+    this.hiddenBack = function () {
+        $("#" + topId + "_back").css({ "display": "none" });
+    }
+    this.setTitle = function (ms) {
+        $("#" + topId + "_title").html(ms);
+    }
+    this.checkMoneyShow = function () {
+        if (isLogin()) {
+            var ce = userInfo["complete"];
+            if (ce == 2 || ce == 3) {
+                $("#" + topId + "_money_btn").css({ "display": "flex" });
+            } else {
+                $("#" + topId + "_money_btn").css({ "display": "none" });
+            }
+        } else {
+            $("#" + topId + "_money_btn").css({ "display": "none" });
+            $("#" + topId + "_notice").css({ "display": "none" });
+        }
+    }
+}
+function Activity(preFix, title) {
+    var page = $("#" + preFix);
+    var w = $(window).width();
+    var h = $(window).height();
+    var mTop;
+    var backFun = null;
+    var resumeFun = null;
+    var pauseFun = null;
+    var uniqueIdentifie = null; // 页面唯一标识
+    var eventTheme = "PAGE_PUSH_THEME";
+    var eventIndex = null; var isResume = false;
+    this.init = function (back) {
+        if (back != null) {
+            backFun = back;
+        }
+        page.css({
+            "width": w,
+            "height": h,
+            "position": "absolute",
+            "left": w,
+            "display": "none"
+        });
+        mTop = new TopToolbar(preFix + "_top", title);
+        mTop.init();
+        mTop.addControls(function () {
+            backClickFun();
+            focusHiddenBox();
+        });
+        $("#" + preFix + "_content").css({
+            "width": w,
+            "height": h - topH,
+            "background": pageBgColor
+        });
+        eventIndex = mEventBusObj.subscriptionForce(eventTheme, function (obj) {
+            if (obj["theme"] != eventTheme) return;
+            var unique = obj["TOP_LEVEL"];
+            if (uniqueIdentifie == null) return;
+            if (unique == uniqueIdentifie) {
+                if (resumeFun != null && !isResume) {
+                    resumeFun();
+                }
+                isResume = true;
+            } else {
+                if (pauseFun != null && isResume) {
+                    pauseFun();
+                }
+                isResume = false;
+            }
+        });
+    }
+    this.show = function (pageExitFun) {
+        addBackFunArr(function () {
+            pageExit();
+            if (backFun != null) { backFun(); }
+            if (pageExitFun != null) { pageExitFun(); }
+        }, function (unique) {
+            uniqueIdentifie = unique;
+        });
+        focusHiddenBox();
+        currentZIndex = currentZIndex + 1;
+        page.css({ "display": "block", "z-index": currentZIndex });
+        page.transition({ x: -w }, "fast");
+        $("#moneyShowDiv").css({ "z-index": currentZIndex + 1 });
+        mTop.checkMoneyShow();
+    }
+    this.onResume = function (handel) {
+        resumeFun = handel;
+    }
+    this.onPause = function (handel) {
+        pauseFun = handel;
+    }
+    this.showTop = function () {
+        mTop.show();
+    }
+    this.hiddenTop = function () {
+        mTop.hidden();
+    }
+    this.showBtn = function () {
+        mTop.showBtn();
+    }
+    this.hiddenBtn = function () {
+        mTop.hiddenBtn();
+    }
+    this.showServiceBtn = function () {
+        mTop.showServiceBtn();
+    }
+    this.hiddenServiceBtn = function () {
+        mTop.hiddenServiceBtn();
+    }
+    this.showNoticeBtn = function () {
+        mTop.showNoticeBtn();
+    }
+    this.hiddenNoticeBtn = function () {
+        mTop.hiddenNoticeBtn();
+    }
+    this.showFunds = function () {
+        mTop.showFunds();
+    }
+    this.hiddenFunds = function () {
+        mTop.hiddenFunds();
+    }
+    this.showBack = function () {
+        mTop.showBack();
+    }
+    this.hiddenBack = function () {
+        mTop.hiddenBack();
+    }
+    this.setTitle = function (ms) {
+        mTop.setTitle(ms);
+    }
+    function pageExit() {
+        page.transition({
+            x: 0
+        }, "fast");
+    }
+}
 function eTable(mTableId, mColumnDatas, mPageSize) {
     var tableId;
     var tableObj;
@@ -1953,7 +2217,6 @@ function loader() {
         $("#loadingDiv").css({ "display": "none" });
     }
 }
-var zIndexMax = 1000;
 function popBox() {
     var lockTouchObj;
     var inputObj;
@@ -2865,7 +3128,6 @@ function InputObj(id) {
         }
     }
 }
-var isTouchLockOK = false; // 手势密码是否锁定屏幕
 function touchLock(id) {
     var layoutId = id;
     var powContentObj = $("#" + layoutId + "_content");
@@ -3254,9 +3516,7 @@ function IndexBulletin(id) {
     function bindView() {
         var close = "<div id=\"" + layoutId + "_close\"><img id=\"" + layoutId + "_closeImg\" src=\"" +
             themPath + "xclose.png\" style=\"width:30px\" /></div>";
-        var topImg = "<div style='position:relative;top:15px;z-index:3;display: flex;justify-content: center;align-items: center;'><img style='width:50%' src='pic/themeMain/alertTop.png' /></div>";
-        var linDiv = "<div style='height:10px;'></div>"
-        var root = "<div id=\"" + layoutId + "_root\">"+linDiv+"[content]</div>";
+        var root = "<div id=\"" + layoutId + "_root\">[content]</div>";
         var rootSll = "<div id=\"" + layoutId + "_rootSll\">[content]</div>";
         var content = contentObj["content"];
         var isList = contentObj["isList"];
@@ -3264,14 +3524,13 @@ function IndexBulletin(id) {
         if (bindTime == null || isNaN(bindTime)) {
             bindTime = 1000;
         }
-        root = root.replace("[content]", rootSll);
-        powContentObj.html(topImg + root + close);
         if (isList) {
-            var newId = layoutId + "_rootSll";
-            rootSll = rootSll.replace("[content]", AppMakeObj.AeToCn(content, newId));
+            rootSll = rootSll.replace("[content]", AppMakeObj.AeToCn(content, layoutId));
         } else {
             rootSll = rootSll.replace("[content]", content);
         }
+        root = root.replace("[content]", rootSll);
+        powContentObj.html(root + close);
         setStyle();
         setTimeout(function () {
             mIndexPopWindowObj.bindOK(true);
@@ -3378,38 +3637,6 @@ function copyInApp(msg, index) {
         }
     }
 }
-Array.prototype.indexOf = function (val) {
-    for (var i = 0; i < this.length; i++) {
-        if (this[i] == val) return i;
-    }
-    return -1;
-};
-Array.prototype.remove = function (val) {
-    var index = this.indexOf(val);
-    if (index > -1) {
-        this.splice(index, 1);
-    }
-};
-Date.prototype.format = function (fmt) {
-    var o = {
-        "M+": this.getMonth() + 1,                 //月份 
-        "d+": this.getDate(),                    //日 
-        "h+": this.getHours(),                   //小时 
-        "m+": this.getMinutes(),                 //分 
-        "s+": this.getSeconds(),                 //秒 
-        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
-        "S": this.getMilliseconds()             //毫秒 
-    };
-    if (/(y+)/.test(fmt)) {
-        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-    }
-    for (var k in o) {
-        if (new RegExp("(" + k + ")").test(fmt)) {
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-        }
-    }
-    return fmt;
-}
 function getTimeFromMsec(fmt, isGetYear, isGetHMS) {
     if (isGetYear == null) {
         isGetYear = true;
@@ -3473,20 +3700,6 @@ function DateAdd(interval, number, date) {
             return date;
     }
 }
-$.date = function (dateObject) {
-    var d = new Date(dateObject);
-    var day = d.getDate();
-    var month = d.getMonth() + 1;
-    var year = d.getFullYear();
-    if (day < 10) {
-        day = "0" + day;
-    }
-    if (month < 10) {
-        month = "0" + month;
-    }
-
-    return year + "-" + month + "-" + day;
-};
 function getTimeZoneE8(i, timeInt) {
     if (typeof i !== 'number') return;
     var d = new Date(timeInt);
@@ -3494,24 +3707,6 @@ function getTimeZoneE8(i, timeInt) {
     var offset = d.getTimezoneOffset() * 60000;
     var utcTime = len + offset;
     return new Date(utcTime + 3600000 * i);
-}
-var by = function (name) {
-    return function (o, p) {
-        var a, b;
-        if (typeof o === "object" && typeof p === "object" && o && p) {
-            a = o[name];
-            b = p[name];
-            if (a === b) {
-                return 0;
-            }
-            if (typeof a === typeof b) {
-                return a < b ? -1 : 1;
-            }
-            return typeof a < typeof b ? -1 : 1;
-        } else {
-            throw ("error");
-        }
-    }
 }
 function blurAnyone() {
     var obj = $(":focus");
@@ -3712,11 +3907,15 @@ function GetQueryString(name, url) {
     if (r != null) return unescape(r[2]);
     return null;
 }
-function addBackFunArr(back) {
+function addBackFunArr(back, handel) {
     backFunArr.push(back);
-}
-function backClick() {
-    backClickFun();
+    var obj = new Object();
+    if (handel != null) { // 返回函数地址作为唯一标识
+        handel(backFunArr[backFunArr.length - 1]);
+    }
+    obj["theme"] = "PAGE_PUSH_THEME";
+    obj["TOP_LEVEL"] = backFunArr[backFunArr.length - 1];
+    mEventBusObj.release(obj);
 }
 function backClickFun(callback) {
     if (isTouchLockOK) {
@@ -3729,27 +3928,23 @@ function backClickFun(callback) {
     if (!isLoaderShow) {
         var len = backFunArr.length;
         if (len > 1) {
-            var fun = backFunArr[len - 1];
-            try {
-                fun();
-            } catch (e) {
-            }
+            var handel = backFunArr[len - 1];
+            try { handel(); } catch (e) { }
             backFunArr.splice(len - 1, 1);
+            var obj = new Object();
+            obj["theme"] = "PAGE_PUSH_THEME";
+            obj["TOP_LEVEL"] = backFunArr[backFunArr.length - 1];
+            mEventBusObj.release(obj);
         } else if (len == 1) {
             if (isInApp() && isAndroidFlag) {
-                var fun = backFunArr[len - 1];
-                try {
-                    fun();
-                } catch (e) {
-                }
+                var handel = backFunArr[len - 1];
+                try { handel(); } catch (e) { }
             }
         }
     }
     myPJDApp.unShowMoneyWindow();
     mEnterGameObj.unShow();
-    if (callback != null) {
-        callback();
-    }
+    if (callback != null) { callback(); }
 }
 function randomString(len) {
     len = len || 32;
@@ -4136,8 +4331,6 @@ function getDomainNameByURL(url) {
         return uList[0];
     }
 }
-var isDisconnectService = false; // 服务连接是否中断(只能由原生刷新才能重置)
-var disconnectServiceCount = 0;
 function APPServiceCheck() {
     $.ajax({
         type: "get",
@@ -4419,7 +4612,6 @@ function checkPageBackFromHome() {
     }
     console.log("checkBackFromHome:" + backFunArr.length);
 }
-//完整时间
 function VisibleTime(time) {
     var nowDate = getTimeZoneE8(timeZone, new Date());
     var nowTime = nowDate.getTime(); // 时间戳
@@ -4452,7 +4644,6 @@ function VisibleTime(time) {
         return fromDate.format("yyyy-MM-dd hh:mm");
     }
 }
-//相差时间戳
 function bindTimeContent(time) {
     var rtime = "";
     var days = parseInt(time / 1000 / 60 / 60 / 24, 10);
@@ -4469,8 +4660,6 @@ function bindTimeContent(time) {
     }
     return rtime;
 }
-var timeOutAjax = 2000;
-var T0EventList = new Array();
 function BindT0UniqueEvent(id, type, handel, tag) {
     if (tag == null) tag = false;
     RemoveT0UniqueEvent(id, type, tag);
@@ -4492,7 +4681,111 @@ function RemoveT0UniqueEvent(id, type, tag) {
         }
     }
 }
-var backFunArr = new Array();
+function addPageToHtml(id) {
+    var rot = "<div id=\"" + id + "\" style=\"position:absolute;display:none\">[content]</div>";
+    var top = "<div id=\"" + id + "_top\"></div>";
+    var con = "<div id=\"" + id + "_content\"></div>";
+    rot = rot.replace("[content]", top + con);
+    $("#bodyDiv").append(rot);
+}
+function addWindowToHtml(id) {
+    var rot = "<div id=\"" + id + "\">[content]</div>";
+    var back = "<div id=\"" + id + "_back\"></div>";
+    var con = "<div id=\"" + id + "_con_rot\"><div id=\"" + id + "_content\"></div></div>";
+    rot = rot.replace("[content]", back + con);
+    $("#bodyDiv").append(rot);
+    $("#" + id).css({
+        "position": "absolute",
+        "top": "0px",
+        "left": "0px",
+        "display": "none"
+    });
+    $("#" + id + "_back").css({
+        "position": "absolute",
+        "top": "0px",
+        "left": "0px",
+        "width": screenW,
+        "height": screenH,
+        "background": "#000000",
+        "opacity": "0.6",
+        "box-sizing": "border-box"
+    });
+    $("#" + id + "_con_rot").css({
+        "position": "absolute",
+        "top": "0px",
+        "left": "0px",
+        "width": screenW,
+        "height": screenH,
+        "display": "flex",
+        "justify-content": "center",
+        "align-items": "center",
+        "box-sizing": "border-box"
+    });
+}
+Array.prototype.indexOf = function (val) {
+    for (var i = 0; i < this.length; i++) {
+        if (this[i] == val) return i;
+    }
+    return -1;
+};
+Array.prototype.remove = function (val) {
+    var index = this.indexOf(val);
+    if (index > -1) {
+        this.splice(index, 1);
+    }
+};
+Date.prototype.format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1,                 //月份 
+        "d+": this.getDate(),                    //日 
+        "h+": this.getHours(),                   //小时 
+        "m+": this.getMinutes(),                 //分 
+        "s+": this.getSeconds(),                 //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds()             //毫秒 
+    };
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        }
+    }
+    return fmt;
+}
+$.date = function (dateObject) {
+    var d = new Date(dateObject);
+    var day = d.getDate();
+    var month = d.getMonth() + 1;
+    var year = d.getFullYear();
+    if (day < 10) {
+        day = "0" + day;
+    }
+    if (month < 10) {
+        month = "0" + month;
+    }
+
+    return year + "-" + month + "-" + day;
+};
+var by = function (name) {
+    return function (o, p) {
+        var a, b;
+        if (typeof o === "object" && typeof p === "object" && o && p) {
+            a = o[name];
+            b = p[name];
+            if (a === b) {
+                return 0;
+            }
+            if (typeof a === typeof b) {
+                return a < b ? -1 : 1;
+            }
+            return typeof a < typeof b ? -1 : 1;
+        } else {
+            throw ("error");
+        }
+    }
+}
 addBackFunArr(function () {
     checkIsAndroid();
     mMsgBox.show("提示", "确定退出吗？", function () {

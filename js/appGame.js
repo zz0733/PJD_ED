@@ -587,7 +587,7 @@ function _JPNN() {
 }
 function JPNNPage() {
     var TAG = "JPNNGAME: ";
-    var mPage = new pageObj("nnDiv", "抢庄牛牛");
+    var mPage = new Activity("nnDiv", "抢庄牛牛");
     var mLoader = new Spinner({ "color": "white" });
     var iframeId = "nnDiv_content_frame";
     var token = null; var isSetToken = false;
@@ -1489,7 +1489,7 @@ function enterGameObj() {
     }
 }
 function tryGameSigupObj() {
-    var mPage = new pageObj("tryGameSigup", "免费试玩");
+    var mPage = new Activity("tryGameSigup", "免费试玩");
     var layoutId = "tryGameSigup_content";
     var layoutObj = $("#" + layoutId);
     var gameType;

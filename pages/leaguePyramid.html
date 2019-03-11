@@ -905,7 +905,7 @@
     }
 
     function leagueDetailsFun() {
-        var mPage = new pageObj("leagueDetailsDiv", "下线会员详情");
+        var mPage = new Activity("leagueDetailsDiv", "下线会员详情");
         var mElanTab = new elandTab("leagueDetailsDiv_content", ["基本信息", "投注详情"]);
         var startDate = getTimeZoneE8(timeZone, new Date()).format("yyyy-MM-dd");
         var endDate = startDate;
@@ -1127,7 +1127,7 @@
     }
 
     function DirectOperationFun() {
-        var mPage = new pageObj("agentCommsDiv", "直营业绩");
+        var mPage = new Activity("agentCommsDiv", "直营业绩");
         var doPerationDetailObj = new DirectOperationDetailFun(); doPerationDetailObj.init();
         var mTable = null;
         var rootId = "agentCommsDiv_content";
@@ -1266,7 +1266,7 @@
     }
 
     function DirectOperationDetailFun() {
-        var mPage = new pageObj("agentCommsDetailDiv", "直营详情");
+        var mPage = new Activity("agentCommsDetailDiv", "直营详情");
         this.init = function () {
             mPage.init();
             $("#agentCommsDetailDiv_content").css({ "background-color": mainBackColor });
@@ -1328,7 +1328,7 @@
     }
 
     function proxyFun() {
-        var mPage = new pageObj("gamesDiv", "代理业绩");
+        var mPage = new Activity("gamesDiv", "代理业绩");
         var proxyDetailObj = new proxyDetailFun(); proxyDetailObj.init();
         var mTable = null;
         var rootId = "gamesDiv_content";
@@ -1476,7 +1476,7 @@
     }
 
     function proxyDetailFun() {
-        var mPage = new pageObj("gamesDetailDiv", "代理详情");
+        var mPage = new Activity("gamesDetailDiv", "代理详情");
         this.init = function () {
             mPage.init();
             $("#gamesDetailDiv_content").css({ "background-color": mainBackColor });
@@ -1541,7 +1541,7 @@
         }
     }
     function GrantFun() {
-        var mPage = new pageObj("costDiv", "拨款");
+        var mPage = new Activity("costDiv", "拨款");
         var item;
         var rootId = "costDiv_content";
         var isBack = true;
@@ -1721,7 +1721,7 @@
     }
 
     function GrantRecordFun() {
-        var mPage = new pageObj("commGamesDiv", "拨款记录");
+        var mPage = new Activity("commGamesDiv", "拨款记录");
         var mElanTab = new elandTab("commGamesDiv_content", ["发出的", "收到的"]);
         var leftId;
         var rightId;

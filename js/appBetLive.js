@@ -1,5 +1,5 @@
 function betrecordObj() {
-	var mPage = new pageObj("betrecordDiv", "投注记录");
+	var mPage = new Activity("betrecordDiv", "投注记录");
 	var mTable = null;
 	var startData;
 	var endData;
@@ -209,7 +209,7 @@ function betrecordObj() {
 }
 function betrecordLmgObj() {
 	var itemData;
-	var mPage = new pageObj("betrecordInfoDiv", "投注详情");
+	var mPage = new Activity("betrecordInfoDiv", "投注详情");
 	var mTable = null;
 	var startData;
 	var endData;
@@ -426,7 +426,7 @@ function betrecordLmgObj() {
 	}
 }
 function betLmgRemakeObj() {
-	var mPage = new pageObj("betLmgRemakeDiv", "注单详情");
+	var mPage = new Activity("betLmgRemakeDiv", "注单详情");
 	var itemData;
 	var lmgRemake;
 
@@ -484,7 +484,7 @@ function betLmgRemakeObj() {
 }
 function betrecordGmObj() {
 	var itemData;
-	var mPage = new pageObj("betrecordGmDiv", "投注详情");
+	var mPage = new Activity("betrecordGmDiv", "投注详情");
 	var mTable = null;
 	var startData;
 	var endData;
@@ -681,7 +681,7 @@ function betrecordGmObj() {
 	}
 }
 function betGmRemakeObj() {
-	var mPage = new pageObj("betGmRemakeDiv", "注单详情");
+	var mPage = new Activity("betGmRemakeDiv", "注单详情");
 	var itemData;
 	var kyRemake;
 
@@ -739,7 +739,7 @@ function betGmRemakeObj() {
 }
 function betrecordKyObj() {
 	var itemData;
-	var mPage = new pageObj("betrecordKyDiv", "投注详情");
+	var mPage = new Activity("betrecordKyDiv", "投注详情");
 	var mTable = null;
 	var startData;
 	var endData;
@@ -936,7 +936,7 @@ function betrecordKyObj() {
 	}
 }
 function betKyRemakeObj() {
-	var mPage = new pageObj("betKyRemakeDiv", "注单详情");
+	var mPage = new Activity("betKyRemakeDiv", "注单详情");
 	var itemData;
 	var kyRemake;
 
@@ -994,7 +994,7 @@ function betKyRemakeObj() {
 }
 function betrecordIgObj() {
 	var itemData;
-	var mPage = new pageObj("betrecordIgDiv", "投注详情");
+	var mPage = new Activity("betrecordIgDiv", "投注详情");
 	var mTable = null;
 	var startData;
 	var endData;
@@ -1213,7 +1213,7 @@ function betrecordIgObj() {
 }
 function betrecordCmdObj() {
 	var itemData;
-	var mPage = new pageObj("betrecordCmdDiv", "投注详情");
+	var mPage = new Activity("betrecordCmdDiv", "投注详情");
 	var mTable = null;
 	var startData;
 	var endData;
@@ -1524,7 +1524,7 @@ function betrecordCmdObj() {
 	}
 }
 function betCmdRemakeObj() {
-	var mPage = new pageObj("betCmdRemakeDiv", "注单详情");
+	var mPage = new Activity("betCmdRemakeDiv", "注单详情");
 	var itemData;
 	var cmdRemake;
 
@@ -1582,7 +1582,7 @@ function betCmdRemakeObj() {
 }
 function betrecordJPNNObj() {
 	var itemData;
-	var mPage = new pageObj("betrecordJPNNDiv", "投注详情");
+	var mPage = new Activity("betrecordJPNNDiv", "投注详情");
 	var mTable = null;
 	var startData;
 	var endData;
@@ -1818,7 +1818,7 @@ function betrecordJPNNObj() {
 	}
 }
 function betJPNNRemakeObj() {
-	var mPage = new pageObj("betJPNNRemakeDiv", "注单详情");
+	var mPage = new Activity("betJPNNRemakeDiv", "注单详情");
 	var itemData;
 	var jpnnRemake;
 	this.init = function () {

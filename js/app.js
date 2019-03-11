@@ -1088,7 +1088,7 @@ function PJDApp() {
         setBtnOnTouchEvent($("#loginBtn"), function () {
             mLoginObj.show();
         }, subColorDK, "", null);
-        mainTopBar = new topObj("top", "");
+        mainTopBar = new TopToolbar("top", "");
         mainTopBar.init();
         menuObjIndex = new menuIndexContent();
         menuObjComing = new menuComingContent();
@@ -1285,219 +1285,6 @@ function getAppVersion() {
         myPJDApp.h5DownloadCheck();
     });
 }
-function topObj(topId, title) {
-    this.init = function () {
-        $("#" + topId).css({
-            "background": "-webkit-linear-gradient(top, " + toolbarTopColor + " 0%," + toolbarTopColorDK + " 100%)",
-            "width": screenW,
-            "height": topH,
-            "display": "flex",
-            "justify-content": "space-between",
-            "align-items": "center"
-        });
-    }
-    this.addControls = function (backFun) {
-        var devMs = "<div style=\"width:3px\"></div>";
-        var devMaxMs = "<div style=\"width:10px\"></div>";
-        var leftMs = "<div style=\"width:50%;display:flex;justify-content:flex-start;align-items: center\">[content]</div>";
-        var rightMs = "<div id=\"" + topId + "_controls\" style=\"width:50%;display:flex;justify-content:flex-end;align-items: center\">[content]</div>";
-        var backMs = "<div id=" + topId + "_back style=\"width:40px;height:40px;display:flex;justify-content:center;align-items: center \">[content]</div>";
-        var backImg = "<img src=" + themPath + "back.png height=15px />";
-        backMs = backMs.replace("[content]", backImg);
-        var titleMs = "<div id=" + topId + "_title style=\"color:" + toolbarFontColor + ";font-size:15px;width:auto\">" + title + "</div>";
-        leftMs = leftMs.replace("[content]", devMs + backMs + devMs + titleMs);
-
-        var mailDiv = '<div id=' + topId + '_notice class=topNoticeBtn style="width: 40px;height: 40px;">[content]</div>';
-        var relDiv = '<div style="position: relative;width: 40px;height: 40px;">[content]</div>';
-        var mailImg = '<div style="position: absolute;width: 40px;height: 40px;top: 0px;display: flex;justify-content: center;align-items: center;">[content]</div>';
-        mailImg = mailImg.replace("[content]", '<img id="topIsLogin_mail_img" src="pic/themeMain/servicetop_message2.png" height="24px" />');
-
-        var readDiv = '<div style="position: absolute;width: 18px;height: 18px;left: 25px;;display: flex;justify-content: center;align-items: center;">[content]</div>';
-        var readNum = "<div class='appNoticeReadSize' id='" + topId + "_IsRead' style='border-radius:50%;width:14px;height:14px;background:red;color:white;font-size: 12px;display: none;justify-content: center;align-items: center;'></div>";
-        readDiv = readDiv.replace("[content]", readNum);
-        relDiv = relDiv.replace("[content]", mailImg + readDiv);
-        mailDiv = mailDiv.replace("[content]", relDiv);
-
-        var serviceMs = "<div id=" + topId + "_service class=topServiceBtn><img src=" + themPath + "service.png height=20px /></div>";
-        var moneyMs = "<div id=" + topId + "_money_btn class=topMoneyBtn><img src=" + themPath + "m_money.png height=22px /></div>";
-        rightMs = rightMs.replace("[content]", devMaxMs + mailDiv + devMaxMs + serviceMs + devMaxMs + moneyMs + devMaxMs);
-        $("#" + topId).html(leftMs + rightMs);
-        $("#" + topId + "_back").css({ "border-radius": "50%" });
-        setBtnOnTouchEvent($("#" + topId + "_back"), function () {
-            backFun();
-        }, mainColorDeep, "", null);
-        $("#" + topId + "_service").css({
-            "width": "40px",
-            "height": "40px",
-            "border-radius": "50%",
-            "display": "flex",
-            "justify-content": "center",
-            "align-items": "center"
-        });
-        setBtnOnTouchEvent($("#" + topId + "_service"), function () {
-            openService();
-        }, mainColorDeep, "", null);
-        $("#" + topId + "_money_btn").css({
-            "width": "40px",
-            "height": "40px",
-            "border-radius": "50%",
-            "display": "flex",
-            "justify-content": "center",
-            "align-items": "center"
-        });
-        setBtnOnTouchEvent($("#" + topId + "_money_btn"), function () {
-            myPJDApp.showMoneyWindow();
-        }, mainColorDeep, "", null);
-        $("#" + topId + "_notice").css({
-            "width": "40px",
-            "height": "40px",
-            "border-radius": "50%",
-            "display": "flex",
-            "justify-content": "center",
-            "align-items": "center"
-        });
-        if (NUMBER_MESSAGE_READ > 0) {
-            var temp = NUMBER_MESSAGE_READ;
-            if (NUMBER_MESSAGE_READ > 9) { temp = "9+"; }
-            $("#" + topId + "_IsRead").html(temp);
-            $("#" + topId + "_IsRead").css({ "display": "flex" });
-        }
-        setBtnOnTouchEvent($("#" + topId + "_notice"), function () {
-            myPJDApp.showNotice();
-        }, mainColorDeep, "", null);
-    }
-    this.show = function () {
-        $("#" + topId).css({ "display": "flex" });
-    }
-    this.hidden = function () {
-        $("#" + topId).css({ "display": "none" });
-    }
-    this.showBtn = function () {
-        $("#" + topId + "_controls").css({ "display": "flex" });
-    }
-    this.hiddenBtn = function () {
-        $("#" + topId + "_controls").css({ "display": "none" });
-    }
-    this.showServiceBtn = function () {
-        $("#" + topId + "_service").css({ "display": "flex" });
-    }
-    this.hiddenServiceBtn = function () {
-        $("#" + topId + "_service").css({ "display": "none" });
-    }
-    this.showNoticeBtn = function () {
-        $("#" + topId + "_notice").css({ "display": "flex" });
-    }
-    this.hiddenNoticeBtn = function () {
-        $("#" + topId + "_notice").css({ "display": "none" });
-    }
-    this.showFunds = function () {
-        $("#" + topId + "_money_btn").css({ "display": "flex" });
-    }
-    this.hiddenFunds = function () {
-        $("#" + topId + "_money_btn").css({ "display": "none" });
-    }
-    this.setTitle = function (ms) {
-        $("#" + topId + "_title").html(ms);
-    }
-    this.checkMoneyShow = function () {
-        if (isLogin()) {
-            var ce = userInfo["complete"];
-            if (ce == 2 || ce == 3) {
-                $("#" + topId + "_money_btn").css({ "display": "flex" });
-            } else {
-                $("#" + topId + "_money_btn").css({ "display": "none" });
-            }
-        } else {
-            $("#" + topId + "_money_btn").css({ "display": "none" });
-            $("#" + topId + "_notice").css({ "display": "none" });
-        }
-    }
-}
-function pageObj(preFix, title) {
-    var page = $("#" + preFix);
-    var w = $(window).width();
-    var h = $(window).height();
-    var mTop;
-    var backFun = null;
-    this.init = function (back) {
-        if (back != null) {
-            backFun = back;
-        }
-        page.css({
-            "width": w,
-            "height": h,
-            "position": "absolute",
-            "left": w,
-            "display": "none"
-        });
-        mTop = new topObj(preFix + "_top", title);
-        mTop.init();
-        mTop.addControls(function () {
-            backClickFun();
-            focusHiddenBox();
-        });
-        $("#" + preFix + "_content").css({
-            "width": w,
-            "height": h - topH,
-            "background": pageBgColor
-        });
-    }
-    this.show = function (pageExitFun) {
-        addBackFunArr(function () {
-            pageExit();
-            if (backFun != null) {
-                backFun();
-            }
-            if (pageExitFun != null) {
-                pageExitFun();
-            }
-        });
-        focusHiddenBox();
-        currentZIndex = currentZIndex + 1;
-        page.css({ "display": "block", "z-index": currentZIndex });
-        page.transition({ x: -w }, "fast");
-        $("#moneyShowDiv").css({ "z-index": currentZIndex + 1 });
-        mTop.checkMoneyShow();
-    }
-    this.showTop = function () {
-        mTop.show();
-    }
-    this.hiddenTop = function () {
-        mTop.hidden();
-    }
-    this.showBtn = function () {
-        mTop.showBtn();
-    }
-    this.hiddenBtn = function () {
-        mTop.hiddenBtn();
-    }
-    this.showServiceBtn = function () {
-        mTop.showServiceBtn();
-    }
-    this.hiddenServiceBtn = function () {
-        mTop.hiddenServiceBtn();
-    }
-    this.showNoticeBtn = function () {
-        mTop.showNoticeBtn();
-    }
-    this.hiddenNoticeBtn = function () {
-        mTop.hiddenNoticeBtn();
-    }
-    this.showFunds = function () {
-        mTop.showFunds();
-    }
-    this.hiddenFunds = function () {
-        mTop.hiddenFunds();
-    }
-    this.setTitle = function (ms) {
-        mTop.setTitle(ms);
-    }
-    function pageExit() {
-        page.transition({
-            x: 0
-        }, "fast");
-    }
-}
 function agentRankingObj() {
     this.getAgentRankingData = function (okFun) {
         getAgentRankingData(okFun);
@@ -1539,7 +1326,7 @@ function appLogout(time) {
     }
 }
 function luckyLpObj() {
-    var mPage = new pageObj("luckyLpDiv", "幸运抽奖");
+    var mPage = new Activity("luckyLpDiv", "幸运抽奖");
     var isInit = false;
     this.init = function () {
         mPage.init();
@@ -1564,7 +1351,7 @@ function luckyLpObj() {
     }
 }
 function luckyDrawObj() {
-    var mPage = new pageObj("luckyDrawDiv", "幸运抽奖");
+    var mPage = new Activity("luckyDrawDiv", "幸运抽奖");
     var isInit = false;
     this.init = function () {
         mPage.init();
@@ -1590,7 +1377,7 @@ function luckyDrawObj() {
     }
 }
 function UpdateNickNameObj() {
-    var mPage = new pageObj("nickNameDiv", "修改昵称");
+    var mPage = new Activity("nickNameDiv", "修改昵称");
     var isInit = false;
     this.init = function () {
         mPage.init();
@@ -1616,10 +1403,16 @@ function UpdateNickNameObj() {
     }
 }
 function NoticeObj() {
-    var mPage = new pageObj("mailDiv", "公告");
+    var mPage = new Activity("mailDiv", "公告");
     var isInit = false;
     this.init = function () {
         mPage.init();
+        mPage.onResume(function () {
+            console.log("Notice Activity onResume");
+        });
+        mPage.onPause(function () {
+            console.log("Notice Activity onPause");
+        });
         $("#mailDiv_content").css({
             "background-color": pageBgColor,
             "overflow-x": "hidden",
@@ -1644,7 +1437,7 @@ function NoticeObj() {
     }
 }
 function mailDetailObj() {
-    var mPage = new pageObj("mailDetailDiv", "公告详情");
+    var mPage = new Activity("mailDetailDiv", "公告详情");
     var isInit = false;
     this.init = function () {
         mPage.init();
@@ -1670,7 +1463,7 @@ function mailDetailObj() {
     }
 }
 function interestObj() {
-    var mPage = new pageObj("interestDiv", "利息账户");
+    var mPage = new Activity("interestDiv", "利息账户");
     var isInit = false;
     this.init = function () {
         mPage.init();
@@ -1695,7 +1488,7 @@ function interestObj() {
     }
 }
 function interestbaoObj() {
-    var mPage = new pageObj("interestbaoDiv", "利息宝");
+    var mPage = new Activity("interestbaoDiv", "利息宝");
     var isInit = false;
     this.init = function () {
         mPage.init();
@@ -1717,7 +1510,7 @@ function interestbaoObj() {
     }
 }
 function interestDetailObj() {
-    var mPage = new pageObj("interestDetailDiv", "利息记录详情");
+    var mPage = new Activity("interestDetailDiv", "利息记录详情");
     var isInit = false;
     this.init = function () {
         mPage.init();
@@ -1740,7 +1533,7 @@ function interestDetailObj() {
     }
 }
 function incomeDetailsObj() {
-    var mPage = new pageObj("incomeDetailsDiv", "收益详情");
+    var mPage = new Activity("incomeDetailsDiv", "收益详情");
     var isInit = false;
     this.init = function () {
         mPage.init();
@@ -1762,7 +1555,7 @@ function incomeDetailsObj() {
     }
 }
 function buyInterestObj() {
-    var mPage = new pageObj("buyInterestDiv", "购买利息产品");
+    var mPage = new Activity("buyInterestDiv", "购买利息产品");
 
     this.init = function () {
         mPage.init();
@@ -1780,7 +1573,7 @@ function buyInterestObj() {
     }
 }
 function passwordInputObj() {
-    var mPage = new pageObj("passwordInputDiv", "输入资金密码");
+    var mPage = new Activity("passwordInputDiv", "输入资金密码");
 
     this.init = function () {
         mPage.init();
@@ -1798,7 +1591,7 @@ function passwordInputObj() {
     }
 }
 function discountObj() {
-    var mPage = new pageObj("discountDiv", "优惠管理");
+    var mPage = new Activity("discountDiv", "优惠管理");
     var datas = new Array();
     this.init = function () {
         mPage.init();
@@ -1938,7 +1731,7 @@ function discountObj() {
     }
 }
 function favourableObj() {
-    var mPage = new pageObj("favourableDiv", "优惠详情");
+    var mPage = new Activity("favourableDiv", "优惠详情");
 
     this.init = function () {
         mPage.init();
@@ -1962,7 +1755,7 @@ function favourableObj() {
     }
 }
 function agentObj() {
-    var mPage = new pageObj("agentDiv", "联盟合作");
+    var mPage = new Activity("agentDiv", "联盟合作");
     var isOpenLeagueCom = false;
     var isOpenLeagueWc = false;
     var isOpenLeaguePm = false;
@@ -2038,7 +1831,7 @@ function agentObj() {
     }
 }
 function askObj() {
-    var mPage = new pageObj("askDiv", "常见问题");
+    var mPage = new Activity("askDiv", "常见问题");
     var isLoad = false;
     this.init = function () {
         mPage.init();
@@ -2065,7 +1858,7 @@ function askObj() {
     }
 }
 function aboutObj() {
-    var mPage = new pageObj("aboutDiv", "关于我们");
+    var mPage = new Activity("aboutDiv", "关于我们");
     var isLoad = false;
     this.init = function () {
         mPage.init();
@@ -2091,7 +1884,7 @@ function aboutObj() {
     }
 }
 function pyramidObj() {
-    var mPage = new pageObj("pyramidDiv", "金字塔介绍");
+    var mPage = new Activity("pyramidDiv", "金字塔介绍");
     var isLoad = false;
     this.init = function () {
         mPage.init();
@@ -2117,7 +1910,7 @@ function pyramidObj() {
     }
 }
 function responsibilityObj() {
-    var mPage = new pageObj("responsibilityDiv", "博彩责任");
+    var mPage = new Activity("responsibilityDiv", "博彩责任");
     var isLoad = false;
     this.init = function () {
         mPage.init();
@@ -2314,7 +2107,7 @@ function getResettingSign() {
     if (isHiden == 1) { isHiden = true } else { isHiden = false; }
     return isHiden;
 }
-function loadAlert(){
+function loadAlert() {
     mIndexPopWindowObj.close(true);
     if (userInfo["agent_type"] == 3) {
         myPJDApp.showAgent();

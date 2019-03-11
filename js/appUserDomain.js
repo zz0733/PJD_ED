@@ -1,5 +1,5 @@
 function registerObj() {
-    var mPage = new pageObj("registerDiv", "注册");
+    var mPage = new Activity("registerDiv", "注册");
     var isBack = false;
     var username = "";
     var validStr = "";
@@ -403,7 +403,7 @@ function registerObj() {
     }
 }
 function loginObj() {
-    var mPage = new pageObj("loginDiv", "登录");
+    var mPage = new Activity("loginDiv", "登录");
     var openTagObj;
     var isAutoLogIn = false; // 消费型变量,使用完后需要置为默认值
     var isBack = false;
@@ -746,7 +746,7 @@ function userObj() {
 function avatarObj() {
     var currentSelectID = "";
     var isShow = false;
-    var mPage = new pageObj("avatarDiv", "选择头像");
+    var mPage = new Activity("avatarDiv", "选择头像");
     this.init = function () {
         mPage.init(function () {
             var avaId = userInfo.avatar;
@@ -861,7 +861,7 @@ function avatarObj() {
     }
 }
 function agreementObj() {
-    var mPage = new pageObj("agreementDiv", "条款与隐私");
+    var mPage = new Activity("agreementDiv", "条款与隐私");
     var isLoadArgeement = false;
     var isLoadDeclare = false;
     this.init = function () {
@@ -986,7 +986,7 @@ function agreementObj() {
     }
 }
 function leagueAgreementObj() {
-    var mPage = new pageObj("leagueAgreementDiv", "申请合作人");
+    var mPage = new Activity("leagueAgreementDiv", "申请合作人");
     var isInit = false;
     this.init = function () {
         mPage.init();
@@ -1014,7 +1014,7 @@ function leagueAgreementObj() {
     }
 }
 function leagueContentObj() {
-    var mPage = new pageObj("leagueContentDiv", "联盟合作");
+    var mPage = new Activity("leagueContentDiv", "联盟合作");
     this.init = function () {
         mPage.init();
     }
@@ -1038,7 +1038,7 @@ function leagueContentObj() {
     }
 }
 function agentQrCodeObj() {
-    var mPage = new pageObj("agentQrCodeDiv", "专属二维码");
+    var mPage = new Activity("agentQrCodeDiv", "专属二维码");
     this.init = function () {
         mPage.init();
         $("#agentQrCodeDiv_content").css({ "display": "flex" });
@@ -1189,7 +1189,7 @@ function completeInfoObj() {
     }
 }
 function infoNameObj() {
-    var mPage = new pageObj("infoNameDiv", "完善资料");
+    var mPage = new Activity("infoNameDiv", "完善资料");
     var releaseTheme = null;
     var zIndexFrom = zIndexMax - 5;
     this.init = function () {
@@ -1400,7 +1400,7 @@ function infoNameObj() {
     }
 }
 function bankInfoObj() {
-    var mPage = new pageObj("bankInfoDiv", "银行卡信息");
+    var mPage = new Activity("bankInfoDiv", "银行卡信息");
     var selectBankIndex = -1;
     var releaseTheme = null;
     var zIndexFrom = zIndexMax - 5;
@@ -1567,7 +1567,7 @@ function bankInfoObj() {
     }
 }
 function accountSafeObj() {
-    var mPage = new pageObj("accountSafeDiv", "账号与安全");
+    var mPage = new Activity("accountSafeDiv", "账号与安全");
     var eventTheme = "accountSafe_infoComplete_theme";
     var eventIndex;
     this.init = function () {
