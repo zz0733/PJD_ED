@@ -1595,6 +1595,12 @@ function discountObj() {
     var datas = new Array();
     this.init = function () {
         mPage.init();
+        $("#discountDiv_content").css({
+			"background-color": pageBgColor,
+			"overflow-x": "hidden",
+			"overflow-y": "auto",
+			"height": screenH - topH
+		});
     }
     this.show = function () {
         mPage.show();
@@ -1609,9 +1615,7 @@ function discountObj() {
             var codeValue = jsonObj.code;
             if (codeValue == 0) {
                 var obj = jsonObj.result;
-                var str = '<div id="discountDiv_content_list"><div style="width:10px"></div><div>全部类型</div>';
-                str += '<div><img id="discount_arrow_down_img_id" src="pic/themeMain/arrow_down.png" width="10px" style="padding-right: 10px" /></div></div>';
-                str += '<div style="height: 1px" class="content_discount_line"></div>';
+				var str = '<div style="height:10px;background:'+pageBgColor+';"></div>';
                 if (obj != null && obj != "") {
                     var tData = new Array();
                     for (var i = 0; i < obj.length; i++) {
