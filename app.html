@@ -299,48 +299,6 @@
                 </div>
             </div>
         </div>
-        <div id="completeInfo" style="position: fixed;display: none">
-            <div id="completeInfo_bg" style="width: 100%;height: 100%;position: absolute;background-color: #000000;opacity: 0.6"></div>
-            <div id="completeInfo_content" style="position: absolute;width: 100%;height: 100%;display: flex;justify-content: center;align-items: center">
-                <div id="completeInfo_content_content" style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;align-items:center;border-radius: 10px">
-                    <div style="width: 100%;height: 40px">
-                        <div id="completeInfo_content_content_back" style="height: 100%;width: 30px;display: none;justify-content: center;align-items: center">
-                            <img src="pic/themeMain/back.png" height="15px" />
-                        </div>
-                        <div style="width: 10px"></div>
-                    </div>
-                    <div style="width: 100%;height: 100px;display: flex;justify-content: center;align-items: center">
-                        <img id="securityImgId" src="pic/themeMain/security.png" height="70px" />
-                    </div>
-                    <div class="completeInfo_content_content_text">
-                        <div class="completeInfo_content_content_text_title">
-                            尊敬的会员，为了您的账户资金安全，请先完善以下资料：
-                        </div>
-                        <div style="height: 10px"></div>
-                        <div class="completeInfo_content_content_text_item">
-                            <span class="completeInfo_content_content_text_item_text">1.真实姓名</span>
-                            <span class="completeInfo_content_content_text_item_notic" id="completeInfo_realName">（未填写）</span>
-                        </div>
-                        <div class="completeInfo_content_content_text_item">
-                            <span class="completeInfo_content_content_text_item_text">2.联系方式</span>
-                            <span class="completeInfo_content_content_text_item_notic" id="completeInfo_contract">（未填写）</span>
-                        </div>
-                        <div class="completeInfo_content_content_text_item">
-                            <span class="completeInfo_content_content_text_item_text">3.提款密码</span>
-                            <span class="completeInfo_content_content_text_item_notic" id="completeInfo_drawSN">（未填写）</span>
-                        </div>
-                        <div class="completeInfo_content_content_text_item">
-                            <span class="completeInfo_content_content_text_item_text">4.银行卡</span>
-                            <span class="completeInfo_content_content_text_item_notic" id="completeInfo_bank">（未填写）</span>
-                        </div>
-                        <div class="completeInfo_content_content_text_item"></div>
-                    </div>
-                    <div style="height: 20px"></div>
-                    <div id="completeInfo_content_content_btn">立即完善资料</div>
-                    <div style="height: 10px"></div>
-                </div>
-            </div>
-        </div>
         <div id="registerDiv" style="position: absolute;display: none">
             <div id="registerDiv_top"></div>
             <div id="registerDiv_content" style="padding:10px;box-sizing:border-box">
@@ -424,7 +382,8 @@
                 </div>
                 <div style="height: 20px"></div>
                 <div style="display: flex;justify-content: center;align-items: center" class="registerDiv_content_agreement">
-                    <input id="registerDiv_content_agree" type="checkbox" /> 同意“<img src="pic/XPJ_1.png" width="36px"/>”所有
+                    <input id="registerDiv_content_agree" type="checkbox" /> 同意“
+                    <img src="pic/XPJ_1.png" width="35px" />”所有
                     <div id="registerDiv_content_agreement_1">
                         <u>规则与条款</u>
                     </div> 及
@@ -436,7 +395,7 @@
                 <div id="registerDiv_content_sure_btn" class="registerDiv_content_sure">立即注册</div>
             </div>
         </div>
-        <div id="registerSuccess" style="position: absolute;width: 100%;height: 100%;flex-direction: column;display: none;justify-content: space-between;align-items: center">
+        <div id="registerSuccess" style="position: absolute;width: 100%;height: 100%;flex-direction: column;display: none;justify-content:space-between;align-items: center">
             <div id="registerSuccess_top" style="display: flex;flex-direction: column;justify-content: center;align-items: center">
                 <div style="height:10%;"></div>
                 <img id="reg_success_img" src="pic/themeMain/success.png" height="60px" />
@@ -452,7 +411,8 @@
                     <div style="height:5px;"></div>
                     <div id="registerSuccess_top_notictext" style="display:flex;justify-content: center;align-items: center">
                         恭喜&nbsp;&nbsp;
-                        <span id="registerSuccess_top_notictext_id">Hungry</span> ，您已成为<img src="pic/XPJ_1.png" width="42px"/>会员！
+                        <span id="registerSuccess_top_notictext_id"></span> 您已成为
+                        <img src="pic/XPJ_1.png" width="42px" />会员!
                     </div>
                 </div>
             </div>
@@ -519,33 +479,6 @@
                 </div>
             </div>
         </div>
-        <div id="agreementDiv" style="position: absolute;display: none">
-            <div id="agreementDiv_top"></div>
-            <div id="agreementDiv_content">
-                <div style="height: 40px;background-color: #2A2A2A;width: 100%;display: flex;justify-content: space-between;align-items: center">
-                    <div id="agreementDiv_one" style="height: 40px;width: 50%;justify-content: center;align-items: center;display: flex">
-                        规则与条款
-                    </div>
-                    <div id="agreementDiv_two" style="height: 40px;width: 50%;justify-content: center;align-items: center;display: flex">
-                        隐私权政策
-                    </div>
-                </div>
-                <div style="width: 100%;height: 2px;background-color: #000000;display: flex;justify-content: center;align-items: center">
-                    <div style="width: 50%; height: 100%" id="agreementDiv_select_one"></div>
-                    <div style="width: 50%; height: 100%" id="agreementDiv_select_two"></div>
-                </div>
-                <div style="height: 10px"></div>
-                <div id="agreementDiv_content_content" style="overflow-x: hidden;overflow-y: hidden;width: 100%">
-                    <div style="display: flex;justify-content: center;align-items: center;width: 100%;box-sizing: border-box">
-                        <div id="agreementDiv_content_content_one" style="width: 100%;display: block">
-                        </div>
-                        <div id="agreementDiv_content_content_two" style="width: 100%;display: none">
-                        </div>
-                    </div>
-                </div>
-                <div style="height: 10px"></div>
-            </div>
-        </div>
         <div id="incomeOnlineDiv" style="position: absolute;display: none">
             <div id="incomeOnlineDiv_top"></div>
             <div id="incomeOnlineDiv_content" style="width: 100%;background-color: #272727">
@@ -573,8 +506,7 @@
             </div>
         </div>
         <div id="incomeOfflineSuccessDiv" style="position: absolute;display: none">
-            <div id="incomeOfflineSuccessDiv_top">
-            </div>
+            <div id="incomeOfflineSuccessDiv_top"></div>
             <div id="incomeOfflineSuccessDiv_content" style="display: flex;flex-direction: column;justify-content: space-between;align-items: center">
                 <div style="width: 90%;height: 300px;display: flex;flex-direction: column;justify-content: space-between;align-items: center">
                     <div style="height: 20px"></div>
@@ -593,218 +525,6 @@
                     <div id="incomeOfflineSuccessDiv_content_sure" class="PJDCommBtn">完成</div>
                     <div style="height: 20px"></div>
                 </div>
-            </div>
-        </div>
-        <div id="feedbackDiv" style="position: absolute;display: none">
-            <div id="feedbackDiv_top"></div>
-            <div id="feedbackDiv_content">
-                <div id="feedbackDiv_content_select" style="width: 100%;height: 55px;display: flex;justify-content: center;align-items: center">
-                    <div id="feedbackDiv_timeSelect"></div>
-                </div>
-                <div style="height: 10px;width: 100%"></div>
-                <div id="feedbackDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
-                </div>
-            </div>
-        </div>
-        <div id="feedbackInfoDiv" style="position: absolute;display: none">
-            <div id="feedbackInfoDiv_top"></div>
-            <div id="feedbackInfoDiv_content"></div>
-        </div>
-        <div id="moneyrecordDiv" style="position: absolute;display: none">
-            <div id="moneyrecordDiv_top"></div>
-            <div id="moneyrecordDiv_content"></div>
-        </div>
-        <div id="moneyrecordDetailsDiv" style="position: absolute;display: none">
-            <div id="moneyrecordDetailsDiv_top"></div>
-            <div id="moneyrecordDetailsDiv_content"> </div>
-        </div>
-        <div id="betrecordDiv" style="position: absolute;display: none">
-            <div id="betrecordDiv_top"></div>
-            <div id="betrecordDiv_content">
-                <div id="betrecordDiv_content_select" style="width: 100%;height: 55px;display: flex;justify-content: center;align-items: center">
-                    <div id="betrecordDiv_timeSelect"></div>
-                </div>
-                <div style="height: 10px;width: 100%"></div>
-                <div id="betrecordDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
-                </div>
-                <div id="betrecordDiv_stats_bottom" style="height: 40px;width: 100%;background-color: #cccccc;display: none;font-size: 12px">
-                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordDiv_validSum"></div>
-                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordDiv_winorloss"></div>
-                </div>
-            </div>
-        </div>
-        <div id="betrecordInfoDiv" style="position: absolute;display: none">
-            <div id="betrecordInfoDiv_top"></div>
-            <div id="betrecordInfoDiv_content">
-                <div id="betrecordInfoDiv_content_select" style="width: 100%;height: 55px;display: flex;justify-content: center;align-items: center">
-                    <div id="betrecordInfoDiv_select_date"></div>
-                </div>
-                <div style="height: 10px;width: 100%"></div>
-                <div id="betrecordInfoDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
-                </div>
-                <div id="betrecordInfoDiv_content_bottom" style="height: 40px;width: 100%;background-color: #cccccc;display: none;font-size: 12px">
-                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordInfoDiv_validSum"></div>
-                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordInfoDiv_winorloss"></div>
-                </div>
-            </div>
-        </div>
-        <div id="betLmgRemakeDiv" style="position: absolute;display: none">
-            <div id="betLmgRemakeDiv_top"></div>
-            <div id="betLmgRemakeDiv_content"></div>
-            <div id="betLmgRemakeDiv_backdom">
-                <div id="betLmgRemakeDiv_button"></div>
-            </div>
-        </div>
-        <div id="betrecordKyDiv" style="position: absolute;display: none">
-            <div id="betrecordKyDiv_top"></div>
-            <div id="betrecordKyDiv_content">
-                <div id="betrecordKyDiv_content_select" style="width: 100%;height: 55px;display: flex;justify-content: center;align-items: center">
-                    <div id="betrecordKyDiv_select_date"></div>
-                </div>
-                <div style="height: 10px;width: 100%"></div>
-                <div id="betrecordKyDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
-                </div>
-                <div id="betrecordKyDiv_content_bottom" style="height: 40px;width: 100%;background-color: #cccccc;display: none;font-size: 12px">
-                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordKyDiv_validSum"></div>
-                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordKyDiv_winorloss"></div>
-                </div>
-            </div>
-        </div>
-        <div id="betrecordGmDiv" style="position: absolute;display: none">
-            <div id="betrecordGmDiv_top"></div>
-            <div id="betrecordGmDiv_content">
-                <div id="betrecordGmDiv_content_select" style="width: 100%;height: 55px;display: flex;justify-content: center;align-items: center">
-                    <div id="betrecordGmDiv_select_date"></div>
-                </div>
-                <div style="height: 10px;width: 100%"></div>
-                <div id="betrecordGmDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
-                </div>
-                <div id="betrecordGmDiv_content_bottom" style="height: 40px;width: 100%;background-color: #cccccc;display: none;font-size: 12px">
-                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordGmDiv_validSum"></div>
-                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordGmDiv_winorloss"></div>
-                </div>
-            </div>
-        </div>
-        <div id="betGmRemakeDiv" style="position: absolute;display: none">
-            <div id="betGmRemakeDiv_top"></div>
-            <div id="betGmRemakeDiv_content"></div>
-            <div id="betGmRemakeDiv_backdom">
-                <div id="betGmRemakeDiv_button"></div>
-            </div>
-        </div>
-        <div id="betKyRemakeDiv" style="position: absolute;display: none">
-            <div id="betKyRemakeDiv_top"></div>
-            <div id="betKyRemakeDiv_content"></div>
-            <div id="betKyRemakeDiv_backdom">
-                <div id="betKyRemakeDiv_button"></div>
-            </div>
-        </div>
-        <div id="betrecordJPNNDiv" style="position: absolute;display: none">
-            <div id="betrecordJPNNDiv_top"></div>
-            <div id="betrecordJPNNDiv_content">
-                <div id="betrecordJPNNDiv_content_select" style="width: 100%;height: 55px;display: flex;justify-content: center;align-items: center">
-                    <div id="betrecordJPNNDiv_select_date"></div>
-                </div>
-                <div style="height: 10px;width: 100%"></div>
-                <div id="betrecordJPNNDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
-                </div>
-                <div id="betrecordJPNNDiv_content_bottom" style="height: 40px;width: 100%;background-color: #cccccc;display: none;font-size: 12px">
-                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordJPNNDiv_validSum"></div>
-                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordJPNNDiv_winorloss"></div>
-                </div>
-            </div>
-        </div>
-        <div id="betJPNNRemakeDiv" style="position: absolute;display: none">
-            <div id="betJPNNRemakeDiv_top"></div>
-            <div id="betJPNNRemakeDiv_content"></div>
-            <div id="betJPNNRemakeDiv_backdom">
-                <div id="betJPNNRemakeDiv_button"></div>
-            </div>
-        </div>
-        <div id="interestbaoDiv" style="position: absolute;display: none">
-            <div id="interestbaoDiv_top"></div>
-            <div id="interestbaoDiv_content">
-            </div>
-        </div>
-        <div id="interestDetailDiv" style="position: absolute;display: none">
-            <div id="interestDetailDiv_top"></div>
-            <div id="interestDetailDiv_content">
-            </div>
-        </div>
-        <div id="incomeDetailsDiv" style="position: absolute;display: none">
-            <div id="incomeDetailsDiv_top"></div>
-            <div id="incomeDetailsDiv_content">
-            </div>
-        </div>
-        <div id="buyInterestDiv" style="position: absolute;display: none">
-            <div id="buyInterestDiv_top"></div>
-            <div id="buyInterestDiv_content">
-            </div>
-        </div>
-        <div id="passwordInputDiv" style="position: absolute;display: none">
-            <div id="passwordInputDiv_top"></div>
-            <div id="passwordInputDiv_content">
-            </div>
-        </div>
-        <div id="betrecordIgDiv" style="position: absolute;display: none">
-            <div id="betrecordIgDiv_top"></div>
-            <div id="betrecordIgDiv_content">
-                <div id="betrecordIgDiv_content_select" style="width: 100%;height: 55px;display: flex;justify-content: center;align-items: center">
-                    <div id="betrecordIgDiv_select_date"></div>
-                </div>
-                <div style="height: 10px;width: 100%"></div>
-                <div id="betrecordIgDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
-                </div>
-                <div id="betrecordIgDiv_content_bottom" style="height: 40px;width: 100%;background-color: #cccccc;display: none;font-size: 12px">
-                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordIgDiv_validSum"></div>
-                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordIgDiv_winorloss"></div>
-                </div>
-            </div>
-        </div>
-        <div id="betrecordCmdDiv" style="position: absolute;display: none">
-            <div id="betrecordCmdDiv_top"></div>
-            <div id="betrecordCmdDiv_content">
-                <div id="betrecordCmdDiv_content_select" style="width: 100%;height: 55px;display: flex;justify-content: center;align-items: center">
-                    <div id="betrecordCmdDiv_select_date"></div>
-                </div>
-                <div style="height: 10px;width: 100%"></div>
-                <div id="betrecordCmdDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto">
-                </div>
-                <div id="betrecordCmdDiv_content_bottom" style="height: 40px;width: 100%;background-color: #cccccc;display: none;font-size: 12px">
-                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordCmdDiv_validSum"></div>
-                    <div style="width: 50%;display: flex;justify-content: center;align-items: center" id="betrecordCmdDiv_winorloss"></div>
-                </div>
-            </div>
-        </div>
-        <div id="betCmdRemakeDiv" style="position: absolute;display: none">
-            <div id="betCmdRemakeDiv_top"></div>
-            <div id="betCmdRemakeDiv_content"></div>
-            <div id="betCmdRemakeDiv_backdom">
-                <div id="betCmdRemakeDiv_button"></div>
-            </div>
-        </div>
-        <div id="indexPopupwindowBox" style="position: absolute;display: none">
-            <div id="indexPopupwindowBox_mask"></div>
-            <div id="indexPopupwindowBox_content"></div>
-        </div>
-        <div id="tryGameSigup" style="position: absolute;display: none">
-            <div id="tryGameSigup_top"></div>
-            <div id="tryGameSigup_content"></div>
-        </div>
-        <div id="discountDiv" style="position: absolute;display: none">
-            <div id="discountDiv_top"></div>
-            <div id="discountDiv_content">
-                <div id="discountDiv_content_listDIv" style="width: 100%;display: none;flex-direction: column;justify-content: flex-start;align-items: center">
-                </div>
-            </div>
-        </div>
-        <div id="favourableDiv" style="position: absolute;display: none">
-            <div id="favourableDiv_top"></div>
-            <div id="favourableDiv_content"></div>
-        </div>
-        <div id="agentDiv" style="position: absolute;display: none">
-            <div id="agentDiv_top"></div>
-            <div id="agentDiv_content">
             </div>
         </div>
         <div id="accountSafeDiv" style="position: absolute;display: none">
@@ -985,7 +705,7 @@
                     </div>
                 </div>
                 <div id="accountSafeDiv_content_signPwd" class="accountSafeDiv_content_content">
-                    <div style="width: 100%;color: gainsboro;">
+                    <div style="width: 100%;color: gainsboro">
                         <div style="padding-left:10px;padding-right:10px;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;height:50px;width:100%">
                             <div>手势解锁</div>
                             <div id="SignPwdSwitch" style="display:flex;background: #CCA352;border-radius: 26px;width: 50px;height: 26px">
@@ -1002,7 +722,7 @@
                             </div>
                         </div>
                         <div style="width:100%;height:1px;background:#1B1B1B"></div>
-                        <div id="resettingSignPwd" style="padding-left:10px;box-sizing:border-box;display:none;justify-content:flex-start;height:50px;width:100%;align-items:center;color:gainsboro">
+                        <div id="resettingSignPwd" style="padding-left:10px;display:none;justify-content:flex-start;height:50px;width:100%;align-items:center;color:gainsboro">
                             <div>重置手势密码</div>
                         </div>
                         <div style="width:100%;height:15px;background:#1B1B1B"></div>
@@ -1051,16 +771,6 @@
                         <div class="PJDCommBtn" id="accountDrawSN_edit_sure">确定修改</div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div id="avatarDiv" style="position: absolute;display: none">
-            <div id="avatarDiv_top"></div>
-            <div id="avatarDiv_content">
-                <div id="avatarDiv_content_all_headers" style="width: 100%;display: flex;justify-content: flex-start;align-items: center;flex-wrap: wrap;overflow-x: hidden;overflow-y: auto">
-                </div>
-                <div style="height: 20px"></div>
-                <div id="avatarDiv_content_sure_btn" class="PJDCommBtn">确定修改</div>
-                <div style="height: 20px"></div>
             </div>
         </div>
         <div id="infoNameDiv" style="position: absolute;display: none">
@@ -1216,201 +926,51 @@
                 </div>
             </div>
         </div>
-        <div id="nickNameDiv" style="position: absolute;display: none">
-            <div id="nickNameDiv_top"></div>
-            <div id="nickNameDiv_content">
-            </div>
-        </div>
-        <div id="luckyDrawDiv" style="position: absolute;display: none">
-            <div id="luckyDrawDiv_top"></div>
-            <div id="luckyDrawDiv_content">
-            </div>
-        </div>
-        <div id="luckyLpDiv" style="position: absolute;display: none">
-            <div id="luckyLpDiv_top"></div>
-            <div id="luckyLpDiv_content">
-            </div>
-        </div>
-        <div id="mailDiv" style="position: absolute;display: none">
-            <div id="mailDiv_top"></div>
-            <div id="mailDiv_content">
-            </div>
-        </div>
-        <div id="mailDetailDiv" style="position: absolute;display: none">
-            <div id="mailDetailDiv_top"></div>
-            <div id="mailDetailDiv_content">
-            </div>
-        </div>
-        <div id="askDiv" style="position: absolute;display: none">
-            <div id="askDiv_top"></div>
-            <div id="askDiv_content" style="overflow-x: hidden;overflow-y: hidden;display: flex;justify-content: flex-start;align-items: center;flex-wrap: wrap;flex-direction: column">
-            </div>
-        </div>
-        <div id="responsibilityDiv" style="position: absolute;display: none">
-            <div id="responsibilityDiv_top"></div>
-            <div id="responsibilityDiv_content" style="overflow-x: hidden;overflow-y: hidden;display: flex;justify-content: flex-start;align-items: center;flex-wrap: wrap;flex-direction: column">
-            </div>
-        </div>
-        <div id="aboutDiv" style="position: absolute;display: none">
-            <div id="aboutDiv_top"></div>
-            <div id="aboutDiv_content" style="overflow-x: hidden;overflow-y: hidden;display: flex;justify-content: flex-start;align-items: center;flex-wrap: wrap;flex-direction: column">
-            </div>
-        </div>
-        <div id="pyramidDiv" style="position: absolute;display: none">
-            <div id="pyramidDiv_top"></div>
-            <div id="pyramidDiv_content" style="overflow-x: hidden;overflow-y: hidden;display: flex;justify-content: flex-start;align-items: center;flex-wrap: wrap;flex-direction: column">
-            </div>
-        </div>
-        <div id="leagueAgreementDiv" style="position: absolute;display: none">
-            <div id="leagueAgreementDiv_top"></div>
-            <div id="leagueAgreementDiv_content">
-            </div>
-        </div>
-        <div id="leagueContentDiv" style="position: absolute;display: none">
-            <div id="leagueContentDiv_top"></div>
-            <div id="leagueContentDiv_content">
-            </div>
-        </div>
-        <div id="leagueDetailsDiv" style="position: absolute;display: none">
-            <div id="leagueDetailsDiv_top"></div>
-            <div id="leagueDetailsDiv_content">
-                <div id="leagueDetailsDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto"></div>
-                <div id="leagueDetailsDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">
-                    <div id="leagueDetailsDiv_bottom_0" style="width: 13%;text-align: center;font-size: 14px;color: #8C8C8C"></div>
-                    <div id="leagueDetailsDiv_bottom_1" style="width: 23%;text-align: center;font-size: 14px;color: #E96734"></div>
-                    <div id="leagueDetailsDiv_bottom_2" style="width: 32%;text-align: center;font-size: 14px;color: #E96734"></div>
-                    <div id="leagueDetailsDiv_bottom_3" style="width: 32%;text-align: center;font-weight: bold;font-size: 14px;color: #E96734"></div>
-                    <div id="leagueDetailsDiv_bottom_4" style="width: 27%;text-align: center;font-size: 14px;color: #E96734"></div>
-                </div>
-            </div>
-        </div>
-        <div id="gamesDiv" style="position: absolute;display: none">
-            <div id="gamesDiv_top"></div>
-            <div id="gamesDiv_content">
-                <div id="gamesDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;"></div>
-                <div id="gamesDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">
-                    <div id="gamesDiv_bottom_0" style="width: 33%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                    <div id="gamesDiv_bottom_1" style="width: 33%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                    <div id="gamesDiv_bottom_2" style="width: 33%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                </div>
-            </div>
-        </div>
-        <div id="costDiv" style="position: absolute;display: none">
-            <div id="costDiv_top"></div>
-            <div id="costDiv_content">
-                <div id="costDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;"></div>
-                <div id="costDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">
-                    <div id="costDiv_bottom_0" style="width: 30%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                    <div id="costDiv_bottom_2" style="width: 40%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                    <div id="costDiv_bottom_1" style="width: 30%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                </div>
-            </div>
-        </div>
-        <div id="agentCommsDiv" style="position: absolute;display: none">
-            <div id="agentCommsDiv_top"></div>
-            <div id="agentCommsDiv_content">
-                <div id="agentCommsDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;">
-
-                </div>
-                <div id="agentCommsDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">
-                    <div id="agentCommsDiv_bottom_0" style="width: 16%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                    <div id="agentCommsDiv_bottom_1" style="width: 25%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                    <div id="agentCommsDiv_bottom_2" style="width: 28%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                    <div id="agentCommsDiv_bottom_3" style="width: 31%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                </div>
-            </div>
-        </div>
-        <div id="agentCommsDetailDiv" style="position: absolute;display: none">
-            <div id="agentCommsDetailDiv_top"></div>
-            <div id="agentCommsDetailDiv_content">
-                <div id="agentCommsDetailDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;">
-
-                </div>
-                <div id="agentCommsDetailDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">
-                    <div id="agentCommsDetailDiv_bottom_0" style="width: 50%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                    <div id="agentCommsDetailDiv_bottom_1" style="width: 50%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                </div>
-            </div>
-        </div>
-        <div id="gamesDetailDiv" style="position: absolute;display: none">
-            <div id="gamesDetailDiv_top"></div>
-            <div id="gamesDetailDiv_content">
-                <div id="gamesDetailDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;">
-
-                </div>
-                <div id="gamesDetailDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">
-                    <div id="gamesDetailDiv_bottom_0" style="width: 50%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                    <div id="gamesDetailDiv_bottom_1" style="width: 50%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                </div>
-            </div>
-        </div>
-        <div id="commGamesDiv" style="position: absolute;display: none">
-            <div id="commGamesDiv_top"></div>
-            <div id="commGamesDiv_content">
-                <div id="commGamesDiv_top_list" style="width: 100%;height: 45px;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">
-                    <div id="commGamesDiv_top_0" style="width: 50%;text-align: center;font-size: 12px;color: #8C8C8C"></div>
-                    <div id="commGamesDiv_top_1" style="width: 50%;text-align: center;font-size: 12px;color: #8C8C8C"></div>
-                </div>
-                <div style="width: 100%;height:10px;background: #1B1B1B;"></div>
-                <div id="commGamesDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;"></div>
-                <div id="commGamesDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">
-                    <div id="commGamesDiv_bottom_0" style="width: 21%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                    <div id="commGamesDiv_bottom_1" style="width: 37%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                    <div id="commGamesDiv_bottom_2" style="width: 37%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                    <div id="commGamesDiv_bottom_3" style="width: 37%;text-align: center;font-size: 15px;color: #8C8C8C"></div>
-                </div>
-            </div>
-        </div>
-        <div id="agentQrCodeDiv" style="position: absolute;display: none">
-            <div id="agentQrCodeDiv_top"></div>
-            <div id="agentQrCodeDiv_content" style="display: flex;justify-content: center;align-items: center;overflow-x: hidden;overflow-y: auto">
-                <div id="agentQrCodeDiv_content_img" style="width: 100%;height: auto;display: block"></div>
-            </div>
-        </div>
-        <div id="nnDiv" style="position: absolute;display: none">
-            <div id="nnDiv_top"></div>
-            <div id="nnDiv_content" style="width: 100%;position: relative;overflow-x: hidden;background-color: #2A2A2A">
-                <iframe id="nnDiv_content_frame" frameborder="0" scrolling='no' style="position: absolute;top: 0px;z-index: 7;width: 100%"></iframe>
-                <div id="nnDiv_content_fed" style="position: absolute;top: 0px;z-index: 8;width: 100%;display: flex;justify-content: center;align-items: center">
-                    <div id="nnDiv_content_fed_root" style="text-align: center;align-items: center;width: 100%;height: auto;font-size: 16px">
-                        <div style="height:80px">
-                            <img style="width: 80px;height: 80px" src="pic/themeMain/sorry.png" />
+        <div id="completeInfo" style="position: fixed;display: none">
+            <div id="completeInfo_bg" style="width: 100%;height: 100%;position: absolute;background-color: #000000;opacity: 0.6"></div>
+            <div id="completeInfo_content" style="position: absolute;width: 100%;height: 100%;display: flex;justify-content: center;align-items: center">
+                <div id="completeInfo_content_content" style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;align-items:center;border-radius: 10px">
+                    <div style="width: 100%;height: 40px">
+                        <div id="completeInfo_content_content_back" style="height: 100%;width: 30px;display: none;justify-content: center;align-items: center">
+                            <img src="pic/themeMain/back.png" height="15px" />
                         </div>
-                        <div style="height:6px"></div>
-                        <div id="nnDiv_content_fed_root_top_txt" style="font-size:18px;color: #CCA352">
-                            很抱歉
+                        <div style="width: 10px"></div>
+                    </div>
+                    <div style="width: 100%;height: 100px;display: flex;justify-content: center;align-items: center">
+                        <img id="securityImgId" src="pic/themeMain/security.png" height="70px" />
+                    </div>
+                    <div class="completeInfo_content_content_text">
+                        <div class="completeInfo_content_content_text_title">
+                            尊敬的会员，为了您的账户资金安全，请先完善以下资料：
                         </div>
-                        <div style="height:1px"></div>
-                        <div id="nnDiv_content_fed_root_ts" style="font-size:16px;color: #CACACA">游戏无法打开,请稍后重试!</div>
+                        <div style="height: 10px"></div>
+                        <div class="completeInfo_content_content_text_item">
+                            <span class="completeInfo_content_content_text_item_text">1.真实姓名</span>
+                            <span class="completeInfo_content_content_text_item_notic" id="completeInfo_realName">（未填写）</span>
+                        </div>
+                        <div class="completeInfo_content_content_text_item">
+                            <span class="completeInfo_content_content_text_item_text">2.联系方式</span>
+                            <span class="completeInfo_content_content_text_item_notic" id="completeInfo_contract">（未填写）</span>
+                        </div>
+                        <div class="completeInfo_content_content_text_item">
+                            <span class="completeInfo_content_content_text_item_text">3.提款密码</span>
+                            <span class="completeInfo_content_content_text_item_notic" id="completeInfo_drawSN">（未填写）</span>
+                        </div>
+                        <div class="completeInfo_content_content_text_item">
+                            <span class="completeInfo_content_content_text_item_text">4.银行卡</span>
+                            <span class="completeInfo_content_content_text_item_notic" id="completeInfo_bank">（未填写）</span>
+                        </div>
+                        <div class="completeInfo_content_content_text_item"></div>
                     </div>
-                </div>
-                <div id="nnDiv_content_load" style="position: absolute;top: 0px;z-index: 9;width: 100%;display: flex;justify-content: center;align-items: center;background-color: rgba(0,0,0,0.69)">
-                    <div id="nnDiv_content_load_root" style="text-align: center;align-items: center;width: 100%;height: auto;font-size: 16px">
-                        <div id="nnDiv_content_load_root_view" style="width: auto;height:48px"></div>
-                        <div style="height:6px"></div>
-                        <div id="nnDiv_content_load_root_ts" style="font-size:16px;color: #CACACA">游戏正在加载中!</div>
-                    </div>
+                    <div style="height: 20px"></div>
+                    <div id="completeInfo_content_content_btn">立即完善资料</div>
+                    <div style="height: 10px"></div>
                 </div>
             </div>
         </div>
-        <div id="interestDiv" style="position: absolute;display: none">
-            <div id="interestDiv_top"></div>
-            <div id="interestDiv_content">
-            </div>
-        </div>
-        <div id="depositFeeDiv" style="position: absolute;display: none">
-            <div id="depositFeeDiv_top"></div>
-            <div id="depositFeeDiv_content">
-            </div>
-        </div>
-        <div id="drawFeeDiv" style="position: absolute;display: none">
-            <div id="drawFeeDiv_top"></div>
-            <div id="drawFeeDiv_content">
-            </div>
-        </div>
-        <div id="moneyShowDiv" style="position: absolute;display: none;background: rgba(0,0,0,0.6)">
+        <div id="moneyShowDiv" style="position:absolute;display:none;background:rgba(0,0,0,0.6)">
             <div id="aTriangle" style="display: none;width: 0px;height: 0px;border-width: 0 10px 10px;border-style: solid;border-color: transparent transparent #383838;position: absolute"></div>
-            <div id="moneyShowDiv_panel" style="top: 10px;position: absolute;width: 60%;height: 182px;background-color: #383838">
+            <div id="moneyShowDiv_panel" style="top: 10px;position: absolute;width: 60%;height: 243px;background-color: #383838">
                 <div id="moneyShow_mainMoneyBag" style="height: 60px;display: flex;justify-content: center;align-items: center;width: 100%">
                     <div style="width: 25%;display: flex;justify-content: center;align-items: center">
                         <img id="moneyWalletImgId" src="pic/themeMain/m_wallet.png" height="15px" />
@@ -1421,6 +981,19 @@
                     </div>
                     <div id="moneyShow_refreshBtn" style="width: 25%;display: flex;justify-content: center;align-items: center">
                         <img id="moneyRefreshImgId" src="pic/themeMain/m_refresh.png" height="20px" />
+                    </div>
+                </div>
+                <div style="height: 1px;background-color: #2A2A2A"></div>
+                <div id="moneyShow_interest" style="height: 60px;display: flex;justify-content: center;align-items: center;width: 100%">
+                    <div style="width: 25%;display: flex;justify-content: center;align-items: center">
+                        <img id="moneyInterestSmallImgId" src="pic/themeMain/m_interest_small.png" height="20px" />
+                    </div>
+                    <div style="width: 50%">
+                        <div style="font-size: 14px;color: #999999">利息账户</div>
+                        <div class="moneyShowDiv_panel_main_money" style="font-size: 14px;color: #cccccc" id="moneyShow_interest_money">0.00</div>
+                    </div>
+                    <div style="width: 25%;display: flex;justify-content: center;align-items: center">
+                        <img id="mEnterImgId" src="pic/themeMain/m_enter.png" height="25px" />
                     </div>
                 </div>
                 <div style="height: 1px;background-color: #2A2A2A"></div>
@@ -1447,16 +1020,14 @@
                 </div>
             </div>
         </div>
-        <div id="enterGameNotic" style="position: absolute;display: none;width: 200px;height: 50px;justify-content: center;align-items: center;border-radius: 10px;background: rgba(0,0,0,0.8);color: #cccccc;font-size: 12px">
+        <div id="enterGameNotic" style="position:absolute;display:none;width:200px;height:50px;justify-content:center;align-items:center;border-radius:10px;background:rgba(0,0,0,0.8);color:#cccccc;font-size:12px">
             游戏载入中...
         </div>
-        <div id="serviceDiv" style="position: absolute;display: none;width: 100%;height: 100%">
-            <div id="serviceDiv_top"></div>
-            <div id="serviceDiv_content">
-                <div id="serviceDiv_content_loading" style="width: 100px;height: 100px;"></div>
-            </div>
+        <div id="indexPopupwindowBox" style="position: absolute;display: none">
+            <div id="indexPopupwindowBox_mask"></div>
+            <div id="indexPopupwindowBox_content"></div>
         </div>
-        <div id="msgBox" style="position: absolute;display: none;width: 100%;height: 100%;left: 0px;top: 0px;z-index: 20001">
+        <div id="msgBox" style="position:absolute;display:none;width:100%;height:100%;left:0px;top:0px;z-index:20001">
             <div id="msgBox_background" style="width: 100%; height: 100%;opacity: 0.5;background-color: #000000;position: absolute;top: 0px;left: 0px"
                 onClick="void(0)">
             </div>
@@ -1477,7 +1048,7 @@
                 </div>
             </div>
         </div>
-        <div id="toast" style="position: absolute;display: none;width: 100%;height: 100%;left: 0px;top: 0px;z-index: 20002">
+        <div id="toast" style="position:absolute;display:none;width:100%;height:100%;left:0px;top:0px;z-index:20002">
             <div id="toast_background" style="width: 100%; height: 100%;opacity: 0.7;background-color: #000000;position: absolute;top: 0px;left: 0px">
             </div>
             <div id="toast_content" style="width: 100%;height: 100%;position: absolute;top: 0px;left: 0px;display: flex;justify-content: center">
@@ -1486,7 +1057,7 @@
                 </div>
             </div>
         </div>
-        <div id="loadingDiv" style="position: absolute;display: none;width: 100%;height: 100%;z-index: 20000">
+        <div id="loadingDiv" style="position:absolute;display:none;width:100%;height:100%;z-index:20000">
             <div style="width: 100%;height: 100%;background-color: #000000;opacity: 0.7;position: absolute" onClick="clickEmpty()"></div>
             <div style="width: 100%;height: 100%;display: flex;justify-content: center;align-items: center">
                 <div id="loadingView" style="width: 100px;height: 100px"></div>

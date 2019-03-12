@@ -79,6 +79,7 @@ function PJDApp() {
     var mainTopBar = null;
     var operatorId = null;
     this.init = function () {
+        GeneratingSkeleton();
         AppMakeObj = new AppMake();
         mMoneyWindowObj = new moneyWindowObj();
         mCompleteInfoObj = new completeInfoObj();
@@ -1131,6 +1132,269 @@ function PJDApp() {
             }
         }
     }
+    function GeneratingSkeleton() {// 动态界面骨架生成
+        addPageToHtml("feedbackDiv", function () {
+            var rid = "feedbackDiv";
+            var cid = rid + "_content";
+            var select = "<div id=\"" + cid + "_select\" style=\"width:100%;height:55px;display:flex;justify-content:center;align-items:center\">[cone]</div>";
+            select = select.replace("[cone]", "<div id=\"" + rid + "_timeSelect\"></div>");
+            var line = "<div style=\"height:10px\"></div>";
+            var list = "<div id=\"" + cid + "_list\" style=\"width:100%;overflow-x:hidden;overflow-y:auto\"></div>";
+            return select + line + list;
+        });
+        addPageToHtml("feedbackInfoDiv");
+        addPageToHtml("moneyrecordDiv");
+        addPageToHtml("moneyrecordDetailsDiv");
+        addPageToHtml("interestbaoDiv");
+        addPageToHtml("pastRecordDiv");
+        addPageToHtml("interestDetailDiv");
+        addPageToHtml("incomeDetailsDiv");
+        addPageToHtml("buyInterestDiv");
+        addPageToHtml("passwordInputDiv");
+        addPageToHtml("tryGameSigup");
+        addPageToHtml("discountDiv", function () {
+            var id = "discountDiv_content";
+            var con = "<div id=\"" + id + "_listDIv\" style=\"width:100%;display:none;flex-direction:column;justify-content:flex-start;align-items:center\"></div>";
+            return con;
+        });
+        addPageToHtml("favourableDiv");
+        addPageToHtml("agentDiv");
+        addPageToHtml("avatarDiv", function () {
+            return '<div id="avatarDiv_content_all_headers" style="width:100%;display:flex;justify-content:flex-start;align-items:center;flex-wrap:wrap;overflow-x:hidden;overflow-y:auto"></div>\
+					<div style="height:20px"></div>\
+					<div id="avatarDiv_content_sure_btn" class="PJDCommBtn">确定修改</div>\
+					<div style="height:20px"></div>';
+        });
+        addPageToHtml("nickNameDiv");
+        addPageToHtml("luckyDrawDiv");
+        addPageToHtml("luckyLpDiv");
+        addPageToHtml("mailDiv");
+        addPageToHtml("mailDetailDiv");
+        addPageToHtml("askDiv", function () {
+            $("#askDiv_content").css({
+                "overflow": "hidden",
+                "display": "flex",
+                "justify-content": "flex-start",
+                "align-items": "center",
+                "flex-wrap": "wrap",
+                "flex-direction": "column"
+            });
+            return "";
+        });
+        addPageToHtml("responsibilityDiv", function () {
+            $("#responsibilityDiv_content").css({
+                "overflow": "hidden",
+                "display": "flex",
+                "justify-content": "flex-start",
+                "align-items": "center",
+                "flex-wrap": "wrap",
+                "flex-direction": "column"
+            });
+            return "";
+        });
+        addPageToHtml("aboutDiv", function () {
+            $("#aboutDiv_content").css({
+                "overflow": "hidden",
+                "display": "flex",
+                "justify-content": "flex-start",
+                "align-items": "center",
+                "flex-wrap": "wrap",
+                "flex-direction": "column"
+            });
+            return "";
+        });
+        addPageToHtml("pyramidDiv", function () {
+            $("#pyramidDiv_content").css({
+                "overflow": "hidden",
+                "display": "flex",
+                "justify-content": "flex-start",
+                "align-items": "center",
+                "flex-wrap": "wrap",
+                "flex-direction": "column"
+            });
+            return "";
+        });
+        addPageToHtml("leagueAgreementDiv");
+        addPageToHtml("leagueContentDiv");
+        addPageToHtml("agentQrCodeDiv", function () {
+            var id = "agentQrCodeDiv_content";
+            $("#" + id).css({
+                "display": "flex",
+                "justify-content": "center",
+                "align-items": "center",
+                "overflow-x": "hidden",
+                "overflow-y": "auto"
+            });
+            return "<div id=\"" + id + "_img\" style=\"width:100%;height:auto;display:block\"></div>"
+        });
+        addPageToHtml("interestDiv");
+        addPageToHtml("depositFeeDiv");
+        addPageToHtml("drawFeeDiv");
+        addPageToHtml("serviceDiv", function () {
+            var id = "serviceDiv_content";
+            return "<div id=\"" + id + "_loading\" style=\"width:100px;height:100px\"></div>";
+        });
+        addPageToHtml("betrecordDiv", function () {
+            return '<div id="betrecordDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordDiv_timeSelect"></div></div>\
+					<div style="height:10px;width:100%"></div>\
+					<div id="betrecordDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto">\
+					</div>\
+					<div id="betrecordDiv_stats_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
+						<div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordDiv_validSum"></div>\
+						<div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordDiv_winorloss"></div>\
+					</div>';
+        });
+        addPageToHtml("betrecordInfoDiv", function () {
+            return '<div id="betrecordInfoDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordInfoDiv_select_date"></div></div>\
+					<div style="height:10px;width:100%"></div>\
+					<div id="betrecordInfoDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto">\
+					</div>\
+					<div id="betrecordInfoDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
+						<div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordInfoDiv_validSum"></div>\
+						<div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordInfoDiv_winorloss"></div>\
+					</div>';
+        });
+        addPageToHtml("betLmgRemakeDiv", function () {
+            var rid = "betLmgRemakeDiv";
+            $("#" + rid).append("<div id=\"" + rid + "_backdom\"><div id=\"" + rid + "_button\"></div></div>");
+            return "";
+        });
+        addPageToHtml("betrecordKyDiv", function () {
+            return '<div id="betrecordKyDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordKyDiv_select_date"></div></div>\
+					<div style="height:10px;width:100%"></div>\
+					<div id="betrecordKyDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto">\
+					</div>\
+					<div id="betrecordKyDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
+						<div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordKyDiv_validSum"></div>\
+						<div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordKyDiv_winorloss"></div>\
+					</div>';
+        });
+        addPageToHtml("betrecordGmDiv", function () {
+            return '<div id="betrecordGmDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordGmDiv_select_date"></div></div>\
+					<div style="height:10px;width:100%"></div>\
+					<div id="betrecordGmDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto">\
+					</div>\
+					<div id="betrecordGmDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
+						<div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordGmDiv_validSum"></div>\
+						<div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordGmDiv_winorloss"></div>\
+					</div>';
+        });
+        addPageToHtml("betGmRemakeDiv", function () {
+            var rid = "betGmRemakeDiv";
+            $("#" + rid).append("<div id=\"" + rid + "_backdom\"><div id=\"" + rid + "_button\"></div></div>");
+            return "";
+        });
+        addPageToHtml("betKyRemakeDiv", function () {
+            var rid = "betKyRemakeDiv";
+            $("#" + rid).append("<div id=\"" + rid + "_backdom\"><div id=\"" + rid + "_button\"></div></div>");
+            return "";
+        });
+        addPageToHtml("betrecordJPNNDiv", function () {
+            return '<div id="betrecordJPNNDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordJPNNDiv_select_date"></div></div>\
+					<div style="height:10px;width:100%"></div>\
+					<div id="betrecordJPNNDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto">\
+					</div>\
+					<div id="betrecordJPNNDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
+						<div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordJPNNDiv_validSum"></div>\
+						<div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordJPNNDiv_winorloss"></div>\
+					</div>';
+        });
+        addPageToHtml("betJPNNRemakeDiv", function () {
+            var rid = "betJPNNRemakeDiv";
+            $("#" + rid).append("<div id=\"" + rid + "_backdom\"><div id=\"" + rid + "_button\"></div></div>");
+            return "";
+        });
+        addPageToHtml("betrecordIgDiv", function () {
+            return '<div id="betrecordIgDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordIgDiv_select_date"></div></div>\
+					<div style="height:10px;width:100%"></div>\
+					<div id="betrecordIgDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto"></div>\
+					<div id="betrecordIgDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
+						<div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordIgDiv_validSum"></div>\
+						<div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordIgDiv_winorloss"></div>\
+					</div>';
+        });
+        addPageToHtml("betrecordCmdDiv", function () {
+            return '<div id="betrecordCmdDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordCmdDiv_select_date"></div></div>\
+					<div style="height:10px;width:100%"></div>\
+					<div id="betrecordCmdDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto"></div>\
+					<div id="betrecordCmdDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
+						<div style="width: 50%;display:flex;justify-content:center;align-items:center" id="betrecordCmdDiv_validSum"></div>\
+						<div style="width: 50%;display:flex;justify-content:center;align-items:center" id="betrecordCmdDiv_winorloss"></div>\
+					</div>';
+        });
+        addPageToHtml("betCmdRemakeDiv", function () {
+            var rid = "betCmdRemakeDiv";
+            $("#" + rid).append("<div id=\"" + rid + "_backdom\"><div id=\"" + rid + "_button\"></div></div>");
+            return "";
+        });
+        addPageToHtml("leagueDetailsDiv", function () {
+            return '<div id="leagueDetailsDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto"></div>\
+					<div id="leagueDetailsDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">\
+						<div id="leagueDetailsDiv_bottom_0" style="width: 13%;text-align: center;font-size: 14px;color: #8C8C8C"></div>\
+						<div id="leagueDetailsDiv_bottom_1" style="width: 23%;text-align: center;font-size: 14px;color: #E96734"></div>\
+						<div id="leagueDetailsDiv_bottom_2" style="width: 32%;text-align: center;font-size: 14px;color: #E96734"></div>\
+						<div id="leagueDetailsDiv_bottom_3" style="width: 32%;text-align: center;font-weight: bold;font-size: 14px;color: #E96734"></div>\
+						<div id="leagueDetailsDiv_bottom_4" style="width: 27%;text-align: center;font-size: 14px;color: #E96734"></div>\
+					</div>';
+        });
+        addPageToHtml("gamesDiv", function () {
+            return '<div id="gamesDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;"></div>\
+					<div id="gamesDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">\
+						<div id="gamesDiv_bottom_0" style="width: 33%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+						<div id="gamesDiv_bottom_1" style="width: 33%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+						<div id="gamesDiv_bottom_2" style="width: 33%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+					</div>';
+        });
+        addPageToHtml("costDiv", function () {
+            return '<div id="costDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;"></div>\
+					<div id="costDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">\
+						<div id="costDiv_bottom_0" style="width: 30%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+						<div id="costDiv_bottom_2" style="width: 40%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+						<div id="costDiv_bottom_1" style="width: 30%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+					</div>';
+        });
+        addPageToHtml("agentCommsDiv", function () {
+            return '<div id="agentCommsDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;"></div>\
+					<div id="agentCommsDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">\
+						<div id="agentCommsDiv_bottom_0" style="width: 16%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+						<div id="agentCommsDiv_bottom_1" style="width: 25%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+						<div id="agentCommsDiv_bottom_2" style="width: 28%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+						<div id="agentCommsDiv_bottom_3" style="width: 31%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+					</div>';
+        });
+        addPageToHtml("commGamesDiv", function () {
+            return '<div id="commGamesDiv_top_list" style="width: 100%;height: 45px;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">\
+						<div id="commGamesDiv_top_0" style="width: 50%;text-align: center;font-size: 12px;color: #8C8C8C"></div>\
+						<div id="commGamesDiv_top_1" style="width: 50%;text-align: center;font-size: 12px;color: #8C8C8C"></div>\
+	                </div>\
+					<div style="width: 100%;height:10px;background: #1B1B1B;"></div>\
+					<div id="commGamesDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;"></div>\
+					<div id="commGamesDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">\
+						<div id="commGamesDiv_bottom_0" style="width: 21%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+						<div id="commGamesDiv_bottom_1" style="width: 37%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+						<div id="commGamesDiv_bottom_2" style="width: 37%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+						<div id="commGamesDiv_bottom_3" style="width: 37%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+					</div>';
+        });
+        addPageToHtml("agreementDiv", function () {
+            return '<div style="height:40px;background-color:#2A2A2A;width:100%;display:flex;justify-content:space-between;align-items:center">\
+						<div id="agreementDiv_one" style="height:40px;width:50%;justify-content:center;align-items:center;display:flex">规则与条款</div>\
+						<div id="agreementDiv_two" style="height:40px;width:50%;justify-content:center;align-items:center;display:flex">隐私权政策</div>\
+	                </div>\
+					<div style="width:100%;height:2px;background-color:#000000;display:flex;justify-content:center;align-items:center">\
+						<div style="width: 50%; height: 100%" id="agreementDiv_select_one"></div>\
+						<div style="width: 50%; height: 100%" id="agreementDiv_select_two"></div>\
+					</div>\
+					<div style="height:10px"></div>\
+					<div id="agreementDiv_content_content" style="overflow-x:hidden;overflow-y:hidden;width:100%">\
+						<div style="display:flex;justify-content:center;align-items:center;width:100%;box-sizing:border-box">\
+							<div id="agreementDiv_content_content_one" style="width:100%;display:block"></div>\
+							<div id="agreementDiv_content_content_two" style="width:100%;display:none"></div>\
+						</div>\
+					</div>\
+					<div style="height: 10px"></div>';
+        });
+    }
 }
 function PJDService() {
     var serivePage;
@@ -1596,11 +1860,11 @@ function discountObj() {
     this.init = function () {
         mPage.init();
         $("#discountDiv_content").css({
-			"background-color": pageBgColor,
-			"overflow-x": "hidden",
-			"overflow-y": "auto",
-			"height": screenH - topH
-		});
+            "background-color": pageBgColor,
+            "overflow-x": "hidden",
+            "overflow-y": "auto",
+            "height": screenH - topH
+        });
     }
     this.show = function () {
         mPage.show();
@@ -1615,7 +1879,7 @@ function discountObj() {
             var codeValue = jsonObj.code;
             if (codeValue == 0) {
                 var obj = jsonObj.result;
-				var str = '<div style="height:10px;background:'+pageBgColor+';"></div>';
+                var str = '<div style="height:10px;background:' + pageBgColor + ';"></div>';
                 if (obj != null && obj != "") {
                     var tData = new Array();
                     for (var i = 0; i < obj.length; i++) {

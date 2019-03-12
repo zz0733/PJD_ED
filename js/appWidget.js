@@ -4681,14 +4681,17 @@ function RemoveT0UniqueEvent(id, type, tag) {
         }
     }
 }
-function addPageToHtml(id) {
+function addPageToHtml(id,handel) {
     var rot = "<div id=\"" + id + "\" style=\"position:absolute;display:none\">[content]</div>";
     var top = "<div id=\"" + id + "_top\"></div>";
     var con = "<div id=\"" + id + "_content\"></div>";
     rot = rot.replace("[content]", top + con);
     $("#bodyDiv").append(rot);
+    if (handel != null) {
+        $("#" + id + "_content").html(handel());
+    }
 }
-function addWindowToHtml(id) {
+function addWindowToHtml(id, handel) {
     var rot = "<div id=\"" + id + "\">[content]</div>";
     var back = "<div id=\"" + id + "_back\"></div>";
     var con = "<div id=\"" + id + "_con_rot\"><div id=\"" + id + "_content\"></div></div>";
@@ -4721,6 +4724,9 @@ function addWindowToHtml(id) {
         "align-items": "center",
         "box-sizing": "border-box"
     });
+    if (handel != null) {
+        $("#" + id + "_content").html(handel());
+    }
 }
 Array.prototype.indexOf = function (val) {
     for (var i = 0; i < this.length; i++) {
