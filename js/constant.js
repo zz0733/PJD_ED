@@ -149,3 +149,133 @@ var lang = {
     }
 };
 var NUMBER_MESSAGE_READ = 0;
+// 界面框架扩展内容
+var _PageFrameExpansion = {
+    agreementDiv:
+        '<div style="height:40px;background-color:#2A2A2A;width:100%;display:flex;justify-content:space-between;align-items:center">\
+        <div id="agreementDiv_one" style="height:40px;width:50%;justify-content:center;align-items:center;display:flex">规则与条款</div>\
+        <div id="agreementDiv_two" style="height:40px;width:50%;justify-content:center;align-items:center;display:flex">隐私权政策</div>\
+        </div>\
+        <div style="width:100%;height:2px;background-color:#000000;display:flex;justify-content:center;align-items:center">\
+        <div style="width: 50%; height: 100%" id="agreementDiv_select_one"></div>\
+        <div style="width: 50%; height: 100%" id="agreementDiv_select_two"></div>\
+        </div>\
+        <div style="height:10px"></div>\
+        <div id="agreementDiv_content_content" style="overflow-x:hidden;overflow-y:hidden;width:100%">\
+        <div style="display:flex;justify-content:center;align-items:center;width:100%;box-sizing:border-box">\
+            <div id="agreementDiv_content_content_one" style="width:100%;display:block"></div>\
+            <div id="agreementDiv_content_content_two" style="width:100%;display:none"></div>\
+        </div>\
+        </div>\
+        <div style="height: 10px"></div>',
+    commGamesDiv:
+        '<div id="commGamesDiv_top_list" style="width: 100%;height: 45px;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">\
+            <div id="commGamesDiv_top_0" style="width: 50%;text-align: center;font-size: 12px;color: #8C8C8C"></div>\
+            <div id="commGamesDiv_top_1" style="width: 50%;text-align: center;font-size: 12px;color: #8C8C8C"></div>\
+        </div>\
+        <div style="width: 100%;height:10px;background: #1B1B1B;"></div>\
+        <div id="commGamesDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;"></div>\
+        <div id="commGamesDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">\
+            <div id="commGamesDiv_bottom_0" style="width: 21%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+            <div id="commGamesDiv_bottom_1" style="width: 37%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+            <div id="commGamesDiv_bottom_2" style="width: 37%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+            <div id="commGamesDiv_bottom_3" style="width: 37%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+        </div>',
+    agentCommsDiv:
+        '<div id="agentCommsDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;"></div>\
+        <div id="agentCommsDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">\
+            <div id="agentCommsDiv_bottom_0" style="width: 16%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+            <div id="agentCommsDiv_bottom_1" style="width: 25%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+            <div id="agentCommsDiv_bottom_2" style="width: 28%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+            <div id="agentCommsDiv_bottom_3" style="width: 31%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+        </div>',
+    costDiv:
+        '<div id="costDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;"></div>\
+        <div id="costDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">\
+            <div id="costDiv_bottom_0" style="width: 30%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+            <div id="costDiv_bottom_2" style="width: 40%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+            <div id="costDiv_bottom_1" style="width: 30%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+        </div>',
+    gamesDiv:
+        '<div id="gamesDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto;"></div>\
+        <div id="gamesDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">\
+            <div id="gamesDiv_bottom_0" style="width: 33%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+            <div id="gamesDiv_bottom_1" style="width: 33%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+            <div id="gamesDiv_bottom_2" style="width: 33%;text-align: center;font-size: 15px;color: #8C8C8C"></div>\
+        </div>',
+    leagueDetailsDiv:
+        '<div id="leagueDetailsDiv_content_list" style="width: 100%;overflow-x: hidden;overflow-y: auto"></div>\
+        <div id="leagueDetailsDiv_content_bottom" style="width: 100%;height: 45px;background: #1B1B1B;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box">\
+            <div id="leagueDetailsDiv_bottom_0" style="width: 13%;text-align: center;font-size: 14px;color: #8C8C8C"></div>\
+            <div id="leagueDetailsDiv_bottom_1" style="width: 23%;text-align: center;font-size: 14px;color: #E96734"></div>\
+            <div id="leagueDetailsDiv_bottom_2" style="width: 32%;text-align: center;font-size: 14px;color: #E96734"></div>\
+            <div id="leagueDetailsDiv_bottom_3" style="width: 32%;text-align: center;font-weight: bold;font-size: 14px;color: #E96734"></div>\
+            <div id="leagueDetailsDiv_bottom_4" style="width: 27%;text-align: center;font-size: 14px;color: #E96734"></div>\
+        </div>',
+    betrecordCmdDiv:
+        '<div id="betrecordCmdDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordCmdDiv_select_date"></div></div>\
+        <div style="height:10px;width:100%"></div>\
+        <div id="betrecordCmdDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto"></div>\
+        <div id="betrecordCmdDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
+            <div style="width: 50%;display:flex;justify-content:center;align-items:center" id="betrecordCmdDiv_validSum"></div>\
+            <div style="width: 50%;display:flex;justify-content:center;align-items:center" id="betrecordCmdDiv_winorloss"></div>\
+        </div>',
+    betrecordIgDiv:
+        '<div id="betrecordIgDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordIgDiv_select_date"></div></div>\
+        <div style="height:10px;width:100%"></div>\
+        <div id="betrecordIgDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto"></div>\
+        <div id="betrecordIgDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
+            <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordIgDiv_validSum"></div>\
+            <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordIgDiv_winorloss"></div>\
+        </div>',
+    betrecordJPNNDiv:
+        '<div id="betrecordJPNNDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordJPNNDiv_select_date"></div></div>\
+        <div style="height:10px;width:100%"></div>\
+        <div id="betrecordJPNNDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto">\
+        </div>\
+        <div id="betrecordJPNNDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
+            <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordJPNNDiv_validSum"></div>\
+            <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordJPNNDiv_winorloss"></div>\
+        </div>',
+    betrecordGmDiv:
+        '<div id="betrecordGmDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordGmDiv_select_date"></div></div>\
+        <div style="height:10px;width:100%"></div>\
+        <div id="betrecordGmDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto">\
+        </div>\
+        <div id="betrecordGmDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
+            <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordGmDiv_validSum"></div>\
+            <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordGmDiv_winorloss"></div>\
+        </div>',
+    betrecordKyDiv:
+        '<div id="betrecordKyDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordKyDiv_select_date"></div></div>\
+        <div style="height:10px;width:100%"></div>\
+        <div id="betrecordKyDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto">\
+        </div>\
+        <div id="betrecordKyDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
+            <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordKyDiv_validSum"></div>\
+            <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordKyDiv_winorloss"></div>\
+        </div>',
+    betrecordInfoDiv:
+        '<div id="betrecordInfoDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordInfoDiv_select_date"></div></div>\
+        <div style="height:10px;width:100%"></div>\
+        <div id="betrecordInfoDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto">\
+        </div>\
+        <div id="betrecordInfoDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
+            <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordInfoDiv_validSum"></div>\
+            <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordInfoDiv_winorloss"></div>\
+        </div>',
+    betrecordDiv:
+        '<div id="betrecordDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordDiv_timeSelect"></div></div>\
+        <div style="height:10px;width:100%"></div>\
+        <div id="betrecordDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto">\
+        </div>\
+        <div id="betrecordDiv_stats_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
+            <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordDiv_validSum"></div>\
+            <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordDiv_winorloss"></div>\
+        </div>',
+    avatarDiv:
+        '<div id="avatarDiv_content_all_headers" style="width:100%;display:flex;justify-content:flex-start;align-items:center;flex-wrap:wrap;overflow-x:hidden;overflow-y:auto"></div>\
+        <div style="height:20px"></div>\
+        <div id="avatarDiv_content_sure_btn" class="PJDCommBtn">确定修改</div>\
+        <div style="height:20px"></div>'
+}
