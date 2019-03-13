@@ -1,6 +1,7 @@
 <div style="position:relative;width:100%;height:100%">
     <img src="pic/themeMain/lucky_bg.jpg" style="position:absolute;top:0px;width:100%;height:100%;z-index: 1" />
-    <div style="position: absolute;top: 0px;width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;z-index: 2">
+    <div
+        style="position: absolute;top: 0px;width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;z-index: 2">
         <div style="width:100%;display:block;justify-content:center;align-items:center">
             <div id="lucky_bg">
                 <img id="lucky_pointer" src="pic/themeMain/zp3.png">
@@ -16,15 +17,18 @@
                 </div>
             </div>
             <div style="height:20px"></div>
-            <div style="width:100%;height: 60px;display: flex;justify-content:space-between;align-items: center;box-sizing: border-box;font-size:12px">
+            <div
+                style="width:100%;height: 60px;display: flex;justify-content:space-between;align-items: center;box-sizing: border-box;font-size:12px">
                 <div style="width: 50%;color: #cca352;text-align: center">
                     <div style="width: 100%;color: #cca352;text-align: center;padding: 0 0 10px 0">今日已参与的转盘抽奖</div>
-                    <div id="luckyLp_Participation_1" style="font-size:20px;width: 100%;color: gainsboro;text-align: center">0</div>
+                    <div id="luckyLp_Participation_1"
+                        style="font-size:20px;width: 100%;color: gainsboro;text-align: center">0</div>
                 </div>
                 <div style="width:1px;height: 90%;background: black"></div>
                 <div style="width: 50%;color: #cca352;text-align: center">
                     <div style="width: 100%;color: #cca352;text-align: center;padding: 0 0 10px 0">今日可参与的转盘抽奖</div>
-                    <div id="luckyLp_Participation_0" style="font-size:20px;width: 100%;color: gainsboro;text-align: center">0</div>
+                    <div id="luckyLp_Participation_0"
+                        style="font-size:20px;width: 100%;color: gainsboro;text-align: center">0</div>
                 </div>
             </div>
         </div>
@@ -251,32 +255,22 @@
     }
     function bindFun() {
         requestAjax("prize/getTodayUserPrize", "", function (jsonObj) {
-            var obj = jsonObj.result;
-            //等级
-            var luckyId = obj["lucky_id"];
-            //var luckyId = 3;
-            //次数
-            var uses = obj["uses"]; //已抽次数
-            var times = obj["times"]; //可次数
-            $("#luckyLp_Participation_1").html(uses);
-            $("#luckyLp_Participation_0").html(times);
-            requestAjax("prize/getPrizeLuckys", "", function (jsonObj) {
-                var dObj = jsonObj.result;
-                var len = dObj.length;
-                for (var i = 0; i < len; i++) {
-                    var listObj = dObj[i];
-                    if (luckyId == listObj.id) {
-                        var peizes = listObj.prizes;
-                        var index = 0;
-                        $(".content_jp").each(function () {
-                            if (index > len) {
-                                return false;
-                            }
-                            $(this).html(peizes[index]["name"]);
-                            index++;
-                        })
-                    } else if (luckyId == null) {
-                        if ((i + 1) == len) {
+            if (jsonObj.code == 0) {
+                var obj = jsonObj.result;
+                //等级
+                var luckyId = obj["lucky_id"];
+                //var luckyId = 3;
+                //次数
+                var uses = obj["uses"]; //已抽次数
+                var times = obj["times"]; //可次数
+                $("#luckyLp_Participation_1").html(uses);
+                $("#luckyLp_Participation_0").html(times);
+                requestAjax("prize/getPrizeLuckys", "", function (jsonObj) {
+                    var dObj = jsonObj.result;
+                    var len = dObj.length;
+                    for (var i = 0; i < len; i++) {
+                        var listObj = dObj[i];
+                        if (luckyId == listObj.id) {
                             var peizes = listObj.prizes;
                             var index = 0;
                             $(".content_jp").each(function () {
@@ -286,11 +280,25 @@
                                 $(this).html(peizes[index]["name"]);
                                 index++;
                             })
-                        }
+                        } else if (luckyId == null) {
+                            if ((i + 1) == len) {
+                                var peizes = listObj.prizes;
+                                var index = 0;
+                                $(".content_jp").each(function () {
+                                    if (index > len) {
+                                        return false;
+                                    }
+                                    $(this).html(peizes[index]["name"]);
+                                    index++;
+                                })
+                            }
 
+                        }
                     }
-                }
-            })
+                })
+            } else if (jsonObj.code == 999) {
+                bindFun();
+            }
         })
     }
 </script>
