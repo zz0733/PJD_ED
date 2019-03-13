@@ -4194,6 +4194,10 @@ function AppMake() {
             for (var i = 0; i < imgTotal; i++) {
                 imgPreId[i] = new Image();
                 imgPreId[i].src = imgPath[i];
+                imgPreId[i].onerror = function () {
+                    $("." + layoutId + "_text").css({ "display": "" });
+                    $(".make_content_contentPre_" + layoutId).css({ "display": "none" });
+                }
                 imgPreId[i].onload = function () {
                     flag++;
                     if (flag > 0) {
@@ -4210,10 +4214,10 @@ function AppMake() {
                 }
             }
         }
-        if (flag >= imgTotal) {
-            return;
-        } else {
-            imgContent();
+        if(imgTotal != 0){
+            if((imgTotal - 1) != flag){
+                imgContent();
+            }
         }
     }
 }
