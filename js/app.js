@@ -114,7 +114,6 @@ function PJDApp() {
         mBetCmdRemakeObj = new betCmdRemakeObj(); mBetCmdRemakeObj.init();
         mBetrecordJPNNObj = new betrecordJPNNObj(); mBetrecordJPNNObj.init();
         mBetJPNNRemakeObj = new betJPNNRemakeObj(); mBetJPNNRemakeObj.init();
-        mTryGameSigup = new tryGameSigupObj(); mTryGameSigup.init();
         mDiscountObj = new discountObj(); mDiscountObj.init();
         mFavourableObj = new favourableObj(); mFavourableObj.init();
         mAgentObj = new agentObj(); mAgentObj.init();
@@ -876,19 +875,6 @@ function PJDApp() {
             "line-height": "150%",
             "text-align": "center",
             "height": "55px"
-        });
-        $(".PJDCommBtn").css({
-            "display": "flex",
-            "justify-content": "center",
-            "align-items": "center",
-            "border-radius": "20px",
-            "background-color": mainColor,
-            "color": " #FFFFFF",
-            "height": "40px",
-            "width": "auto",
-            "margin-left": "15px",
-            "margin-right": "15px",
-            "font-size": "14px"
         });
         if (isInIOS()) {
             $("#bodyDiv").css({ "position": "static" });

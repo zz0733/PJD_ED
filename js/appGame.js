@@ -490,98 +490,6 @@ function JPNN_ED() {
         console.log("setService close");
     }
 }
-function bindFedView(id, msg, btnC) {
-    var obj = $("#" + id);
-    // 背景布局
-    var bg = "<div id=\"" + id + "_failedBg\">%content%</div>";
-    // 根部布局
-    var rootDiv = "<div id=\"" + id + "_failedDiv\">%content%</div>";
-    // 哭脸图片
-    var img = "<div style=\"height:80px\"><img class=\"openGameFailureImg\" src=\"" + themPath + "sorry.png\"/></div>";
-    // 提示标题
-    var tsMsg = "<div style=\"font-size:18px\"><font color=" + mainColor + ">很抱歉</font></div>";
-    // 提示内容
-    var cnMsg = "<div style=\"font-size:16px\"><font color=#CACACA>" + msg + "</font></div>";
-    // 重试按钮
-    var btnCon = "<div style=display:flex;justify-content:center;align-items:center><div id=btn_" + id + " style=\"font-size:16px\"><font color=white>重试</font></div><div>";
-    // 大分割线
-    var devMx = "<div style=\"height:6px\"></div>";
-    // 小分割线
-    var devMn = "<div style=\"height:1px\"></div>";
-    bg = bg.replace("%content%", rootDiv.replace("%content%", img + devMx + tsMsg + devMn + cnMsg + devMx + devMx + btnCon));
-    obj.html(bg);
-    $("#btn_" + id).css({
-        "border-radius": "20px",
-        "width": "20%",
-        "height": "22px",
-        "font-size": "14px",
-        "background-color": "#cca352"
-    })
-    setBtnOnTouchEvent($("#btn_" + id), function () {
-        var isNewLoad = false;
-        if (btnC != null) {
-            if (btnC == "qsContent") {
-                backClickFun();
-                myPJDApp.showAskObj(isNewLoad);
-            } else if (btnC == "aboutContent") {
-                backClickFun();
-                myPJDApp.showAboutObj(isNewLoad);
-            } else if (btnC == "agreementContent") {
-                backClickFun();
-                myPJDApp.showAgreement("agreement", isNewLoad);
-            } else if (btnC == "declareContent") {
-                backClickFun();
-                myPJDApp.showAgreement("declare", isNewLoad);
-            } else if (btnC == "bettingContent") {
-                backClickFun();
-                myPJDApp.showResponsibilityObj(isNewLoad);
-            } else if (btnC == "pyramidContent_1_1") {
-                backClickFun();
-                myPJDApp.showPyramid("pyramidContent_1_1", isNewLoad);
-            } else if (btnC == "pyramidContent_2_2") {
-                backClickFun();
-                myPJDApp.showPyramid("pyramidContent_2_2", isNewLoad);
-            } else if (btnC == "league_three_menu_1_content") {
-                backClickFun();
-                var isType = "5_1";
-                myPJDApp.showAgent(isNewLoad, isType);
-            } else if (btnC == "league_three_menu_2_content") {
-                backClickFun();
-                var isType = "5_2";
-                myPJDApp.showAgent(isNewLoad, isType);
-            } else if (btnC == "leagueSuggest") {
-                backClickFun();
-                myPJDApp.showAgent(isNewLoad, 4);
-            }
-        } else {
-            if (id == "discountDiv_content") {
-                backClickFun();
-                myPJDApp.showDiscountObj(isNewLoad);
-            } else if (id == "rule_content") {
-                backClickFun();
-                myPJDApp.showLuckyDrawObj();
-            } else {
-                $("#btn_" + id).css({ "display": "none" })
-            }
-        }
-    }, "#f1c570", "#cca352");
-    $("#" + id + "_failedBg").css({
-        "width": "100%",
-        "height": "100%",
-        "display": "flex",
-        "justify-content": "center",
-        "align-items": "center",
-        "box-sizing": "border-box"
-    });
-    $("#" + id + "_failedDiv").css({
-        "align-items": "center",
-        "text-align": "center",
-        "width": "100%",
-        "height": "auto",
-        "font-size": "16px",
-        "box-sizing": "border-box"
-    });
-}
 function gameAPI() {
     var mLoginResultList = null;
     var mAPIStatusList = null;
@@ -791,314 +699,97 @@ function enterGameObj() {
         timeOutObj = setTimeout(enterGame, timeOut);
     }
 }
-function tryGameSigupObj() {
-    var mPage = new Activity("tryGameSigup", "免费试玩");
-    var layoutId = "tryGameSigup_content";
-    var layoutObj = $("#" + layoutId);
-    var gameType;
-    var openGame;
-    var isBack = false;
-    var isBind = false;
-    var bottomToneColor = tryPlayBottomToneColor;
-    this.init = function () {
-        mPage.init(function () {
-            isBack = true;
-        });
-        $("#tryGameSigup_content").css({ "background-color": "#383838" });
-        $("#tryGameSigup_content").css({ "height": screenH - topH });
-    }
-    this.show = function (tagObj) {
-        if (tagObj == null) { return; }
-        isBack = false;
-        gameType = tagObj["gameType"];
-        openGame = tagObj["openGame"];
-        if (!checkTryGameType(gameType)) { return; }
-        mPage.show();
-        if (!isBind) {
-            setContentView();
-            isBind = true;
-        }
-    }
-    function setContentView() {
-        var title1Ms = "如需体验金钱游戏的乐趣,您必须成为真正的会员.";
-        var title2Ms = "请输入验证码以申请免费体验账号:";
-        var title3Ms = "新玩家288元首存奖金";
-        var title4Ms = "了解更多>>";
-        var inputMs = "请输入验证码";
-        // 顶部布局
-        var topRootDiv = "<div class=" + layoutId + "_top_root_div>%content%</div>";
-        var bottomRootDiv = "<div class=" + layoutId + "_bottom_root_div>%content%</div>";
-        var topTitleDiv = "<div class=" + layoutId + "_top_title_div>%content%</div>";
-        var toptitle1 = "<div class=" + layoutId + "_top_title1><font color=#B0B0B0>" + title1Ms + "</font></div>";
-        var toptitle2 = "<div class=" + layoutId + "_top_title2><font color=#B0B0B0>" + title2Ms + "</font></div>";
-        topTitleDiv = topTitleDiv.replace("%content%", toptitle1 + toptitle2);
-        var topVCodeDiv = "<div class=" + layoutId + "_top_code>%content%</div>";
-        var imgDiv = "<div class=" + layoutId + "_top_img><img class=validImage src=\"" + themPath + "valid.png\" /></div>";
-        var yzMDiv = "<div class=" + layoutId + "_top_yzm><font color=" + mainColor + ">验证码</font></div>";
-        var fgDiv = "<div class=" + layoutId + "_fengedev></div>";
-        var inputDiv = "<div class=" + layoutId + "_top_input><input type=\"email\" id=" +
-            layoutId + "_input placeholder=\"" + inputMs + "\" /></div>";
-        var codeDiv = "<div class=" + layoutId + "_codeImgDiv><img class=vcodeImage id=" + layoutId + "_codeImg /></div>";
-        topVCodeDiv = topVCodeDiv.replace("%content%", imgDiv + yzMDiv + fgDiv + inputDiv + codeDiv);
-        var xiahuaxianDiv = "<div class=" + layoutId + "_top_xiahuaxian></div>";
-        var submitDiv = "<div class=" + layoutId + "_top_submit id=" + layoutId +
-            "_code_submit><font color=white>提交</font></div>";
-        topRootDiv = topRootDiv.replace("%content%", topTitleDiv + topVCodeDiv + xiahuaxianDiv + submitDiv);
-        // 底部布局
-        var bottomTitleDiv = "<div class=" + layoutId + "_bottom_title_div>%content%</div>";
-        var bomtitle1 = "";//"<div class=" + layoutId + "_bottom_title1><font color=" + bottomToneColor + ">" + title3Ms + "</font></div>";
-        var aLink = "";//"<a  style=\"text-decoration: underline;color:" + bottomToneColor + "\" href=\"javascript:myPJDApp.showFavourable(43)\">" + title4Ms + "</a>";
-        var bomtitle2 = "<div class=" + layoutId + "_bottom_title2>" + aLink + "</div>";
-        bottomTitleDiv = bottomTitleDiv.replace("%content%", bomtitle1 + bomtitle2);
-        var wSigupDiv = "<div class=" + layoutId + "_bottom_wsigup>%content%</div>";
-        var nSigupDiv = "<div class=" + layoutId + "_bottom_nsigup id=" + layoutId +
-            "_sigup_submit><font color=" + bottomToneColor + ">立即注册</font></div>";
-        wSigupDiv = wSigupDiv.replace("%content%", nSigupDiv);
-        bottomRootDiv = bottomRootDiv.replace("%content%", bottomTitleDiv + wSigupDiv);
-        layoutObj.html(topRootDiv + bottomRootDiv);
-        setContentStyle();
-        setTimeout(function () { $("#tryGameSigup_content_input").focus(); }, 500);
-    }
-    function setContentStyle() {
-        var sW = $(window).width();
-        // 顶部布局
-        $("." + layoutId + "_top_root_div").css({
-            "align-items": "center",
-            "text-align": "center",
-            "width": "100%",
-            "height": "55%",
-            "padding-top": "50px",
-            "padding-bottom": "50px",
-            "padding-left": "15px",
-            "padding-right": "15px",
-            "background": "#383838",
-            "box-sizing": "border-box"
-        });
-        $("." + layoutId + "_top_title_div").css({
-            "align-items": "center",
-            "text-align": "center",
-            "width": "100%",
-            "height": "auto"
-        });
-        $("." + layoutId + "_top_title1").css({
-            "display": "flex",
-            "justify-content": "center",
-            "align-items": "center",
-            "width": "auto",
-            "height": "auto",
-            "font-size": "14px"
-        });
-        $("." + layoutId + "_top_title2").css({
-            "display": "flex",
-            "justify-content": "center",
-            "align-items": "center",
-            "width": "auto",
-            "height": "auto",
-            "margin-top": "3px",
-            "font-size": "14px"
-        });
-        // 验证码布局
-        var codeW = sW - 30;
-        $("." + layoutId + "_top_code").css({
-            "display": "flex",
-            "justify-content": "start-flex",
-            "align-items": "center",
-            "text-align": "center",
-            "width": "100%",
-            "height": "30px",
-            "margin-top": "50px"
-        });
-        $("." + layoutId + "_top_img").css({
-            "text-align": "left",
-            "width": "19px",
-            "height": "auto"
-        });
-        $("." + layoutId + "_top_yzm").css({
-            "text-align": "left",
-            "width": "42px",
-            "height": "auto",
-            "font-size": "14px",
-            "margin-left": "10px",
-            "box-sizing": "border-box"
-        });
-        $("." + layoutId + "_fengedev").css({
-            "text-align": "cneter",
-            "width": "1px",
-            "height": "18px",
-            "margin-left": "20px",
-            "background": "#848484"
-        });
-        $("." + layoutId + "_top_input").css({
-            "text-align": "left",
-            "width": codeW - 19 - 10 - 42 - 20 - 1 - 10 - 20 - 80,
-            "height": "auto",
-            "margin-left": "10px",
-            "box-sizing": "border-box"
-        });
-        $("#" + layoutId + "_input").css({
-            "width": "100%",
-            "height": "28px",
-            "color": "#B0B0B0",
-            "outline": "medium",
-            "border": "none",
-            "background": "transparent"
-        });
-        $("." + layoutId + "_codeImgDiv").css({
-            "text-align": "right",
-            "width": "80px",
-            "margin-left": "20px",
-            "height": "28px"
-        });
-        $("." + layoutId + "_top_xiahuaxian").css({
-            "text-align": "center",
-            "width": "100%",
-            "height": "1px",
-            "margin-top": "5px",
-            "background": "#848484"
-        });
-        $("." + layoutId + "_top_submit").css({
-            "display": "flex",
-            "justify-content": "center",
-            "align-items": "center",
-            "width": "100%",
-            "height": "40px",
-            "background": mainColor,
-            "border-radius": "25px",
-            "margin-top": "55px",
-            "box-sizing": "border-box"
-        });
-        // 底部布局
-        $("." + layoutId + "_bottom_root_div").css({
-            "align-items": "center",
-            "text-align": "center",
-            "width": "100%",
-            "height": "45%",
-            "padding-top": "65px",
-            "padding-bottom": "65px",
-            "padding-left": "15px",
-            "padding-right": "15px",
-            "background": "#2D2D2D",
-            "box-sizing": "border-box"
-        });
-        $("." + layoutId + "_bottom_title_div").css({
-            "align-items": "center",
-            "text-align": "center",
-            "width": "100%",
-            "height": "auto"
-        });
-        $("." + layoutId + "_bottom_title1").css({
-            "display": "flex",
-            "justify-content": "center",
-            "align-items": "center",
-            "width": "auto",
-            "height": "auto",
-            "font-size": "20px"
-        });
-        $("." + layoutId + "_bottom_title2").css({
-            "display": "flex",
-            "justify-content": "center",
-            "align-items": "center",
-            "width": "auto",
-            "height": "auto",
-            "margin-top": "2px",
-            "font-size": "12px",
-            "color": bottomToneColor
-        });
-        $("." + layoutId + "_bottom_wsigup").css({
-            "display": "flex",
-            "justify-content": "center",
-            "align-items": "center",
-            "width": "100%",
-            "height": "40px",
-            "background": bottomToneColor,
-            "border-radius": "25px",
-            "margin-top": "25px",
-            "padding": "1px",
-            "box-sizing": "border-box"
-        });
-        $("." + layoutId + "_bottom_nsigup").css({
-            "display": "flex",
-            "justify-content": "center",
-            "align-items": "center",
-            "width": "100%",
-            "height": "100%",
-            "background": "#2D2D2D",
-            "border-radius": "25px",
-            "box-sizing": "border-box"
-        });
-        updateCodeImg();
-        var vcodeImgObj = $("#" + layoutId + "_codeImg");
-        setBtnOnTouchEventNoColor(vcodeImgObj, function () {
-            updateCodeImg();
-        }, null);
-        var codeObj = $("#" + layoutId + "_code_submit");
-        setBtnOnTouchEvent(codeObj, function (mObj) {
-            var inpuevalue = $("#" + layoutId + "_input").val();
-            if (inpuevalue == null || inpuevalue.length == 0) {
-                mToast.show("您未输入任何信息!", "1", "middle");
-                return;
-            }
-            codeSubmitBack(inpuevalue);
-        }, mainColorDeep, mainColor, null);
-        var sigupObj = $("#" + layoutId + "_sigup_submit");
-        setBtnOnTouchEvent(sigupObj, function (mObj) {
-            myPJDApp.showRegister();
-        }, "#222222", "#2D2D2D", null);
-    }
-    function codeSubmitBack(code) {
-        mLoader.show("tryPlay");
-        sigupTryGame(["lmg", "lottery"], code, function (isOpen) {
-            mLoader.unShow("tryPlay");
-            if (isBack) { return; }
-            if (isOpen) {
+function bindFedView(id, msg, btnC) {
+    var obj = $("#" + id);
+    // 背景布局
+    var bg = "<div id=\"" + id + "_failedBg\">%content%</div>";
+    // 根部布局
+    var rootDiv = "<div id=\"" + id + "_failedDiv\">%content%</div>";
+    // 哭脸图片
+    var img = "<div style=\"height:80px\"><img class=\"openGameFailureImg\" src=\"" + themPath + "sorry.png\"/></div>";
+    // 提示标题
+    var tsMsg = "<div style=\"font-size:18px\"><font color=" + mainColor + ">很抱歉</font></div>";
+    // 提示内容
+    var cnMsg = "<div style=\"font-size:16px\"><font color=#CACACA>" + msg + "</font></div>";
+    // 重试按钮
+    var btnCon = "<div style=display:flex;justify-content:center;align-items:center><div id=btn_" + id + " style=\"font-size:16px\"><font color=white>重试</font></div><div>";
+    // 大分割线
+    var devMx = "<div style=\"height:6px\"></div>";
+    // 小分割线
+    var devMn = "<div style=\"height:1px\"></div>";
+    bg = bg.replace("%content%", rootDiv.replace("%content%", img + devMx + tsMsg + devMn + cnMsg + devMx + devMx + btnCon));
+    obj.html(bg);
+    $("#btn_" + id).css({
+        "border-radius": "20px",
+        "width": "20%",
+        "height": "22px",
+        "font-size": "14px",
+        "background-color": "#cca352"
+    })
+    $("#" + id + "_failedBg").css({
+        "width": "100%",
+        "height": "100%",
+        "display": "flex",
+        "justify-content": "center",
+        "align-items": "center",
+        "box-sizing": "border-box"
+    });
+    $("#" + id + "_failedDiv").css({
+        "align-items": "center",
+        "text-align": "center",
+        "width": "100%",
+        "height": "auto",
+        "font-size": "16px",
+        "box-sizing": "border-box"
+    });
+    setBtnOnTouchEvent($("#btn_" + id), function () {
+        var isNewLoad = false;
+        if (btnC != null) {
+            if (btnC == "qsContent") {
                 backClickFun();
-                if (gameType == "lottery") {
-                    openLottery(openGame);
-                } else if (gameType == "lmg") {
-                    openLmg(openGame);
-                } else if (gameType == "gm") {
-                    openGM(openGame);
-                }
-            } else {
-                updateCodeImg();
-                mToast.show("验证码错误或已失效,请重新获取!", 1, "middle");
+                myPJDApp.showAskObj(isNewLoad);
+            } else if (btnC == "aboutContent") {
+                backClickFun();
+                myPJDApp.showAboutObj(isNewLoad);
+            } else if (btnC == "agreementContent") {
+                backClickFun();
+                myPJDApp.showAgreement("agreement", isNewLoad);
+            } else if (btnC == "declareContent") {
+                backClickFun();
+                myPJDApp.showAgreement("declare", isNewLoad);
+            } else if (btnC == "bettingContent") {
+                backClickFun();
+                myPJDApp.showResponsibilityObj(isNewLoad);
+            } else if (btnC == "pyramidContent_1_1") {
+                backClickFun();
+                myPJDApp.showPyramid("pyramidContent_1_1", isNewLoad);
+            } else if (btnC == "pyramidContent_2_2") {
+                backClickFun();
+                myPJDApp.showPyramid("pyramidContent_2_2", isNewLoad);
+            } else if (btnC == "league_three_menu_1_content") {
+                backClickFun();
+                var isType = "5_1";
+                myPJDApp.showAgent(isNewLoad, isType);
+            } else if (btnC == "league_three_menu_2_content") {
+                backClickFun();
+                var isType = "5_2";
+                myPJDApp.showAgent(isNewLoad, isType);
+            } else if (btnC == "leagueSuggest") {
+                backClickFun();
+                myPJDApp.showAgent(isNewLoad, 4);
             }
-        }, function (error) {
-            mLoader.unShow("tryPlay");
-            if (isBack) { return; }
-            updateCodeImg();
-            mToast.show("验证码错误或已失效,请重新获取!", 1, "middle");
-        });
-    }
-    function updateCodeImg() {
-        $("#" + layoutId + "_codeImg").attr("src", SERVER_ADD + "servlet/RandomImgCodeServlet?r=" + randomString());
-    }
-    function sigupTryGame(games, vcode, callBack, errorCallBack) {
-        var backGames = games;
-        var len = backGames.length;
-        if (len == 0) {
-            if (callBack != null) {
-                callBack(false);
-            }
-            return;
-        }
-        var gametypeObj = backGames[0];
-        mGameAPI.tryPlayLoginToApi(gametypeObj, vcode, function () {
-            backGames.splice(0, 1);
-            if (backGames != null && backGames.length > 0) { // 递归backGames
-                sigupTryGame(backGames, null, callBack, errorCallBack);
-            } else if (callBack != null) {
-                callBack(true);
-            }
-        }, errorCallBack);
-    }
-    function checkTryGameType(gametype) {
-        if (gametype == "gm" || gametype == "lmg" || gametype == "lottery") {
-            return true;
         } else {
-            return false;
+            if (id == "discountDiv_content") {
+                backClickFun();
+                myPJDApp.showDiscountObj(isNewLoad);
+            } else if (id == "rule_content") {
+                backClickFun();
+                myPJDApp.showLuckyDrawObj();
+            } else {
+                $("#btn_" + id).css({ "display": "none" })
+            }
         }
-    }
+    }, "#f1c570", "#cca352");
 }
 function parseGameList() {
     var gameListObjSort = new Array();

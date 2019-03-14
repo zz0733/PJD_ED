@@ -70,7 +70,7 @@ html {
 .ballNum {
 	width: 30px;
 	height: 30px;
-	background-color: red;
+	background: red;
 	color: white;
 	text-align: center;
 	border-radius: 15px;
@@ -83,17 +83,18 @@ html {
 }
 
 .PJDCommBtn {
+	width: auto;
+	height: 40px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	border-radius: 20px;
-	background-color: #ff5e1b;
-	color: #FFFFFF;
-	height: 40px;
-	width: 100%;
-	margin-left: 15px;
-	margin-right: 15px;
+	background: #cca352;
+	margin-left: 12px;
+	margin-right: 12px;
 	font-size: 14px;
+	color: white;
+	box-sizing: border-box
 }
 
 .commFont14 {
@@ -102,7 +103,7 @@ html {
 }
 
 .mainColorFont14 {
-	color: #ff5e1b;
+	color: #cca352;
 	font-size: 14px;
 }
 
@@ -112,7 +113,7 @@ html {
 }
 
 .mainColorFont12 {
-	color: #ff5e1b;
+	color: #cca352;
 	font-size: 12px;
 }
 
@@ -192,7 +193,7 @@ body {
 	display: flex;
 	justify-content: center;
 	padding: 5px;
-	background: #EE6834;
+	background: #cca352;
 	border-radius: 15px;
 	box-sizing: border-box;
 }
