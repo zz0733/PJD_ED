@@ -472,167 +472,12 @@ function PJDApp() {
         }
     }
     function menuFastContent() {
-        var startDate = getTimeZoneE8(8, new Date()).format("yyyy-MM-dd");
-        var endDate = startDate;
-        var valTime;
-        var requestTime = new Date();
-        var select;
-        var isInit = false;
         setMapStyle();
         this.show = function () {
             $("#mapDiv").css({ x: -screenW });
-            setTopTitle("投注记录");
-            if (!isInit) {
-                bindBar();
-                select.setSelectValue(0);
-                isInit = true;
-            }
         }
         this.unShow = function () {
             $("#mapDiv").css({ x: 0 });
-        }
-        function bindBar() {
-            var cId = "mapDiv_content_timeSelect";
-            var rId = "mainDiv";
-            var times = { "list": [{ "text": "今天", "value": "0" }, { "text": "昨天", "value": "1" }, { "text": "最近7天", "value": "7" }] };
-            select = new tSelect(cId, rId, screenW, 45, times, function (index) {
-                var dateE8 = getTimeZoneE8(timeZone, new Date());
-                valTime = times["list"][index]["value"];
-                dateE8.setDate(dateE8.getDate() - valTime);
-                startDate = dateE8.format("yyyy-MM-dd");
-                if (valTime == 0 || valTime == 1) {
-                    endDate = startDate;
-                } else {
-                    endDate = getTimeZoneE8(timeZone, new Date()).format("yyyy-MM-dd");
-                }
-                $("#mapDiv_content_list").html("");
-                var now = new Date();
-                if ((now - requestTime) > 5000) { bindList(500); } else { bindList(5000); }
-            });
-        }
-        function bindList(outTime) {
-            var winamount = 0;
-            var validamount = 0;
-            var columns = [{
-                "title": "游戏",
-                "code": "game",
-                "width": "25%",
-                "align": "center"
-            },
-            {
-                "title": "总投注",
-                "code": "total",
-                "width": "25%",
-                "align": "center"
-            },
-            {
-                "title": "有效投注",
-                "code": "valid",
-                "width": "25%",
-                "align": "center"
-            },
-            {
-                "title": "输赢",
-                "code": "winloss",
-                "width": "25%",
-                "align": "center"
-            },
-            ];
-            var mData = "requestType=json&start=" + startDate + "&end=" + endDate;
-            var mTable = new tTable("mapDiv_content_list", columns, 20);
-            mTable.init();
-            mTable.setOutTime(outTime);
-            mTable.itemClickFunction(function (itemData, objId) {
-                var code = itemData["gameCode"];
-                if (itemData["total"] == 0 || itemData["valid"] == 0) { return; }
-                var val = valTime;
-                if (val == 1) { val = "yesterday"; }
-                if (code == "lmg") {
-                    mBetrecordLmgObj.show(itemData, val);
-                } else if (code == "ky") {
-                    mBetrecordKyObj.show(itemData, val);
-                } else if (code == "gm") {
-                    mBetrecordGmObj.show(itemData, val);
-                } else if (code == "lottery") {
-                    mBetrecordIgObj.show(itemData, val);
-                } else if (code == "cmd") {
-                    mBetrecordCmdObj.show(itemData, val);
-                } else if (code == "nn") {
-                    mBetrecordJPNNObj.show(itemData, val);
-                }
-            });
-            mTable.setLoadOKFunction(function () {
-                var v = validamount.toString();
-                var vIndex = v.indexOf(".");
-                if (vIndex != -1 && vIndex != v.length - 1) {
-                    v = v.substring(0, vIndex + 3);
-                }
-                var w = winamount.toString();
-                var wIndex = w.indexOf(".");
-                if (wIndex != -1 && wIndex != w.length - 1) {
-                    w = w.substring(0, wIndex + 3);
-                }
-                requestTime = new Date();
-                $("#mapDiv_content_bottom").css({
-                    "display": "flex"
-                });
-                $("#mapDiv_content_validSum").html("有效投注额：" + doubleValue(v));
-                var winOrLoss = "";
-                if (winamount < 0) {
-                    winOrLoss = "<font color=" + mainColor + ">" + doubleValue(w) + "</font>";
-                } else {
-                    winOrLoss = "<font color=" + winFontColor + ">" + doubleValue(w) + "</font>";
-                }
-                $("#mapDiv_content_winorloss").html("输赢：" + winOrLoss);
-            });
-            mTable.setParseFunction(function (datas) {
-                winamount = winamount + datas.result.stats.winamount;
-                validamount = validamount + datas.result.stats.validamount;
-                return parseGamesData(datas);
-            });
-            mTable.setIsLoadMore(false);
-            mTable.loadData(SERVER_ADD + "gameRecordStat/userRecordStatsGroupByGameNo", mData);
-            function parseGamesData(gamesData) {
-                var datas = new Array();
-                var objList = gamesData.result.games;
-                var len = objList.length;
-                for (var i = 0; i < len; i++) {
-                    var listItem = objList[i];
-                    var classList = listItem.games;
-                    var classLen = classList.length;
-                    for (var j = 0; j < classLen; j++) {
-                        var classItem = classList[j];
-                        var item = new Object();
-                        item["game"] = classItem.name.replace("CMD", ""); //CMD
-                        item["gameCode"] = classItem["apicode"];
-                        item["gameNo"] = classItem["no"];
-                        item["gameId"] = classItem["id"];
-                        try {
-                            item["total"] = doubleValue(classItem.stats.betamount);
-                            item["valid"] = doubleValue(classItem.stats.validamount);
-                            var winloss = doubleValue(classItem.stats.winamount);
-                            if (winloss > 0) {
-                                winloss = "<font color=" + winFontColor + ">" + "+" + winloss + "</font>";
-                            } else if (winloss < 0) {
-                                winloss = "<font color=" + lossFontColor + ">" + winloss + "</font>";
-                            } else {
-                                winloss = "<font color=white>" + winloss + "</font>";
-                            }
-                            item["winloss"] = winloss;
-                        } catch (e) {
-                            item["total"] = 0;
-                            item["valid"] = 0;
-                            item["winloss"] = 0;
-                        }
-                        item["arrow"] = '<div style="width:15px"></div>';
-                        datas.push(item);
-                    }
-                }
-                var returnObj = new Object();
-                returnObj["result"] = new Object();
-                returnObj["result"]["list"] = datas;
-                return returnObj;
-            }
         }
         this.getObj = function () {
             return $("#mapDiv");
@@ -641,13 +486,10 @@ function PJDApp() {
             $("#mapDiv").css({
                 "height": h - topH - menuH,
                 "left": screenW,
-                "background-color": mapContentBgColor
+                "background": mapContentBgColor
             });
             $("#mapDiv_content").css({
                 "height": h - topH - menuH
-            });
-            $("#mapDiv_content_list").css({
-                "height": h - topH - menuH - 45 - 10 - 40
             });
         }
     }
