@@ -166,7 +166,7 @@ function JPNN_ED() {
     function enterTable() {
         if (isBack) { return; }
         saveLocalStorage("lastGameId", "nn-JPNN");
-        $("#menuGameImg").attr("src", "pic/themeMain/submenu_real_nn.png");
+        $("#menuGameImg").attr("src", "pic/themeMain/NN.png");
         isEnterTable = true;
         var h = screenH - 0.5;
         // 框架

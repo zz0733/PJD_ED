@@ -218,7 +218,6 @@ function PJDApp() {
         userMoneyInterest = 0.00;
         userMoneyBag = null;
         gameListObj = null;
-
         $("#topRegisterLoginDiv").css({
             "display": "flex"
         });
@@ -227,8 +226,6 @@ function PJDApp() {
         });
         setSelectMenu(1);
         logOutPost();
-
-        mGameAPI.logOutGame("lottery");
         mGameAPI.init();
     }
     this.showComplete = function (sizeMode, theme) {
@@ -1253,14 +1250,14 @@ function PJDApp() {
         }
         getLastGame = getLocalStorage("lastGameId").split("-");
         if (getLastGame[0] == "nn") {
-            $("#menuGameImg").attr("src", "pic/themeMain/submenu_real_nn.png");
+            $("#menuGameImg").attr("src", "pic/themeMain/NN.png");
         } else if (getLastGame[0] == "ky") {
             $("#menuGameImg").attr("src", "pic/themeMain/submenu_real_ky.png");
         } else if (getLastGame[0] == "gm") {
             $("#menuGameImg").attr("src", "pic/themeMain/submenu_real_gm.png");
         } else {
             saveLocalStorage("lastGameId", "nn-JPNN");
-            $("#menuGameImg").attr("src", "pic/themeMain/submenu_real_nn.png");
+            $("#menuGameImg").attr("src", "pic/themeMain/NN.png");
         }
     }
 }

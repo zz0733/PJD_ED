@@ -4,7 +4,7 @@ var IS_TEST_SERVER = true; // 是否是测试服务器(更改服务地址时必�
 var appRootDomain = null;
 var SERVER_ADD;
 if (IS_TEST_SERVER) {
-    SERVER_ADD = "https://w8.bctt.co:8000/";
+    SERVER_ADD = "https://w22.bctt.co:8000/";
 } else {
     SERVER_ADD = "https://www.pjd11.com/";
 }
