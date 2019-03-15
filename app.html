@@ -21,6 +21,7 @@
     <script language="javascript" type="text/javascript" src="js/config.js"></script>
     <script language="javascript" type="text/javascript" src="js/constant.js"></script>
     <script language="javascript" type="text/javascript" src="js/app.js"></script>
+    <script language="javascript" type="text/javascript" src="js/appCH.js"></script>
     <script language="javascript" type="text/javascript" src="js/appBetLive.js"></script>
     <script language="javascript" type="text/javascript" src="js/appUserDomain.js"></script>
     <script language="javascript" type="text/javascript" src="js/appWidget.js"></script>
@@ -49,7 +50,7 @@
 
 <body style="position: fixed;margin: 0px;overflow-x: hidden;overflow-y: hidden" oncontextmenu="return false" onselectstart="return false">
     <div id="bodyDiv" style="position: absolute;overflow-x: hidden;overflow-y: hidden">
-        <div id="mainDiv" style="position: absolute;width: 100%;height: 100%;background-color: #2A2A2A;overflow-x: hidden;overflow-y: hidden">
+        <div id="mainDiv" style="position: absolute;width: 100%;height: 100%;background: #2A2A2A;overflow-x: hidden;overflow-y: hidden">
             <div id="top">
                 <div id="topLogo">
                     <img id="topLogoImgId" src="pic/themeMain/logoLottery.png" style="height: 23px;padding-left: 15px;opacity: 0.9;" />
@@ -84,38 +85,170 @@
                     <div style="width: 20px"></div>
                 </div>
             </div>
-            <div style="width: 100%;height: 0.5px;background-color: #554B37"></div>
-            <div id="indexDiv" style="position:absolute;width:100%;overflow:hidden;opacity:0">
-                <div id="content_niuniu" style="width:100%;height:100%;display:none;flex-direction:column;justify-content:flex-start;align-items:center">
-                    <div id="nn_content" style="position: relative;width: 100%">
-                        <iframe id="nn_content_frame" frameborder="0" scrolling='no' style="position: absolute;top: 0px;z-index: 7;width: 100%"></iframe>
-                        <div id="nn_content_fed" style="position: absolute;top: 0px;z-index: 8;width: 100%;display: flex;justify-content: center;align-items: center">
-                            <div id="nn_content_fed_root" style="text-align: center;align-items: center;width: 100%;height: auto;font-size: 16px">
-                                <div style="height:80px">
-                                    <img style="width: 80px;height: 80px" src="pic/themeMain/sorry.png" />
+            <div style="width:100%;height:0.5px;background:#554B37"></div>
+            <div id="indexDiv" style="position:absolute;width:100%;overflow:hidden;opacity:0;overflow:hidden">
+                <div id="index_top" style="widows:100%;display:flex;justify-content:space-between;align-items:center;background:url(pic/themeMain/submenu_real_bg.png);background-repeat:repeat">
+                    <div class="index_top_btn_class" id="index_top_btn_id_nn">
+                        <img class="index_top_btn_img" src="pic/themeMain/submenu_real_nn.png" style="height:28px" />
+                        <div class="index_top_btn_txt">抢庄牛牛</div>
+                    </div>
+                    <div class="index_top_btn_class" id="index_top_btn_id_ky">
+                        <img class="index_top_btn_img" src="pic/themeMain/submenu_real_ky.png" style="height:26px" />
+                        <div class="index_top_btn_txt">KY棋牌</div>
+                    </div>
+                    <div class="index_top_btn_class" id="index_top_btn_id_gm">
+                        <img class="index_top_btn_img" src="pic/themeMain/submenu_real_gm.png" style="height:28px" />
+                        <div class="index_top_btn_txt">GM棋牌</div>
+                    </div>
+                </div>
+                <div class="index_top_lineX" style="width:100%;height:1px;background:#000000"></div>
+                <div class="index_top_lineX" style="width:100%;height:1px;background:#464646"></div>
+                <div id="index_content" style="width:100%;overflow-x:hidden;overflow-y:auto;box-sizing:border-box">
+                    <div id="index_content_nn" class="index_content_games" style="width:100%;height:100%;display:none;flex-direction:column;justify-content:flex-start;align-items:center">
+                        <div id="nn_content" style="position:relative;width: 100%">
+                            <iframe id="nn_content_frame" frameborder="0" scrolling='no' style="position: absolute;top: 0px;z-index: 7;width: 100%"></iframe>
+                            <div id="nn_content_fed" style="position: absolute;top: 0px;z-index: 8;width: 100%;display: flex;justify-content: center;align-items: center">
+                                <div id="nn_content_fed_root" style="text-align: center;align-items: center;width: 100%;height: auto;font-size: 16px">
+                                    <div style="height:80px">
+                                        <img style="width: 80px;height: 80px" src="pic/themeMain/sorry.png" />
+                                    </div>
+                                    <div style="height:6px"></div>
+                                    <div id="nn_content_fed_root_top_txt" style="font-size:18px;color: #CCA352">很抱歉</div>
+                                    <div style="height:1px"></div>
+                                    <div id="nn_content_fed_root_ts" style="font-size:16px;color: #CACACA">游戏无法打开,请稍后重试!</div>
                                 </div>
-                                <div style="height:6px"></div>
-                                <div id="nn_content_fed_root_top_txt" style="font-size:18px;color: #CCA352">很抱歉</div>
-                                <div style="height:1px"></div>
-                                <div id="nn_content_fed_root_ts" style="font-size:16px;color: #CACACA">游戏无法打开,请稍后重试!</div>
+                            </div>
+                            <div id="nn_content_load" style="position: absolute;top: 0px;z-index: 9;width: 100%;display: flex;justify-content: center;align-items: center;background-color: rgba(0,0,0,0.69)">
+                                <div id="nn_content_load_root" style="text-align: center;align-items: center;width: 100%;height: auto;font-size: 16px">
+                                    <div id="nn_content_load_root_view" style="width: auto;height:48px"></div>
+                                    <div style="height:6px"></div>
+                                    <div id="nn_content_load_root_ts" style="font-size:16px;color: #CACACA">游戏正在加载中!</div>
+                                </div>
                             </div>
                         </div>
-                        <div id="nn_content_load" style="position: absolute;top: 0px;z-index: 9;width: 100%;display: flex;justify-content: center;align-items: center;background-color: rgba(0,0,0,0.69)">
-                            <div id="nn_content_load_root" style="text-align: center;align-items: center;width: 100%;height: auto;font-size: 16px">
-                                <div id="nn_content_load_root_view" style="width: auto;height:48px"></div>
-                                <div style="height:6px"></div>
-                                <div id="nn_content_load_root_ts" style="font-size:16px;color: #CACACA">游戏正在加载中!</div>
-                            </div>
+                    </div>
+                    <div id="index_content_gm" class="index_content_games" style="width:100%;height:100%;display:none;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:8px 8px 0px 8px;box-sizing:border-box">
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_1_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_5.png" style="width:60px" /> 百人牛牛
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_2_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_16.png" style="width:60px" /> 看牌抢庄牛牛
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_3_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_2.png" style="width:60px" /> 百家乐
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_4_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_20.png" style="width:60px" /> 通比牛牛
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_5_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_4.png" style="width:60px" /> 百人龙虎
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_6_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_19.png" style="width:60px" /> 随机庄家牛牛
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_7_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_6.png" style="width:60px" /> 百人炸金花
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_8_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_22.png" style="width:60px" /> 炸金花
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_9_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_3.png" style="width:60px" /> 百人德州
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_10_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_15.png" style="width:60px" /> 极速炸金花
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_11_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_7.png" style="width:60px" /> 德州扑克
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_12_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_17.png" style="width:60px" /> 三公
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_13_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_11.png" style="width:60px" /> 二人斗地主
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_14_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_18.png" style="width:60px" /> 十三水
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_15_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_9.png" style="width:60px" /> 斗地主
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_16_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_21.png" style="width:60px" /> 推倒胡
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_17_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_12.png" style="width:60px" /> 二人麻将
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_18_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_8.png" style="width:60px" /> 点炮胡
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_19_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_10.png" style="width:60px" /> 二八杠
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_20_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_14.png" style="width:60px" /> 港试五张
+                        </div>
+                        <div class="content_gm_content_item_class" id="content_gm_content_item_21_id">
+                            <img class="content_gm_content_item_img_class" src="pic/themeMain/GM_GAME_13.png" style="width:60px" /> 21点
+                        </div>
+                    </div>
+                    <div id="index_content_ky" class="index_content_games" style="width:100%;height:100%;display:none;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:8px 8px 0px 8px;box-sizing:border-box">
+                        <div class="content_poker_content_item_class" id="content_poker_content_item_1_id">
+                            <img class="content_poker_content_item_img_class" src="pic/themeMain/KY_GAME_8.png" style="width:60px" /> 抢庄牛牛
+                        </div>
+                        <div class="content_poker_content_item_class" id="content_poker_content_item_2_id">
+                            <img class="content_poker_content_item_img_class" src="pic/themeMain/KY_GAME_14.png" style="width:60px" /> 炸金花
+                        </div>
+                        <div class="content_poker_content_item_class" id="content_poker_content_item_6_id">
+                            <img class="content_poker_content_item_img_class" src="pic/themeMain/KY_GAME_6.png" style="width:60px" /> 二十一点
+                        </div>
+                        <div class="content_poker_content_item_class" id="content_poker_content_item_5_id">
+                            <img class="content_poker_content_item_img_class" src="pic/themeMain/KY_GAME_5.png" style="width:60px" /> 二八杠
+                        </div>
+                        <div class="content_poker_content_item_class" id="content_poker_content_item_4_id">
+                            <img class="content_poker_content_item_img_class" src="pic/themeMain/KY_GAME_10.png" style="width:60px" /> 三公
+                        </div>
+                        <div class="content_poker_content_item_class" id="content_poker_content_item_3_id">
+                            <img class="content_poker_content_item_img_class" src="pic/themeMain/KY_GAME_3.png" style="width:60px" /> 德州扑克
+                        </div>
+                        <div class="content_poker_content_item_class" id="content_poker_content_item_11_id">
+                            <img class="content_poker_content_item_img_class" src="pic/themeMain/KY_GAME_9.png" style="width:60px" /> 抢庄牌九
+                        </div>
+                        <div class="content_poker_content_item_class" id="content_poker_content_item_13_id">
+                            <img class="content_poker_content_item_img_class" src="pic/themeMain/KY_GAME_1.png" style="width:60px" /> 百家乐
+                        </div>
+                        <div class="content_poker_content_item_class" id="content_poker_content_item_10_id">
+                            <img class="content_poker_content_item_img_class" src="pic/themeMain/KY_GAME_11.png" style="width:60px" /> 森林舞会
+                        </div>
+                        <div class="content_poker_content_item_class" id="content_poker_content_item_12_id">
+                            <img class="content_poker_content_item_img_class" src="pic/themeMain/KY_GAME_15.png" style="width:60px" /> 押庄龙虎
+                        </div>
+                        <div class="content_poker_content_item_class" id="content_poker_content_item_7_id">
+                            <img class="content_poker_content_item_img_class" src="pic/themeMain/KY_GAME_13.png" style="width:60px" /> 通比牛牛
+                        </div>
+                        <div class="content_poker_content_item_class" id="content_poker_content_item_9_id">
+                            <img class="content_poker_content_item_img_class" src="pic/themeMain/KY_GAME_2.png" style="width:60px" /> 百人牛牛
+                        </div>
+                        <div class="content_poker_content_item_class" id="content_poker_content_item_14_id">
+                            <img class="content_poker_content_item_img_class" src="pic/themeMain/KY_GAME_12.png" style="width:60px" /> 十三水
+                        </div>
+                        <div class="content_poker_content_item_class" id="content_poker_content_item_8_id">
+                            <img class="content_poker_content_item_img_class" src="pic/themeMain/KY_GAME_4.png" style="width:60px" /> 斗地主
+                        </div>
+                        <div class="content_poker_content_item_class" id="content_poker_content_item_15_id">
+                            <img class="content_poker_content_item_img_class" src="pic/themeMain/KY_GAME_7.png" style="width:60px" /> 极速炸金花
+                        </div>
+                        <div class="content_poker_content_item_class" id="content_poker_content_item_add_id">
+                            <img class="content_poker_content_item_img_class" src="pic/themeMain/KY_GAME_ADD.png" style="width:60px" /> 敬请期待
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="comingDiv" style="opacity: 0;width: 100%;overflow-x: hidden;overflow-y: auto;position: absolute">
-            </div>
-            <div id="mapDiv" style="opacity: 0; width: 100%;position: absolute;overflow-x: hidden;overflow-y: hidden;width: 100%">
+            <div id="comingDiv" style="position:absolute;width:100%;overflow-x:hidden;overflow-y:auto;opacity:0"></div>
+            <div id="mapDiv" style="position:absolute;width:100%;overflow-x:hidden;overflow-y:auto;opacity:0">
                 <div id="mapDiv_content" style="width:100%;position:relative"></div>
             </div>
-            <div id="myDiv" style="opacity: 0; width: 100%;overflow-x: hidden;overflow-y: auto;position: absolute;background-color: #191919">
+            <div id="myDiv" style="position:absolute;width:100%;overflow-x:hidden;overflow-y:auto;background:#191919;opacity:0">
                 <div id="myDiv_userInfo_content" style="width: 100%;height: 80px;display: flex;justify-content: space-between;align-items: center">
                     <div style="padding: 10px;width: 180px; height: 100%;display: flex;justify-content:flex-start;align-items: center">
                         <img id="myDiv_userInfo_content_header" src="pic/themeMain/m_header.png" height="56px" style="border-radius: 28px" />
@@ -247,43 +380,51 @@
                 </div>
                 <div class="myDivSplitline" style="height: 1px;width: 100%;background-color: #383838"></div>
             </div>
-            <div id="menusDiv" style="position: absolute;width: 100%;height: 45px">
+            <div id="menusDiv" style="position:absolute;width:100%;height:45px">
                 <div id="menus" style="height: 45px;width: 100%;display: flex;justify-content: space-between;align-items: center">
                     <div id="menu_1" class=menuClass>
-                        <div style="height: 10px"></div>
+                        <div style="height:10px"></div>
                         <div>
-                            <img id="menus_1_1" src="pic/themeMain/ch_niuniu_1.png" height="25px" />
-                            <img id="menus_1_2" src="pic/themeMain/ch_niuniu_2.png" height="25px" style="display: none" />
+                            <img id="menus_1_1" src="pic/themeMain/menu_hall_1.png" height="25px" />
+                            <img id="menus_1_2" src="pic/themeMain/menu_hall_2.png" height="25px" style="display: none" />
                         </div>
-                        牛牛
-                        <div style="height: 10px"></div>
+                        大厅
+                        <div style="height:10px"></div>
                     </div>
                     <div id="menu_2" class=menuClass>
-                        <div style="height: 10px"></div>
+                        <div style="height:10px"></div>
                         <div>
-                            <img id="menus_2_1" src="pic/themeMain/menu_coming_1.png" height="25px" />
-                            <img id="menus_2_2" src="pic/themeMain/menu_coming_2.png" height="25px" style="display: none" />
-                        </div>
-                        存款
-                        <div style="height: 10px"></div>
-                    </div>
-                    <div id="menu_3" class=menuClass>
-                        <div style="height: 10px"></div>
-                        <div>
-                            <img id="menus_5_1" src="pic/themeMain/menu_cj_1.png" height="25px" />
-                            <img id="menus_5_2" src="pic/themeMain/menu_cj_1.png" height="25px" style="display: none" />
+                            <img id="menus_2_1" src="pic/themeMain/menu_cj_1.png" height="25px" />
+                            <img id="menus_2_2" src="pic/themeMain/menu_cj_1.png" height="25px" style="display: none" />
                         </div>
                         抽奖
-                        <div style="height: 10px"></div>
+                        <div style="height:10px"></div>
+                    </div>
+                    <div id="menuGame">
+                        <div style="height:5px"></div>
+                        <div>
+                            <img id="menuGameImg" src="pic\themeMain\submenu_real_nn.png" height="35px" />
+                        </div>
+                        上次玩过
+                        <div style="height:10px"></div>
+                    </div>
+                    <div id="menu_3" class=menuClass>
+                        <div style="height:10px"></div>
+                        <div>
+                            <img id="menus_3_1" src="pic/themeMain/menu_coming_1.png" height="25px" />
+                            <img id="menus_3_2" src="pic/themeMain/menu_coming_2.png" height="25px" style="display: none" />
+                        </div>
+                        存款
+                        <div style="height:10px"></div>
                     </div>
                     <div id="menu_4" class=menuClass>
-                        <div style="height: 10px"></div>
+                        <div style="height:10px"></div>
                         <div>
                             <img id="menus_4_1" src="pic/themeMain/menu_my_1.png" height="25px" />
                             <img id="menus_4_2" src="pic/themeMain/menu_my_2.png" height="25px" style="display: none" />
                         </div>
                         我的
-                        <div style="height: 10px"></div>
+                        <div style="height:10px"></div>
                     </div>
                 </div>
             </div>
@@ -389,20 +530,18 @@
                 <div style="height:10%;"></div>
                 <img id="reg_success_img" src="pic/themeMain/success.png" height="60px" />
                 <div class="registerSuccess_top_text">注册成功</div>
-                <div>
-                    <div style="height:5%;"></div>
-                    <div style="display:flex;justify-content: center;align-items: center">
-                        <span style="color:#CCA352;font-size: 14px">我们的主域名&nbsp;&nbsp;</span>
-                        <img src="pic/themeMain/pjdRegister.png" style="width:25%;" />
-                        <span style="color:#CCA352;font-size: 14px">&nbsp;&nbsp;请用一秒记住</span>
-                        <br>
-                    </div>
-                    <div style="height:5px;"></div>
-                    <div id="registerSuccess_top_notictext" style="display:flex;justify-content: center;align-items: center">
-                        恭喜&nbsp;&nbsp;
-                        <span id="registerSuccess_top_notictext_id"></span> 您已成为
-                        <img src="pic/XPJ_1.png" width="42px" />会员!
-                    </div>
+                <div style="height:5%;"></div>
+                <div style="display:flex;justify-content: center;align-items: center">
+                    <span style="color:#CCA352;font-size: 14px">我们的主域名&nbsp;&nbsp;</span>
+                    <img src="pic/themeMain/pjdRegister.png" style="width:25%;" />
+                    <span style="color:#CCA352;font-size: 14px">&nbsp;&nbsp;请用一秒记住</span>
+                    <br>
+                </div>
+                <div style="height:5px;"></div>
+                <div id="registerSuccess_top_notictext" style="display:flex;justify-content: center;align-items: center">
+                    恭喜&nbsp;&nbsp;
+                    <span id="registerSuccess_top_notictext_id"></span> 您已成为
+                    <img src="pic/XPJ_1.png" width="42px" />会员!
                 </div>
             </div>
             <div id="registerSuccessDownload" style="width: 100%;display: none;justify-content: center;align-items: center">

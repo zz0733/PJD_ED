@@ -25,8 +25,11 @@ var gameListObj = null;
 var currentZIndex = 100;
 var currentGameCode = "";
 var langObj;
-var MJPNNObj;
 var AppMakeObj;
+var MJPNNObj;
+var MKyObj;
+var MGmObj;
+var MGameTryReg;
 var timeZone = 8;
 var bannerH = 100;
 function PJDApp() {
@@ -114,6 +117,7 @@ function PJDApp() {
         mBetCmdRemakeObj = new betCmdRemakeObj(); mBetCmdRemakeObj.init();
         mBetrecordJPNNObj = new betrecordJPNNObj(); mBetrecordJPNNObj.init();
         mBetJPNNRemakeObj = new betJPNNRemakeObj(); mBetJPNNRemakeObj.init();
+        MGameTryReg = new GameTryReg(); MGameTryReg.init();
         mDiscountObj = new discountObj(); mDiscountObj.init();
         mFavourableObj = new favourableObj(); mFavourableObj.init();
         mAgentObj = new agentObj(); mAgentObj.init();
@@ -130,6 +134,8 @@ function PJDApp() {
         mLeagueContentObj = new leagueContentObj(); mLeagueContentObj.init();
         mAgentQrCodeObj = new agentQrCodeObj(); mAgentQrCodeObj.init();
         mAvatarObj = new avatarObj(); mAvatarObj.init();
+        MKyObj = new KY_ED(); MKyObj.init();
+        MGmObj = new GM_ED(); MGmObj.init();
         getAppVersion();
         checkIsAndroid();
         requestAjax("i18n/getMapKeyLangs", "", function (jsonObj) {
@@ -138,6 +144,12 @@ function PJDApp() {
     }
     this.setAppStyle = setAppStyle;
     this.h5DownloadCheck = h5DownloadCheck;
+    this.openKy = function (gameIndex) {
+        MKyObj.show(gameIndex);
+    }
+    this.openGm = function (gameIndex) {
+        MGmObj.show(gameIndex);
+    }
     this.showAgreement = function (type) {
         mAgreementObj.show();
         mAgreementObj.setType(type);
@@ -328,12 +340,8 @@ function PJDApp() {
         menuObjMy.hiddenLeagueMenu();
     };
     this.setJPNNAnimation = function (isOpen) {
-        if (isOpen) {
-            MJPNNObj.openAnimation();
-        } else {
-            MJPNNObj.stopAnimation(true);
-        }
-        console.log("setJPNNAnimation :" + isOpen);
+        var chJpnn = menuObjIndex.getCH("nn");
+        if (chJpnn != null) chJpnn.setJPNNAnimation(isOpen);
     }
     function updateNickName() {
         var nickName = "";
@@ -370,70 +378,119 @@ function PJDApp() {
     }
     function setSelectMenu(selectIndex) {
         if (currentMenuSelect == selectIndex) return;
-        if (isLogin() || selectIndex == 1 || selectIndex == 4) {
-            $("#menus_" + currentMenuSelect + "_1").css({ "display": "" });
-            $("#menus_" + currentMenuSelect + "_2").css({ "display": "none" });
-            $("#menu_" + currentMenuSelect).css({ "color": toolbarFontColor });
-            $("#menus_" + selectIndex + "_2").css({ "display": "" });
-            $("#menus_" + selectIndex + "_1").css({ "display": "none" });
-            $("#menu_" + selectIndex).css({ "color": toolbarFontColorTouch });
-            currentMenuSelect = selectIndex;
-            var toObj = null;
-            if (selectIndex == 1) {
-                toObj = menuObjIndex;
-            } else if (selectIndex == 2) {
-                toObj = menuObjComing;
-            } else if (selectIndex == 3) {
-                toObj = menuObjMap;
-            } else if (selectIndex == 4) {
-                toObj = menuObjMy;
+        if (!isLogin()) {
+            if (selectIndex == 2 || selectIndex == 3) {
+                mLoginObj.show();
+                return;
             }
-            if (currentMenuObj != null) {
-                currentMenuObj.unShow();
-                currentMenuObj.getObj().css({ opacity: 0 });
-            }
-            toObj.show();
-            currentMenuObj = toObj;
-            currentMenuObj.getObj().transition({ opacity: 1.0 });
-        } else { mLoginObj.show(); }
+        }
         focusHiddenBox();
-    }
-    function setIndexMode() {
-        $("#indexDiv").scrollTop(0);
-        $("#indexDiv").css({
-            "height": h - topH - menuH - 0.5,
-            "overflow-x": "hidden",
-            "overflow-y": "hidden"
-        });
+        $("#menus_" + currentMenuSelect + "_1").css({ "display": "" });
+        $("#menus_" + currentMenuSelect + "_2").css({ "display": "none" });
+        $("#menu_" + currentMenuSelect).css({ "color": toolbarFontColor });
+        $("#menus_" + selectIndex + "_2").css({ "display": "" });
+        $("#menus_" + selectIndex + "_1").css({ "display": "none" });
+        $("#menu_" + selectIndex).css({ "color": toolbarFontColorTouch });
+        if (currentMenuObj != null) {
+            currentMenuObj.unShow();
+            currentMenuObj.getObj().css({ opacity: 0 });
+        }
+        if (selectIndex == 1) {
+            currentMenuObj = menuObjIndex;
+        } else if (selectIndex == 3) {
+            currentMenuObj = menuObjComing;
+        } else if (selectIndex == 4) {
+            currentMenuObj = menuObjMy;
+        }
+        currentMenuSelect = selectIndex;
+        currentMenuObj.show();
+        currentMenuObj.getObj().transition({ opacity: 1.0 });
     }
     function menuIndexContent() {
+        var chJpnn = new CHJPNN();
+        var chKy = new CHKY();
+        var chGm = new CHGM();
+        var currentCH = "";
+        var currentCHObj = null;
         setStyle();
         this.show = function () {
             $("#topTitle").css({ "display": "none" });
             $("#topLogo").css({ "display": "block" });
             $("#indexDiv").css({ x: -screenW });
-            $("#content_niuniu").css({ "display": "flex" });
-            MJPNNObj.openGame();
-            myPJDApp.setJPNNAnimation(true);
+            if (currentCHObj != null) {
+                currentCHObj.load();
+            } else { selectCH("nn"); }
             checkPageBackFromHome();
         }
         this.unShow = function () {
-            myPJDApp.setJPNNAnimation(false);
-            MJPNNObj.exitGame();
+            if (currentCHObj != null) currentCHObj.exit();
             $("#indexDiv").css({ x: 0 });
-            $("#content_niuniu").css({ "display": "none" });
         }
         this.getObj = function () {
             return $("#indexDiv");
         }
+        this.getCH = function (type) {
+            switch (type) {
+                case "nn": return chJpnn;
+                case "ky": return chKy;
+                case "gm": return chGm;
+                default: return null;
+            }
+        }
+        this.selectCH = selectCH;
+        function selectCH(selectIndex) {
+            if (currentCH == selectIndex) return;
+            focusHiddenBox();
+            var select = "url(" + themPath + "submenu_real_selectbg.png)";
+            if (currentCHObj != null) currentCHObj.exit();
+            $(".index_top_btn_class").css({ "background": "" });
+            if (selectIndex == "nn") {
+                currentCHObj = chJpnn;
+                $("#index_top_btn_id_nn").css({ "background": select });
+            } else if (selectIndex == "ky") {
+                currentCHObj = chKy;
+                $("#index_top_btn_id_ky").css({ "background": select });
+            } else if (selectIndex == "gm") {
+                currentCHObj = chGm;
+                $("#index_top_btn_id_gm").css({ "background": select });
+            }
+            currentCH = selectIndex;
+            currentCHObj.load();
+        }
         function setStyle() {
-            $("#indexDiv").css({
-                "left": screenW,
-                "height": h - topH - menuH - 0.5
+            $("#index_top").css({
+                "width": "100%",
+                "height": chMenuH,
+                "box-sizing": "border-box"
             });
-            $("#content_niuniu").css({
-                "height": h - topH - menuH - 0.5,
-                "background": roadContentBgColor
+            $(".index_top_btn_class").css({
+                "width": screenW / 3,
+                "height": chMenuH,
+                "display": "flex",
+                "flex-direction": "column",
+                "justify-content": "center",
+                "align-items": "center",
+                "box-sizing": "border-box"
+            });
+            $(".index_top_btn_txt").css({
+                "display": "flex",
+                "justify-content": "center",
+                "align-items": "center",
+                "font-size": "12px",
+                "color": mainFontColorMore,
+                "margin-top": "3px",
+                "box-sizing": "border-box"
+            });
+            $(".index_content_games").css({ "display": "none" });
+            $("#indexDiv").css({ "left": screenW, "height": h - topH - menuH - 0.5 });
+            $("#indexDiv").scrollTop(0);
+            $("#index_content").css({ "height": h - topH - 0.5 - chMenuH - 2 - menuH });
+            $(".index_top_btn_class").each(function () {
+                setBtnOnTouchEventNoColor($(this), function (mObj) {
+                    var idList = mObj.id.split("_");
+                    var iLen = idList.length;
+                    selectCH(idList[iLen - 1]);
+                }, null);
             });
         }
     }
@@ -806,11 +863,6 @@ function PJDApp() {
             "display": "none"
         });
     }
-    function showMain() {
-        $("#mainDiv").animate({
-            "opacity": 1.0
-        }, "slow");
-    }
     function setAppStyle() {
         w = $(window).width(); screenW = w;
         h = $(window).height(); screenH = h;
@@ -869,12 +921,27 @@ function PJDApp() {
             "align-items": "center"
         });
         $(".menuClass").css({
-            "width": w / 4,
+            "width": w / 5,
             "color": toolbarFontColor,
             "font-size": "10px",
             "line-height": "150%",
             "text-align": "center",
             "height": "55px"
+        });
+        $("#menuGame").css({
+            "width": w / 5,
+            "color": toolbarFontColor,
+            "font-size": "10px",
+            "line-height": "150%",
+            "text-align": "center",
+            "height": "90px"
+        });
+        $("#menuGameImg").css({
+            "width": "35px",
+            "height": "35px",
+            "padding": "6px",
+            "border-radius": "50%",
+            "background": "#181818"
         });
         if (isInIOS()) {
             $("#bodyDiv").css({ "position": "static" });
@@ -884,27 +951,23 @@ function PJDApp() {
             $("#toast").css({ "position": "fixed" });
             $("#loadingDiv").css({ "position": "fixed" });
         }
-        $(".menuClass").each(function () {
-            setBtnOnTouchEventNoColor($("#" + this.id), function (mObj) {
-                var index = mObj.id.split("_")[1];
-                if (index == 3) {
-                    if (isLogin()) {
-                        myPJDApp.showLuckyDrawObj();
-                    } else {
-                        mLoginObj.show();
-                    }
-                } else {
-                    setSelectMenu(index);
-                }
-            }, null);
-        });
+        $("#App_Version").html(APP_VERSION);
         $(".topServiceClass").each(function () {
             setBtnOnTouchEvent($(this), function (mObj) {
                 myPJDApp.unShowMoneyWindow();
                 openService();
             }, mainColorDeep, "", null);
         });
-        $("#App_Version").html(APP_VERSION);
+        $(".menuClass").each(function () {
+            setBtnOnTouchEventNoColor($("#" + this.id), function (mObj) {
+                var index = mObj.id.split("_")[1];
+                if (index == 2) {
+                    if (isLogin()) {
+                        myPJDApp.showLuckyDrawObj();
+                    } else { mLoginObj.show(); }
+                } else { setSelectMenu(index); }
+            }, null);
+        });
         setBtnOnTouchEvent($("#topIsLoginDiv_money"), function () {
             myPJDApp.showMoneyWindow();
         }, mainColorDeep, "", null);
@@ -917,14 +980,38 @@ function PJDApp() {
         setBtnOnTouchEvent($("#loginBtn"), function () {
             mLoginObj.show();
         }, subColorDK, "", null);
+        setBtnOnTouchEventNoColor($("#menuGame"), function () {
+            var lastGame = getLocalStorage("lastGameId").split("-");
+            if (lastGame[0] == "nn") {
+                setSelectMenu(1);
+                menuObjIndex.selectCH("nn");
+            } else if (lastGame[0] == "ky") {
+                if (isLogin()) {
+                    myPJDApp.openKy(lastGame[1]);
+                } else {
+                    myPJDApp.showLogin();
+                }
+            } else if (lastGame[0] == "gm") {
+                if (isLogin()) {
+                    myPJDApp.openGm(lastGame[1]);
+                } else {
+                    myPJDApp.showLogin();
+                }
+            } else {
+                setSelectMenu(1);
+                menuObjIndex.selectCH("nn");
+            }
+        });
         mainTopBar = new TopToolbar("top", "");
         mainTopBar.init();
+        MJPNNObj = new JPNN_ED(); MJPNNObj.loadUI();
         menuObjIndex = new menuIndexContent();
         menuObjComing = new menuComingContent();
         menuObjMap = new menuFastContent();
         menuObjMy = new menuMineContent();
-        MJPNNObj = new JPNN_ED(); MJPNNObj.loadUI();
-        setIndexMode(); setSelectMenu(1); showMain();
+        LoadLastPlay();
+        setSelectMenu(1);
+        $("#mainDiv").animate({ "opacity": 1.0 }, "slow");
     }
     function h5DownloadCheck() {
         if (!isInApp()) {
@@ -970,7 +1057,7 @@ function PJDApp() {
         addPageToHtml("incomeDetailsDiv");
         addPageToHtml("buyInterestDiv");
         addPageToHtml("passwordInputDiv");
-        addPageToHtml("tryGameSigup");
+        addPageToHtml("GameTryReg");
         addPageToHtml("favourableDiv");
         addPageToHtml("agentDiv");
         addPageToHtml("nickNameDiv");
@@ -1124,6 +1211,57 @@ function PJDApp() {
         addPageToHtml("agreementDiv", function () {
             return _PageFrameExpansion.agreementDiv;
         });
+        // 游戏框架
+        addPageToHtml("kyDiv", function () {
+            var id = "kyDiv";
+            $("#" + id + "_content").css({
+                "position": "relative",
+                "overflow": "hidden",
+                "background": "#2A2A2A"
+            });
+            GamesFrameHtml(id + "_content", function () {
+                $("#" + id + "_content_iframe").attr("frameborder", "0");
+                $("#" + id + "_content_iframe").css({
+                    "transform": "scale(0.6)",
+                    "transform-origin": "0 0"
+                });
+            });
+        });
+        addPageToHtml("gmDiv", function () {
+            var id = "gmDiv";
+            $("#" + id + "_content").css({
+                "position": "relative",
+                "overflow": "hidden",
+                "background": "#2A2A2A"
+            });
+            GamesFrameHtml(id + "_content", function () {
+                $("#" + id + "_content_iframe").attr("frameborder", "1");
+                $("#" + id + "_content_iframe").css({
+                    "border-color": "#2A2A2A",
+                    "overflow-x": "hidden",
+                    "overflow-y": "hidden",
+                    "transform": "scale(0.596,0.596)",
+                    "transform-origin": "0 0"
+                });
+            });
+        });
+    }
+    function LoadLastPlay() {
+        var getLastGame = getLocalStorage("lastGameId");
+        if (getLastGame == null) {
+            saveLocalStorage("lastGameId", "nn-JPNN");
+        }
+        getLastGame = getLocalStorage("lastGameId").split("-");
+        if (getLastGame[0] == "nn") {
+            $("#menuGameImg").attr("src", "pic/themeMain/submenu_real_nn.png");
+        } else if (getLastGame[0] == "ky") {
+            $("#menuGameImg").attr("src", "pic/themeMain/submenu_real_ky.png");
+        } else if (getLastGame[0] == "gm") {
+            $("#menuGameImg").attr("src", "pic/themeMain/submenu_real_gm.png");
+        } else {
+            saveLocalStorage("lastGameId", "nn-JPNN");
+            $("#menuGameImg").attr("src", "pic/themeMain/submenu_real_nn.png");
+        }
     }
 }
 function PJDService() {

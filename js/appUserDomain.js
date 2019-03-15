@@ -406,6 +406,7 @@ function loginObj() {
     var mPage = new Activity("loginDiv", "登录");
     var isAutoLogIn = false; // 消费型变量,使用完后需要置为默认值
     var isBack = false;
+    var openTagObj;
     var eventTheme = "eventLoginBackTheme";
     var eventIndex = "eventLoginIndex";
     this.init = function () {
@@ -495,8 +496,6 @@ function loginObj() {
             "padding": "10px",
             "box-sizing": "border-box"
         });
-        $("#loginDiv_content_tryPlay_btn").css({ "display": "none" });
-        $("#loginDiv_content_tryPlay_len").css({ "display": "none" });
         setBtnOnTouchEvent($("#loginDiv_content_sure_btn"), function () {
             checkLoginInput();
         }, mainColorDeep, mainColor, null);
@@ -504,43 +503,30 @@ function loginObj() {
             backClickFun();
             myPJDApp.showRegister();
         }, mainColorDeep, "", null);
+        setBtnOnTouchEvent($("#loginDiv_content_tryPlay_btn"), function () {
+            backClickFun();
+            MGameTryReg.show(openTagObj);
+        }, "#194C66", "", null);
         setBtnOnTouchEvent($("#loginDiv_forgetSN"), function () {
             mToast.show("请联系客服！", 1, null);
         }, mainColorDeep, "", null);
         setBtnOnTouchEvent($("#loginDiv_loginproblem"), function () {
             mToast.show("请联系客服！", 1, null);
         }, mainColorDeep, "", null);
-        $("#loginDiv_username").focus(function () {
-            var obj = new Object();
-            obj["inputObj"] = $("#loginDiv_username");
-            obj["showIs"] = true;
-            obj["numberIs"] = true;
-            obj["symbolIs"] = false;
-            obj["passIs"] = false;
-            obj["maxLen"] = 18;
-            // mIndexPopWindowObj.show(3, obj);
-            // document.activeElement.blur();
-        });
-        $("#loginDiv_password").focus(function () {
-            var obj = new Object();
-            obj["inputObj"] = $("#loginDiv_password");
-            obj["showIs"] = true;
-            obj["numberIs"] = true;
-            obj["symbolIs"] = false;
-            obj["passIs"] = true;
-            obj["maxLen"] = 18;
-            obj["enterFun"] = function () {
-                checkLoginInput();
-            }
-            // mIndexPopWindowObj.show(3, obj);
-            // document.activeElement.blur();
-        });
     }
-    this.show = function () {
+    this.show = function (tagObj) {
         mPage.show(function () {
             exitPage();
         });
         isBack = false;
+        if (tagObj == null) {
+            $("#loginDiv_content_tryPlay_btn").css({ "display": "none" });
+            $("#loginDiv_content_tryPlay_len").css({ "display": "none" });
+        } else {
+            openTagObj = tagObj;
+            $("#loginDiv_content_tryPlay_btn").css({ "display": "flex" });
+            $("#loginDiv_content_tryPlay_len").css({ "display": "flex" });
+        }
         mEventBusObj.subscription(eventTheme, eventIndex, function (obj) {
             if (isBack) { return; }
             backClickFun();
