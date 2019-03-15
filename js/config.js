@@ -1,5 +1,5 @@
 // 工程配置及初始化控制
-var APP_VERSION = "1.9.2"; // 版本号
+var APP_VERSION = "1.9.4"; // 版本号
 var IS_TEST_SERVER = true; // 是否是测试服务器(更改服务地址时必须更改该值)
 var appRootDomain = null;
 var SERVER_ADD;
