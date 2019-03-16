@@ -6,7 +6,6 @@ function betrecordObj() {
 	var selectvalue;
 	var requestTime = new Date();
 	var select;
-
 	this.init = function () {
 		mPage.init();
 		$("#betrecordDiv_content").css({
@@ -16,7 +15,6 @@ function betrecordObj() {
 			"height": screenH - topH - 105
 		});
 	}
-
 	this.show = function () {
 		mPage.show(function () {
 			if (select != null) {
@@ -35,7 +33,6 @@ function betrecordObj() {
 		}
 		setTimeout(bindList, 500);
 	}
-
 	function bindBar() {
 		var times = {
 			"list": [{
@@ -76,7 +73,6 @@ function betrecordObj() {
 				}
 			});
 	}
-
 	function bindList(outTime) {
 		var winamount = 0;
 		var validamount = 0;
@@ -215,7 +211,6 @@ function betrecordLmgObj() {
 	var endData;
 	var requestTime = new Date();
 	var select;
-
 	this.init = function () {
 		mPage.init();
 		$("#betrecordInfoDiv_content").css({
@@ -225,7 +220,6 @@ function betrecordLmgObj() {
 			"height": screenH - topH - 105
 		});
 	}
-
 	this.show = function (data, dateType) {
 		itemData = data;
 		mPage.show(function () {
@@ -249,7 +243,6 @@ function betrecordLmgObj() {
 			setTimeout(bindList, 500);
 		}
 	}
-
 	function bindBar() {
 		var times = {
 			"list": [{
@@ -290,7 +283,6 @@ function betrecordLmgObj() {
 				}
 			});
 	}
-
 	function bindList(outTime) {
 		var validamount = 0; // 有效投注
 		var winamount = 0; // 输赢
@@ -429,7 +421,6 @@ function betLmgRemakeObj() {
 	var mPage = new Activity("betLmgRemakeDiv", "注单详情");
 	var itemData;
 	var lmgRemake;
-
 	this.init = function () {
 		mPage.init();
 		$("#betLmgRemakeDiv_content").css({
@@ -470,7 +461,6 @@ function betLmgRemakeObj() {
 			}, mainColorDeep, mainColor, null);
 		});
 	}
-
 	this.show = function (data) {
 		itemData = data;
 		mPage.show(function () {
@@ -490,7 +480,6 @@ function betrecordGmObj() {
 	var endData;
 	var requestTime = new Date();
 	var select;
-
 	this.init = function () {
 		mPage.init();
 		$("#betrecordGmDiv_content").css({
@@ -500,7 +489,6 @@ function betrecordGmObj() {
 			"height": screenH - topH - 105
 		});
 	}
-
 	this.show = function (data, dateType) {
 		itemData = data;
 		mPage.show(function () {
@@ -524,7 +512,6 @@ function betrecordGmObj() {
 			setTimeout(bindList, 500);
 		}
 	}
-
 	function bindBar() {
 		var times = {
 			"list": [{
@@ -565,7 +552,6 @@ function betrecordGmObj() {
 				}
 			});
 	}
-
 	function bindList(outTime) {
 		var validamount = 0; // 有效投注
 		var winamount = 0; // 输赢
@@ -684,7 +670,6 @@ function betGmRemakeObj() {
 	var mPage = new Activity("betGmRemakeDiv", "注单详情");
 	var itemData;
 	var kyRemake;
-
 	this.init = function () {
 		mPage.init();
 		$("#betGmRemakeDiv_content").css({
@@ -725,7 +710,6 @@ function betGmRemakeObj() {
 			}, mainColorDeep, mainColor, null);
 		});
 	}
-
 	this.show = function (data) {
 		itemData = data;
 		mPage.show(function () {
@@ -745,7 +729,6 @@ function betrecordKyObj() {
 	var endData;
 	var requestTime = new Date();
 	var select;
-
 	this.init = function () {
 		mPage.init();
 		$("#betrecordKyDiv_content").css({
@@ -755,7 +738,6 @@ function betrecordKyObj() {
 			"height": screenH - topH - 105
 		});
 	}
-
 	this.show = function (data, dateType) {
 		itemData = data;
 		mPage.show(function () {
@@ -779,7 +761,6 @@ function betrecordKyObj() {
 			setTimeout(bindList, 500);
 		}
 	}
-
 	function bindBar() {
 		var times = {
 			"list": [{
@@ -820,7 +801,6 @@ function betrecordKyObj() {
 				}
 			});
 	}
-
 	function bindList(outTime) {
 		var validamount = 0; // 有效投注
 		var winamount = 0; // 输赢
@@ -939,7 +919,6 @@ function betKyRemakeObj() {
 	var mPage = new Activity("betKyRemakeDiv", "注单详情");
 	var itemData;
 	var kyRemake;
-
 	this.init = function () {
 		mPage.init();
 		$("#betKyRemakeDiv_content").css({
@@ -980,7 +959,6 @@ function betKyRemakeObj() {
 			}, mainColorDeep, mainColor, null);
 		});
 	}
-
 	this.show = function (data) {
 		itemData = data;
 		mPage.show(function () {
@@ -1000,7 +978,6 @@ function betrecordIgObj() {
 	var endData;
 	var requestTime = new Date();
 	var select;
-
 	this.init = function () {
 		mPage.init();
 		$("#betrecordIgDiv_content").css({
@@ -1010,7 +987,6 @@ function betrecordIgObj() {
 			"height": screenH - topH - 105
 		});
 	}
-
 	this.show = function (data, dateType) {
 		itemData = data;
 		mPage.show(function () {
@@ -1034,7 +1010,6 @@ function betrecordIgObj() {
 			setTimeout(bindList, 500);
 		}
 	}
-
 	function bindBar() {
 		var times = {
 			"list": [{
@@ -1074,7 +1049,6 @@ function betrecordIgObj() {
 				}
 			});
 	}
-
 	function bindList(outTime) {
 		var validamount = 0; // 有效投注
 		var winamount = 0; // 输赢
@@ -1219,7 +1193,6 @@ function betrecordCmdObj() {
 	var endData;
 	var requestTime = new Date();
 	var select;
-
 	this.init = function () {
 		mPage.init();
 		$("#betrecordCmdDiv_content").css({
@@ -1229,7 +1202,6 @@ function betrecordCmdObj() {
 			"height": screenH - topH - 105
 		});
 	}
-
 	this.show = function (data, dateType) {
 		itemData = data;
 		mPage.show(function () {
@@ -1253,7 +1225,6 @@ function betrecordCmdObj() {
 			setTimeout(bindList, 500);
 		}
 	}
-
 	function bindBar() {
 		var times = {
 			"list": [{
@@ -1294,7 +1265,6 @@ function betrecordCmdObj() {
 				}
 			});
 	}
-
 	function bindList(outTime) {
 		var validamount = 0; // 有效投注
 		var winamount = 0; // 输赢
@@ -1527,7 +1497,6 @@ function betCmdRemakeObj() {
 	var mPage = new Activity("betCmdRemakeDiv", "注单详情");
 	var itemData;
 	var cmdRemake;
-
 	this.init = function () {
 		mPage.init();
 		$("#betCmdRemakeDiv_content").css({
@@ -1568,7 +1537,6 @@ function betCmdRemakeObj() {
 			}, mainColorDeep, mainColor, null);
 		});
 	}
-
 	this.show = function (data) {
 		itemData = data;
 		mPage.show(function () {
@@ -1588,7 +1556,6 @@ function betrecordJPNNObj() {
 	var endData;
 	var requestTime = new Date();
 	var select;
-
 	this.init = function () {
 		mPage.init();
 		$("#betrecordJPNNDiv_content").css({
@@ -1598,7 +1565,6 @@ function betrecordJPNNObj() {
 			"height": screenH - topH - 105
 		});
 	}
-
 	this.show = function (data, dateType) {
 		itemData = data;
 		mPage.show(function () {
@@ -1622,7 +1588,6 @@ function betrecordJPNNObj() {
 			setTimeout(bindList, 500);
 		}
 	}
-
 	function bindBar() {
 		var times = {
 			"list": [{
@@ -1662,7 +1627,6 @@ function betrecordJPNNObj() {
 				}
 			});
 	}
-
 	function bindList(outTime) {
 		var jpnnObj = new JpnnGameBetInfo();
 		var validamount = 0; // 有效投注
