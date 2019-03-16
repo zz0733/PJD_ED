@@ -397,7 +397,7 @@ function betrecordLmgObj() {
 					}
 					item["winloss"] = winloss;
 					// 详情属性
-					var lmgGameObj = new lmgGame();
+					var lmgGameObj = new LmgGameBetInfo();
 					var pokerList = objItem["pokerlist"];
 					if (pokerList != null) {
 						item["poker"] = JSON.parse(pokerList);
@@ -477,7 +477,7 @@ function betLmgRemakeObj() {
 			$("#betLmgRemakeDiv_content").html("");
 		});
 		if (lmgRemake == null) {
-			lmgRemake = new lmgGame();
+			lmgRemake = new LmgGameBetInfo();
 		}
 		lmgRemake.showInfo("betLmgRemakeDiv_content", itemData, lmgRemake.getDefColumn());
 	}
@@ -626,7 +626,7 @@ function betrecordGmObj() {
 
 		function parseGamesData(gamesData, mode) {
 			var datas = new Array();
-			var GmGameParsing = new GmGame();
+			var GmGameParsing = new GmGameBetInfo();
 			var dateUtil = new Date();
 			var objList = gamesData.result.list;
 			var len = objList.length;
@@ -732,7 +732,7 @@ function betGmRemakeObj() {
 			$("#betGmRemakeDiv_content").html("");
 		});
 		if (kyRemake == null) {
-			kyRemake = new GmGame();
+			kyRemake = new GmGameBetInfo();
 		}
 		kyRemake.showInfo("betGmRemakeDiv_content", itemData);
 	}
@@ -881,7 +881,7 @@ function betrecordKyObj() {
 
 		function parseGamesData(gamesData, mode) {
 			var datas = new Array();
-			var kyGameParsing = new kyGame();
+			var kyGameParsing = new KyGameBetInfo();
 			var dateUtil = new Date();
 			var objList = gamesData.result.list;
 			var len = objList.length;
@@ -987,7 +987,7 @@ function betKyRemakeObj() {
 			$("#betKyRemakeDiv_content").html("");
 		});
 		if (kyRemake == null) {
-			kyRemake = new kyGame();
+			kyRemake = new KyGameBetInfo();
 		}
 		kyRemake.showInfo("betKyRemakeDiv_content", itemData);
 	}
@@ -1184,7 +1184,7 @@ function betrecordIgObj() {
 					var bettype = objItem.bettype;
 					var odds = objItem.odds;
 					var gameInfoId = objItem.gameinfoid;
-					var gamePars = new lotteryGame();
+					var gamePars = new LotteryGameBetInfo();
 					beton = gamePars.parsingBetOn(beton, gameInfoId);
 					bettype = gamePars.parsingBetType(bettype, beton, gameInfoId);
 					if (bettype != null && bettype.length != 0) {
@@ -1372,7 +1372,7 @@ function betrecordCmdObj() {
 		function parseGamesData(gamesData, mode) {
 			var datas = new Array();
 			var dateUtil = new Date();
-			var cmdParsing = new cmdGame();
+			var cmdParsing = new CmdGameBetInfo();
 			var objList = gamesData.result.list;
 			var len = objList.length;
 			if (mode) {
@@ -1575,7 +1575,7 @@ function betCmdRemakeObj() {
 			$("#betCmdRemakeDiv_content").html("");
 		});
 		if (cmdRemake == null) {
-			cmdRemake = new cmdGame();
+			cmdRemake = new CmdGameBetInfo();
 		}
 		cmdRemake.showInfo("betCmdRemakeDiv_content", itemData);
 	}
@@ -1664,7 +1664,7 @@ function betrecordJPNNObj() {
 	}
 
 	function bindList(outTime) {
-		var jpnnObj = new jpnnGame();
+		var jpnnObj = new JpnnGameBetInfo();
 		var validamount = 0; // 有效投注
 		var winamount = 0; // 输赢
 		var columns = [{
@@ -1867,12 +1867,12 @@ function betJPNNRemakeObj() {
 			$("#betJPNNRemakeDiv_content").html("");
 		});
 		if (jpnnRemake == null) {
-			jpnnRemake = new jpnnGame();
+			jpnnRemake = new JpnnGameBetInfo();
 		}
 		jpnnRemake.showInfo("betJPNNRemakeDiv_content", itemData);
 	}
 }
-function cmdGame() {
+function CmdGameBetInfo() {
 	var layoutId;
 	var layoutObj;
 	var dataItem;
@@ -2338,7 +2338,7 @@ function cmdGame() {
 
 	function parsingBetLive(itemData) {
 		var betLives = new Array();
-		var cmdParsing = new cmdGame();
+		var cmdParsing = new CmdGameBetInfo();
 		var dateUtil = new Date();
 		var betList = itemData.parlaybetrecord;
 		if (betList != null && betList.length != 0) {
@@ -2495,7 +2495,7 @@ function cmdGame() {
 		return oddsTpyeMsg;
 	}
 }
-function lmgGame() {
+function LmgGameBetInfo() {
 	var layoutId;
 	var rootView;
 	var itemData;
@@ -3846,7 +3846,7 @@ function lmgGame() {
 		return pokerObj;
 	}
 }
-function lotteryGame() {
+function LotteryGameBetInfo() {
 
 	// 下注类型
 	this.parsingBetOn = function (value, gameInfoId) {
@@ -5802,7 +5802,7 @@ function lotteryGame() {
 	}
 
 }
-function GmGame() {
+function GmGameBetInfo() {
 	var layoutId;
 	var layoutObj;
 	var itemData; // itemData["betLives"];
@@ -6978,7 +6978,7 @@ function GmGame() {
 		return rzList;
 	}
 }
-function kyGame() {
+function KyGameBetInfo() {
 	var layoutId;
 	var layoutObj;
 	var itemData; // itemData["betLives"];
@@ -8633,7 +8633,7 @@ function kyGame() {
 		return rzList;
 	}
 }
-function jpnnGame() {
+function JpnnGameBetInfo() {
 	var layoutId;
 	var layoutObj;
 	var itemData;
