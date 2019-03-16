@@ -990,7 +990,7 @@ function openGM(gameIndex) {
         }
     }
 }
-function gameAPI() {
+function GameAPI() {
     var mLoginResultList = null;
     var mAPIStatusList = null;
     var isTryPlay = false;
@@ -1101,7 +1101,7 @@ function gameAPI() {
         mEnterGameObj.forceEnter(gameType, callBack);
     }
 }
-function enterGameObj() {
+function EnterGame() {
     var obj;
     var currentGame = "";
     var isOK = "WAIT";

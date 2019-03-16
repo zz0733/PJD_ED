@@ -231,8 +231,7 @@ var _PageFrameExpansion = {
     betrecordJPNNDiv:
         '<div id="betrecordJPNNDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordJPNNDiv_select_date"></div></div>\
         <div style="height:10px;width:100%"></div>\
-        <div id="betrecordJPNNDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto">\
-        </div>\
+        <div id="betrecordJPNNDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto"></div>\
         <div id="betrecordJPNNDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
             <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordJPNNDiv_validSum"></div>\
             <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordJPNNDiv_winorloss"></div>\
@@ -240,8 +239,7 @@ var _PageFrameExpansion = {
     betrecordGmDiv:
         '<div id="betrecordGmDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordGmDiv_select_date"></div></div>\
         <div style="height:10px;width:100%"></div>\
-        <div id="betrecordGmDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto">\
-        </div>\
+        <div id="betrecordGmDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto"></div>\
         <div id="betrecordGmDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
             <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordGmDiv_validSum"></div>\
             <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordGmDiv_winorloss"></div>\
@@ -249,8 +247,7 @@ var _PageFrameExpansion = {
     betrecordKyDiv:
         '<div id="betrecordKyDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordKyDiv_select_date"></div></div>\
         <div style="height:10px;width:100%"></div>\
-        <div id="betrecordKyDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto">\
-        </div>\
+        <div id="betrecordKyDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto"></div>\
         <div id="betrecordKyDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
             <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordKyDiv_validSum"></div>\
             <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordKyDiv_winorloss"></div>\
@@ -258,17 +255,23 @@ var _PageFrameExpansion = {
     betrecordInfoDiv:
         '<div id="betrecordInfoDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordInfoDiv_select_date"></div></div>\
         <div style="height:10px;width:100%"></div>\
-        <div id="betrecordInfoDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto">\
-        </div>\
+        <div id="betrecordInfoDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto"></div>\
         <div id="betrecordInfoDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
             <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordInfoDiv_validSum"></div>\
             <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordInfoDiv_winorloss"></div>\
         </div>',
+    betrecordElectDiv:
+        '<div id="betrecordElectDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordElectDiv_select_date"></div></div>\
+        <div style="height:10px;width:100%"></div>\
+        <div id="betrecordElectDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto"></div>\
+        <div id="betrecordElectDiv_content_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
+            <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordElectDiv_validSum"></div>\
+            <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordElectDiv_winorloss"></div>\
+        </div>',
     betrecordDiv:
         '<div id="betrecordDiv_content_select" style="width:100%;height:55px;display:flex;justify-content:center;align-items:center"><div id="betrecordDiv_timeSelect"></div></div>\
         <div style="height:10px;width:100%"></div>\
-        <div id="betrecordDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto">\
-        </div>\
+        <div id="betrecordDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto"></div>\
         <div id="betrecordDiv_stats_bottom" style="height:40px;width:100%;background-color:#cccccc;display:none;font-size:12px">\
             <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordDiv_validSum"></div>\
             <div style="width:50%;display:flex;justify-content:center;align-items:center" id="betrecordDiv_winorloss"></div>\
@@ -276,6 +279,46 @@ var _PageFrameExpansion = {
     avatarDiv:
         '<div id="avatarDiv_content_all_headers" style="width:100%;display:flex;justify-content:flex-start;align-items:center;flex-wrap:wrap;overflow-x:hidden;overflow-y:auto"></div>\
         <div style="height:20px"></div>\
-        <div id="avatarDiv_content_sure_btn" class="PJDCommBtn">确定修改</div>\
-        <div style="height:20px"></div>'
+        <div id="avatarDiv_content_sure_btn">确定修改</div>\
+        <div style="height:20px"></div>',
+    incomeOnlineDiv:
+        '<div id="incomeOnlineDiv_content_Loading" style="width: 100%;height: 100%"></div>\
+        <div id="incomeOnlineDiv_content_Fed" style="width: 100%;height: auto"></div>\
+        <div id="incomeOnlineDiv_content_QrCode" style="width: 100%;display: flex;justify-content: flex-start;flex-direction: column;align-items: center">\
+            <div style="height: 30px"></div>\
+            <div id="incomeOnlineDiv_content_QrCode_order" style="font-size: 14px;width: 80%;height: 30px;line-height: 20px;color: #cccccc"></div>\
+            <div id="incomeOnlineDiv_content_QrCode_time" style="font-size: 14px;width: 80%;height: 30px;line-height: 20px;color: #cccccc"></div>\
+            <div id="incomeOnlineDiv_content_QrCode_notic" style="font-size: 14px;width: 80%;height: 30px;line-height: 20px;color: #cccccc;"></div>\
+            <div id="incomeOnlineDiv_content_QrCode_amount" style="width: 80%;height: 40px;line-height: 40px;font-size: 30px;color: #ff5e1b"></div>\
+            <div id="incomeOnlineDiv_content_QrCode_img" style="width: 100%;display: flex;justify-content: center;align-items: center"></div>\
+            <div style="height: 10px"></div>\
+            <div id="incomeOnlineDiv_content_QrCode_note" style="font-size: 16px;width: 80%;height: 30px;line-height: 20px;color: #cccccc;"></div>\
+        </div>\
+        <iframe id="incomeOnlineDiv_content_Frame" sandbox="allow-forms allow-scripts allow-same-origin" frameborder="0" src="pay.html"\
+        style="border:0px;width: 100%;height: auto"></iframe>',
+    incomeOfflineDiv:
+        '<div id="incomeOfflineDiv_content_load" style="width:100%;height:100px;display:flex;justify-content:center;align-items:center;box-sizing:border-box"></div>\
+        <div id="incomeOfflineDiv_content_list" style="width:100%;overflow-x:hidden;overflow-y:auto"></div>',
+    incomeOfflineSuccessDiv:
+        '<div style="width: 90%;height: 300px;display: flex;flex-direction: column;justify-content: space-between;align-items: center">\
+            <div style="height: 20px"></div>\
+            <div style="display: flex;flex-direction: column;justify-content: center;align-items: center">\
+                <img src="pic/themeMain/success.png" height="80px"/>\
+                <div id="incomeOfflineSuccessDiv_content_successText">存款信息提交成功</div>\
+            </div>\
+            <div id="incomeOfflineSuccessDiv_content_notic" style="text-align: center">存款单号为\
+                <span id="incomeOfflineSuccessDiv_content_orderNO"></span><br>正等待系统处理<br>请注意查看主钱包余额变化\
+            </div>\
+        </div>\
+        <div style="width: 90%">\
+            <div id="incomeOfflineSuccessDiv_content_sure" class="PJDCommBtn">完成</div>\
+            <div style="height: 20px"></div>\
+        </div>',
+    completeInfo:
+        '<div id="completeInfo_bg" style="width:100%;height:100%;position:absolute;background:#000000;opacity:0.6"></div>\
+        <div id="completeInfo_content" style="position:absolute;width:100%;height:100%;display:flex;justify-content:center;align-items:center">\
+        </div>',
+    fundsWindowDiv:
+        '<div id="fundsWindowDiv_arrow" style="position:absolute;width:0px;height:0px;display:none;border-width:0 10px 10px;border-style:solid;border-color:transparent transparent #383838"></div>\
+        <div id="fundsWindowDiv_panel" style="position:absolute;top:10px;width:60%;height:182px;border-radius:8px;background:#383838"></div>',
 }

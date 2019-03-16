@@ -1,3 +1,4 @@
+var onlinePayObj = new payObj();
 function payObj() {
     var resultList = new Array();
     var isGetPayChannel = false;
@@ -187,7 +188,6 @@ function payObj() {
         });
     }
 }
-var onlinePayObj = new payObj();
 function moneyrecordObj() {
     var mPage = new Activity("moneyrecordDiv", "资金记录");
     var isInit = false;
@@ -275,28 +275,48 @@ function depositFeeObj() {
     }
 }
 function moneyWindowObj() {
-    var obj = $("#moneyShowDiv");
-    var isInit = false;
+    var rootId = "fundsWindowDiv";
+    var obj = $("#" + rootId);
     var isShowFlag = false;
     this.init = function () {
+        var self = this;
+        obj.click(function () {
+            self.unShow();
+        });
+        requestAjaxGet("pages/_funds_window.html", function (jsonObj) {
+            $("#fundsWindowDiv_panel").html(jsonObj);
+            setStyle();
+        });
+    }
+    this.show = function () {
+        if (isShowFlag) {
+            this.unShow(); return;
+        }
+        myPJDApp.setJPNNAnimation(false);
+        obj.css({ "display": "flex" });
+        isShowFlag = true;
+    }
+    this.unShow = function () {
+        myPJDApp.setJPNNAnimation(true);
+        obj.css({ "display": "none" });
+        isShowFlag = false;
+    }
+    function setStyle() {
         obj.css({
             "width": screenW,
             "height": screenH - topH,
             "top": topH,
-            "display": "flex"
+            "display": "none"
         });
-        $("#aTriangle").css({
+        $("#" + rootId + "_arrow").css({
             "display": "block",
             "top": 0,
             "left": screenW - 50
         });
-        obj.click(function () {
-            myPJDApp.unShowMoneyWindow();
-        });
-        $("#moneyShowDiv_panel").css({
+        $("#" + rootId + "_panel").css({
             "width": screenW * 0.6,
             "left": screenW * 0.4,
-            "background-color": pageBgColor
+            "background": pageBgColor
         });
         setBtnOnTouchEventNoColor($("#moneyShow_mainMoneyBag"), function () {
             $("#moneyShow_refreshBtn").transition({
@@ -318,28 +338,6 @@ function moneyWindowObj() {
             myPJDApp.unShowMoneyWindow();
             myPJDApp.showDraw();
         }, mainBackColor, pageBgColor, null);
-        myPJDApp.setJPNNAnimation(false);
-        isInit = true;
-        isShowFlag = true;
-    }
-    this.show = function () {
-        if (isShowFlag == true) {
-            myPJDApp.setJPNNAnimation(true);
-            obj.css({ "display": "none" });
-            isShowFlag = false;
-        } else {
-            myPJDApp.setJPNNAnimation(false);
-            obj.css({ "display": "flex" });
-            isShowFlag = true;
-        }
-    }
-    this.unShow = function () {
-        myPJDApp.setJPNNAnimation(true);
-        obj.css({ "display": "none" });
-        isShowFlag = false;
-    }
-    this.isInit = function () {
-        return isInit;
     }
 }
 function refreshMoney(elementID) {
@@ -1424,7 +1422,7 @@ function incomeOnlineObj() {
 function incomeOfflineObj() {
     var rootId = "incomeOfflineDiv";
     var mPage = new Activity(rootId, "线下存款");
-    var mIncomeOfflineSuccessObj = new incomeOfflineSuccessObj();
+    var mIncomeOfflineOKObj = new incomeOfflineOKObj();
     var contentObj = $("#" + rootId + "_content");
     var bankObj;
     var item;
@@ -1441,7 +1439,7 @@ function incomeOfflineObj() {
             "overflow-y": "auto",
         });
         bindView();
-        mIncomeOfflineSuccessObj.init();
+        mIncomeOfflineOKObj.init();
     }
     this.show = function (im) {
         mPage.show(); isBack = false;
@@ -1910,7 +1908,7 @@ function incomeOfflineObj() {
                     var obj = jsonObj["code"];
                     if (obj == 0) {
                         backClickFun();
-                        mIncomeOfflineSuccessObj.show(id);
+                        mIncomeOfflineOKObj.show(id);
                     } else {
                         mToast.show("存款失败,请重试!");
                     }
@@ -1940,7 +1938,7 @@ function incomeOfflineObj() {
         }, "#323C4D", "", null);
     }
 }
-function incomeOfflineSuccessObj() {
+function incomeOfflineOKObj() {
     var mPage = new Activity("incomeOfflineSuccessDiv", "存款成功");
     this.init = function () {
         mPage.init();

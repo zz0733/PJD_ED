@@ -1,0 +1,79 @@
+<div style="width: 95%">
+    <div style="height: 5px"></div>
+    <div class="infoNameDiv_item">
+        <div class="infoNameDiv_item_title">
+            <div class="infoNameDiv_item_title_text">真实姓名</div>
+            <div class="infoNameDiv_item_title_split"></div>
+        </div>
+        <div class="infoNameDiv_item_input">
+            <input type="text" id="infoNameDiv_realName" placeholder="必须与提款银行卡持卡人姓名一致" class="infoNameDiv_item_input_controls" />
+        </div>
+        <div class="infoNameDiv_item_ask"></div>
+    </div>
+    <div class="infoNameDiv_line"></div>
+    <div class="infoNameDiv_item">
+        <div class="infoNameDiv_item_title">
+            <div class="infoNameDiv_item_title_text">提款密码</div>
+            <div class="infoNameDiv_item_title_split"></div>
+        </div>
+        <div class="infoNameDiv_item_input">
+            <input type="password" id="infoNameDiv_drawSN" onKeyUp="if(this.value.length>4){this.value=this.value.substr(0,4)};this.value=this.value.replace(/[^\d]/g,'');"
+                placeholder="4位数字" class="infoNameDiv_item_input_controls" />
+        </div>
+        <div class="infoNameDiv_item_ask"></div>
+    </div>
+    <div class="infoNameDiv_line"></div>
+    <div class="infoNameDiv_item">
+        <div class="infoNameDiv_item_title">
+            <div class="infoNameDiv_item_title_text">重复密码</div>
+            <div class="infoNameDiv_item_title_split"></div>
+        </div>
+        <div class="infoNameDiv_item_input">
+            <input type="password" id="infoNameDiv_drawSNRES" onKeyUp="if(this.value.length>4){this.value=this.value.substr(0,4)};this.value=this.value.replace(/[^\d]/g,'');"
+                placeholder="4位数字" class="infoNameDiv_item_input_controls" />
+        </div>
+        <div class="infoNameDiv_item_ask"></div>
+    </div>
+    <div class="infoNameDiv_line"></div>
+    <div style="color: #cccccc;font-size: 12px;height: 30px;line-height: 30px">
+        • 请输入联系方式，以下联系方式至少填写一个:
+    </div>
+    <div class="infoNameDiv_line"></div>
+    <div class="infoNameDiv_item">
+        <div class="infoNameDiv_item_title">
+            <div class="infoNameDiv_item_title_text">手机号码</div>
+            <div class="infoNameDiv_item_title_split"></div>
+        </div>
+        <div class="infoNameDiv_item_input">
+            <input type="tel" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') "
+                id="infoNameDiv_phone" placeholder="用于找回密码" class="infoNameDiv_item_input_controls" />
+        </div>
+        <div class="infoNameDiv_item_ask"></div>
+    </div>
+    <div class="infoNameDiv_line"></div>
+    <div class="infoNameDiv_item">
+        <div class="infoNameDiv_item_title">
+            <div class="infoNameDiv_item_title_text">邮箱地址</div>
+            <div class="infoNameDiv_item_title_split"></div>
+        </div>
+        <div class="infoNameDiv_item_input">
+            <input type="url" id="infoNameDiv_email" placeholder="用于找回密码" class="infoNameDiv_item_input_controls" />
+        </div>
+        <div class="infoNameDiv_item_ask"></div>
+    </div>
+    <div class="infoNameDiv_line"></div>
+    <div class="infoNameDiv_item">
+        <div class="infoNameDiv_item_title">
+            <div class="infoNameDiv_item_title_text">Q Q号</div>
+            <div class="infoNameDiv_item_title_split"></div>
+        </div>
+        <div class="infoNameDiv_item_input">
+            <input type="tel" id="infoNameDiv_QQ" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') "
+                placeholder="用于找回密码" class="infoNameDiv_item_input_controls" />
+        </div>
+        <div class="infoNameDiv_item_ask"></div>
+    </div>
+    <div class="infoNameDiv_line"></div>
+    <div style="height: 20px"></div>
+    <div id="infoName_next">下一步</div>
+</div>

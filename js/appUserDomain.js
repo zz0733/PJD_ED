@@ -1,6 +1,6 @@
 function registerObj() {
     var mPage = new Activity("registerDiv", "注册");
-    var isBack = false;
+    var isBack = true;
     var username = "";
     var validStr = "";
     var userSN = "";
@@ -9,147 +9,30 @@ function registerObj() {
     var eventTheme = "eventRegisterBackTheme";
     var eventIndex = "eventRegisterIndex";
     var isDomainCode = false;
+    var isPageLoadOK = false;
     this.init = function () {
         mPage.init(function () {
             isBack = true;
+            exitPage();
             mEventBusObj.unsubscribe(eventIndex);
         });
         mPage.hiddenBtn();
-        setStyle();
-        setBtnOnTouchEvent($("#registerSuccess_bottom_coming"), function () {
-            backClickFun();
-            myPJDApp.coming();
-        }, mainColorDeep, mainColor, null);
-        setBtnOnTouchEvent($("#registerSuccess_bottom_complete"), function () {
-            backClickFun();
-        }, mainBackColor, "", null);
-        setBtnOnTouchEvent($("#registerDiv_content_agreement_1"), function () {
-            myPJDApp.showAgreement("agreement");
-        }, mainColorDeep, "", null);
-        setBtnOnTouchEvent($("#registerDiv_content_agreement_2"), function () {
-            myPJDApp.showAgreement("declare");
-        }, mainColorDeep, "", null);
-        setBtnOnTouchEvent($("#registerDiv_content_sure_btn"), function () {
-            if (checkInput()) {
-                submitRegister();
-            } else {
-                showVaildImg();
-            }
-        }, mainColorDeep, mainColor, null);
-        setBtnOnTouchEventNoColor($("#validImg"), function () {
-            showVaildImg();
-        }, null);
-        $("#registerDiv_username").focus(function () {
-            var obj = new Object();
-            obj["inputObj"] = $("#registerDiv_username");
-            obj["showIs"] = true;
-            obj["numberIs"] = true;
-            obj["symbolIs"] = false;
-            obj["maxLen"] = 18;
-            // mIndexPopWindowObj.show(3, obj);
-            // document.activeElement.blur();
-        });
-        $("#registerDiv_userSN").focus(function () {
-            var obj = new Object();
-            obj["inputObj"] = $("#registerDiv_userSN");
-            obj["showIs"] = true;
-            obj["numberIs"] = true;
-            obj["symbolIs"] = false;
-            obj["passIs"] = true;
-            obj["maxLen"] = 18;
-            // mIndexPopWindowObj.show(3, obj);
-            // document.activeElement.blur();
-        });
-        $("#registerDiv_userSN_again").focus(function () {
-            var obj = new Object();
-            obj["inputObj"] = $("#registerDiv_userSN_again");
-            obj["showIs"] = true;
-            obj["numberIs"] = true;
-            obj["symbolIs"] = false;
-            obj["passIs"] = true;
-            obj["maxLen"] = 18;
-            // mIndexPopWindowObj.show(3, obj);
-            // document.activeElement.blur();
-        });
-        $("#registerDiv_content_valid_input").focus(function () {
-            var obj = new Object();
-            obj["inputObj"] = $("#registerDiv_content_valid_input");
-            obj["showIs"] = true;
-            obj["numberIs"] = true;
-            obj["symbolIs"] = false;
-            obj["maxLen"] = 4;
-            // mIndexPopWindowObj.show(3, obj);
-            // document.activeElement.blur();
-        });
+        new LoadHTML("pages/_reg.html", "registerDiv_content", function () {
+            isPageLoadOK = true;
+            setStyle();
+            if (!isBack) loadRecommend();
+        }, function () {
+            isPageLoadOK = false;
+        }).load();
     }
     this.show = function () {
-        mPage.show(function () {
-            exitPage();
-        });
-        isBack = false;
-        showVaildImg();
+        mPage.show();
         mEventBusObj.subscription(eventTheme, eventIndex, function (obj) {
-            if (isBack) { return; }
+            if (isBack) return;
             backClickFun();
         });
-        requestAjax("operator/getDomainInfo", "", function (jsonObj) {
-            var code = jsonObj["code"];
-            if (code != 0) {
-                isDomainCode = false;
-                $("#registerDiv_recommend").attr("disabled", false);
-                return;
-            }
-            var result = jsonObj["result"];
-            var tcode = result["code"];
-            if (tcode == null || tcode.trim() == "") {
-                isDomainCode = false;
-                $("#registerDiv_recommend").attr("disabled", false);
-                $("#reg_recommend_item_id").css({ "display": "block" });
-                $("#reg_recommend_line_id").css({ "display": "block" });
-                return;
-            }
-            isDomainCode = true;
-            isRecommend = true;
-            $("#reg_recommend_item_id").css({ "display": "none" });
-            $("#reg_recommend_line_id").css({ "display": "none" });
-            $("#registerDiv_recommend").val(tcode);
-            $("#registerDiv_recommend").attr("disabled", "disabled");
-        }, function (error) {
-            isDomainCode = false;
-            $("#registerDiv_recommend").attr("disabled", false);
-        });
-        requestAjax("operator/getOperator", "", function (jsonObj) {
-            if (isDomainCode) return;
-            if (jsonObj["result"]["reg_need_code"] == 1) {
-                isRecommend = true;
-                var url = location.href;
-                var code = GetQueryString("code", url);
-                if (code == null || code.trim() == "") {
-                    $("#reg_recommend_item_id").css({ "display": "block" });
-                    $("#reg_recommend_line_id").css({ "display": "block" });
-                } else {
-                    $("#registerDiv_recommend").val(code);
-                    $("#reg_recommend_item_id").css({ "display": "none" });
-                    $("#reg_recommend_line_id").css({ "display": "none" });
-                }
-            } else {
-                var url = location.href;
-                var code = GetQueryString("code", url);
-                if (code == null || code.trim() == "") {
-                    $("#reg_recommend_item_id").css({ "display": "block" });
-                    $("#reg_recommend_line_id").css({ "display": "block" });
-                } else {
-                    $("#registerDiv_recommend").val(code);
-                    $("#reg_recommend_item_id").css({ "display": "none" });
-                    $("#reg_recommend_line_id").css({ "display": "none" });
-                }
-            }
-        }, function (error) {
-            if (isDomainCode) return;
-            isRecommend = false;
-            $("#reg_recommend_item_id").css({ "display": "none" });
-            $("#reg_recommend_line_id").css({ "display": "none" });
-        });
+        isBack = false;
+        if (isPageLoadOK) loadRecommend();
     }
     function checkInput() {
         var returnBoolean = false;
@@ -215,7 +98,7 @@ function registerObj() {
         }
         return returnBoolean;
     }
-    function showRegisterSuccess() {
+    function showRegOK() {
         if (mGameAPI.isTryPlay()) {
             appLogout(0);
             return;
@@ -223,18 +106,16 @@ function registerObj() {
             mLoader.unShow();
         }
         backClickFun();
-        addBackFunArr(function () {
-            registerSuccessComplete();
-        });
-        focusHiddenBox();
-        MJPNNObj.resetOpenGame();
         $("#registerSuccess").css({ "display": "flex" });
         $("#registerSuccess_top_notictext_id").html(userId);
+        addBackFunArr(function () { $("#registerSuccess").css({ "display": "none" }); });
+        focusHiddenBox();
+        MJPNNObj.resetOpenGame();
         myPJDApp.showUserInfo();
         mUserObj.getMoneyBag();
         myPJDApp.updateMeLogInStatus(1);
         myPJDApp.h5DownloadCheck();
-        updateBankInfo();
+        mUserObj.updateBankInfo();
         ReadNoticeMessage();
         myPJDApp.hiddenMeLeagueMenu();
         requestAjax("article/getArticleForList", "typeId=[1100]", function (jsonObj) {
@@ -251,10 +132,7 @@ function registerObj() {
         });
         $('#content_road_top_try').css({ "display": "none" });
     }
-    function registerSuccessComplete() {
-        $("#registerSuccess").css({ "display": "none" });
-    }
-    function showVaildImg() {
+    function updateCodeImg() {
         $("#validImg").attr("src", SERVER_ADD + "servlet/RandomImgCodeServlet?r=" + randomString());
     }
     function exitPage() {
@@ -262,7 +140,7 @@ function registerObj() {
         $(".registerDiv_content_valid").val("");
         o("registerDiv_content_agree").checked = false;
     }
-    function submitRegister() {
+    function submitReg() {
         mLoader.show();
         getEnKey(function (key) {
             var tempSN = userSN;
@@ -289,14 +167,14 @@ function registerObj() {
                     saveLogIn(name, tempSN);
                     userId = username;
                     userInfo = jsonObj["result"];
-                    showRegisterSuccess();
+                    showRegOK();
                 } else {
-                    showVaildImg();
+                    updateCodeImg();
                     mLoader.unShow();
                     mToast.show("注册失败!<br>" + mLangObj.getZHByCode(jsonObj["tipMessage"]), 2, "middle");
                 }
             }, function (error) {
-                showVaildImg();
+                updateCodeImg();
                 mLoader.unShow();
                 mToast.show("注册失败!<br>" + error, 2, "middle");
             });
@@ -305,7 +183,7 @@ function registerObj() {
     function setStyle() {
         $(".registerDiv_content_userInfo_text").css({
             "color": mainColor,
-            "font-size": "16px",
+            "font-size": "16px"
         });
         $(".registerDiv_content_line_select").css({
             "background-color": mainColor,
@@ -369,52 +247,229 @@ function registerObj() {
             "padding": "10px",
             "box-sizing": "border-box"
         });
-        $("#registerSuccess").css({
-            "width": screenW,
-            "height": screenH,
-            "background-color": lighterBackColor
-        });
-        $(".registerSuccess_top_text").css({
-            "color": mainColor,
-            "font-size": "16px",
-            "line-height": "200%"
-        });
-        $("#registerSuccess_bottom").css({
-            "height": screenH * 0.4
-        });
-        $("#registerSuccess_bottom_coming").css({
-            "background-color": mainColor,
-            "color": mainFontColor
-        });
-        $("#registerSuccess_bottom_complete").css({
-            "border": "1px solid " + mainColor,
-            "color": mainColor
-        });
-        $("#registerSuccess_top_notictext").css({
-            "color": mainFontColorMore,
-            "font-size": "14px"
-        });
-        $("#registerSuccess_top_notictext_id").css({
-            "color": mainColor,
-            "font-size": "14px"
-        });
         $("#reg_recommend_item_id").css({ "display": "none" });
         $("#reg_recommend_line_id").css({ "display": "none" });
+        setBtnOnTouchEvent($("#registerSuccess_bottom_coming"), function () {
+            backClickFun();
+            myPJDApp.coming();
+        }, mainColorDeep, mainColor, null);
+        setBtnOnTouchEvent($("#registerSuccess_bottom_complete"), function () {
+            backClickFun();
+        }, mainBackColor, "", null);
+        setBtnOnTouchEvent($("#registerDiv_content_agreement_1"), function () {
+            myPJDApp.showAgreement("agreement");
+        }, mainColorDeep, "", null);
+        setBtnOnTouchEvent($("#registerDiv_content_agreement_2"), function () {
+            myPJDApp.showAgreement("declare");
+        }, mainColorDeep, "", null);
+        setBtnOnTouchEvent($("#registerDiv_content_sure_btn"), function () {
+            if (checkInput()) {
+                submitReg();
+            } else {
+                updateCodeImg();
+            }
+        }, mainColorDeep, mainColor, null);
+        setBtnOnTouchEventNoColor($("#validImg"), function () {
+            updateCodeImg();
+        }, null);
+    }
+    function loadRecommend() {
+        updateCodeImg();
+        requestAjax("operator/getDomainInfo", "", function (jsonObj) {
+            var code = jsonObj["code"];
+            if (code != 0) {
+                isDomainCode = false;
+                $("#registerDiv_recommend").attr("disabled", false);
+                return;
+            }
+            var result = jsonObj["result"];
+            var tcode = result["code"];
+            if (tcode == null || tcode.trim() == "") {
+                isDomainCode = false;
+                $("#registerDiv_recommend").attr("disabled", false);
+                $("#reg_recommend_item_id").css({ "display": "block" });
+                $("#reg_recommend_line_id").css({ "display": "block" });
+                return;
+            }
+            isDomainCode = true;
+            isRecommend = true;
+            $("#reg_recommend_item_id").css({ "display": "none" });
+            $("#reg_recommend_line_id").css({ "display": "none" });
+            $("#registerDiv_recommend").val(tcode);
+            $("#registerDiv_recommend").attr("disabled", "disabled");
+        }, function (error) {
+            isDomainCode = false;
+            $("#registerDiv_recommend").attr("disabled", false);
+        });
+        requestAjax("operator/getOperator", "", function (jsonObj) {
+            if (isDomainCode) return;
+            if (jsonObj["result"]["reg_need_code"] == 1) {
+                isRecommend = true;
+                var url = location.href;
+                var code = GetQueryString("code", url);
+                if (code == null || code.trim() == "") {
+                    $("#reg_recommend_item_id").css({ "display": "block" });
+                    $("#reg_recommend_line_id").css({ "display": "block" });
+                } else {
+                    $("#registerDiv_recommend").val(code);
+                    $("#reg_recommend_item_id").css({ "display": "none" });
+                    $("#reg_recommend_line_id").css({ "display": "none" });
+                }
+            } else {
+                var url = location.href;
+                var code = GetQueryString("code", url);
+                if (code == null || code.trim() == "") {
+                    $("#reg_recommend_item_id").css({ "display": "block" });
+                    $("#reg_recommend_line_id").css({ "display": "block" });
+                } else {
+                    $("#registerDiv_recommend").val(code);
+                    $("#reg_recommend_item_id").css({ "display": "none" });
+                    $("#reg_recommend_line_id").css({ "display": "none" });
+                }
+            }
+        }, function (error) {
+            if (isDomainCode) return;
+            isRecommend = false;
+            $("#reg_recommend_item_id").css({ "display": "none" });
+            $("#reg_recommend_line_id").css({ "display": "none" });
+        });
     }
 }
 function loginObj() {
     var mPage = new Activity("loginDiv", "登录");
-    var isAutoLogIn = false; // 消费型变量,使用完后需要置为默认值
-    var isBack = false;
     var openTagObj;
+    var isAutoLogIn = false; // 消费型变量,使用完后需要置为默认值
+    var isBack = true;
     var eventTheme = "eventLoginBackTheme";
     var eventIndex = "eventLoginIndex";
+    var isPageLoadOK = false;
     this.init = function () {
         mPage.init(function () {
             isBack = true;
+            exitPage();
             mEventBusObj.unsubscribe(eventIndex);
         });
         mPage.hiddenBtn();
+        new LoadHTML("pages/_login.html", "loginDiv_content", function () {
+            isPageLoadOK = true;
+            setStyle();
+            if (!isBack) setTry(openTagObj);
+        }, function () {
+            isPageLoadOK = false;
+        }).load();
+    }
+    this.show = function (tagObj) {
+        mPage.show();
+        isBack = false;
+        mEventBusObj.subscription(eventTheme, eventIndex, function (obj) {
+            if (isBack) return;
+            backClickFun();
+        });
+        openTagObj = tagObj;
+        if (isPageLoadOK) setTry(openTagObj);
+    }
+    this.logInAuto = function (name, pass, isLoading) {
+        if (name == null || pass == null || name.length == 0 || pass.length == 0) {
+            return;
+        }
+        $("#loginDiv_username").val(name);
+        $("#loginDiv_password").val(pass);
+        isAutoLogIn = true;
+        loginIt(isLoading);
+    }
+    function exitPage() {
+        $(".loginDiv_content_input").val("");
+    }
+    function checkLoginInput() {
+        if (($("#loginDiv_username").val() == "") || ($("#loginDiv_password").val() == "")) {
+            mToast.show("用户名和密码不能为空!", 1, null);
+            return;
+        } else {
+            isAutoLogIn = false;
+            loginIt();
+        }
+    }
+    function loginIt(isLoading) {
+        if (isLoading == null) { isLoading = false; }
+        if (!isAutoLogIn || isLoading) {
+            mLoader.show("logIn");
+        }
+        getEnKey(function (key) {
+            var name = $("#loginDiv_username").val();
+            var pass = $("#loginDiv_password").val();
+            var tempPass = pass;
+            if (key != null) {
+                pass = encryptPass(pass, key);
+            }
+            var dataObj = new Object();
+            dataObj["name"] = name;
+            dataObj["password"] = pass;
+            dataObj["requestType"] = "json";
+            dataObj["rand"] = randomString();
+            requestAjax("user/login", dataObj, function (jsonObj) {
+                if (jsonObj["code"] == 0) {
+                    saveLogIn(name, tempPass);
+                    if (mGameAPI.isTryPlay()) {
+                        appLogout(0);
+                        return;
+                    } else {
+                        mLoader.unShow("logIn");
+                    }
+                    userInfo = jsonObj["result"];
+                    userId = userInfo["name"];
+                    loginSuccess();
+                } else {
+                    mLoader.unShow("logIn");
+                    LogInError(mLangObj.getZHByCode(jsonObj["tipMessage"]));
+                }
+                isAutoLogIn = false;
+            }, function (error) {
+                mLoader.unShow("logIn");
+                LogInError(error);
+                isAutoLogIn = false;
+            });
+            function LogInError(error) {
+                if (!isAutoLogIn || isLoading) {
+                    if (error == null) {
+                        mToast.show("登录失败,请重试!", 1, "middle");
+                    } else {
+                        mToast.show("登录失败,请重试! <br>" + error, 2, "middle");
+                    }
+                }
+            }
+        });
+    }
+    function loginSuccess() {
+        MJPNNObj.resetOpenGame();
+        myPJDApp.showUserInfo();
+        myPJDApp.updateMeLogInStatus(1);
+        myPJDApp.h5DownloadCheck();
+        if (!isAutoLogIn) {
+            backClickFun();
+        }
+        mUserObj.updateBankInfo();
+        if (userInfo["complete"] == 3) {
+            mUserObj.getBankInfo(null);
+        }
+        loadIsAgent();
+        mUserObj.getMoneyBag();
+        ReadNoticeMessage();
+        myPJDApp.hiddenMeLeagueMenu();
+        requestAjax("article/getArticleForList", "typeId=[1100]", function (jsonObj) {
+            var result = jsonObj["result"]; if (result == null || result["length"] == 0) { return; }
+            var rootItem = result[0]; if (rootItem == null) { return; }
+            var cList = JSON.parse(rootItem["content"]); if (cList == null || cList["length"] == 0) { return; }
+            var obj = new Object();
+            obj["isNotBack"] = true;
+            obj["content"] = cList;
+            obj["isList"] = true;
+            obj["bindTime"] = 1000;
+            obj["addCompete"] = true;
+            mIndexPopWindowObj.show(5, obj, "center", 0.8);
+        });
+        $('#content_road_top_try').css({ "display": "none" });
+    }
+    function setStyle() {
         $(".loginDiv_content_userInfo_text").css({
             "color": mainColor,
             "font-size": "16px",
@@ -499,14 +554,14 @@ function loginObj() {
         setBtnOnTouchEvent($("#loginDiv_content_sure_btn"), function () {
             checkLoginInput();
         }, mainColorDeep, mainColor, null);
-        setBtnOnTouchEvent($("#loginDiv_content_register_btn"), function () {
-            backClickFun();
-            myPJDApp.showRegister();
-        }, mainColorDeep, "", null);
         setBtnOnTouchEvent($("#loginDiv_content_tryPlay_btn"), function () {
             backClickFun();
             MGameTryReg.show(openTagObj);
         }, "#194C66", "", null);
+        setBtnOnTouchEvent($("#loginDiv_content_register_btn"), function () {
+            backClickFun();
+            myPJDApp.showRegister();
+        }, mainColorDeep, "", null);
         setBtnOnTouchEvent($("#loginDiv_forgetSN"), function () {
             mToast.show("请联系客服！", 1, null);
         }, mainColorDeep, "", null);
@@ -514,134 +569,15 @@ function loginObj() {
             mToast.show("请联系客服！", 1, null);
         }, mainColorDeep, "", null);
     }
-    this.show = function (tagObj) {
-        mPage.show(function () {
-            exitPage();
-        });
-        isBack = false;
-        if (tagObj == null) {
+    function setTry(obj) {
+        if (obj == null) {
             $("#loginDiv_content_tryPlay_btn").css({ "display": "none" });
             $("#loginDiv_content_tryPlay_len").css({ "display": "none" });
         } else {
-            openTagObj = tagObj;
             $("#loginDiv_content_tryPlay_btn").css({ "display": "flex" });
             $("#loginDiv_content_tryPlay_len").css({ "display": "flex" });
         }
-        mEventBusObj.subscription(eventTheme, eventIndex, function (obj) {
-            if (isBack) { return; }
-            backClickFun();
-        });
     }
-    this.logInAuto = function (name, pass, isLoading) {
-        if (name == null || pass == null || name.length == 0 || pass.length == 0) {
-            return;
-        }
-        $("#loginDiv_username").val(name);
-        $("#loginDiv_password").val(pass);
-        isAutoLogIn = true;
-        loginIt(isLoading);
-    }
-    function exitPage() {
-        $(".loginDiv_content_input").val("");
-    }
-    function checkLoginInput() {
-        if (($("#loginDiv_username").val() == "") || ($("#loginDiv_password").val() == "")) {
-            mToast.show("用户名和密码不能为空!", 1, null);
-            return;
-        } else {
-            isAutoLogIn = false;
-            loginIt();
-        }
-    }
-    function loginIt(isLoading) {
-        if (isLoading == null) { isLoading = false; }
-        if (!isAutoLogIn || isLoading) {
-            mLoader.show("logIn");
-        }
-        getEnKey(function (key) {
-            var name = $("#loginDiv_username").val();
-            var pass = $("#loginDiv_password").val();
-            var tempPass = pass;
-            if (key != null) {
-                pass = encryptPass(pass, key);
-            }
-            var dataObj = new Object();
-            dataObj["name"] = name;
-            dataObj["password"] = pass;
-            dataObj["requestType"] = "json";
-            dataObj["rand"] = randomString();
-            requestAjax("user/login", dataObj, function (jsonObj) {
-                if (jsonObj["code"] == 0) {
-                    saveLogIn(name, tempPass);
-                    if (mGameAPI.isTryPlay()) {
-                        appLogout(0);
-                        return;
-                    } else {
-                        mLoader.unShow("logIn");
-                    }
-                    userInfo = jsonObj["result"];
-                    userId = userInfo["name"];
-                    loginSuccess();
-                } else {
-                    mLoader.unShow("logIn");
-                    LogInError(mLangObj.getZHByCode(jsonObj["tipMessage"]));
-                }
-                isAutoLogIn = false;
-            }, function (error) {
-                mLoader.unShow("logIn");
-                LogInError(error);
-                isAutoLogIn = false;
-            });
-            function LogInError(error) {
-                if (!isAutoLogIn || isLoading) {
-                    if (error == null) {
-                        mToast.show("登录失败,请重试!", 1, "middle");
-                    } else {
-                        mToast.show("登录失败,请重试! <br>" + error, 2, "middle");
-                    }
-                }
-            }
-        });
-    }
-    function loginSuccess() {
-        MJPNNObj.resetOpenGame();
-        myPJDApp.showUserInfo();
-        myPJDApp.updateMeLogInStatus(1);
-        myPJDApp.h5DownloadCheck();
-        if (!isAutoLogIn) {
-            backClickFun();
-        }
-        updateBankInfo();
-        if (userInfo["complete"] == 3) {
-            mUserObj.getBankInfo(null);
-        }
-        loadIsAgent();
-        mUserObj.getMoneyBag();
-        ReadNoticeMessage();
-        myPJDApp.hiddenMeLeagueMenu();
-        requestAjax("article/getArticleForList", "typeId=[1100]", function (jsonObj) {
-            var result = jsonObj["result"]; if (result == null || result["length"] == 0) { return; }
-            var rootItem = result[0]; if (rootItem == null) { return; }
-            var cList = JSON.parse(rootItem["content"]); if (cList == null || cList["length"] == 0) { return; }
-            var obj = new Object();
-            obj["isNotBack"] = true;
-            obj["content"] = cList;
-            obj["isList"] = true;
-            obj["bindTime"] = 1000;
-            obj["addCompete"] = true;
-            mIndexPopWindowObj.show(5, obj, "center", 0.8);
-        });
-        $('#content_road_top_try').css({ "display": "none" });
-    }
-}
-function updateBankInfo() {
-    requestAjax("bank/getOperatorBanksForSelect", "requestType=json", function (jsonObj) {
-        if (jsonObj["code"] == 0) {
-            var bk = jsonObj["result"];
-            if (bk == null || bk == "") { return; }
-            bank = bk;
-        }
-    });
 }
 function userObj() {
     this.getBankInfo = function (callback) {
@@ -692,7 +628,7 @@ function userObj() {
             MJPNNObj.resetOpenGame();
             myPJDApp.updateMeLogInStatus(1);
             myPJDApp.showUserInfo();
-            updateBankInfo();
+            mUserObj.updateBankInfo();
             if (userInfo["complete"] == 3) {
                 mUserObj.getBankInfo(null);
             }
@@ -717,6 +653,15 @@ function userObj() {
             autoLogin(isLoading);
         });
     }
+    this.updateBankInfo = function () {
+        requestAjax("bank/getOperatorBanksForSelect", "requestType=json", function (jsonObj) {
+            if (jsonObj["code"] == 0) {
+                var bk = jsonObj["result"];
+                if (bk == null || bk == "") { return; }
+                bank = bk;
+            }
+        });
+    }
 }
 function avatarObj() {
     var currentSelectID = "";
@@ -736,8 +681,27 @@ function avatarObj() {
                 "border": "4px solid " + mainColor
             });
         });
+        $("#avatarDiv_content").css({
+            "display": "flex",
+            "justify-content": "flex-start",
+            "flex-direction": "column",
+            "align-items": "center"
+        });
         $("#avatarDiv_content_all_headers").css({
+            "width": "100%",
             "height": screenH - topH - 80
+        });
+        $("#avatarDiv_content_sure_btn").css({
+            "width": "92%",
+            "display": "flex",
+            "justify-content": "center",
+            "align-items": "center",
+            "border-radius": "20px",
+            "background-color": mainColor,
+            "color": mainFontColor,
+            "font-size": "14px",
+            "padding": "10px",
+            "box-sizing": "border-box"
         });
         setBtnOnTouchEvent($("#avatarDiv_content_sure_btn"), function () {
             if (currentSelectID != "") {
@@ -1045,37 +1009,23 @@ function agentQrCodeObj() {
 function completeInfoObj() {
     var zIndexFrom = zIndexMax - 10;
     var releaseTheme = null;
-    setStyle();
+    var isPageLoadOK = false;
+    var isBack = true;
+    new LoadHTML("pages/_complete_info.html", "completeInfo_content", function () {
+        isPageLoadOK = true;
+        setStyle();
+        if (!isBack) bindUse();
+    }, function () {
+        isPageLoadOK = false;
+    }).load();
     this.show = function () {
-        $("#completeInfo").css({
-            "display": "block",
-            "z-index": zIndexFrom
-        });
-        if (userInfo != null) {
-            var completeMs = userInfo["complete"];
-            if (completeMs == 1) {
-                $("#completeInfo_realName").html("（未填写）");
-                $("#completeInfo_realName").css({ "color": mainColor });
-                $("#completeInfo_contract").html("（未填写）");
-                $("#completeInfo_contract").css({ "color": mainColor });
-                $("#completeInfo_drawSN").html("（未填写）");
-                $("#completeInfo_drawSN").css({ "color": mainColor });
-            } else if (completeMs == 2) {
-                $("#completeInfo_realName").html("（已填写）");
-                $("#completeInfo_realName").css({ "color": mainFontColorMore });
-                $("#completeInfo_contract").html("（已填写）");
-                $("#completeInfo_contract").css({ "color": mainFontColorMore });
-                $("#completeInfo_drawSN").html("（已填写）");
-                $("#completeInfo_drawSN").css({ "color": mainFontColorMore });
-            } else if (completeMs == 3) {
-                myPJDApp.unShowComplete();
-            }
-        }
+        $("#completeInfo").css({ "display": "block", "z-index": zIndexFrom });
+        isBack = false;
+        if (isPageLoadOK) bindUse();
     }
     this.unShow = function () {
-        $("#completeInfo").css({
-            "display": "none"
-        });
+        $("#completeInfo").css({ "display": "none" });
+        isBack = true;
     }
     this.setSizeMode = function (sizeMode) {
         if (sizeMode == "noMenu") {
@@ -1162,14 +1112,135 @@ function completeInfoObj() {
             myPJDApp.unShowComplete();
         }, mainColorDeep, "", null);
     }
+    function bindUse() {
+        if (userInfo != null) return;
+        var completeMs = userInfo["complete"];
+        if (completeMs == 1) {
+            $("#completeInfo_realName").html("（未填写）");
+            $("#completeInfo_realName").css({ "color": mainColor });
+            $("#completeInfo_contract").html("（未填写）");
+            $("#completeInfo_contract").css({ "color": mainColor });
+            $("#completeInfo_drawSN").html("（未填写）");
+            $("#completeInfo_drawSN").css({ "color": mainColor });
+        } else if (completeMs == 2) {
+            $("#completeInfo_realName").html("（已填写）");
+            $("#completeInfo_realName").css({ "color": mainFontColorMore });
+            $("#completeInfo_contract").html("（已填写）");
+            $("#completeInfo_contract").css({ "color": mainFontColorMore });
+            $("#completeInfo_drawSN").html("（已填写）");
+            $("#completeInfo_drawSN").css({ "color": mainFontColorMore });
+        } else if (completeMs == 3) {
+            this.unShow();
+        }
+    }
 }
 function infoNameObj() {
     var mPage = new Activity("infoNameDiv", "完善资料");
     var releaseTheme = null;
     var zIndexFrom = zIndexMax - 5;
     this.init = function () {
-        mPage.init();
+        mPage.init(function () {
+            exitPage();
+        });
         mPage.hiddenBtn();
+        new LoadHTML("pages/_info_name.html", "infoNameDiv_content", function () {
+            setStyle();
+        }).load();
+    }
+    this.show = function () {
+        mPage.show();
+        $("#infoNameDiv").css({ "z-index": zIndexFrom });
+        $("#infoNameDiv_content").css({ "display": "flex" });
+    }
+    this.setReleaseTheme = function (theme) {
+        if (theme == null || theme == "") { return; }
+        releaseTheme = theme;
+    }
+    function checkNameInfo() {
+        var realName = $("#infoNameDiv_realName").val();
+        var drawSN = $("#infoNameDiv_drawSN").val();
+        var phone = $("#infoNameDiv_phone").val();
+        var email = $("#infoNameDiv_email").val();
+        var QQ = $("#infoNameDiv_QQ").val();
+        if (realName == "" || drawSN == "") {
+            mToast.show("真实姓名和提款密码必须输入哦～", 1, null);
+        } else {
+            if (phone == "" && email == "" && QQ == "") {
+                mToast.show("联系方式至少填写一种哦～", 1, null);
+            } else {
+                var isValidEmail = true;
+                if (email != "") {
+                    if (!checkEmail(email)) {
+                        isValidEmail = false;
+                        mToast.show("电子邮箱格式不正确哦～", 1, null);
+                    }
+                }
+                if (isValidEmail) {
+                    var nameLen = realName.length;
+                    var snLen = drawSN.length;
+                    if (snLen != 4) {
+                        mToast.show("提款密码必须是4位哦～", 1, null);
+                    } else {
+                        if ((nameLen >= 2) && (nameLen <= 10)) {
+                            if (phone != "") {
+                                if (phone.length == 11) {
+                                    mMsgBox.show("提示", "<center>真实姓名和联系方式一经提交不可修改<br>请确定填写是否正确！</center>", function () {
+                                        submitNameInfo(realName, drawSN, phone, email, QQ);
+                                    }, null);
+                                } else {
+                                    mToast.show("手机号码输入的不对吧～", 1, null);
+                                }
+                            } else {
+                                mMsgBox.show("提示", "<center>真实姓名和联系方式一经提交不可修改<br>请确定填写是否正确！</center>", function () {
+                                    submitNameInfo(realName, drawSN, phone, email, QQ);
+                                }, null);
+                            }
+                        } else {
+                            mToast.show("姓名输入的不对吧～", 1, null);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    function submitNameInfo(u_name, password, mobile, email, qq) {
+        mLoader.show();
+        var dataObj = new Object();
+        dataObj["u_name"] = u_name;
+        dataObj["password"] = password;
+        dataObj["mobile"] = mobile;
+        dataObj["email"] = email;
+        dataObj["qq"] = qq;
+        dataObj["rand"] = randomString();
+        dataObj["requestType"] = "json";
+        requestAjax("user/saveMainInfo", dataObj, function (jsonObj) {
+            mLoader.unShow();
+            if (jsonObj["code"] == 0) {
+                userInfo = jsonObj["result"];
+                backClickFun();
+                backClickFun();
+                if (releaseTheme != null) {
+                    var eventObj = new Object();
+                    eventObj["theme"] = releaseTheme;
+                    mEventBusObj.release(eventObj);
+                    releaseTheme = null;
+                }
+                myPJDApp.unShowComplete();
+            } else if (jsonObj["code"] == 100) {
+                mToast.show("登录失效，请重新登录！", 1, "middle");
+                appLogout();
+            } else {
+                mToast.show("设置资料失败！<br>" + mLangObj.getZHByCode(jsonObj["tipMessage"]), 2, "middle");
+            }
+        }, function (error) {
+            mLoader.unShow();
+            mToast.show("设置资料失败！" + error, 1, "middle");
+        });
+    }
+    function exitPage() {
+        $(".infoNameDiv_item_input_controls").val("");
+    }
+    function setStyle() {
         $(".infoNameDiv_item").css({
             "width": "100%",
             "height": "50px",
@@ -1280,77 +1351,55 @@ function infoNameObj() {
             document.activeElement.blur();
         });
     }
-    this.show = function () {
-        mPage.show(function () { exitPage(); });
-        $("#infoNameDiv").css({ "z-index": zIndexFrom });
-        $("#infoNameDiv_content").css({ "display": "flex" });
+}
+function bankInfoObj() {
+    var mPage = new Activity("bankInfoDiv", "银行卡信息");
+    var selectBankIndex = -1;
+    var releaseTheme = null;
+    var zIndexFrom = zIndexMax - 5;
+    var isBack = true;
+    var isPageLoadOK = false;
+    var name = "";
+    this.init = function () {
+        mPage.init(function () {
+            isBack = true;
+            exitPage();
+        });
+        new LoadHTML("pages/_bank_info.html", "bankInfoDiv_content", function () {
+            isPageLoadOK = true;
+            setStyle();
+            if (!isBack) setRealName(name);
+        }, function () {
+            isPageLoadOK = false;
+        }).load();
+    }
+    this.show = function (realName) {
+        mPage.show();
+        mPage.hiddenBtn();
+        isBack = false;
+        $("#bankInfoDiv").css({ "z-index": zIndexFrom });
+        $("#bankInfoDiv_content").css({ "display": "flex" });
+        name = realName;
+        if (isPageLoadOK) setRealName(name);
     }
     this.setReleaseTheme = function (theme) {
         if (theme == null || theme == "") { return; }
         releaseTheme = theme;
     }
-    function checkNameInfo() {
-        var realName = $("#infoNameDiv_realName").val();
-        var drawSN = $("#infoNameDiv_drawSN").val();
-        var phone = $("#infoNameDiv_phone").val();
-        var email = $("#infoNameDiv_email").val();
-        var QQ = $("#infoNameDiv_QQ").val();
-        if (realName == "" || drawSN == "") {
-            mToast.show("真实姓名和提款密码必须输入哦～", 1, null);
-        } else {
-            if (phone == "" && email == "" && QQ == "") {
-                mToast.show("联系方式至少填写一种哦～", 1, null);
-            } else {
-                var isValidEmail = true;
-                if (email != "") {
-                    if (!checkEmail(email)) {
-                        isValidEmail = false;
-                        mToast.show("电子邮箱格式不正确哦～", 1, null);
-                    }
-                }
-                if (isValidEmail) {
-                    var nameLen = realName.length;
-                    var snLen = drawSN.length;
-                    if (snLen != 4) {
-                        mToast.show("提款密码必须是4位哦～", 1, null);
-                    } else {
-                        if ((nameLen >= 2) && (nameLen <= 10)) {
-                            if (phone != "") {
-                                if (phone.length == 11) {
-                                    mMsgBox.show("提示", "<center>真实姓名和联系方式一经提交不可修改<br>请确定填写是否正确！</center>", function () {
-                                        submitNameInfo(realName, drawSN, phone, email, QQ);
-                                    }, null);
-                                } else {
-                                    mToast.show("手机号码输入的不对吧～", 1, null);
-                                }
-                            } else {
-                                mMsgBox.show("提示", "<center>真实姓名和联系方式一经提交不可修改<br>请确定填写是否正确！</center>", function () {
-                                    submitNameInfo(realName, drawSN, phone, email, QQ);
-                                }, null);
-                            }
-                        } else {
-                            mToast.show("姓名输入的不对吧～", 1, null);
-                        }
-                    }
-                }
-            }
-        }
-    }
-    function submitNameInfo(u_name, password, mobile, email, qq) {
+    function submitAddBank(account, cardno, bank_id, open_bank) {
         mLoader.show();
         var dataObj = new Object();
-        dataObj["u_name"] = u_name;
-        dataObj["password"] = password;
-        dataObj["mobile"] = mobile;
-        dataObj["email"] = email;
-        dataObj["qq"] = qq;
-        dataObj["rand"] = randomString();
+        dataObj["account"] = account;
+        dataObj["cardno"] = cardno;
+        dataObj["bank_id"] = bank_id;
+        dataObj["open_bank"] = open_bank;
         dataObj["requestType"] = "json";
-        requestAjax("user/saveMainInfo", dataObj, function (jsonObj) {
+        dataObj["rand"] = randomString();
+        requestAjax("userBank/saveUserBank", dataObj, function (jsonObj) {
             mLoader.unShow();
             if (jsonObj["code"] == 0) {
-                userInfo = jsonObj["result"];
-                backClickFun();
+                bankInfo = jsonObj["result"];
+                userInfo["complete"] = 3;
                 backClickFun();
                 if (releaseTheme != null) {
                     var eventObj = new Object();
@@ -1359,28 +1408,30 @@ function infoNameObj() {
                     releaseTheme = null;
                 }
                 myPJDApp.unShowComplete();
+                try { mDrawFeeFunObj.reBindBankList(); } catch (e) { }
             } else if (jsonObj["code"] == 100) {
-                mToast.show("登录失效，请重新登录！", 1, "middle");
+                mToast.show("登录失效,请重新登录!", 1, "middle");
                 appLogout();
             } else {
-                mToast.show("设置资料失败！<br>" + mLangObj.getZHByCode(jsonObj["tipMessage"]), 2, "middle");
+                mToast.show("设置资料失败!<br>" + mLangObj.getZHByCode(jsonObj["tipMessage"]), 2, "middle");
             }
         }, function (error) {
             mLoader.unShow();
-            mToast.show("设置资料失败！" + error, 1, "middle");
+            mToast.show("设置资料失败!", 1, "middle");
         });
     }
-    function exitPage() {
-        $(".infoNameDiv_item_input_controls").val("");
+    function showBankList() {
+        mMsgBox.showList("选择银行", bank, "text", selectBankIndex, function (index) {
+            var item = bank[index];
+            $("#bankInfoDiv_bank").val(item["text"]);
+            selectBankIndex = index;
+        }, null);
     }
-}
-function bankInfoObj() {
-    var mPage = new Activity("bankInfoDiv", "银行卡信息");
-    var selectBankIndex = -1;
-    var releaseTheme = null;
-    var zIndexFrom = zIndexMax - 5;
-    this.init = function () {
-        mPage.init();
+    function exitPage() {
+        $(".bankInfoDiv_item_input_controls").val("");
+        selectBankIndex = -1;
+    }
+    function setStyle() {
         $(".bankInfoDiv_item").css({
             "width": "100%",
             "height": "50px",
@@ -1475,128 +1526,36 @@ function bankInfoObj() {
             showBankList();
         }, null);
     }
-    this.show = function (realName, hBtn) {
-        if (hBtn != null) {
-            mPage.hiddenBtn();
-        }
-        mPage.hiddenBtn();
-        mPage.show(function () {
-            exitPage();
-        });
-        $("#bankInfoDiv").css({
-            "z-index": zIndexFrom
-        });
+    function setRealName(realName) {
         $("#bankInfoDiv_realName").val(realName);
-        $("#bankInfoDiv_content").css({
-            "display": "flex"
-        });
-    }
-    this.setReleaseTheme = function (theme) {
-        if (theme == null || theme == "") { return; }
-        releaseTheme = theme;
-    }
-    function submitAddBank(account, cardno, bank_id, open_bank) {
-        mLoader.show();
-        var dataObj = new Object();
-        dataObj["account"] = account;
-        dataObj["cardno"] = cardno;
-        dataObj["bank_id"] = bank_id;
-        dataObj["open_bank"] = open_bank;
-        dataObj["requestType"] = "json";
-        dataObj["rand"] = randomString();
-        requestAjax("userBank/saveUserBank", dataObj, function (jsonObj) {
-            mLoader.unShow();
-            if (jsonObj["code"] == 0) {
-                bankInfo = jsonObj["result"];
-                userInfo["complete"] = 3;
-                backClickFun();
-                if (releaseTheme != null) {
-                    var eventObj = new Object();
-                    eventObj["theme"] = releaseTheme;
-                    mEventBusObj.release(eventObj);
-                    releaseTheme = null;
-                }
-                myPJDApp.unShowComplete();
-                try { mDrawFeeFunObj.reBindBankList(); } catch (e) { }
-            } else if (jsonObj["code"] == 100) {
-                mToast.show("登录失效,请重新登录!", 1, "middle");
-                appLogout();
-            } else {
-                mToast.show("设置资料失败!<br>" + mLangObj.getZHByCode(jsonObj["tipMessage"]), 2, "middle");
-            }
-        }, function (error) {
-            mLoader.unShow();
-            mToast.show("设置资料失败!", 1, "middle");
-        });
-    }
-    function showBankList() {
-        mMsgBox.showList("选择银行", bank, "text", selectBankIndex, function (index) {
-            var item = bank[index];
-            $("#bankInfoDiv_bank").val(item["text"]);
-            selectBankIndex = index;
-        }, null);
-    }
-    function exitPage() {
-        $(".bankInfoDiv_item_input_controls").val("");
-        selectBankIndex = -1;
     }
 }
 function accountSafeObj() {
     var mPage = new Activity("accountSafeDiv", "账号与安全");
     var eventTheme = "accountSafe_infoComplete_theme";
     var eventIndex;
+    var isBack = true;
+    var isPageLoadOK = false;
+    var typeList;
     this.init = function () {
-        mPage.init();
-        initAccountInfo();
-        initAccountSN();
-        initAccountDrawSN();
-        isPwd();
-        initLockTouch();
-        setBtnOnTouchEvent($("#accountSafeDiv_content_bank_add"), function () {
-            var eBankIndex = mEventBusObj.subscriptionForce("eventTheme_addBank", function (obj) {
-                showBankContent();
-                mEventBusObj.unsubscribe(eBankIndex);
-            });
-            var theBankInfoObj = myPJDApp.getObj("bankInfoObj");
-            theBankInfoObj.setReleaseTheme("eventTheme_addBank");
-            theBankInfoObj.show(userInfo["u_name"]);
-        }, mainColorDeep, mainColor, null);
-        setBtnOnTouchEventNoColor($("#accountSafeDiv_content_info_btn"), function () {
-            setTypeSelect("info");
-        }, null);
-        setBtnOnTouchEventNoColor($("#accountSafeDiv_content_bank_btn"), function () {
-            setTypeSelect("bank");
-        }, null);
-        setBtnOnTouchEventNoColor($("#accountSafeDiv_content_loginSN_btn"), function () {
-            setTypeSelect("sn");
-        }, null);
-        setBtnOnTouchEventNoColor($("#accountSafeDiv_content_drawSN_btn"), function () {
-            setTypeSelect("drawsn");
-        }, null);
-        setBtnOnTouchEventNoColor($("#accountSafeDiv_content_signPwd_btn"), function () {
-            setTypeSelect("signPwd");
-        }, null);
-    }
-    this.show = function (type) {
-        mPage.show(function () {
+        mPage.init(function () {
+            isBack = true;
             mPage.showBtn();
             myPJDApp.unShowComplete();
         });
-        $("#accountSafeDiv").css({
-            "display": "block"
-        });
-        $(".accountSafeDiv_content_content").css({
-            "width": screenW,
-            "height": screenH - topH - 45 - 2,
-            "flex-direction": "column",
-            "display": "flex",
-            "align-items": "center"
-        });
-        $("#accountSafeDiv_content_top").css({
-            "display": "flex"
-        });
-        var typeList = type.split("_");
-        setTypeSelect(typeList[4]);
+        new LoadHTML("pages/_account_safe.html", "accountSafeDiv_content", function () {
+            isPageLoadOK = true;
+            setStyle();
+            if (!isBack && typeList != null) setTypeSelect(typeList[4]);
+        }, function () {
+            isPageLoadOK = false;
+        }).load();
+    }
+    this.show = function (type) {
+        mPage.show();
+        isBack = false;
+        typeList = type.split("_");
+        if (isPageLoadOK) setTypeSelect(typeList[4]);
     }
     function setTypeSelect(type) {
         focusHiddenBox();
@@ -1803,7 +1762,7 @@ function accountSafeObj() {
             }
         }
         if (userInfo.weixin != null) {
-            $("#accountInfo_item_wechat").val(userInfo.weixin);
+            $("#accountInfo_item_wc").val(userInfo.weixin);
         }
         if (userInfo.gender_id != null) {
             $("#accountInfo_sex").val(userInfo.gender_id);
@@ -1874,6 +1833,10 @@ function accountSafeObj() {
             submitInfoPost();
         }, mainColorDeep, mainColor, null);
         $("#accountInfo_item_email").focus(function () {
+            if (isBack) {
+                document.activeElement.blur();
+                return;
+            }
             var obj = new Object();
             obj["inputObj"] = $("#accountInfo_item_email");
             obj["showIs"] = true;
@@ -1885,9 +1848,13 @@ function accountSafeObj() {
             $("#accountSafeDiv_content_info").scrollTop(4 * 50 + 8);
             document.activeElement.blur();
         });
-        $("#accountInfo_item_wechat").focus(function () {
+        $("#accountInfo_item_wc").focus(function () {
+            if (isBack) {
+                document.activeElement.blur();
+                return;
+            }
             var obj = new Object();
-            obj["inputObj"] = $("#accountInfo_item_wechat");
+            obj["inputObj"] = $("#accountInfo_item_wc");
             obj["showIs"] = true;
             obj["numberIs"] = true;
             obj["symbolIs"] = false;
@@ -1898,6 +1865,10 @@ function accountSafeObj() {
             document.activeElement.blur();
         });
         $("#accountInfo_item_phone").focus(function () {
+            if (isBack) {
+                document.activeElement.blur();
+                return;
+            }
             var obj = new Object();
             obj["inputObj"] = $("#accountInfo_item_phone");
             obj["maxLen"] = 16;
@@ -1908,6 +1879,10 @@ function accountSafeObj() {
             document.activeElement.blur();
         });
         $("#accountInfo_item_QQ").focus(function () {
+            if (isBack) {
+                document.activeElement.blur();
+                return;
+            }
             var obj = new Object();
             obj["inputObj"] = $("#accountInfo_item_QQ");
             obj["maxLen"] = 16;
@@ -1925,7 +1900,7 @@ function accountSafeObj() {
             var mobile = $("#accountInfo_item_phone").val();
             var email = $("#accountInfo_item_email").val();
             var QQ = $("#accountInfo_item_QQ").val();
-            var wechat = $("#accountInfo_item_wechat").val();
+            var wechat = $("#accountInfo_item_wc").val();
             birthDay += " 21:00:00";
             var tag = "*";
             if (mobile.indexOf(tag) != -1 && email.indexOf(tag) != -1) {
@@ -2013,6 +1988,10 @@ function accountSafeObj() {
             "font-size": "14px"
         });
         $("#accountSN_item_old").focus(function () {
+            if (isBack) {
+                document.activeElement.blur();
+                return;
+            }
             var obj = new Object();
             obj["inputObj"] = $("#accountSN_item_old");
             obj["showIs"] = true;
@@ -2024,6 +2003,10 @@ function accountSafeObj() {
             // document.activeElement.blur();
         });
         $("#accountSN_item_new").focus(function () {
+            if (isBack) {
+                document.activeElement.blur();
+                return;
+            }
             var obj = new Object();
             obj["inputObj"] = $("#accountSN_item_new");
             obj["showIs"] = true;
@@ -2035,6 +2018,10 @@ function accountSafeObj() {
             // document.activeElement.blur();
         });
         $("#accountSN_item_newagain").focus(function () {
+            if (isBack) {
+                document.activeElement.blur();
+                return;
+            }
             var obj = new Object();
             obj["inputObj"] = $("#accountSN_item_newagain");
             obj["showIs"] = true;
@@ -2128,6 +2115,10 @@ function accountSafeObj() {
             "font-size": "14px"
         });
         $("#accountDrawSN_item_old").focus(function () {
+            if (isBack) {
+                document.activeElement.blur();
+                return;
+            }
             var obj = new Object();
             obj["inputObj"] = $("#accountDrawSN_item_old");
             obj["maxLen"] = 4;
@@ -2137,6 +2128,10 @@ function accountSafeObj() {
             document.activeElement.blur();
         });
         $("#accountDrawSN_item_new").focus(function () {
+            if (isBack) {
+                document.activeElement.blur();
+                return;
+            }
             var obj = new Object();
             obj["inputObj"] = $("#accountDrawSN_item_new");
             obj["maxLen"] = 4;
@@ -2146,6 +2141,10 @@ function accountSafeObj() {
             document.activeElement.blur();
         });
         $("#accountDrawSN_item_newagain").focus(function () {
+            if (isBack) {
+                document.activeElement.blur();
+                return;
+            }
             var obj = new Object();
             obj["inputObj"] = $("#accountDrawSN_item_newagain");
             obj["maxLen"] = 4;
@@ -2338,6 +2337,48 @@ function accountSafeObj() {
         } else {
             mPage.showBtn();
         }
+    }
+    function setStyle() {
+        focusHiddenBox();
+        initAccountInfo();
+        initAccountSN();
+        initAccountDrawSN();
+        isPwd();
+        initLockTouch();
+        $(".accountSafeDiv_content_content").css({
+            "width": screenW,
+            "height": screenH - topH - 45 - 2,
+            "flex-direction": "column",
+            "display": "flex",
+            "align-items": "center"
+        });
+        $("#accountSafeDiv_content_top").css({
+            "display": "flex"
+        });
+        setBtnOnTouchEvent($("#accountSafeDiv_content_bank_add"), function () {
+            var eBankIndex = mEventBusObj.subscriptionForce("eventTheme_addBank", function (obj) {
+                showBankContent();
+                mEventBusObj.unsubscribe(eBankIndex);
+            });
+            var theBankInfoObj = myPJDApp.getObj("bankInfoObj");
+            theBankInfoObj.setReleaseTheme("eventTheme_addBank");
+            theBankInfoObj.show(userInfo["u_name"]);
+        }, mainColorDeep, mainColor, null);
+        setBtnOnTouchEventNoColor($("#accountSafeDiv_content_info_btn"), function () {
+            setTypeSelect("info");
+        }, null);
+        setBtnOnTouchEventNoColor($("#accountSafeDiv_content_bank_btn"), function () {
+            setTypeSelect("bank");
+        }, null);
+        setBtnOnTouchEventNoColor($("#accountSafeDiv_content_loginSN_btn"), function () {
+            setTypeSelect("sn");
+        }, null);
+        setBtnOnTouchEventNoColor($("#accountSafeDiv_content_drawSN_btn"), function () {
+            setTypeSelect("drawsn");
+        }, null);
+        setBtnOnTouchEventNoColor($("#accountSafeDiv_content_signPwd_btn"), function () {
+            setTypeSelect("signPwd");
+        }, null);
     }
 }
 function logOutPost(isLoading) {

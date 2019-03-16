@@ -1,0 +1,238 @@
+<div id="accountSafeDiv_content_top" style="display: none;background-color: #2A2A2A;justify-content: space-between;align-items: center;width: 100%">
+    <div id="accountSafeDiv_content_info_btn" class="alBtnStyle" style="width: 20%;display: flex;justify-content: center;align-items: center;height: 45px;color: #ff5e1b;font-size: 14px">
+        个人资料
+    </div>
+    <div id="accountSafeDiv_content_bank_btn" class="alBtnStyle" style="width: 20%;display: flex;justify-content: center;align-items: center;height: 45px;color: #cccccc;font-size: 14px">
+        银行卡
+    </div>
+    <div id="accountSafeDiv_content_loginSN_btn" class="alBtnStyle" style="width: 20%;display: flex;justify-content: center;align-items: center;height: 45px;color: #cccccc;font-size: 14px">
+        登录密码
+    </div>
+    <div id="accountSafeDiv_content_drawSN_btn" class="alBtnStyle" style="width: 20%;display: flex;justify-content: center;align-items: center;height: 45px;color: #cccccc;font-size: 14px">
+        提款密码
+    </div>
+    <div id="accountSafeDiv_content_signPwd_btn" style="width: 20%;display: flex;justify-content: center;align-items: center;height: 45px;color: #cccccc;font-size: 14px">
+        解锁设置
+    </div>
+</div>
+<div style="height: 2px;background-color: #000000;width: 100%;display: flex;justify-content: space-between;align-items: center">
+    <div id="accountSafeDiv_content_info_line" class="alBtnStyle" style="width: 20%;height: 2px;background: #ff5e1b"></div>
+    <div id="accountSafeDiv_content_bank_line" class="alBtnStyle" style="width: 20%;height: 2px"></div>
+    <div id="accountSafeDiv_content_loginSN_line" class="alBtnStyle" style="width: 20%;height: 2px"></div>
+    <div id="accountSafeDiv_content_drawSN_line" class="alBtnStyle" style="width: 20%;height: 2px"></div>
+    <div id="accountSafeDiv_content_signPwd_line" style="width: 20%;height: 2px"></div>
+</div>
+<div id="accountSafeDiv_content_bank" class="accountSafeDiv_content_content" style="overflow-x: hidden;overflow-y: auto">
+    <div id="accountSafeDiv_content_bank_list" style="width: 100%"></div>
+    <div style="height: 20px"></div>
+    <div style="width: 90%">
+        <div id="accountSafeDiv_content_bank_add" class="PJDCommBtn">+ 添加银行卡</div>
+        <div style="height: 40px"></div>
+    </div>
+</div>
+<div id="accountSafeDiv_content_info" class="accountSafeDiv_content_content" style="overflow-x: hidden;overflow-y: auto;width: 100%">
+    <div style="width: 95%">
+        <div style="height: 5px"></div>
+        <div class="accountInfo_item">
+            <div class="accountInfo_item_title">
+                <div class="accountInfo_item_title_text">会员账户</div>
+                <div class="accountInfo_item_title_split"></div>
+            </div>
+            <div class="accountInfo_item_input">
+                <input type="text" id="accountInfo_item_username" readonly class="accountInfo_item_input_controls" />
+            </div>
+        </div>
+        <div class="accountInfo_item_line"></div>
+        <div class="accountInfo_item">
+            <div class="accountInfo_item_title">
+                <div class="accountInfo_item_title_text">昵称</div>
+                <div class="accountInfo_item_title_split"></div>
+            </div>
+            <div class="accountInfo_item_input">
+                <input type="text" id="accountInfo_item_nickName" maxlength="10" class="accountInfo_item_input_controls" />
+            </div>
+        </div>
+        <div class="accountInfo_item_line"></div>
+        <div class="accountInfo_item">
+            <div class="accountInfo_item_title">
+                <div class="accountInfo_item_title_text">真实姓名</div>
+                <div class="accountInfo_item_title_split"></div>
+            </div>
+            <div class="accountInfo_item_input">
+                <input type="text" id="accountInfo_item_realName" readonly class="accountInfo_item_input_controls" />
+            </div>
+        </div>
+        <div class="accountInfo_item_line"></div>
+        <div class="accountInfo_item">
+            <div class="accountInfo_item_title">
+                <div class="accountInfo_item_title_text">性别(选填)</div>
+                <div class="accountInfo_item_title_split"></div>
+            </div>
+            <div class="accountInfo_item_input">
+                <select id="accountInfo_sex" style="width:200px;color:#cccccc;font-size: 14px;border-color:transparent;background-color:transparent;">
+                    <option value="0">请选择</option>
+                    <option value="1">男</option>
+                    <option value="2">女</option>
+                </select>
+            </div>
+        </div>
+        <div class="accountInfo_item_line"></div>
+        <div class="accountInfo_item">
+            <div class="accountInfo_item_title">
+                <div class="accountInfo_item_title_text">出生日期</div>
+                <div class="accountInfo_item_title_split"></div>
+            </div>
+            <div class="accountInfo_item_input">
+                <input type="date" value="1990-08-08" id="accountInfo_item_birthday" placeholder="请选择" style="width:200px;color:#cccccc;font-size: 14px;border-color:transparent;background-color:transparent;"
+                />
+            </div>
+        </div>
+        <div class="accountInfo_item_line"></div>
+        <div class="accountInfo_item">
+            <div class="accountInfo_item_title">
+                <div class="accountInfo_item_title_text">手机号码</div>
+                <div class="accountInfo_item_title_split"></div>
+            </div>
+            <div class="accountInfo_item_input">
+                <input type="tel" placeholder="可选" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') "
+                    id="accountInfo_item_phone" class="accountInfo_item_input_controls" />
+            </div>
+        </div>
+        <div class="accountInfo_item_line"></div>
+        <div class="accountInfo_item">
+            <div class="accountInfo_item_title">
+                <div class="accountInfo_item_title_text">邮箱地址</div>
+                <div class="accountInfo_item_title_split"></div>
+            </div>
+            <div class="accountInfo_item_input">
+                <input type="url" id="accountInfo_item_email" placeholder="可选" class="accountInfo_item_input_controls" />
+            </div>
+        </div>
+        <div class="accountInfo_item_line"></div>
+        <div class="accountInfo_item">
+            <div class="accountInfo_item_title">
+                <div class="accountInfo_item_title_text">Q Q号</div>
+                <div class="accountInfo_item_title_split"></div>
+            </div>
+            <div class="accountInfo_item_input">
+                <input type="tel" placeholder="可选" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') "
+                    id="accountInfo_item_QQ" class="accountInfo_item_input_controls" />
+            </div>
+        </div>
+        <div class="accountInfo_item_line"></div>
+        <div class="accountInfo_item">
+            <div class="accountInfo_item_title">
+                <div class="accountInfo_item_title_text">微信号</div>
+                <div class="accountInfo_item_title_split"></div>
+            </div>
+            <div class="accountInfo_item_input">
+                <input type="text" placeholder="可选" id="accountInfo_item_wc" class="accountInfo_item_input_controls" />
+            </div>
+        </div>
+        <div class="accountInfo_item_line"></div>
+        <div style="height: 20px"></div>
+        <div class="PJDCommBtn" id="accountInfo_edit_sure">确定修改</div>
+        <div style="height: 400px"></div>
+    </div>
+</div>
+<div id="accountSafeDiv_content_loginSN" class="accountSafeDiv_content_content">
+    <div style="width: 95%">
+        <div style="height: 5px"></div>
+        <div class="accountSN_item">
+            <div class="accountSN_item_title">
+                <div class="accountSN_item_title_text">旧登录密码</div>
+                <div class="accountSN_item_title_split"></div>
+            </div>
+            <div class="accountSN_item_input">
+                <input type="password" id="accountSN_item_old" class="accountSN_item_input_controls" placeholder="请输入当前登录密码" />
+            </div>
+        </div>
+        <div class="accountSN_item_line"></div>
+        <div class="accountSN_item">
+            <div class="accountSN_item_title">
+                <div class="accountSN_item_title_text">新登录密码</div>
+                <div class="accountSN_item_title_split"></div>
+            </div>
+            <div class="accountSN_item_input">
+                <input type="password" id="accountSN_item_new" class="accountSN_item_input_controls" placeholder="8-18位大小写字母和数字组合" />
+            </div>
+        </div>
+        <div class="accountSN_item_line"></div>
+        <div class="accountSN_item">
+            <div class="accountSN_item_title">
+                <div class="accountSN_item_title_text">重复新登录密码</div>
+                <div class="accountSN_item_title_split"></div>
+            </div>
+            <div class="accountSN_item_input">
+                <input type="password" id="accountSN_item_newagain" class="accountSN_item_input_controls" placeholder="8-18位大小写字母和数字组合" />
+            </div>
+        </div>
+        <div class="accountSN_item_line"></div>
+        <div style="height: 20px"></div>
+        <div class="PJDCommBtn" id="accountSN_edit_sure">确定修改</div>
+    </div>
+</div>
+<div id="accountSafeDiv_content_signPwd" class="accountSafeDiv_content_content">
+    <div style="width: 100%;color: gainsboro">
+        <div style="padding-left:10px;padding-right:10px;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;height:50px;width:100%">
+            <div>手势解锁</div>
+            <div id="SignPwdSwitch" style="display:flex;background: #CCA352;border-radius: 26px;width: 50px;height: 26px">
+                <div id="SignPwdSwitch_open" style="display:none;background: #CCA352;border-radius: 26px;width: 24px;height: 26px"></div>
+                <div style="background: gainsboro;border-radius: 50%;width: 26px;height: 26px"></div>
+            </div>
+        </div>
+        <div style="width:100%;height:1px;background:#1B1B1B"></div>
+        <div id="showSign" style="padding-left:10px;padding-right:10px;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;height:50px;width:100%">
+            <div>显示手势轨迹</div>
+            <div id="showSignPwd" style="display:flex;background: #CCA352;border-radius: 26px;width: 50px;height: 26px">
+                <div id="showSignPwd_open" style="background: #CCA352;border-radius: 26px;width: 24px;height: 26px"></div>
+                <div style="background: gainsboro;border-radius: 50%;width: 26px;height: 26px"></div>
+            </div>
+        </div>
+        <div style="width:100%;height:1px;background:#1B1B1B"></div>
+        <div id="resettingSignPwd" style="padding-left:10px;display:none;justify-content:flex-start;height:50px;width:100%;align-items:center;color:gainsboro">
+            <div>重置手势密码</div>
+        </div>
+        <div style="width:100%;height:15px;background:#1B1B1B"></div>
+    </div>
+</div>
+<div id="accountSafeDiv_content_drawSN" class="accountSafeDiv_content_content">
+    <div style="width: 95%">
+        <div style="height: 5px"></div>
+        <div class="accountSN_item">
+            <div class="accountDrawSN_item_title">
+                <div class="accountDrawSN_item_title_text">旧提款密码</div>
+                <div class="accountDrawSN_item_title_split"></div>
+            </div>
+            <div class="accountDrawSN_item_input">
+                <input type="password" onKeyUp="if(this.value.length>4){this.value=this.value.substr(0,4)};this.value=this.value.replace(/[^\d]/g,'');"
+                    id="accountDrawSN_item_old" class="accountDrawSN_item_input_controls" placeholder="请输入当前提款密码" />
+            </div>
+        </div>
+        <div class="accountDrawSN_item_line"></div>
+        <div class="accountDrawSN_item">
+            <div class="accountDrawSN_item_title">
+                <div class="accountDrawSN_item_title_text">新提款密码</div>
+                <div class="accountDrawSN_item_title_split"></div>
+            </div>
+            <div class="accountDrawSN_item_input">
+                <input type="password" onKeyUp="if(this.value.length>4){this.value=this.value.substr(0,4)};this.value=this.value.replace(/[^\d]/g,'');"
+                    id="accountDrawSN_item_new" class="accountDrawSN_item_input_controls" placeholder="密码必须为4位数字" />
+            </div>
+        </div>
+        <div class="accountDrawSN_item_line"></div>
+        <div class="accountDrawSN_item">
+            <div class="accountDrawSN_item_title">
+                <div class="accountDrawSN_item_title_text">重复新提款密码</div>
+                <div class="accountDrawSN_item_title_split"></div>
+            </div>
+            <div class="accountDrawSN_item_input">
+                <input type="password" onKeyUp="if(this.value.length>4){this.value=this.value.substr(0,4)};this.value=this.value.replace(/[^\d]/g,'');"
+                    id="accountDrawSN_item_newagain" class="accountDrawSN_item_input_controls" placeholder="密码必须为4位数字" />
+            </div>
+        </div>
+        <div class="accountDrawSN_item_line"></div>
+        <div style="height: 20px"></div>
+        <div class="PJDCommBtn" id="accountDrawSN_edit_sure">确定修改</div>
+    </div>
+</div>

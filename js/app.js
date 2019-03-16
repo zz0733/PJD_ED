@@ -84,8 +84,8 @@ function PJDApp() {
     this.init = function () {
         PageFrameGenerating();
         AppMakeObj = new AppMake();
-        mMoneyWindowObj = new moneyWindowObj();
         mCompleteInfoObj = new completeInfoObj();
+        mMoneyWindowObj = new moneyWindowObj(); mMoneyWindowObj.init();
         mLoginObj = new loginObj(); mLoginObj.init();
         mRegisterObj = new registerObj(); mRegisterObj.init();
         mAgreementObj = new agreementObj(); mAgreementObj.init();
@@ -155,11 +155,7 @@ function PJDApp() {
         mAgreementObj.setType(type);
     }
     this.showMoneyWindow = function () {
-        if (!mMoneyWindowObj.isInit()) {
-            mMoneyWindowObj.init();
-        } else {
-            mMoneyWindowObj.show();
-        }
+        mMoneyWindowObj.show();
     }
     this.unShowMoneyWindow = function () {
         mMoneyWindowObj.unShow();
@@ -1044,7 +1040,7 @@ function PJDApp() {
             }
         }
     }
-    function PageFrameGenerating() {// 界面框架生成
+    function PageFrameGenerating() { // 界面框架生成
         addPageToHtml("feedbackInfoDiv");
         addPageToHtml("moneyrecordDiv");
         addPageToHtml("moneyrecordDetailsDiv");
@@ -1067,7 +1063,94 @@ function PJDApp() {
         addPageToHtml("interestDiv");
         addPageToHtml("depositFeeDiv");
         addPageToHtml("drawFeeDiv");
+        addPageToHtml("accountSafeDiv");
+        addPageToHtml("registerDiv", function () {
+            $("#registerDiv_content").css({
+                "padding": "10px",
+                "box-sizing": "border-box"
+            });
+            return "";
+        });
+        addPageToHtml("loginDiv", function () {
+            $("#loginDiv_content").css({
+                "padding": "10px",
+                "box-sizing": "border-box"
+            });
+            return "";
+        });
+        addPageToHtml("infoNameDiv", function () {
+            $("#infoNameDiv_content").css({
+                "width": "100%",
+                "display": "flex",
+                "justify-content": "flex-start",
+                "align-items": "center",
+                "flex-direction": "column"
+            });
+            return "";
+        });
+        addPageToHtml("bankInfoDiv", function () {
+            $("#bankInfoDiv_content").css({
+                "width": "100%",
+                "display": "flex",
+                "justify-content": "flex-start",
+                "align-items": "center",
+                "flex-direction": "column"
+            });
+            return "";
+        });
+        addPageToHtml("registerSuccess", function () {
+            $("#registerSuccess").html("");
+            $("#registerSuccess").css({
+                "position": "absolute",
+                "top": "0px",
+                "left": "0px",
+                "width": screenW,
+                "height": screenH,
+                "flex-direction": "column",
+                "display": "none",
+                "justify-content": "space-between",
+                "align-items": "center",
+                "background": lighterBackColor,
+            });
+            requestAjaxGet("pages/_reg_success.html", function (jsonObj) {
+                $("#registerSuccess").html(jsonObj);
+                $(".registerSuccess_top_text").css({
+                    "color": mainColor,
+                    "font-size": "16px",
+                    "line-height": "200%"
+                });
+                $("#registerSuccess_bottom").css({
+                    "height": screenH * 0.4
+                });
+                $("#registerSuccess_bottom_coming").css({
+                    "background": mainColor,
+                    "color": mainFontColor
+                });
+                $("#registerSuccess_bottom_complete").css({
+                    "border": "1px solid " + mainColor,
+                    "color": mainColor
+                });
+                $("#registerSuccess_top_notictext").css({
+                    "color": mainFontColorMore,
+                    "font-size": "14px"
+                });
+                $("#registerSuccess_top_notictext_id").css({
+                    "color": mainColor,
+                    "font-size": "14px"
+                });
+            }, null);
+            return "";
+        });
+        addPageToHtml("fundsWindowDiv", function () {
+            $("#fundsWindowDiv").css({ "background": "rgba(0,0,0,0.6)" });
+            $("#fundsWindowDiv").html(_PageFrameExpansion.fundsWindowDiv);
+        });
         // 需要扩展的界面框架
+        addPageToHtml("completeInfo", function () {
+            $("#completeInfo").css({ "position": "fixed" });
+            $("#completeInfo").html(_PageFrameExpansion.completeInfo);
+            return "";
+        });
         addPageToHtml("askDiv", function () {
             $("#askDiv_content").css({
                 "overflow": "hidden",
@@ -1166,6 +1249,11 @@ function PJDApp() {
             $("#" + rid).append("<div id=\"" + rid + "_backdom\"><div id=\"" + rid + "_button\"></div></div>");
             return "";
         });
+        addPageToHtml("betElectRemakeDiv", function () {
+            var rid = "betElectRemakeDiv";
+            $("#" + rid).append("<div id=\"" + rid + "_backdom\"><div id=\"" + rid + "_button\"></div></div>");
+            return "";
+        });
         addPageToHtml("avatarDiv", function () {
             return _PageFrameExpansion.avatarDiv;
         });
@@ -1190,6 +1278,9 @@ function PJDApp() {
         addPageToHtml("betrecordCmdDiv", function () {
             return _PageFrameExpansion.betrecordCmdDiv;
         });
+        addPageToHtml("betrecordElectDiv", function () {
+            return _PageFrameExpansion.betrecordElectDiv;
+        });
         addPageToHtml("leagueDetailsDiv", function () {
             return _PageFrameExpansion.leagueDetailsDiv;
         });
@@ -1207,6 +1298,21 @@ function PJDApp() {
         });
         addPageToHtml("agreementDiv", function () {
             return _PageFrameExpansion.agreementDiv;
+        });
+        addPageToHtml("incomeOnlineDiv", function () {
+            return _PageFrameExpansion.incomeOnlineDiv;
+        });
+        addPageToHtml("incomeOfflineDiv", function () {
+            return _PageFrameExpansion.incomeOfflineDiv;
+        });
+        addPageToHtml("incomeOfflineSuccessDiv", function () {
+            $("#incomeOfflineSuccessDiv_content").css({
+                "display": "flex",
+                "flex-direction": "column",
+                "justify-content": "space-between",
+                "align-items": "center"
+            });
+            return _PageFrameExpansion.incomeOfflineSuccessDiv;
         });
         // 游戏框架
         addPageToHtml("kyDiv", function () {

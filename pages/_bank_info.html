@@ -1,0 +1,64 @@
+<div style="width: 95%">
+    <div style="height: 5px"></div>
+    <div class="bankInfoDiv_item">
+        <div class="bankInfoDiv_item_title">
+            <div class="bankInfoDiv_item_title_text">姓名</div>
+            <div class="bankInfoDiv_item_title_split"></div>
+        </div>
+        <div class="bankInfoDiv_item_input">
+            <input type="text" id="bankInfoDiv_realName" readonly class="bankInfoDiv_item_input_controls" />
+        </div>
+        <div class="bankInfoDiv_item_ask"></div>
+    </div>
+    <div class="bankInfoDiv_line"></div>
+    <div class="bankInfoDiv_item" id="bankInfoDiv_item_select">
+        <div class="bankInfoDiv_item_title">
+            <div class="bankInfoDiv_item_title_text">银行</div>
+            <div class="bankInfoDiv_item_title_split"></div>
+        </div>
+        <div class="bankInfoDiv_item_input">
+            <input type="text" id="bankInfoDiv_bank" placeholder="请选择银行" readonly class="bankInfoDiv_item_input_controls" />
+        </div>
+        <div class="bankInfoDiv_item_ask">
+            <img class="arrowImgClass" src="pic/themeMain/arrow.png" height="15px" class="bankInfoDiv_selectBank" />
+        </div>
+    </div>
+    <div class="bankInfoDiv_line"></div>
+    <div class="bankInfoDiv_item">
+        <div class="bankInfoDiv_item_title">
+            <div class="bankInfoDiv_item_title_text">卡号</div>
+            <div class="bankInfoDiv_item_title_split"></div>
+        </div>
+        <div class="bankInfoDiv_item_input">
+            <input type="tel" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') "
+                id="bankInfoDiv_bankNum" placeholder="请填写银行卡卡号" class="bankInfoDiv_item_input_controls" />
+        </div>
+        <div class="bankInfoDiv_item_ask"></div>
+    </div>
+    <div class="bankInfoDiv_line"></div>
+    <div class="bankInfoDiv_item">
+        <div class="bankInfoDiv_item_title">
+            <div class="bankInfoDiv_item_title_text">重复卡号</div>
+            <div class="bankInfoDiv_item_title_split"></div>
+        </div>
+        <div class="bankInfoDiv_item_input">
+            <input type="tel" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') "
+                id="bankInfoDiv_reBankNum" placeholder="请重复银行卡卡号" class="bankInfoDiv_item_input_controls" />
+        </div>
+        <div class="bankInfoDiv_item_ask"></div>
+    </div>
+    <div class="bankInfoDiv_line"></div>
+    <div class="bankInfoDiv_item">
+        <div class="bankInfoDiv_item_title">
+            <div class="bankInfoDiv_item_title_text">支行信息</div>
+            <div class="bankInfoDiv_item_title_split"></div>
+        </div>
+        <div class="bankInfoDiv_item_input">
+            <input type="text" id="bankInfoDiv_bankChild" placeholder="请填写支行信息" class="bankInfoDiv_item_input_controls" />
+        </div>
+        <div class="bankInfoDiv_item_ask"></div>
+    </div>
+    <div class="bankInfoDiv_line"></div>
+    <div style="height: 20px"></div>
+    <div id="bankInfoDiv_OK">提 交</div>
+</div>

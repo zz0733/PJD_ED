@@ -1,0 +1,91 @@
+<div class="registerDiv_content_item">
+    <div class="registerDiv_content_item_content">
+        <div style="display: flex;justify-content: center;align-items: center">
+            <img id="reg_username_img" src="pic/themeMain/username.png" width="20px" />
+            <div style="width: 10px"></div>
+            <div class="registerDiv_content_text">账号</div>
+            <div class="registerDiv_content_line_split"></div>
+        </div>
+        <div>
+            <input type="url" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" class="registerDiv_content_input" placeholder="6-18位字母或数字的组合"
+                value="" id="registerDiv_username" />
+        </div>
+    </div>
+    <div class="registerDiv_line"></div>
+</div>
+<div style="height: 20px"></div>
+<div class="registerDiv_content_item">
+    <div class="registerDiv_content_item_content">
+        <div style="display: flex;justify-content: center;align-items: center">
+            <img id="reg_password_img" src="pic/themeMain/sn.png" width="20px" />
+            <div style="width: 10px"></div>
+            <div class="registerDiv_content_text">密码</div>
+            <div class="registerDiv_content_line_split"></div>
+        </div>
+        <div>
+            <input type="password" id="registerDiv_userSN" class="registerDiv_content_input" placeholder="8-18位大小写字母和数字组合" value="" />
+        </div>
+    </div>
+    <div class="registerDiv_line"></div>
+</div>
+<div style="height: 20px"></div>
+<div class="registerDiv_content_item">
+    <div class="registerDiv_content_item_content">
+        <div style="display: flex;justify-content: center;align-items: center">
+            <img id="reg_password_reset_img" src="pic/themeMain/sn.png" width="20px" />
+            <div style="width: 10px"></div>
+            <div class="registerDiv_content_text">重复密码</div>
+            <div class="registerDiv_content_line_split"></div>
+        </div>
+        <div>
+            <input type="password" id="registerDiv_userSN_again" class="registerDiv_content_input" placeholder="8-18位大小写字母和数字组合" value=""
+            />
+        </div>
+    </div>
+    <div class="registerDiv_line"></div>
+</div>
+<div id="reg_recommend_line_id" style="height: 20px"></div>
+<div id="reg_recommend_item_id" class="registerDiv_content_item">
+    <div class="registerDiv_content_item_content">
+        <div style="display: flex;justify-content: center;align-items: center">
+            <img id="reg_recommend_img" src="pic/themeMain/recommend.png" width="20px" />
+            <div style="width: 10px"></div>
+            <div class="registerDiv_content_text">推荐码</div>
+            <div class="registerDiv_content_line_split"></div>
+        </div>
+        <div>
+            <input type="email" id="registerDiv_recommend" class="registerDiv_content_input" placeholder="请输入推荐码" value="" />
+        </div>
+    </div>
+    <div class="registerDiv_line"></div>
+</div>
+<div style="height: 20px"></div>
+<div class="registerDiv_content_item">
+    <div class="registerDiv_content_item_content">
+        <div style="display: flex;justify-content: center;align-items: center">
+            <img id="reg_valid_img" src="pic/themeMain/valid.png" width="20px" />
+            <div style="width: 10px"></div>
+            <div class="registerDiv_content_text">验证码</div>
+            <div class="registerDiv_content_line_split"></div>
+        </div>
+        <div id="registerDiv_vaildInputClass" style="display: flex;justify-content: center;align-items: center">
+            <input id="registerDiv_content_valid_input" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" type="email" class="registerDiv_content_valid"
+                placeholder="请输入验证码" value="" />
+            <img id="validImg" src="" width="60px" />
+        </div>
+    </div>
+    <div class="registerDiv_line"></div>
+</div>
+<div style="height: 20px"></div>
+<div style="display: flex;justify-content: center;align-items: center" class="registerDiv_content_agreement">
+    <input id="registerDiv_content_agree" type="checkbox" /> 同意“
+    <img src="pic/XPJ_1.png" width="35px" />”所有
+    <div id="registerDiv_content_agreement_1">
+        <u>规则与条款</u>
+    </div> 及
+    <div id="registerDiv_content_agreement_2">
+        <u>隐私权政策</u>
+    </div>
+</div>
+<div style="height: 10px"></div>
+<div id="registerDiv_content_sure_btn" class="registerDiv_content_sure">立即注册</div>

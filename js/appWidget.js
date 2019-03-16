@@ -1798,6 +1798,45 @@ function tPage(pageName, pageUrl, pageContentId, successFun, errorFun) {
         myLoadingSpinner.spin(document.getElementById(pageId + "_loading"));
     }
 }
+function LoadHTML(pageUrl, pageContentId, successFun, errorFun) {
+    var pageObj;
+    var loading = new Spinner({ color: 'white' });
+    init();
+    function init() {
+        pageObj = $("#" + pageContentId);
+        pageObj.html("<div id=\"" + pageContentId + "_loading\" ></div>");
+        $("#" + pageContentId + "_loading").css({
+            "width": "100%",
+            "display": "flex",
+            "justify-content": "center",
+            "align-items": "center",
+            "padding": "10px",
+            "box-sizing": "border-box"
+        });
+    }
+    this.load = function () {
+        loadPage();
+    }
+    function loadPage() {
+        showLoading();
+        requestAjaxGet(pageUrl, function (jsonObj) {
+            closeLoading();
+            pageObj.html(jsonObj);
+            if (successFun != null) successFun();
+        }, function (error) {
+            closeLoading();
+            if (errorFun != null) errorFun();
+        });
+    }
+    function closeLoading() {
+        loading.spin();
+        $("#" + pageContentId + "_loading").css({ "display": "none" });
+    }
+    function showLoading() {
+        $("#" + pageContentId + "_loading").css({ "display": "block" });
+        loading.spin(o(pageContentId + "_loading"));
+    }
+}
 function tSelect(objId, listParentObjId, w, h, datas, selectFun, startFun) {
     var mObj = $("#" + objId);
     var mListObj;
@@ -4214,8 +4253,8 @@ function AppMake() {
                 }
             }
         }
-        if(imgTotal != 0){
-            if((imgTotal - 1) != flag){
+        if (imgTotal != 0) {
+            if ((imgTotal - 1) != flag) {
                 imgContent();
             }
         }
@@ -4685,7 +4724,7 @@ function RemoveT0UniqueEvent(id, type, tag) {
         }
     }
 }
-function addPageToHtml(id,handel) {
+function addPageToHtml(id, handel) {
     var rot = "<div id=\"" + id + "\" style=\"position:absolute;display:none\">[content]</div>";
     var top = "<div id=\"" + id + "_top\"></div>";
     var con = "<div id=\"" + id + "_content\"></div>";
