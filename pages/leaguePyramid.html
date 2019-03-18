@@ -163,7 +163,7 @@
     $(".league_commission_tone").css({ "color": mainColor });
     $("#leagueBannerImgBgId").attr("src", themPath + "JztBanner.jpg");
     var isType = null;
-	var mleaguePyLoadingFunObj = new leagueLoadingFun();
+    var mleaguePyLoadingFunObj = new leagueLoadingFun();
     function leagueLoadingFun() {
         this.show = function (type) {
             if (type == null) {
@@ -180,9 +180,8 @@
             mLeagueFunObj.reGet();
         }
     }
-    
     function leagueFun() {
-        var mAgentRankingObj = new agentRankingObj();
+        var mAgentRankingObj = new AgentRankingObj();
         var leagueDetailsFunObj = new leagueDetailsFun(); leagueDetailsFunObj.init();
         var doPerationObj = new DirectOperationFun(); doPerationObj.init();
         var proxyObj = new proxyFun(); proxyObj.init();
@@ -278,7 +277,7 @@
             var ms = "页面加载失败,请重试!";
             requestAjax("article/getArticleForList", "typeId=[1041]", function (jsonObj) {
                 var code = jsonObj["code"];
-                if (code != 0) { bindFedView("league_two", ms,layoutId); return; }
+                if (code != 0) { bindFedView("league_two", ms, layoutId); return; }
                 var result = jsonObj["result"];
                 if (result[0] != null) {
                     var list = JSON.parse(result[0]["content"]);
@@ -286,7 +285,7 @@
                 } else {
                     bindFedView("league_two", ms, layoutId);
                 }
-            }, function (error) { bindFedView("league_two", ms,layoutId); });
+            }, function (error) { bindFedView("league_two", ms, layoutId); });
         }
         this.requestComs = requestComs;
         this.reGet = function () {
@@ -294,7 +293,7 @@
             bindUndeList();
         }
         function loadRealNote() {
-            if(isType == null){
+            if (isType == null) {
                 topSelect(1);
             } else {
                 topSelect(isType);
@@ -903,7 +902,6 @@
             });
         }
     }
-
     function leagueDetailsFun() {
         var mPage = new Activity("leagueDetailsDiv", "下线会员详情");
         var mElanTab = new elandTab("leagueDetailsDiv_content", ["基本信息", "投注详情"]);
@@ -1116,7 +1114,7 @@
                 var val = times["list"][index]["value"];
                 dateE8.setDate(dateE8.getDate() - val);
                 startDate = dateE8.format("yyyy-MM-dd");
-                if(val == 1){
+                if (val == 1) {
                     endDate = startDate;
                 } else {
                     endDate = getTimeZoneE8(timeZone, new Date()).format("yyyy-MM-dd");
@@ -1125,7 +1123,6 @@
             });
         }
     }
-
     function DirectOperationFun() {
         var mPage = new Activity("agentCommsDiv", "直营业绩");
         var doPerationDetailObj = new DirectOperationDetailFun(); doPerationDetailObj.init();
@@ -1220,7 +1217,7 @@
                 { "title": "", "": "true", "width": "5%", "align": "center" },
             ];
             var mData = "start=" + startDate + "&end=" + endDate + "&childAgent=0&requestType=json";
-            if(mTable != null){
+            if (mTable != null) {
                 mTable.loadData(SERVER_ADD + "pyramidAgentRep/getPyramidAgentP0RepByDay", mData);
                 return;
             }
@@ -1234,15 +1231,15 @@
             mTable.itemClickFunction(function (datas) {
                 doPerationDetailObj.show(datas);
             });
-            mTable.setParseFunction(function (datas,mode) {
-                return parseGamesData(datas,mode);
+            mTable.setParseFunction(function (datas, mode) {
+                return parseGamesData(datas, mode);
             });
             mTable.loadData(SERVER_ADD + "pyramidAgentRep/getPyramidAgentP0RepByDay", mData);
-            function parseGamesData(gamesData,mode) {
+            function parseGamesData(gamesData, mode) {
                 var datas = new Array();
                 var objList = gamesData["result"]["list"];
                 var len = objList["length"];
-                if(mode){
+                if (mode) {
                     sum = 0;
                 }
                 for (var i = 0; i < len; i++) {
@@ -1264,7 +1261,6 @@
             }
         }
     }
-
     function DirectOperationDetailFun() {
         var mPage = new Activity("agentCommsDetailDiv", "直营详情");
         this.init = function () {
@@ -1326,7 +1322,6 @@
             }
         }
     }
-
     function proxyFun() {
         var mPage = new Activity("gamesDiv", "代理业绩");
         var proxyDetailObj = new proxyDetailFun(); proxyDetailObj.init();
@@ -1425,7 +1420,7 @@
                 { "title": "(代理)<br>贡献佣金", "code": "coms", "width": "19%", "align": "center" }
             ];
             var mData = "start=" + startDate + "&end=" + endDate + "&childAgent=0&requestType=json";
-            if(mTable != null){
+            if (mTable != null) {
                 mTable.loadData(SERVER_ADD + "pyramidAgentRep/getPyramidAgentP0RepByDay", mData);
                 return;
             }
@@ -1440,15 +1435,15 @@
             mTable.itemClickFunction(function (datas) {
                 proxyDetailObj.show(datas);
             });
-            mTable.setParseFunction(function (datas,mode) {
-                return parseGamesData(datas,mode);
+            mTable.setParseFunction(function (datas, mode) {
+                return parseGamesData(datas, mode);
             });
             mTable.loadData(SERVER_ADD + "pyramidAgentRep/getPyramidAgentP0RepByDay", mData);
-            function parseGamesData(gamesData,mode) {
+            function parseGamesData(gamesData, mode) {
                 var datas = new Array();
                 var objList = gamesData["result"]["list"];
                 var len = objList["length"];
-                if(mode){
+                if (mode) {
                     sum1 = 0;
                     sum2 = 0;
                 }
@@ -1474,7 +1469,6 @@
             }
         }
     }
-
     function proxyDetailFun() {
         var mPage = new Activity("gamesDetailDiv", "代理详情");
         this.init = function () {
@@ -1719,7 +1713,6 @@
             return isOk;
         }
     }
-
     function GrantRecordFun() {
         var mPage = new Activity("commGamesDiv", "拨款记录");
         var mElanTab = new elandTab("commGamesDiv_content", ["发出的", "收到的"]);

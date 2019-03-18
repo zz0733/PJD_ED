@@ -84,27 +84,27 @@ function PJDApp() {
     this.init = function () {
         PageFrameGenerating();
         AppMakeObj = new AppMake();
-        mCompleteInfoObj = new completeInfoObj();
-        mMoneyWindowObj = new moneyWindowObj(); mMoneyWindowObj.init();
-        mLoginObj = new loginObj(); mLoginObj.init();
-        mRegisterObj = new registerObj(); mRegisterObj.init();
-        mAgreementObj = new agreementObj(); mAgreementObj.init();
-        mInfoNameObj = new infoNameObj(); mInfoNameObj.init();
+        mCompleteInfoObj = new CompleteInfo();
+        mMoneyWindowObj = new FundsWindow(); mMoneyWindowObj.init();
+        mLoginObj = new LoginObj(); mLoginObj.init();
+        mRegisterObj = new RegisterObj(); mRegisterObj.init();
+        mAgreementObj = new Agreement(); mAgreementObj.init();
+        mInfoNameObj = new InfoName(); mInfoNameObj.init();
         mServiceObj = new PJDService(); mServiceObj.init();
-        mBankInfoObj = new bankInfoObj(); mBankInfoObj.init();
+        mBankInfoObj = new BankInfo(); mBankInfoObj.init();
         mNoticeObj = new NoticeObj(); mNoticeObj.init();
-        mMailDetailObj = new mailDetailObj(); mMailDetailObj.init();
-        mFeedbackObj = new feedbackObj(); mFeedbackObj.init();
-        mInterestObj = new interestObj(); mInterestObj.init();
-        mInterestbaoObj = new interestbaoObj(); mInterestbaoObj.init();
-        mluckyLpObj = new luckyLpObj(); mluckyLpObj.init();
-        mLuckyDrawObj = new luckyDrawObj(); mLuckyDrawObj.init();
+        mMailDetailObj = new MailDetail(); mMailDetailObj.init();
+        mFeedbackObj = new Feedback(); mFeedbackObj.init();
+        mInterestObj = new InterestObj(); mInterestObj.init();
+        mInterestbaoObj = new InterestBaoObj(); mInterestbaoObj.init();
+        mluckyLpObj = new LuckyLpObj(); mluckyLpObj.init();
+        mLuckyDrawObj = new LuckyDrawObj(); mLuckyDrawObj.init();
         mUpdateNickNameObj = new UpdateNickNameObj(); mUpdateNickNameObj.init();
-        minterestDetailObj = new interestDetailObj(); minterestDetailObj.init();
-        mincomeDetailsObj = new incomeDetailsObj(); mincomeDetailsObj.init();
-        mBuyInterestObj = new buyInterestObj(); mBuyInterestObj.init();
-        mPasswordInputObj = new passwordInputObj(); mPasswordInputObj.init();
-        mMoneyrecordObj = new moneyrecordObj(); mMoneyrecordObj.init();
+        minterestDetailObj = new InterestDetailObj(); minterestDetailObj.init();
+        mincomeDetailsObj = new IncomeDetailsObj(); mincomeDetailsObj.init();
+        mBuyInterestObj = new BuyInterestObj(); mBuyInterestObj.init();
+        mPasswordInputObj = new PasswordInputObj(); mPasswordInputObj.init();
+        mMoneyrecordObj = new FundsRecord(); mMoneyrecordObj.init();
         mBetrecordObj = new betrecordObj(); mBetrecordObj.init();
         mBetrecordLmgObj = new betrecordLmgObj(); mBetrecordLmgObj.init();
         mBetLmgRemakeObj = new betLmgRemakeObj(); mBetLmgRemakeObj.init();
@@ -118,22 +118,22 @@ function PJDApp() {
         mBetrecordJPNNObj = new betrecordJPNNObj(); mBetrecordJPNNObj.init();
         mBetJPNNRemakeObj = new betJPNNRemakeObj(); mBetJPNNRemakeObj.init();
         MGameTryReg = new GameTryReg(); MGameTryReg.init();
-        mDiscountObj = new discountObj(); mDiscountObj.init();
-        mFavourableObj = new favourableObj(); mFavourableObj.init();
-        mAgentObj = new agentObj(); mAgentObj.init();
-        mAccountSafeObj = new accountSafeObj(); mAccountSafeObj.init();
-        mAskObj = new askObj(); mAskObj.init();
-        mAboutObj = new aboutObj(); mAboutObj.init();
-        mPyramidObj = new pyramidObj(); mPyramidObj.init();
-        mResponsibilityObj = new responsibilityObj(); mResponsibilityObj.init();
-        mIncomeOnlineObj = new incomeOnlineObj(); mIncomeOnlineObj.init();
-        mIncomeOfflineObj = new incomeOfflineObj(); mIncomeOfflineObj.init();
-        mDrawFeeObj = new drawFeeObj(); mDrawFeeObj.init();
-        mDepositFeeObj = new depositFeeObj(); mDepositFeeObj.init();
-        mLeagueAgreementObj = new leagueAgreementObj(); mLeagueAgreementObj.init();
-        mLeagueContentObj = new leagueContentObj(); mLeagueContentObj.init();
-        mAgentQrCodeObj = new agentQrCodeObj(); mAgentQrCodeObj.init();
-        mAvatarObj = new avatarObj(); mAvatarObj.init();
+        mDiscountObj = new DiscountObj(); mDiscountObj.init();
+        mFavourableObj = new FavourableObj(); mFavourableObj.init();
+        mAgentObj = new AgentObj(); mAgentObj.init();
+        mAccountSafeObj = new AccountSafe(); mAccountSafeObj.init();
+        mAskObj = new AskObj(); mAskObj.init();
+        mAboutObj = new AboutObj(); mAboutObj.init();
+        mPyramidObj = new PyramidObj(); mPyramidObj.init();
+        mResponsibilityObj = new ResponsibilityObj(); mResponsibilityObj.init();
+        mIncomeOnlineObj = new IncomeOnline(); mIncomeOnlineObj.init();
+        mIncomeOfflineObj = new IncomeOffline(); mIncomeOfflineObj.init();
+        mDrawFeeObj = new DrawFee(); mDrawFeeObj.init();
+        mDepositFeeObj = new DepositFee(); mDepositFeeObj.init();
+        mLeagueAgreementObj = new LeagueAgreement(); mLeagueAgreementObj.init();
+        mLeagueContentObj = new LeagueContent(); mLeagueContentObj.init();
+        mAgentQrCodeObj = new AgentQrCode(); mAgentQrCodeObj.init();
+        mAvatarObj = new UseAvatar(); mAvatarObj.init();
         MKyObj = new KY_ED(); MKyObj.init();
         MGmObj = new GM_ED(); MGmObj.init();
         getAppVersion();
@@ -488,7 +488,7 @@ function PJDApp() {
         }
     }
     function menuComingContent() {
-        var recObj = new DepositBindViewObj("comingDiv"); recObj.init();
+        var recObj = new DepositBindView("comingDiv"); recObj.init();
         setStyle();
         this.show = function () {
             if (userInfo["complete"] == 1) {
@@ -551,7 +551,7 @@ function PJDApp() {
             });
             setTopTitle("我的");
             if (isLogin()) {
-                refreshMoney();
+                RefreshFunds();
             } else {
                 $("#my_money_main").html("--");
                 $("#my_money_Interest").html("--");
@@ -603,7 +603,7 @@ function PJDApp() {
 
             if (moneyCanSee) {
                 moneyEyeImg.attr("src", themPath + "m_eye_close.png");
-                refreshMoney();
+                RefreshFunds();
             } else {
                 moneyEyeImg.attr("src", themPath + "m_eye_open.png");
                 moneyMain.html("**********");
@@ -750,7 +750,7 @@ function PJDApp() {
                     $("#m_refresh_btn").transition({
                         rotate: "360deg"
                     }, "slow", resetRefreshDeg);
-                    var mUserObj = new userObj();
+                    var mUserObj = new UserObj();
                     mUserObj.getMoneyBag();
                 } else {
                     myPJDApp.showLogin();
@@ -1005,40 +1005,6 @@ function PJDApp() {
         LoadLastPlay();
         setSelectMenu(1);
         $("#mainDiv").animate({ "opacity": 1.0 }, "slow");
-    }
-    function h5DownloadCheck() {
-        if (!isInApp()) {
-            $("#accountSafeDiv_content_signPwd_btn").css({ "display": "none", "width": "0px" });
-            $("#accountSafeDiv_content_signPwd_line").css({ "display": "none", "width": "0px" });
-            $("#m_menu3_item_btn_signPwd").css({ "display": "none" });
-            $("#alBtnStyle").css({ "width": "25%" });
-            checkIsAndroid();
-            setDonwLoadLink($("#h5AppDownloadA"));
-            setDonwLoadLink($("#registerSuccessDownloadA"));
-            setDonwLoadLink($("#roadAppDwonloadLink"));
-            if (operatorId != null) {
-                checkOperatorId(operatorId);
-            } else {
-                requestAjax("operator/isAgentDomain", "", function (jsonObj) {
-                    operatorId = jsonObj.result;
-                    checkOperatorId(operatorId);
-                }, null);
-            }
-        }
-        function setDonwLoadLink(obj) {
-            if (isAndroidFlag) {
-                obj.attr("href", "install/install.html");
-            } else {
-                obj.attr("href", "install/install.html");
-            }
-        }
-        function checkOperatorId(operatorId) {
-            if (operatorId == 0) {
-                $("#h5AppDownload").css({ "display": "block" });
-                $("#roadAppDwonloadDiv").css({ "display": "flex" });
-                $("#registerSuccessDownload").css({ "display": "flex" });
-            }
-        }
     }
     function PageFrameGenerating() { // 界面框架生成
         addPageToHtml("feedbackInfoDiv");
@@ -1356,14 +1322,48 @@ function PJDApp() {
         }
         getLastGame = getLocalStorage("lastGameId").split("-");
         if (getLastGame[0] == "nn") {
-            $("#menuGameImg").attr("src", "pic/themeMain/NN.png");
+            $("#menuGameImg").attr("src", "pic/themeMain/LAST_NN.png");
         } else if (getLastGame[0] == "ky") {
-            $("#menuGameImg").attr("src", "pic/themeMain/submenu_real_ky.png");
+            $("#menuGameImg").attr("src", "pic/themeMain/LAST_KY.png");
         } else if (getLastGame[0] == "gm") {
-            $("#menuGameImg").attr("src", "pic/themeMain/submenu_real_gm.png");
+            $("#menuGameImg").attr("src", "pic/themeMain/LAST_GM.png");
         } else {
             saveLocalStorage("lastGameId", "nn-JPNN");
-            $("#menuGameImg").attr("src", "pic/themeMain/NN.png");
+            $("#menuGameImg").attr("src", "pic/themeMain/LAST_NN.png");
+        }
+    }
+    function h5DownloadCheck() {
+        if (!isInApp()) {
+            $("#accountSafeDiv_content_signPwd_btn").css({ "display": "none", "width": "0px" });
+            $("#accountSafeDiv_content_signPwd_line").css({ "display": "none", "width": "0px" });
+            $("#m_menu3_item_btn_signPwd").css({ "display": "none" });
+            $("#alBtnStyle").css({ "width": "25%" });
+            checkIsAndroid();
+            setDonwLoadLink($("#h5AppDownloadA"));
+            setDonwLoadLink($("#registerSuccessDownloadA"));
+            setDonwLoadLink($("#roadAppDwonloadLink"));
+            if (operatorId != null) {
+                checkOperatorId(operatorId);
+            } else {
+                requestAjax("operator/isAgentDomain", "", function (jsonObj) {
+                    operatorId = jsonObj.result;
+                    checkOperatorId(operatorId);
+                }, null);
+            }
+        }
+        function setDonwLoadLink(obj) {
+            if (isAndroidFlag) {
+                obj.attr("href", "install/install.html");
+            } else {
+                obj.attr("href", "install/install.html");
+            }
+        }
+        function checkOperatorId(operatorId) {
+            if (operatorId == 0) {
+                $("#h5AppDownload").css({ "display": "block" });
+                $("#roadAppDwonloadDiv").css({ "display": "flex" });
+                $("#registerSuccessDownload").css({ "display": "flex" });
+            }
         }
     }
 }
@@ -1502,28 +1502,8 @@ function PJDService() {
         $("#MEIQIA-PANEL-HOLDER").css({ "opacity": "0.0" });
     }
 }
-function getAppVersion() {
-    requestAjax("dt/getList?table=dt_app_version", "requestType=json", function (jsonObj) {
-        if (jsonObj["code"] != 0) return;
-        var list = jsonObj["result"];
-        var len = list.length;
-        for (var i = 0; i < len; i++) {
-            var item = list[i];
-            var type = item.type;
-            if (type == "ios") {
-                ipaInstallUrl = item.file_url;
-            }
-            if (type == "apk") {
-                appDownloadUrl = item.file_url;
-            }
-        }
-        myPJDApp.h5DownloadCheck();
-    });
-}
-function agentRankingObj() {
-    this.getAgentRankingData = function (okFun) {
-        getAgentRankingData(okFun);
-    }
+function AgentRankingObj() {
+    this.getAgentRankingData = getAgentRankingData;
     function getAgentRankingData(okFun) {
         var dataObj = new Object();
         dataObj["requestType"] = "json";
@@ -1535,32 +1515,7 @@ function agentRankingObj() {
         }, null);
     }
 }
-function appLogout(time) {
-    focusHiddenBox();
-    userId = "";
-    userInfo = null;
-    bankInfo = null;
-    userMoney = 0.00;
-    userMoneyInterest = 0.00;
-    userMoneyBag = null;
-    if (time == null) {
-        setTimeout(reloadPage, 3000);
-    } else if (time > 0) {
-        setTimeout(reloadPage, time);
-    } else {
-        reloadPage();
-    }
-    function reloadPage() {
-        if (appRootDomain != null) {
-            console.log("appLogoutByAppRootDomain:" + appRootDomain);
-            location.href = "app.html?domain=" + appRootDomain;
-        } else {
-            console.log("appLogoutByAppRootDomain:null");
-            location.href = "app.html";
-        }
-    }
-}
-function luckyLpObj() {
+function LuckyLpObj() {
     var mPage = new Activity("luckyLpDiv", "幸运抽奖");
     var isInit = false;
     this.init = function () {
@@ -1585,7 +1540,7 @@ function luckyLpObj() {
         }
     }
 }
-function luckyDrawObj() {
+function LuckyDrawObj() {
     var mPage = new Activity("luckyDrawDiv", "幸运抽奖");
     var isInit = false;
     this.init = function () {
@@ -1671,7 +1626,7 @@ function NoticeObj() {
         }
     }
 }
-function mailDetailObj() {
+function MailDetail() {
     var mPage = new Activity("mailDetailDiv", "公告详情");
     var isInit = false;
     this.init = function () {
@@ -1697,7 +1652,7 @@ function mailDetailObj() {
         }
     }
 }
-function interestObj() {
+function InterestObj() {
     var mPage = new Activity("interestDiv", "利息账户");
     var isInit = false;
     this.init = function () {
@@ -1722,7 +1677,7 @@ function interestObj() {
         }
     }
 }
-function interestbaoObj() {
+function InterestBaoObj() {
     var mPage = new Activity("interestbaoDiv", "利息宝");
     var isInit = false;
     this.init = function () {
@@ -1744,7 +1699,7 @@ function interestbaoObj() {
         }
     }
 }
-function interestDetailObj() {
+function InterestDetailObj() {
     var mPage = new Activity("interestDetailDiv", "利息记录详情");
     var isInit = false;
     this.init = function () {
@@ -1767,7 +1722,7 @@ function interestDetailObj() {
         }
     }
 }
-function incomeDetailsObj() {
+function IncomeDetailsObj() {
     var mPage = new Activity("incomeDetailsDiv", "收益详情");
     var isInit = false;
     this.init = function () {
@@ -1789,7 +1744,7 @@ function incomeDetailsObj() {
         }
     }
 }
-function buyInterestObj() {
+function BuyInterestObj() {
     var mPage = new Activity("buyInterestDiv", "购买利息产品");
 
     this.init = function () {
@@ -1807,7 +1762,7 @@ function buyInterestObj() {
         page.open();
     }
 }
-function passwordInputObj() {
+function PasswordInputObj() {
     var mPage = new Activity("passwordInputDiv", "输入资金密码");
 
     this.init = function () {
@@ -1825,7 +1780,7 @@ function passwordInputObj() {
         page.open();
     }
 }
-function discountObj() {
+function DiscountObj() {
     var mPage = new Activity("discountDiv", "优惠管理");
     var datas = new Array();
     this.init = function () {
@@ -1969,7 +1924,7 @@ function discountObj() {
         }
     }
 }
-function favourableObj() {
+function FavourableObj() {
     var mPage = new Activity("favourableDiv", "优惠详情");
 
     this.init = function () {
@@ -1993,7 +1948,7 @@ function favourableObj() {
         page.open();
     }
 }
-function agentObj() {
+function AgentObj() {
     var mPage = new Activity("agentDiv", "联盟合作");
     var isOpenLeagueCom = false;
     var isOpenLeagueWc = false;
@@ -2033,7 +1988,7 @@ function agentObj() {
     function loadCommission(isSelect) {
         mPage.setTitle("联盟合作");
         if (isOpenLeagueCom && !isOpenLeagueWc && !isOpenLeaguePm) {
-            mLeagueFunObj.reGet();
+            mleagueLoadingFunObj.returnGet();
             return;
         }
         var page = new tPage("league", "pages/leagueCommission.html", "agentDiv_content", function () {
@@ -2069,7 +2024,7 @@ function agentObj() {
         page.open();
     }
 }
-function askObj() {
+function AskObj() {
     var mPage = new Activity("askDiv", "常见问题");
     var isLoad = false;
     this.init = function () {
@@ -2096,7 +2051,7 @@ function askObj() {
         }, null);
     }
 }
-function aboutObj() {
+function AboutObj() {
     var mPage = new Activity("aboutDiv", "关于我们");
     var isLoad = false;
     this.init = function () {
@@ -2122,7 +2077,7 @@ function aboutObj() {
         }, null);
     }
 }
-function pyramidObj() {
+function PyramidObj() {
     var mPage = new Activity("pyramidDiv", "金字塔介绍");
     var isLoad = false;
     this.init = function () {
@@ -2148,7 +2103,7 @@ function pyramidObj() {
         }, null);
     }
 }
-function responsibilityObj() {
+function ResponsibilityObj() {
     var mPage = new Activity("responsibilityDiv", "博彩责任");
     var isLoad = false;
     this.init = function () {
@@ -2174,6 +2129,7 @@ function responsibilityObj() {
         }, null);
     }
 }
+// 方法
 function openService() {
     myPJDApp.showService();
 }
@@ -2299,10 +2255,6 @@ function getContent(key, contentId, okFun, errorFun) {
         }
     });
 }
-function doubleValue(val) {
-    if (val == null || isNaN(val)) { return parseFloat(0); }
-    return parseFloat(parseFloat(val).toFixed(2));
-}
 function singnPwdOpen() {
     setBtnOnTouchEvent($("#accountSN_touchLock"), function () {
         if (isSetTouchLock()) {
@@ -2341,6 +2293,49 @@ function singnPwdOpen() {
         mIndexPopWindowObj.show(1, obj, "none");
     }, mainColorDeep, mainColor, null);
 }
+function appLogout(time) {
+    focusHiddenBox();
+    userId = "";
+    userInfo = null;
+    bankInfo = null;
+    userMoney = 0.00;
+    userMoneyInterest = 0.00;
+    userMoneyBag = null;
+    if (time == null) {
+        setTimeout(reloadPage, 3000);
+    } else if (time > 0) {
+        setTimeout(reloadPage, time);
+    } else {
+        reloadPage();
+    }
+    function reloadPage() {
+        if (appRootDomain != null) {
+            console.log("appLogoutByAppRootDomain:" + appRootDomain);
+            location.href = "app.html?domain=" + appRootDomain;
+        } else {
+            console.log("appLogoutByAppRootDomain:null");
+            location.href = "app.html";
+        }
+    }
+}
+function getAppVersion() {
+    requestAjax("dt/getList?table=dt_app_version", "requestType=json", function (jsonObj) {
+        if (jsonObj["code"] != 0) return;
+        var list = jsonObj["result"];
+        var len = list["length"];
+        for (var i = 0; i < len; i++) {
+            var item = list[i];
+            var type = item["type"];
+            if (type == "ios") {
+                ipaInstallUrl = item.file_url;
+            }
+            if (type == "apk") {
+                appDownloadUrl = item.file_url;
+            }
+        }
+        myPJDApp.h5DownloadCheck();
+    });
+}
 function getResettingSign() {
     var isHiden = getLocalStorage("touckLock_IsHiddenLine");
     if (isHiden == 1) { isHiden = true } else { isHiden = false; }
@@ -2368,6 +2363,10 @@ function nnAgentAlert() {
     obj["name"] = "pages/nnAgentAlert.html";
     obj["addCompete"] = true;
     mIndexPopWindowObj.show(6, obj, "none");
+}
+function doubleValue(val) {
+    if (val == null || isNaN(val)) { return parseFloat(0); }
+    return parseFloat(parseFloat(val).toFixed(2));
 }
 var toolbarTopColor = "#0f0f0f";
 var toolbarTopColorDK = "#212121";

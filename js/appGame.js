@@ -166,7 +166,7 @@ function JPNN_ED() {
     function enterTable() {
         if (isBack) { return; }
         saveLocalStorage("lastGameId", "nn-JPNN");
-        $("#menuGameImg").attr("src", "pic/themeMain/NN.png");
+        $("#menuGameImg").attr("src", "pic/themeMain/LAST_NN.png");
         isEnterTable = true;
         var h = screenH - 0.5;
         // 框架
@@ -579,7 +579,7 @@ function KY_ED() {
     function openGame() {
         if (isBack) return;
         saveLocalStorage("lastGameId", "ky-" + kyKindId);
-        $("#menuGameImg").attr("src", "pic/themeMain/submenu_real_ky.png");
+        $("#menuGameImg").attr("src", "pic/themeMain/LAST_KY.png");
         var kyResult = mGameAPI.getAPILoginResult("ky");
         $("#kyDiv_content_iframe").attr("src", kyResult.d.url);
         appLogObj.addAccessAPI("gameApi/enter");
@@ -815,7 +815,7 @@ function GM_ED() {
     function openGame() {
         if (isBack) return;
         saveLocalStorage("lastGameId", "gm-" + gmKindId);
-        $("#menuGameImg").attr("src", "pic/themeMain/submenu_real_gm.png");
+        $("#menuGameImg").attr("src", "pic/themeMain/LAST_GM.png");
         var gmResult = mGameAPI.getAPILoginResult("gm");
         $("#gmDiv_content_iframe").attr("src", gmResult["data"]["fullUrl"]);
         if (isLogin()) {

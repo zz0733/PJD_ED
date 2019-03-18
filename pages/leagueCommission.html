@@ -87,7 +87,9 @@
 				<div style="flex-shrink: 0;flex-direction: column;justify-content: flex-start;align-items: center;display: flex">
 					<div style="height: 20px"></div>
 					<div style="font-size: 14px;color: #cccccc;line-height: 150%;width: 90%;flex-shrink: 0">
-						<img src="pic/XPJ_1.png" width="40px" />提供业界最优质的合作伙伴计划！加入“<img src="pic/XPJ_1.png" width="40px" />”无需任何费用，只要您介绍会员到<img src="pic/XPJ_1.png" width="40px" />，就可以获得高达50%的丰厚利润。
+						<img src="pic/XPJ_1.png" width="40px" />提供业界最优质的合作伙伴计划！加入“
+						<img src="pic/XPJ_1.png" width="40px" />”无需任何费用，只要您介绍会员到
+						<img src="pic/XPJ_1.png" width="40px" />，就可以获得高达50%的丰厚利润。
 					</div>
 					<div style="height: 40px"></div>
 					<div style="width: 100%;height: 200px;flex-shrink: 0;display: flex;justify-content: flex-start;align-items: center;flex-direction: column">
@@ -246,9 +248,10 @@
 	$("#leagueQrCodeImgId").attr("src", themPath + "leagueQrCode.png");
 	var isType = null;
 	var mleagueLoadingFunObj = new leagueLoadingFun();
-	function leagueLoadingFun(){
-        this.show = function (type) {
-			if(type == null){
+	function leagueLoadingFun() {
+		var mleagueFunObj = new leagueFun();
+		this.show = function (type) {
+			if (type == null) {
 				var mleagueFunObj = new leagueFun();
 				mleagueFunObj.init();
 			} else {
@@ -258,12 +261,11 @@
 			}
 		}
 		this.returnGet = function () {
-			var mleagueFunObj = new leagueFun();
-				mleagueFunObj.reGet();
+			mleagueFunObj.reGet();
 		}
 	}
 	function leagueFun() {
-		var mAgentRankingObj = new agentRankingObj();
+		var mAgentRankingObj = new AgentRankingObj();
 		var leagueDetailsFunObj = new leagueDetailsFun(); leagueDetailsFunObj.init();
 		var agentObj = new agentFun(); agentObj.init();
 		var gamesObj = new gamesFun(); gamesObj.init();
@@ -311,9 +313,9 @@
 			requestAjax("article/getArticleForList", "typeId=[1024,1025,1026]", function (jsonObj) {
 				var code = jsonObj["code"];
 				if (code != 0) {
-					bindFedView(rootIdOne, ms,rootIdOne);
-					bindFedView(rootIdTwo, ms,rootIdTwo);
-					bindFedView("league_two", ms,rootIdThree);
+					bindFedView(rootIdOne, ms, rootIdOne);
+					bindFedView(rootIdTwo, ms, rootIdTwo);
+					bindFedView("league_two", ms, rootIdThree);
 					return;
 				}
 				var result = jsonObj["result"];
@@ -333,9 +335,9 @@
 					}
 				}
 			}, function (error) {
-				bindFedView(rootIdOne, ms,rootIdOne);
-				bindFedView(rootIdTwo, ms,rootIdTwo);
-				bindFedView("league_two", ms,rootIdThree);
+				bindFedView(rootIdOne, ms, rootIdOne);
+				bindFedView(rootIdTwo, ms, rootIdTwo);
+				bindFedView("league_two", ms, rootIdThree);
 			});
 		}
 		this.reGet = function () {
@@ -365,8 +367,8 @@
 		}
 		function loadRealNote() {
 			mAgentRankingObj.getAgentRankingData(loadAgentRanking);
-			if(isType != null){
-				if(isNaN(isType)){
+			if (isType != null) {
+				if (isNaN(isType)) {
 					isType = isType.split("_");
 					topSelect(Number(isType[0]));
 					contentSelectByThree(Number(isType[1]));

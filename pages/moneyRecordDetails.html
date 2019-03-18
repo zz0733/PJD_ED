@@ -124,9 +124,8 @@
 
 <script language="javascript" type="text/javascript">
     setMrdStyle();
-    moneyRecordDetailsFun();
-
-    function moneyRecordDetailsFun() {
+    FundsRecordDetailsFun();
+    function FundsRecordDetailsFun() {
         var itemData = moneyRecordFunObj.getSelectItemData();
         var requestType = moneyRecordFunObj.getRequestType();
         var theTitle;
@@ -138,11 +137,11 @@
         var bankStr;
 
         if (requestType == "income") { // 存款
-            $("#moneyRecordDetails_cancel_2_Style").css({"display": "none"});
+            $("#moneyRecordDetails_cancel_2_Style").css({ "display": "none" });
             var infoObj = itemData.details;
-            
+
             theTitle = infoObj.dt.channel_id.name;
-            
+
             var status = infoObj.status;
             if (status == 1) {
                 status = "<font color=#CCCCCC>成功</font>";
@@ -153,14 +152,14 @@
             } else if (status == 10) {
                 status = "<font color=#CCCCCC>预下单</font>";
                 console.log(infoObj);
-                $("#moneyRecordDetails_cancel_2_Style").css({"display": ""});
+                $("#moneyRecordDetails_cancel_2_Style").css({ "display": "" });
                 setBtnOnTouchEvent($("#moneyRecordDetails_cancel_2_btn"), function (obj) {
                     mMsgBox.show("线下银行汇款", "您是否继续提交申请", function () {
-                        var mMoneyrecordsObj = new moneyrecordObj();mMoneyrecordsObj.init();
+                        var mMoneyrecordsObj = new moneyrecordObj(); mMoneyrecordsObj.init();
                         requestAjax("payOrder/confirmDepositOrder", "orderId=" + infoObj["id"], function (jsonObj) {
                             var obj = jsonObj["code"];
                             if (obj == 0) {
-                                $("#moneyRecordDetails_cancel_2_Style").css({"display": "none"});
+                                $("#moneyRecordDetails_cancel_2_Style").css({ "display": "none" });
                                 mMoneyrecordsObj.show();
                                 mToast.show("订单 " + infoObj["id"] + " 已提交成功,正等待系统处理!");
                             } else {
@@ -246,7 +245,7 @@
             $("#moneyRecordDetails_item_strTime").css({
                 "display": "none"
             });
-            $("#moneyRecordDetails_cancel_2_Style").css({"display":"none"});
+            $("#moneyRecordDetails_cancel_2_Style").css({ "display": "none" });
 
             amount = "<font color=" + lossFontColor + ">-" + doubleValue(infoObj.amount) + "</font>";
 
@@ -393,7 +392,7 @@
                 "display": "none"
             });
 
-            $("#moneyRecordDetails_cancel_2_Style").css({"display:":"none"});
+            $("#moneyRecordDetails_cancel_2_Style").css({ "display:": "none" });
         } else {
             var infoObj = itemData.details;
 
@@ -416,9 +415,9 @@
 
             timeStr = "<font color=#CCCCCC>" +
                 getTimeZoneE8(8, infoObj.order_time).format("yyyy-MM-dd hh:mm:ss") + "</font>";
-                
+
             var gameName = infoObj["dt"]["game_no"]["name"];
-            if(gameName != null && gameName != ""){
+            if (gameName != null && gameName != "") {
                 var theType = "<font color=#CCCCCC>" + infoObj.dt.pay_type_id.name + "(" + gameName + ")</font>";
             } else {
                 var theType = "<font color=#CCCCCC>" + infoObj.dt.pay_type_id.name + "</font>";
@@ -449,7 +448,7 @@
             $("#moneyRecordDetails_item_strTime").css({
                 "display": "none"
             });
-            $("#moneyRecordDetails_cancel_2_Style").css({"display:":"none"});
+            $("#moneyRecordDetails_cancel_2_Style").css({ "display:": "none" });
         }
 
         // bind1界面数据
@@ -463,7 +462,6 @@
         $("#moneyRecordDetails_id").html(theId);
         $("#moneyRecordDetails_bank").html(bankStr);
     }
-
     function setMrdStyle() {
         $("#moneyRecordDetails_cancel_btn").css({
             "border-radius": "20px",

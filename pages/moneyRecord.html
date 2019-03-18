@@ -22,11 +22,10 @@
 </div>
 
 <script language="javascript" type="text/javascript">
-    var moneyRecordFunObj = new moneyRecordListObj();
+    var moneyRecordFunObj = new FundsRecordList();
     moneyRecordFunObj.init();
-
-    function moneyRecordListObj() {
-        var mMoneyrecordDetailsObj = new moneyrecordDetailsObj();
+    function FundsRecordList() {
+        var mMoneyrecordDetailsObj = new FundsRecordDetails();
         var selectItemData = null;
         var mTable = null;
         var startData = getTimeZoneE8(8, (new Date())).format("yyyy-MM-dd");

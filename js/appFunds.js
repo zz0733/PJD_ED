@@ -1,5 +1,5 @@
-var onlinePayObj = new payObj();
-function payObj() {
+var onlinePayObj = new PayChannels();
+function PayChannels() {
     var resultList = new Array();
     var isGetPayChannel = false;
     this.isGetPayChannel = function () {
@@ -188,7 +188,7 @@ function payObj() {
         });
     }
 }
-function moneyrecordObj() {
+function FundsRecord() {
     var mPage = new Activity("moneyrecordDiv", "资金记录");
     var isInit = false;
     this.init = function () {
@@ -203,7 +203,7 @@ function moneyrecordObj() {
         }
     }
 }
-function moneyrecordDetailsObj() {
+function FundsRecordDetails() {
     var mPage = new Activity("moneyrecordDetailsDiv", "资金详情");
     var isInit = false;
     this.init = function () {
@@ -212,7 +212,7 @@ function moneyrecordDetailsObj() {
     this.show = function () {
         mPage.show();
         if (isInit) {
-            moneyRecordDetailsFun();
+            FundsRecordDetailsFun();
         } else {
             new tPage("moneyRecordDetails", "pages/moneyRecordDetails.html", "moneyrecordDetailsDiv_content", function () {
                 isInit = true;
@@ -220,7 +220,7 @@ function moneyrecordDetailsObj() {
         }
     }
 }
-function drawFeeObj() {
+function DrawFee() {
     var mPage = new Activity("drawFeeDiv", "提款");
     var isInit = false;
     this.init = function () {
@@ -250,9 +250,9 @@ function drawFeeObj() {
         mPage.hiddenFunds();
     }
 }
-function depositFeeObj() {
+function DepositFee() {
     var mPage = new Activity("depositFeeDiv", "存款");
-    var depositRecObj = new DepositBindViewObj("depositFeeDiv_content");
+    var depositRecObj = new DepositBindView("depositFeeDiv_content");
     this.init = function () {
         mPage.init();
         depositRecObj.init();
@@ -274,7 +274,7 @@ function depositFeeObj() {
         mPage.hiddenFunds();
     }
 }
-function moneyWindowObj() {
+function FundsWindow() {
     var rootId = "fundsWindowDiv";
     var obj = $("#" + rootId);
     var isShowFlag = false;
@@ -293,6 +293,8 @@ function moneyWindowObj() {
             this.unShow(); return;
         }
         myPJDApp.setJPNNAnimation(false);
+
+        obj.css({ "z-index": currentZIndex + 1 });
         obj.css({ "display": "flex" });
         isShowFlag = true;
     }
@@ -340,7 +342,7 @@ function moneyWindowObj() {
         }, mainBackColor, pageBgColor, null);
     }
 }
-function refreshMoney(elementID) {
+function RefreshFunds(elementID) {
     if (elementID != null) {
         $("#" + elementID).html(userMoney.toFixed(2));
     }
@@ -353,14 +355,14 @@ function refreshMoney(elementID) {
     $("#moneyShow_main_money").html(userMoney.toFixed(2));
     $("#moneyShow_interest_money").html(userMoneyInterest.toFixed(2));
 }
-function feedbackObj() {
+function Feedback() {
     var mPage = new Activity("feedbackDiv", "返水");
     var startData;
     var endData;
     var selectvalue;
     var requestTime = new Date();
     var select;
-    var mFeedbackInfoObj = new feedbackInfoObj();
+    var mFeedbackInfoObj = new FeedbackInfo();
 
     this.init = function () {
         mPage.init();
@@ -487,7 +489,7 @@ function feedbackObj() {
         }
     }
 }
-function feedbackInfoObj() {
+function FeedbackInfo() {
     var mPage = new Activity("feedbackInfoDiv", "返水详情");
     var itemData = null;
 
@@ -631,7 +633,7 @@ function feedbackInfoObj() {
         });
     }
 }
-function DepositBindViewObj(rootViewId) {
+function DepositBindView(rootViewId) {
     var rootId;
     var rootObj;
     var channelList;
@@ -1257,7 +1259,7 @@ function DepositBindViewObj(rootViewId) {
         return isValid;
     }
 }
-function incomeOnlineObj() {
+function IncomeOnline() {
     var mPage = new Activity("incomeOnlineDiv", "在线存款");
     var mLoader = new Spinner({ "color": "white" });
     var payOrderInfo = null;
@@ -1419,10 +1421,10 @@ function incomeOnlineObj() {
         }
     }
 }
-function incomeOfflineObj() {
+function IncomeOffline() {
     var rootId = "incomeOfflineDiv";
     var mPage = new Activity(rootId, "线下存款");
-    var mIncomeOfflineOKObj = new incomeOfflineOKObj();
+    var mIncomeOfflineOKObj = new IncomeOfflineOK();
     var contentObj = $("#" + rootId + "_content");
     var bankObj;
     var item;
@@ -1938,7 +1940,7 @@ function incomeOfflineObj() {
         }, "#323C4D", "", null);
     }
 }
-function incomeOfflineOKObj() {
+function IncomeOfflineOK() {
     var mPage = new Activity("incomeOfflineSuccessDiv", "存款成功");
     this.init = function () {
         mPage.init();

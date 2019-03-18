@@ -1,4 +1,4 @@
-function registerObj() {
+function RegisterObj() {
     var mPage = new Activity("registerDiv", "注册");
     var isBack = true;
     var username = "";
@@ -335,7 +335,7 @@ function registerObj() {
         });
     }
 }
-function loginObj() {
+function LoginObj() {
     var mPage = new Activity("loginDiv", "登录");
     var openTagObj;
     var isAutoLogIn = false; // 消费型变量,使用完后需要置为默认值
@@ -579,7 +579,7 @@ function loginObj() {
         }
     }
 }
-function userObj() {
+function UserObj() {
     this.getBankInfo = function (callback) {
         requestAjax("userBank/getUserBanks", "requestType=json", function (jsonObj) {
             if (jsonObj["code"] != 0) { return; }
@@ -610,7 +610,7 @@ function userObj() {
                     default: break;
                 }
             }
-            refreshMoney();
+            RefreshFunds();
         }, null);
     }
     this.getLoginInfo = function (isLoading) {
@@ -663,7 +663,7 @@ function userObj() {
         });
     }
 }
-function avatarObj() {
+function UseAvatar() {
     var currentSelectID = "";
     var isShow = false;
     var mPage = new Activity("avatarDiv", "选择头像");
@@ -799,7 +799,7 @@ function avatarObj() {
         });
     }
 }
-function agreementObj() {
+function Agreement() {
     var mPage = new Activity("agreementDiv", "条款与隐私");
     var isLoadArgeement = false;
     var isLoadDeclare = false;
@@ -924,7 +924,7 @@ function agreementObj() {
         }, null);
     }
 }
-function leagueAgreementObj() {
+function LeagueAgreement() {
     var mPage = new Activity("leagueAgreementDiv", "申请合作人");
     var isInit = false;
     this.init = function () {
@@ -952,7 +952,7 @@ function leagueAgreementObj() {
         page.open();
     }
 }
-function leagueContentObj() {
+function LeagueContent() {
     var mPage = new Activity("leagueContentDiv", "联盟合作");
     this.init = function () {
         mPage.init();
@@ -976,7 +976,7 @@ function leagueContentObj() {
         page.open();
     }
 }
-function agentQrCodeObj() {
+function AgentQrCode() {
     var mPage = new Activity("agentQrCodeDiv", "专属二维码");
     this.init = function () {
         mPage.init();
@@ -1006,7 +1006,7 @@ function agentQrCodeObj() {
         }
     }
 }
-function completeInfoObj() {
+function CompleteInfo() {
     var zIndexFrom = zIndexMax - 10;
     var releaseTheme = null;
     var isPageLoadOK = false;
@@ -1134,7 +1134,7 @@ function completeInfoObj() {
         }
     }
 }
-function infoNameObj() {
+function InfoName() {
     var mPage = new Activity("infoNameDiv", "完善资料");
     var releaseTheme = null;
     var zIndexFrom = zIndexMax - 5;
@@ -1352,7 +1352,7 @@ function infoNameObj() {
         });
     }
 }
-function bankInfoObj() {
+function BankInfo() {
     var mPage = new Activity("bankInfoDiv", "银行卡信息");
     var selectBankIndex = -1;
     var releaseTheme = null;
@@ -1530,7 +1530,7 @@ function bankInfoObj() {
         $("#bankInfoDiv_realName").val(realName);
     }
 }
-function accountSafeObj() {
+function AccountSafe() {
     var mPage = new Activity("accountSafeDiv", "账号与安全");
     var eventTheme = "accountSafe_infoComplete_theme";
     var eventIndex;

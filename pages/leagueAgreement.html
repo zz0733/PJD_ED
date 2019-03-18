@@ -5,7 +5,7 @@
     </div>
     <div id="leagueAgreementContent" style="background-color: #2a2a2a;overflow-x: hidden;overflow-y: auto;width: 90%;font-size: 12px;color: #cccccc">
         <div id="agreementOne" style="display: none;padding: 10px;box-sizing: border-box">
-            <h2 style="color: #ff5e1b">联盟合作规则与条款</h1>
+            <h2 style="color: #cca352">联盟合作规则与条款</h1>
                 <p name="p">这份合约书中包括了{{ message }}及各机构(联盟合作伙伴)于{{ message }}联盟合作计划中须遵守的条约，在合约书中“会员”是指在{{ message }}新开户及存入款项的客户。
                     <br>
                     <br> 1. 登记申请联盟合作伙伴计划
@@ -398,10 +398,6 @@
 </div>
 
 <script>
-
-    $(".PJDCommBtn").css({
-        "background-color": mainColor
-    })
     var aboutAppName = "新葡京";
     var pid = document.getElementsByName("p");
     for (var i = 0; i < pid.length; i++) {
@@ -413,12 +409,10 @@
             }
         })
     }
-
     $("h2").css({ "color": mainColor });
     $("h3").css({ "color": mainColor });
     $("#agent_table_1_img_id").attr("src", themPath + "agent_table_1.png");
     $("#agent_table_2_img_id").attr("src", themPath + "leagueTableCommsFormula.png");
-
     var mLeagueAgreementFun = new leagueAgreementFun();
     mLeagueAgreementFun.init();
     function leagueAgreementFun() {

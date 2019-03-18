@@ -208,7 +208,6 @@ function Activity(preFix, title) {
         currentZIndex = currentZIndex + 1;
         page.css({ "display": "block", "z-index": currentZIndex });
         page.transition({ x: -w }, "fast");
-        $("#moneyShowDiv").css({ "z-index": currentZIndex + 1 });
         mTop.checkMoneyShow();
     }
     this.onResume = function (handel) {
