@@ -1000,11 +1000,11 @@ function GameAPI() {
         mAPIStatusList = new Object();
         mAPIStatusList["nn"] = 0;
     }
-    this.loginToAPI = function (gameType, isTest, callback, errorCallBack) {
-        requestLogin(gameType, isTest, callback, errorCallBack);
+    this.loginToAPI = function (gameType, isTest, callback, errorCallBack, kindId) {
+        requestLogin(gameType, isTest, callback, errorCallBack, kindId);
     }
-    this.tryPlayLoginToApi = function (gameType, vcode, callback, errorCallBack) {
-        requestTryPlay(gameType, vcode, callback, errorCallBack);
+    this.tryPlayLoginToApi = function (gameType, vcode, callback, errorCallBack, kindId) {
+        requestTryPlay(gameType, vcode, callback, errorCallBack, kindId);
     }
     this.getAPILoginResult = function (gameType) {
         return mLoginResultList[gameType];
@@ -1028,8 +1028,15 @@ function GameAPI() {
     this.setIsTryPlay = function (b) {
         isTryPlay = b;
     }
-    function requestLogin(gameType, isTest, callback, errorCallBack) {
+    function requestLogin(gameType, isTest, callback, errorCallBack, kindId) {
         var rdata = "requestType=json&code=" + gameType + "&isTest=" + isTest;
+        if (kindId != null) {
+            if (gameType == "gm") {
+                rdata += "&gameId=" + kindId + "&isFullScreen=1";
+            } else {
+                rdata += "&kindID=" + kindId;
+            }
+        }
         requestAjax("gameApi/login", rdata, function (jsonObj) {
             var code = jsonObj["code"];
             if (code == 0) {
@@ -1057,12 +1064,19 @@ function GameAPI() {
             }
         }
     }
-    function requestTryPlay(gameType, vcode, callback, errorCallBack) {
+    function requestTryPlay(gameType, vcode, callback, errorCallBack, kindId) {
         var requestData = "";
         if (vcode != null) {
             requestData = "requestType=json&code=" + gameType + "&imgCode=" + vcode;
         } else {
             requestData = "requestType=json&code=" + gameType;
+        }
+        if (kindId != null) {
+            if (gameType == "gm") {
+                requestData += "&gameId=" + kindId + "&isFullScreen=1";
+            } else {
+                requestData += "&kindID=" + kindId;
+            }
         }
         requestAjax("gameTestApi/login", requestData, function (jsonObj) {
             var code = jsonObj["code"];

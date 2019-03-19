@@ -1,12 +1,12 @@
 // 工程配置及初始化控制
-var APP_VERSION = "1.9.4"; // 版本号
-var IS_TEST_SERVER = true; // 是否是测试服务器(更改服务地址时必须更改该值)
+var APP_VERSION = "1.9.5"; // 版本号
+var IS_TEST_SERVER = false; // 是否是测试服务器(更改服务地址时必须更改该值)
 var appRootDomain = null;
 var SERVER_ADD;
 if (IS_TEST_SERVER) {
     SERVER_ADD = "https://w22.bctt.co:8000/";
 } else {
-    SERVER_ADD = "https://www.pjd11.com/";
+    SERVER_ADD = "https://www.pjd111.com/";
 }
 var ORDER_TIMEOUT = 15000;
 var appDownloadUrl = null;

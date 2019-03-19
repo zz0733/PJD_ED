@@ -46,6 +46,7 @@ function CHKY() {
             "height": screenH - topH - 0.5 - chMenuH - 2 - menuH,
             "background": roadContentBgColor
         });
+        bindKy();
         $(".content_poker_content_item_class").css({
             "width": itemW,
             "height": "auto",
@@ -54,11 +55,11 @@ function CHKY() {
             "justify-content": "flex-start",
             "flex-direction": "column",
             "align-items": "center",
-            "margin-bottom": "10px",
             "color": mainFontColorMore,
             "background": kyGameItemBgColor,
             "font-size": fontSize,
             "border-radius": "3px",
+            "margin-bottom": "5px",
             "box-sizing": "border-box"
         });
         $(".content_poker_content_item_img_class").css({
@@ -117,6 +118,27 @@ function CHKY() {
     this.exit = function () {
         mObj.css({ "display": "none" });
     }
+    function bindKy() {
+        var rot = " <div class=\"content_poker_content_item_class\" id=\"content_poker_content_item_[id]_id\">[content]</div>";
+        var img = "<img class=\"content_poker_content_item_img_class\" src=\"pic/themeMain/KY_GAME_[img].png\" style=\"width:60px\"/>[name]";
+        var items = rot.replace("[id]", 1).replace("[content]", img.replace("[img]", "8").replace("[name]", "抢庄牛牛"));
+        items += rot.replace("[id]", 2).replace("[content]", img.replace("[img]", "14").replace("[name]", "炸金花"));
+        items += rot.replace("[id]", 6).replace("[content]", img.replace("[img]", "6").replace("[name]", "二十一点"));
+        items += rot.replace("[id]", 5).replace("[content]", img.replace("[img]", "5").replace("[name]", "二八杠"));
+        items += rot.replace("[id]", 4).replace("[content]", img.replace("[img]", "10").replace("[name]", "三公"));
+        items += rot.replace("[id]", 3).replace("[content]", img.replace("[img]", "3").replace("[name]", "德州扑克"));
+        items += rot.replace("[id]", 11).replace("[content]", img.replace("[img]", "9").replace("[name]", "抢庄牌九"));
+        items += rot.replace("[id]", 13).replace("[content]", img.replace("[img]", "1").replace("[name]", "百家乐"));
+        items += rot.replace("[id]", 10).replace("[content]", img.replace("[img]", "11").replace("[name]", "森林舞会"));
+        items += rot.replace("[id]", 12).replace("[content]", img.replace("[img]", "15").replace("[name]", "押庄龙虎"));
+        items += rot.replace("[id]", 7).replace("[content]", img.replace("[img]", "13").replace("[name]", "通比牛牛"));
+        items += rot.replace("[id]", 9).replace("[content]", img.replace("[img]", "2").replace("[name]", "百人牛牛"));
+        items += rot.replace("[id]", 14).replace("[content]", img.replace("[img]", "12").replace("[name]", "十三水"));
+        items += rot.replace("[id]", 8).replace("[content]", img.replace("[img]", "4").replace("[name]", "斗地主"));
+        items += rot.replace("[id]", 15).replace("[content]", img.replace("[img]", "7").replace("[name]", "极速炸金花"));
+        items += rot.replace("[id]", "add").replace("[content]", img.replace("[img]", "ADD").replace("[name]", "敬请期待"));
+        $("#index_content_ky").html(items);
+    }
 }
 function CHGM() {
     var mObj = $("#index_content_gm");
@@ -129,6 +151,7 @@ function CHGM() {
             "height": screenH - topH - 0.5 - chMenuH - 2 - menuH,
             "background": roadContentBgColor
         });
+        bindGm();
         $(".content_gm_content_item_class").css({
             "width": itemW,
             "height": "auto",
@@ -137,11 +160,11 @@ function CHGM() {
             "justify-content": "flex-start",
             "flex-direction": "column",
             "align-items": "center",
-            "margin-bottom": "10px",
             "color": mainFontColorMore,
             "background": kyGameItemBgColor,
             "font-size": fontSize,
             "border-radius": "3px",
+            "margin-bottom": "5px",
             "box-sizing": "border-box"
         });
         $(".content_gm_content_item_img_class").css({
@@ -214,5 +237,31 @@ function CHGM() {
     }
     this.exit = function () {
         mObj.css({ "display": "none" });
+    }
+    function bindGm() {
+        var rot = " <div class=\"content_gm_content_item_class\" id=\"content_gm_content_item_[id]_id\">[content]</div>";
+        var img = "<img class=\"content_gm_content_item_img_class\" src=\"pic/themeMain/GM_GAME_[img].png\" style=\"width:60px\"/>[name]";
+        var items = rot.replace("[id]", 1).replace("[content]", img.replace("[img]", "5").replace("[name]", "百人牛牛"));
+        items += rot.replace("[id]", 2).replace("[content]", img.replace("[img]", "16").replace("[name]", "看牌抢庄牛牛"));
+        items += rot.replace("[id]", 3).replace("[content]", img.replace("[img]", "2").replace("[name]", "百家乐"));
+        items += rot.replace("[id]", 4).replace("[content]", img.replace("[img]", "20").replace("[name]", "通比牛牛"));
+        items += rot.replace("[id]", 5).replace("[content]", img.replace("[img]", "4").replace("[name]", "百人龙虎"));
+        items += rot.replace("[id]", 6).replace("[content]", img.replace("[img]", "19").replace("[name]", "随机庄家牛牛"));
+        items += rot.replace("[id]", 7).replace("[content]", img.replace("[img]", "6").replace("[name]", "百人炸金花"));
+        items += rot.replace("[id]", 8).replace("[content]", img.replace("[img]", "22").replace("[name]", "炸金花"));
+        items += rot.replace("[id]", 9).replace("[content]", img.replace("[img]", "3").replace("[name]", "百人德州"));
+        items += rot.replace("[id]", 10).replace("[content]", img.replace("[img]", "15").replace("[name]", "极速炸金花"));
+        items += rot.replace("[id]", 11).replace("[content]", img.replace("[img]", "7").replace("[name]", "德州扑克"));
+        items += rot.replace("[id]", 12).replace("[content]", img.replace("[img]", "17").replace("[name]", "三公"));
+        items += rot.replace("[id]", 13).replace("[content]", img.replace("[img]", "11").replace("[name]", "二人斗地主"));
+        items += rot.replace("[id]", 14).replace("[content]", img.replace("[img]", "18").replace("[name]", "十三水"));
+        items += rot.replace("[id]", 15).replace("[content]", img.replace("[img]", "9").replace("[name]", "斗地主"));
+        items += rot.replace("[id]", 16).replace("[content]", img.replace("[img]", "21").replace("[name]", "推倒胡"));
+        items += rot.replace("[id]", 17).replace("[content]", img.replace("[img]", "12").replace("[name]", "二人麻将"));
+        items += rot.replace("[id]", 18).replace("[content]", img.replace("[img]", "8").replace("[name]", "点炮胡"));
+        items += rot.replace("[id]", 19).replace("[content]", img.replace("[img]", "10").replace("[name]", "二八杠"));
+        items += rot.replace("[id]", 20).replace("[content]", img.replace("[img]", "14").replace("[name]", "港试五张"));
+        items += rot.replace("[id]", 21).replace("[content]", img.replace("[img]", "13").replace("[name]", "21点"));
+        $("#index_content_gm").html(items);
     }
 }
