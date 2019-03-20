@@ -1542,33 +1542,18 @@ function GamesFrameHtml(id, handel) {
     $("#" + id).html(iframe + load + fed);
     if (handel != null) handel();
 }
-function bindFedView(id, msg, btnC) {
+function bindFedView(id, msg, type) {
     var obj = $("#" + id);
-    // 背景布局
-    var bg = "<div id=\"" + id + "_failedBg\">%content%</div>";
-    // 根部布局
-    var rootDiv = "<div id=\"" + id + "_failedDiv\">%content%</div>";
-    // 哭脸图片
+    var bg = "<div id=\"" + id + "_failedBg\">[content]</div>";
+    var rootDiv = "<div id=\"" + id + "_failedDiv\">[content]</div>";
     var img = "<div style=\"height:80px\"><img class=\"openGameFailureImg\" src=\"" + themPath + "sorry.png\"/></div>";
-    // 提示标题
     var tsMsg = "<div style=\"font-size:18px\"><font color=" + mainColor + ">很抱歉</font></div>";
-    // 提示内容
     var cnMsg = "<div style=\"font-size:16px\"><font color=#CACACA>" + msg + "</font></div>";
-    // 重试按钮
-    var btnCon = "<div style=display:flex;justify-content:center;align-items:center><div id=btn_" + id + " style=\"font-size:16px\"><font color=white>重试</font></div><div>";
-    // 大分割线
+    var btn = "<div id=" + id + "_resetBtn>重试</div>";
     var devMx = "<div style=\"height:6px\"></div>";
-    // 小分割线
     var devMn = "<div style=\"height:1px\"></div>";
-    bg = bg.replace("%content%", rootDiv.replace("%content%", img + devMx + tsMsg + devMn + cnMsg + devMx + devMx + btnCon));
+    bg = bg.replace("[content]", rootDiv.replace("[content]", img + devMx + tsMsg + devMn + cnMsg + devMx + devMx + btn));
     obj.html(bg);
-    $("#btn_" + id).css({
-        "border-radius": "20px",
-        "width": "20%",
-        "height": "22px",
-        "font-size": "14px",
-        "background-color": "#cca352"
-    })
     $("#" + id + "_failedBg").css({
         "width": "100%",
         "height": "100%",
@@ -1578,46 +1563,60 @@ function bindFedView(id, msg, btnC) {
         "box-sizing": "border-box"
     });
     $("#" + id + "_failedDiv").css({
+        "display": "flex",
+        "justify-content": "flex-start",
         "align-items": "center",
-        "text-align": "center",
+        "flex-direction": "column",
         "width": "100%",
         "height": "auto",
         "font-size": "16px",
         "box-sizing": "border-box"
     });
-    setBtnOnTouchEvent($("#btn_" + id), function () {
+    $("#" + id + "_resetBtn").css({
+        "width": "25%",
+        "display": "flex",
+        "justify-content": "center",
+        "align-items": "center",
+        "border-radius": "8px",
+        "background": mainColor,
+        "font-size": "14px",
+        "color": "white",
+        "padding": "5px",
+        "box-sizing": "border-box"
+    });
+    setBtnOnTouchEvent($("#" + id + "_resetBtn"), function () {
         var isNewLoad = false;
-        if (btnC != null) {
-            if (btnC == "qsContent") {
+        if (type != null) {
+            if (type == "qsContent") {
                 backClickFun();
                 myPJDApp.showAskObj(isNewLoad);
-            } else if (btnC == "aboutContent") {
+            } else if (type == "aboutContent") {
                 backClickFun();
                 myPJDApp.showAboutObj(isNewLoad);
-            } else if (btnC == "agreementContent") {
+            } else if (type == "agreementContent") {
                 backClickFun();
                 myPJDApp.showAgreement("agreement", isNewLoad);
-            } else if (btnC == "declareContent") {
+            } else if (type == "declareContent") {
                 backClickFun();
                 myPJDApp.showAgreement("declare", isNewLoad);
-            } else if (btnC == "bettingContent") {
+            } else if (type == "bettingContent") {
                 backClickFun();
                 myPJDApp.showResponsibilityObj(isNewLoad);
-            } else if (btnC == "pyramidContent_1_1") {
+            } else if (type == "pyramidContent_1_1") {
                 backClickFun();
                 myPJDApp.showPyramid("pyramidContent_1_1", isNewLoad);
-            } else if (btnC == "pyramidContent_2_2") {
+            } else if (type == "pyramidContent_2_2") {
                 backClickFun();
                 myPJDApp.showPyramid("pyramidContent_2_2", isNewLoad);
-            } else if (btnC == "league_three_menu_1_content") {
+            } else if (type == "league_three_menu_1_content") {
                 backClickFun();
                 var isType = "5_1";
                 myPJDApp.showAgent(isNewLoad, isType);
-            } else if (btnC == "league_three_menu_2_content") {
+            } else if (type == "league_three_menu_2_content") {
                 backClickFun();
                 var isType = "5_2";
                 myPJDApp.showAgent(isNewLoad, isType);
-            } else if (btnC == "leagueSuggest") {
+            } else if (type == "leagueSuggest") {
                 backClickFun();
                 myPJDApp.showAgent(isNewLoad, 4);
             }
@@ -1632,7 +1631,7 @@ function bindFedView(id, msg, btnC) {
                 $("#btn_" + id).css({ "display": "none" })
             }
         }
-    }, "#f1c570", "#cca352");
+    }, "#f1c570", mainColor);
 }
 function parseGameList() {
     var gameListObjSort = new Array();
